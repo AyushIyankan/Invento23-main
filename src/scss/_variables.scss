@@ -1,0 +1,32 @@
+$bp-tablet: 45em;
+$bp-desktop: 75em;
+
+:root {
+    --fs-100: 0.5rem; //8px
+    --fs-200: 0.65625; //10.5px
+    --fs-300: 0.8125rem; //12px
+    --fs-400: 0.84375rem; //13.5px
+    --fs-500: 0.875rem; //14px
+    --fs-600: 0.90625rem; //14.5px
+    --fs-700: 0.91875rem; //14.7px
+    --fs-800: 0.96875rem; //15.5px
+    --fs-900: 1.0625rem; //17px
+    --fs-1000: 1.4375rem; //23px
+    --fs-1100: 1.625rem; //26px
+    --fs-1200: 2.1875rem; //35px
+
+    /* 
+        apply colors like this: 
+        color: hsl(var(--clr-white) / opacity);
+    */
+    --clr-white: 0 0% 100%;
+    --clr-black: 0 0% 0%;
+    --clr-grey: 0 0% 53%;
+    --clr-magenta: 346 67% 44%;
+
+    --fw-300: 300;
+    --fw-200: 200;
+    --fw-400: 400;
+    --fw-500: 500;
+    --ff-serif: "Poppins", sans-serif;
+}
