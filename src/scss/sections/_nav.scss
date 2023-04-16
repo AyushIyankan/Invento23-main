@@ -1,0 +1,55 @@
+.header--main {
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    border-bottom: 1px solid hsl(var(--clr-grey-60));
+
+    background-image: url(../assets/svg/vector_nav.svg);
+    position: relative;
+    &::after {
+        content: "";
+        width: clamp(2.8rem, 5vw, 8.3rem);
+        display: inline-block;
+        height: 2px;
+        position: absolute;
+        inset: auto auto 0 0;
+        background-color: hsl(var(--clr-magenta));
+    }
+}
+
+.logo--container {
+    --gap: 2rem;
+    flex-shrink: 0;
+    align-items: center;
+    > * {
+        aspect-ratio: 1;
+        cursor: pointer;
+    }
+    > *:last-child {
+        fill: hsl(var(--clr-white));
+        stroke: hsl(var(--clr-white));
+    }
+}
+
+.logo--invento {
+    height: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.logo--search {
+    height: clamp(3.625rem, 5vw, 5.1875rem);
+}
+
+.menu {
+    height: 3rem;
+}
+
+.menu > * {
+    stroke: hsl(var(--clr-white));
+}
+
+.mobile-nav-toggle {
+    flex-shrink: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
