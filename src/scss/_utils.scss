@@ -34,6 +34,10 @@
     font-family: var(--ff-serif);
 }
 
+.ff-days-one {
+    font-family: var(--ff-days-one);
+}
+
 .fs-100 {
     font-size: var(--fs-100);
 }
@@ -116,10 +120,26 @@
     background-color: hsl(var(--clr-grey) / 1);
 }
 
+.bg-dark-purple {
+    background-color: hsl(var(--clr-purple-dark) / 1);
+}
+
 .side-padding {
     padding-inline: var(--side-padding, 1rem);
 }
 
 .t-center {
     text-align: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
