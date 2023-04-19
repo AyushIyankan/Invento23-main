@@ -75,14 +75,16 @@ h6 {
 
 :root {
   --fs-100: 0.5rem;
-  --fs-200: 0.65625;
+  --fs-150: 0.75rem;
+  --fs-200: 0.8125rem;
+  --fs-650: 1.75rem;
+  --fs-700: 1.875rem;
+  --fs-800: 2.375rem;
+  --fs-900: 4.125rem;
   --fs-300: 0.8125rem;
-  --fs-400: 0.84375rem;
+  --fs-400: 1.0625rem;
   --fs-500: 0.875rem;
   --fs-600: 0.90625rem;
-  --fs-700: 0.91875rem;
-  --fs-800: 0.96875rem;
-  --fs-900: 1.0625rem;
   --fs-1000: 1.4375rem;
   --fs-1100: 1.625rem;
   --fs-1200: 2.1875rem;
@@ -103,10 +105,24 @@ h6 {
   --ff-serif: "Poppins", sans-serif;
   --ff-days-one: "Days One", sans-serif;
 }
+@media (min-width: 75em) {
+  :root {
+    --fs-150: 0.9375rem;
+    --fs-200: 1.1875rem;
+    --fs-650: 4.25;
+    --fs-700: 3.125rem;
+    --fs-800: 7.3125rem;
+    --fs-900: 13.75rem;
+  }
+}
 
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .grid {
@@ -360,6 +376,63 @@ h6 {
 
 .layout {
   min-height: 100%;
+}
+
+.bg--full--saptha {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: url(../assets/images/saptha_hero_bg_mobile.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (min-width: 75em) {
+  .bg--full--saptha {
+    background: url(../assets/images/saptha_hero_bg.png), linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+}
+
+.bg--box {
+  padding: 2em;
+}
+
+.crumb-wrap {
+  align-self: stretch;
+  padding-top: 3em;
+  padding-inline: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  --gap: 0;
+  align-items: center;
+  min-height: 100vh;
+}
+.hero__logo > * {
+  stroke: #fff;
+  opacity: 1;
+  stroke-width: 2px;
+}
+.hero__logo {
+  aspect-ratio: 1;
+  height: clamp(14.625rem, 5vw, 26rem);
+}
+.hero__heading__container {
+  margin-block: auto;
+  align-content: center;
+  justify-items: center;
+}
+.hero__heading__container > * {
+  grid-area: 2/1/3/2;
+}
+.hero__heading__container h1 {
+  align-self: center;
 }
 
 /*# sourceMappingURL=index.css.map */
