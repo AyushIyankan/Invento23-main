@@ -52,4 +52,59 @@
     background: none;
     border: 0;
     cursor: pointer;
+    position: fixed;
+    z-index: 10;
+    inset: 1rem 0.5rem auto auto;
+}
+
+.main-nav {
+    // padding-block: 2.625rem;
+    box-shadow: 6px 1px 14px hsl(var(--clr-white) / 0.5);
+    padding-block: min(20rem, 10vh);
+    padding-left: 3.1rem;
+    padding-right: 5rem;
+
+    position: fixed;
+    inset: 0 0 0 auto;
+    transform: translateX(100%);
+    z-index: 5;
+    transition: transform 0.3s ease-in-out;
+
+    background-image: url(../assets/svg/invento__logo_partial_mobile.svg);
+    background-repeat: no-repeat;
+    background-position: 5rem 10%;
+    background-size: cover;
+}
+
+[data-expanded="true"].main-nav {
+    transform: translateX(0%);
+}
+
+.primary-navigation {
+    --flow-space: 1.875rem;
+    a {
+        @include reset-link;
+        font-size: var(--fs-800);
+    }
+    li {
+        @include list-reset;
+    }
+
+    .navlink {
+        --gap: 1.1rem;
+
+        &:focus,
+        &:hover {
+            color: hsl(var(--clr-blue) / 1);
+            // all icon paths
+            > * > * {
+                stroke: currentColor;
+            }
+        }
+    }
+}
+
+.nav--footer {
+    padding-left: 2.5rem;
+    align-self: center;
 }

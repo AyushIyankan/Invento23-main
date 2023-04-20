@@ -6,17 +6,17 @@ $bp-desktop: 75em;
     --fs-150: 0.75rem; //12px
     --fs-200: 0.8125rem; //13px
     --fs-650: 1.75rem; //28px
-    --fs-700: 1.875rem; //30rem
+    --fs-700: 1.875rem; //30px
     --fs-800: 2.375rem; //38px
     --fs-900: 4.125rem; //65px
 
-    --fs-300: 0.8125rem; //12px
+    // --fs-300: 0.8125rem; //12px
     --fs-400: 1.0625rem; //17px
     --fs-500: 0.875rem; //14px
     --fs-600: 0.90625rem; //14.5px
-    --fs-1000: 1.4375rem; //23px
-    --fs-1100: 1.625rem; //26px
-    --fs-1200: 2.1875rem; //35px
+    // --fs-1000: 1.4375rem; //23px
+    // --fs-1100: 1.625rem; //26px
+    // --fs-1200: 2.1875rem; //35px
 
     @include bp(desktop) {
         --fs-150: 0.9375rem; //15px
@@ -37,6 +37,7 @@ $bp-desktop: 75em;
     --clr-grey-60: 0 0% 60%;
     --clr-magenta: 346 67% 44%;
     --clr-purple-dark: 266 12% 12%;
+    --clr-blue: 211 99% 50%;
 
     --fw-300: 300;
     --fw-200: 200;

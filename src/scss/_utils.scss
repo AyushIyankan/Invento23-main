@@ -45,6 +45,11 @@
 .fs-100 {
     font-size: var(--fs-100);
 }
+
+.fs-150 {
+    font-size: var(--fs-150);
+}
+
 .fs-200 {
     font-size: var(--fs-200);
 }
@@ -106,6 +111,10 @@
 
 .text-grey {
     color: hsl(var(--clr-grey) / 1);
+}
+
+.text-blue {
+    color: hsl(var(--clr-blue) / 1) !important;
 }
 
 .bg-black {

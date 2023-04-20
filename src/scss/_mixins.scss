@@ -1,3 +1,11 @@
+@mixin reset-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+@mixin list-reset {
+    list-style: none;
+}
 @mixin bp($point) {
     @if $point == tablet {
         @media (min-width: 45em) {
