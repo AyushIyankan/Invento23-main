@@ -330,15 +330,17 @@ h6 {
   align-items: center;
   border-bottom: 1px solid hsl(var(--clr-grey-60));
   background-image: url(../assets/svg/vector_nav.svg);
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .header--main::after {
   content: "";
   width: clamp(2.8rem, 5vw, 8.3rem);
   display: inline-block;
-  height: 2px;
+  height: 1px;
   position: absolute;
-  inset: auto auto 0 0;
+  inset: auto auto -2% 0;
   background-color: hsl(var(--clr-magenta));
 }
 
@@ -465,6 +467,7 @@ h6 {
 
 .hero {
   --gap: 0;
+  margin-top: 3rem;
   align-items: center;
   min-height: 100vh;
 }
