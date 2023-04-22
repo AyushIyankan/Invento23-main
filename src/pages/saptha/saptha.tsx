@@ -1,4 +1,4 @@
-import bgHero from '../../assets/images/saptha_hero_bg.png'
+import { About } from './About'
 import { Hero } from './Hero'
 
 export default function Saptha() {
@@ -11,6 +11,7 @@ export default function Saptha() {
                 {/* <div className="bg--box"></div> */}
             </div>
             <Hero />
+            <About />
         </>
     )
 }
