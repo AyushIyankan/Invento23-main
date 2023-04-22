@@ -75,10 +75,46 @@
     background-repeat: no-repeat;
     background-position: 5rem 10%;
     background-size: cover;
+    overflow-y: scroll;
+    @include bp(desktop) {
+        inset: 0;
+        transform: translateY(-200%);
+        background-image: url(../assets/svg/invento__logo_partial.svg);
+        background-position: right top;
+        background-size: contain;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        transition: transform 0.5s cubic-bezier(0.03, 0.72, 0.97, 0.59);
+
+        .nav--footer {
+            grid-column: 1/2;
+            grid-row: 1/2;
+            align-self: stretch;
+            position: relative;
+            &::after {
+                content: "";
+                display: block;
+                width: 2px;
+                background-color: hsl(var(--clr-grey-60) / 1);
+                position: absolute;
+                inset: 0 0 0 auto;
+            }
+        }
+
+        .primary-navigation {
+            grid-column: 2/3;
+            grid-row: 1/2;
+        }
+    }
 }
 
 [data-expanded="true"].main-nav {
     transform: translateX(0%);
+
+    @include bp(desktop) {
+        transform: translateY(0%);
+    }
 }
 
 .primary-navigation {
