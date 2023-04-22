@@ -14,7 +14,7 @@
     // background-position: center top;
     // background-attachment: fixed;
 
-    @include bp(desktop) {
+    @media (min-width: 31em) {
         background: url(../assets/images/saptha_hero_bg.png),
             linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
         background-size: cover;

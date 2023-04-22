@@ -9,7 +9,7 @@ export function Hero() {
                 </p>
             </div>
             <div className="saptha__hero__heading__container grid">
-                <h1 className="heading--main uppercase fw-400 fs-900 ff-days-one text-white">
+                <h1 className="heading--main uppercase fw-400 ff-days-one text-white">
                     saptha
                 </h1>
                 <div className="saptha__hero__logo--container">

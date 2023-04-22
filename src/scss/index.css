@@ -496,7 +496,7 @@ h6 {
   background-size: cover;
   background-repeat: no-repeat;
 }
-@media (min-width: 75em) {
+@media (min-width: 31em) {
   .bg--full--saptha {
     background: url(../assets/images/saptha_hero_bg.png), linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
     background-size: cover;
@@ -530,17 +530,16 @@ h6 {
 }
 .saptha__hero__logo {
   aspect-ratio: 1;
-  height: clamp(12.625rem, 7vw, 30rem);
-}
-@media (min-width: 75em) {
-  .saptha__hero__logo {
-    height: 28rem;
-  }
+  height: clamp(14rem, 11.4rem + 13vw, 27rem);
 }
 .saptha__hero__heading__container {
   margin-block: auto;
   align-content: center;
   justify-items: center;
+}
+.saptha__hero__heading__container h1 {
+  font-size: 4rem;
+  font-size: clamp(4rem, 2.05rem + 9.75vw, 13.75rem);
 }
 .saptha__hero__heading__container > * {
   grid-area: 2/1/3/2;
