@@ -44,10 +44,9 @@
     height: clamp(20rem, 100%, 29rem);
 
     grid-row: 1/2;
-
+    justify-self: center;
     @include bp(desktop) {
         grid-column: 3/4;
-        justify-self: center;
     }
 
     > * {
@@ -59,6 +58,7 @@
 
 .saptha__about {
     --max-width: 77rem;
+    row-gap: 8rem;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     padding-block: clamp(6rem, 3vw, 15rem);
     background: linear-gradient(
@@ -89,5 +89,6 @@
         background-image: url(../assets/svg/contour.svg);
         background-repeat: no-repeat;
         background-size: cover;
+        row-gap: unset;
     }
 }
