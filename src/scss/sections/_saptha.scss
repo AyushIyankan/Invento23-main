@@ -92,3 +92,10 @@
         row-gap: unset;
     }
 }
+
+.saptha__spotlight {
+    &__cards {
+        --gap: 5rem;
+        flex-wrap: wrap;
+    }
+}

@@ -1,5 +1,6 @@
 import { About } from './About'
 import { Hero } from './Hero'
+import { Spotlight } from './spotlight'
 
 export default function Saptha() {
     return (
@@ -12,6 +13,7 @@ export default function Saptha() {
             </div>
             <Hero />
             <About />
+            <Spotlight />
         </>
     )
 }

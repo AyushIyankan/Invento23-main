@@ -6,6 +6,7 @@
     background-image: url(../assets/svg/vector_nav.svg);
     position: fixed;
     top: 0;
+    z-index: 99;
     width: 100%;
     &::after {
         content: "";
