@@ -1,4 +1,5 @@
 import { About } from './About'
+import { GroupEvents } from './GroupEvents'
 import { Hero } from './Hero'
 import { Spotlight } from './spotlight'
 
@@ -14,6 +15,7 @@ export default function Saptha() {
             <Hero />
             <About />
             <Spotlight />
+            <GroupEvents />
         </>
     )
 }

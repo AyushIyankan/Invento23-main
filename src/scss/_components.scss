@@ -23,23 +23,18 @@
     -webkit-backdrop-filter: blur(10px);
 }
 
-.card {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    border-radius: 10px;
-
+.card--spotlight {
     aspect-ratio: 1;
-    // width: 21rem;
+    width: 21rem;
     width: clamp(21rem, 18.2rem + 14vw, 35rem);
     height: 14rem;
     height: clamp(14rem, 12.1rem + 9.5vw, 23.5rem);
-    // height: 14rem;
+}
 
-    &__title {
-        font-size: 1.8rem;
-        font-size: clamp(1.8rem, 1.54rem + 1.3vw, 3.1rem);
-        justify-self: end;
-        align-self: self-end;
-    }
+.card--groupevent {
+    width: 13.75rem;
+    width: clamp(13.75rem, 11.9rem + 9.25vw, 23rem);
+
+    height: 9rem;
+    height: clamp(9rem, 7.8rem + 6vw, 15rem);
 }
