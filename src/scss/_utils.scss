@@ -31,6 +31,35 @@
     }
 }
 
+.grid-z {
+    grid-template-columns: minmax(var(--side-padding, 1rem), 1.8rem) 1fr minmax(var(--side-padding, 1rem), 1.8rem);
+
+    > * {
+        grid-column: 2/3;
+        align-self: center;
+    }
+
+    > *:nth-child(odd) {
+        justify-self: start;
+    }
+
+    > *:nth-child(even) {
+        justify-self: self-end;
+    }
+
+    @include bp(desktop) {
+        padding-inline: 10rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        > *:nth-child(odd),
+        > *:nth-child(even) {
+            justify-self: center;
+            align-self: center;
+            grid-area: auto;
+        }
+    }
+}
+
 .iflex {
     display: inline-flex;
     gap: var(--gap, 1rem);

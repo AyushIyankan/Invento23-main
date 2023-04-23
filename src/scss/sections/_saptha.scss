@@ -99,3 +99,10 @@
         flex-wrap: wrap;
     }
 }
+
+.saptha__groupevents {
+    --gap: 1.8rem;
+    &__cards {
+        flex-wrap: wrap;
+    }
+}
