@@ -75,11 +75,19 @@
 
 // .flow > * + *
 .flow > *:where(:not(:first-child)) {
-    margin-top: var(--flow-space, 1.5rem);
+    margin-top: var(--flow-space, 1rem);
+}
+
+.mt-sm {
+    margin-top: var(--top, 0.6rem);
 }
 
 .uppercase {
     text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 .ff-serif {

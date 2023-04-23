@@ -1,0 +1,68 @@
+.footer {
+    background: url(../assets/svg/footer_line.svg),
+        linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur;
+    padding-top: 2.5rem;
+    padding-top: clamp(2.5rem, 1.25rem + 6.25vw, 8.75rem);
+
+    li {
+        @include list-reset;
+    }
+    a {
+        @include reset-link;
+    }
+
+    &__main {
+        --flow-space: 3.75rem;
+        margin-bottom: 2.1rem;
+    }
+
+    &__main,
+    &__sub {
+        padding-inline: 2.5rem;
+        padding-inline: clamp(2.5rem, 1.25rem + 6.25vw, 8.75rem);
+    }
+
+    &__sub {
+        --gap: 2.6rem;
+        border-top: 2px solid hsl(var(--clr-grey) / 1);
+        padding-block: 1.28rem;
+    }
+
+    &__nav {
+        --flow-space: 0.8rem;
+
+        &list {
+            --gap: 0.4rem;
+            padding-left: 0;
+        }
+
+        &--item {
+            align-self: start;
+        }
+
+        &--item:hover,
+        &--item:focus {
+            color: hsl(var(--clr-magenta) / 1);
+            border-bottom: 1px solid currentColor;
+        }
+    }
+
+    &__logo {
+        > * {
+            fill: #fff;
+        }
+
+        &--link:hover & > *,
+        &--link:focus & > * {
+            fill: hsl(var(--clr-magenta) / 1);
+        }
+    }
+
+    &__form {
+        label {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

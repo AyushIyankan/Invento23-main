@@ -39,3 +39,18 @@
     height: 9rem;
     height: clamp(9rem, 7.8rem + 6vw, 15rem);
 }
+
+.btn {
+    border: 0;
+    background: none;
+    padding-inline: 1.2em;
+    padding-block: 0.7em;
+    margin-block: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn--subscribe {
+    color: var(--text-clr, hsl(var(--clr-white) / 1));
+    background: var(--bg, hsl(var(--clr-magenta) / 1));
+}
