@@ -1,0 +1,55 @@
+.layout {
+    min-height: 100%;
+}
+
+.bg--full--saptha {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: url(../assets/images/saptha_hero_bg_mobile.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    // background-position: center top;
+    // background-attachment: fixed;
+
+    @media (min-width: 31em) {
+        background: url(../assets/images/saptha_hero_bg.png),
+            linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center top;
+    }
+}
+
+.bg--box {
+    padding: 2em;
+}
+
+.crumb-wrap {
+    align-self: stretch;
+    padding-top: 3em;
+    padding-inline: 2em;
+    justify-content: center;
+    align-items: center;
+    // background-color: hsl(var(--clr-black));
+
+    // @include bp(tablet) {
+    //     background-color: unset;
+    // }
+}
+
+// .bg-wrap {
+//     grid-template-columns: repeat(6, 1fr);
+//     grid-template-rows: repeat(6, 1fr);
+
+//     > * {
+//         grid-row: 1/6;
+//         grid-column: 1/6;
+//     }
+// }
+
+// .img--saptha-bg {
+//     object-fit: cover;
+// }
