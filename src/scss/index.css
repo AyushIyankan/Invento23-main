@@ -356,6 +356,14 @@ h6 {
   height: 100dvh;
 }
 
+.mb-sm {
+  margin-bottom: 1.6rem;
+}
+
+.pb-sm {
+  padding-bottom: 1.6rem;
+}
+
 .line {
   fill: none;
   stroke: black;
