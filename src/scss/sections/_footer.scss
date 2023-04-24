@@ -1,6 +1,7 @@
 .footer {
-    background: url(../assets/svg/footer_line.svg),
-        linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+    // --footer-gradient: linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+
+    background: url(../assets/svg/footer_line.svg), var(--footer-gradient);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

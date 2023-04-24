@@ -6,11 +6,14 @@ import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
 import { useToggle } from '../../hooks'
 
-export default function Nav() {
+export default function Nav({ background }: { background: string }) {
     const [navState, toggleNavState] = useToggle(false)
 
     return (
-        <header className="header--main bg-dark-purple flex">
+        <header
+            className="header--main bg-dark-purple flex"
+            style={{ '--navbar-bg': background } as React.CSSProperties}
+        >
             <div className="logo--container flex">
                 <Logo className="logo--invento" />
                 <SearchLogo className="logo--search" />

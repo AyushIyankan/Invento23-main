@@ -3,9 +3,12 @@ import { ReactComponent as YoutubeLogo } from '../../assets/svg/carbon_logo-yout
 import { ReactComponent as FacebookLogo } from '../../assets/svg/ic_sharp-facebook.svg'
 import { ReactComponent as InstagramLogo } from '../../assets/svg/ion_logo-instagram.svg'
 
-export default function Footer() {
+export default function Footer({ background }: { background: string }) {
     return (
-        <footer className="footer ff-serif text-grey">
+        <footer
+            className="footer ff-serif text-grey"
+            style={{ '--footer-gradient': background } as React.CSSProperties}
+        >
             <div className="footer__main flow">
                 <h3 className="text-magenta fw-400">invento</h3>
 
