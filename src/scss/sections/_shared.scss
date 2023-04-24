@@ -1,5 +1,12 @@
 .layout {
     min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    .footer {
+        margin-top: auto;
+        grid-column: -1;
+    }
 }
 
 .bg--full--saptha {

@@ -598,6 +598,12 @@ h6 {
 
 .layout {
   min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.layout .footer {
+  margin-top: auto;
+  grid-column: -1;
 }
 
 .bg--full--saptha {
