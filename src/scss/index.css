@@ -605,7 +605,14 @@ h6 {
 }
 
 .layout {
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* maybe remove this altogether as the page isn't short */
+  display: flex;
+  flex-direction: column;
+}
+.layout .footer {
+  margin-top: auto;
 }
 
 .bg--full--saptha {
