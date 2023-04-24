@@ -1,5 +1,18 @@
 .layout {
-    min-height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    // overflow-x: hidden;
+    // overflow: hidden;
+    // display: grid;
+    // grid-template-rows: auto minmax(0, 1fr) auto;
+
+    /* maybe remove this altogether as the page isn't short */
+    display: flex;
+    flex-direction: column;
+    .footer {
+        margin-top: auto;
+        // grid-column: -1;
+    }
 }
 
 .bg--full--saptha {
@@ -55,7 +68,7 @@
 // }
 // scrollbar
 
-:root,
+// :root,
 body {
     --sb-track-color: #19161d;
     --sb-thumb-color: #ba2548;

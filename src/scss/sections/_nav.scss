@@ -17,6 +17,7 @@
         inset: auto auto -2% 0;
         background-color: hsl(var(--clr-magenta));
     }
+    background-color: var(--navbar-bg) !important;
 }
 
 .logo--container {

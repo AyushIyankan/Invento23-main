@@ -95,6 +95,7 @@ h6 {
   --clr-magenta: 346 67% 44%;
   --clr-purple-dark: 266 12% 12%;
   --clr-blue: 211 99% 50%;
+  --clr-dark-teal: 203 48% 10%;
   --fw-300: 300;
   --fw-200: 200;
   --fw-400: 400;
@@ -419,7 +420,13 @@ h6 {
 }
 
 .bg__blur--saptha {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 13.81%, rgba(227, 227, 227, 0.05) 100%);
+}
+
+.bg__blur--events {
+  background: hsl(202, 100%, 5%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -464,6 +471,7 @@ h6 {
   top: 0;
   z-index: 99;
   width: 100%;
+  background-color: var(--navbar-bg) !important;
 }
 .header--main::after {
   content: "";
@@ -597,7 +605,14 @@ h6 {
 }
 
 .layout {
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* maybe remove this altogether as the page isn't short */
+  display: flex;
+  flex-direction: column;
+}
+.layout .footer {
+  margin-top: auto;
 }
 
 .bg--full--saptha {
@@ -631,7 +646,6 @@ h6 {
   align-items: center;
 }
 
-:root,
 body {
   --sb-track-color: #19161d;
   --sb-thumb-color: #ba2548;
@@ -751,7 +765,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .footer {
-  background: url(../assets/svg/footer_line.svg), linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+  background: url(../assets/svg/footer_line.svg), var(--footer-gradient);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
