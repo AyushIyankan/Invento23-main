@@ -13,12 +13,19 @@
 }
 
 .bg__blur--saptha {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0) 0%,
         rgba(255, 255, 255, 0.05) 13.81%,
         rgba(227, 227, 227, 0.05) 100%
     );
+}
+
+.bg__blur--events {
+    background: hsl(202, 100%, 5%);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);

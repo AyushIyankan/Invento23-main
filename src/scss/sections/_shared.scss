@@ -1,12 +1,13 @@
 .layout {
     min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    // overflow-x: hidden;
+    // display: grid;
+    // grid-template-rows: auto 1fr auto;
 
-    .footer {
-        margin-top: auto;
-        grid-column: -1;
-    }
+    // .footer {
+    //     margin-top: auto;
+    //     grid-column: -1;
+    // }
 }
 
 .bg--full--saptha {
@@ -62,7 +63,7 @@
 // }
 // scrollbar
 
-:root,
+// :root,
 body {
     --sb-track-color: #19161d;
     --sb-thumb-color: #ba2548;
