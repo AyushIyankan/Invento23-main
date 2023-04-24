@@ -1,0 +1,124 @@
+.footer {
+    background: url(../assets/svg/footer_line.svg),
+        linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur;
+    padding-top: 2.5rem;
+    padding-top: clamp(2.5rem, 1.25rem + 6.25vw, 8.75rem);
+
+    li {
+        @include list-reset;
+    }
+    a {
+        @include reset-link;
+    }
+
+    h3 {
+        font-size: 2.1rem;
+        font-size: clamp(2.1rem, 1.91rem + 1vw, 3.1rem);
+    }
+    label,
+    h4 {
+        font-size: 1.06rem;
+        font-size: clamp(1.06rem, 1.036rem + 0.198vw, 1.18rem);
+    }
+
+    &__main {
+        --flow-space: 3.75rem;
+        margin-bottom: 2.1rem;
+    }
+
+    &__main,
+    &__sub {
+        padding-inline: 2.5rem;
+        padding-inline: clamp(2.5rem, 1.25rem + 6.25vw, 8.75rem);
+    }
+
+    &__sub {
+        --gap: 2.6rem;
+        border-top: 2px solid hsl(var(--clr-grey) / 1);
+        padding-block: 1.28rem;
+    }
+
+    &__nav {
+        --flow-space: 0.8rem;
+
+        &list {
+            --gap: 0.4rem;
+            padding-left: 0;
+        }
+
+        &--item {
+            align-self: start;
+        }
+
+        &--item:hover,
+        &--item:focus {
+            color: hsl(var(--clr-magenta) / 1);
+            border-bottom: 1px solid currentColor;
+        }
+    }
+
+    &__logo {
+        > * {
+            fill: #fff;
+        }
+
+        &--link:hover & > *,
+        &--link:focus & > * {
+            fill: hsl(var(--clr-magenta) / 1);
+        }
+    }
+
+    &__form {
+        label {
+            margin-bottom: 0.5rem;
+        }
+
+        &--input__container {
+            --gap: 0;
+            align-items: center;
+        }
+
+        &--input {
+            width: 15rem;
+            border: 1px solid hsl(var(--clr-magenta) / 1);
+        }
+
+        &--input:focus-within {
+            outline: 1px solid hsl(var(--clr-magenta) / 1);
+        }
+
+        &--button {
+            align-self: stretch;
+            padding-block: 0.28em;
+            margin-block: 0;
+            margin-left: -4.8%;
+        }
+    }
+}
+
+@include bp(desktop) {
+    .footer {
+        &__main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            > * {
+                margin-top: 0;
+            }
+        }
+
+        &__address,
+        &__logoContainer {
+            grid-area: 2/1/3/2;
+        }
+
+        &__form {
+            grid-area: 2/2/3/3;
+        }
+    }
+}

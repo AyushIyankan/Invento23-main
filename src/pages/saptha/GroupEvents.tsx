@@ -20,7 +20,9 @@ export function GroupEvents() {
                     group events
                 </h2>
             </div>
-            <div className="saptha__groupevents__cards grid panel grid-z">{cards}</div>
+            <div className="saptha__groupevents__cards grid panel grid-z pb-sm">
+                {cards}
+            </div>
         </section>
     )
 }

@@ -75,11 +75,19 @@
 
 // .flow > * + *
 .flow > *:where(:not(:first-child)) {
-    margin-top: var(--flow-space, 1.5rem);
+    margin-top: var(--flow-space, 1rem);
+}
+
+.mt-sm {
+    margin-top: var(--top, 0.6rem);
 }
 
 .uppercase {
     text-transform: uppercase;
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 .ff-serif {
@@ -219,4 +227,17 @@
 .panel {
     position: relative;
     z-index: 2;
+}
+
+.h-full {
+    height: 100vh;
+    height: 100dvh;
+}
+
+.mb-sm {
+    margin-bottom: 1.6rem;
+}
+
+.pb-sm {
+    padding-bottom: 1.6rem;
 }
