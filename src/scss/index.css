@@ -820,11 +820,30 @@ body::-webkit-scrollbar-thumb {
   width: 15rem;
   border: 1px solid hsl(var(--clr-magenta)/1);
 }
+.footer__form--input:focus-within {
+  outline: 1px solid hsl(var(--clr-magenta)/1);
+}
 .footer__form--button {
   align-self: stretch;
   padding-block: 0.28em;
   margin-block: 0;
   margin-left: -4.8%;
+}
+
+@media (min-width: 75em) {
+  .footer__main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .footer__main > * {
+    margin-top: 0;
+  }
+  .footer__address, .footer__logoContainer {
+    grid-area: 2/1/3/2;
+  }
+  .footer__form {
+    grid-area: 2/2/3/3;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

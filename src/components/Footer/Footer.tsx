@@ -41,15 +41,12 @@ export default function Footer() {
                             <span>inventogec@gmail.com</span>
                         </a>
                     </div>
+                </div>
 
-                    <div>
-                        <h4
-                            className="text-white fw-400"
-                            style={{ marginBottom: '3.75rem' }}
-                        >
-                            About Us
-                        </h4>
-                    </div>
+                <div className="footer__aboutUs">
+                    <h4 className="text-white fw-400" style={{ marginBottom: '3.75rem' }}>
+                        About Us
+                    </h4>
                 </div>
 
                 <nav className="footer__nav flow">
@@ -77,53 +74,55 @@ export default function Footer() {
                         </li>
                     </ul>
                 </nav>
-                <address className="footer__address text-white">
-                    Government Engineering College, <br />
-                    Sreekrishnapuram, <br />
-                    Palakkad, Kerala -678633
-                </address>
 
-                <div className="footer__logoContainer flex">
-                    <a
-                        href="https://instagram.com/invento_gecpalakkad"
-                        target="_blank"
-                        className="footer__logo--link"
-                        rel="noreferrer noopener"
-                    >
-                        <span>
-                            <FacebookLogo className="footer__logo" />
-                        </span>
-                    </a>
-                    <a
-                        href="https://instagram.com/invento_gecpalakkad"
-                        target="_blank"
-                        className="footer__logo--link"
-                        rel="noreferrer noopener "
-                    >
-                        <span>
-                            <LinkedInLogo className="footer__logo" />
-                        </span>
-                    </a>
-                    <a
-                        href="https://instagram.com/invento_gecpalakkad"
-                        target="_blank"
-                        className="footer__logo--link"
-                        rel="noreferrer noopener"
-                    >
-                        <span>
-                            <YoutubeLogo className="footer__logo" />
-                        </span>
-                    </a>
-                    <a
-                        href="https://instagram.com/invento_gecpalakkad"
-                        target="_blank"
-                        className="footer__logo--link"
-                        rel="noreferrer noopener "
-                    >
-                        <span>
-                            <InstagramLogo className="footer__logo" />
-                        </span>
-                    </a>
+                <div>
+                    <address className="footer__address text-white">
+                        Government Engineering College, <br />
+                        Sreekrishnapuram, <br />
+                        Palakkad, Kerala -678633
+                    </address>
+                    <div className="footer__logoContainer flex mt-sm">
+                        <a
+                            href="https://instagram.com/invento_gecpalakkad"
+                            target="_blank"
+                            className="footer__logo--link"
+                            rel="noreferrer noopener"
+                        >
+                            <span>
+                                <FacebookLogo className="footer__logo" />
+                            </span>
+                        </a>
+                        <a
+                            href="https://instagram.com/invento_gecpalakkad"
+                            target="_blank"
+                            className="footer__logo--link"
+                            rel="noreferrer noopener "
+                        >
+                            <span>
+                                <LinkedInLogo className="footer__logo" />
+                            </span>
+                        </a>
+                        <a
+                            href="https://instagram.com/invento_gecpalakkad"
+                            target="_blank"
+                            className="footer__logo--link"
+                            rel="noreferrer noopener"
+                        >
+                            <span>
+                                <YoutubeLogo className="footer__logo" />
+                            </span>
+                        </a>
+                        <a
+                            href="https://instagram.com/invento_gecpalakkad"
+                            target="_blank"
+                            className="footer__logo--link"
+                            rel="noreferrer noopener "
+                        >
+                            <span>
+                                <InstagramLogo className="footer__logo" />
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div className="footer__sub flex flex-center">
