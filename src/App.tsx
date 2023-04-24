@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 
 const routes = createBrowserRouter([
@@ -10,6 +11,17 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Saptha />,
+            },
+        ],
+    },
+
+    {
+        path: '/events',
+        element: <EventsLayout />,
+        children: [
+            {
+                index: true,
+                element: <Events />,
             },
         ],
     },
