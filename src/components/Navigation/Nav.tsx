@@ -59,9 +59,9 @@ export default function Nav({ background }: { background: string }) {
                     </li>
                 </ul>
                 <div className="nav--footer">
-                    <p className="fw-400 fs-800">
+                    <p className="fw-400">
                         invento
-                        <span className="d-b fs-150">gec palakad</span>
+                        <span className="d-b fs-150 fw-300">gec palakad</span>
                     </p>
                 </div>
             </nav>
