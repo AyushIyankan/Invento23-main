@@ -426,7 +426,8 @@ h6 {
 }
 
 .bg__blur--events {
-  background: hsl(202, 100%, 5%);
+  --bg: 202 100% 5%;
+  background: hsl(var(--bg)/0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
