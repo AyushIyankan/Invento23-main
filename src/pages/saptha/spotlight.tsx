@@ -10,7 +10,7 @@ export function Spotlight() {
                     spotlight
                 </h2>
             </div>
-            <div className="saptha__spotlight__cards flex flex-center panel">
+            <div className="saptha__spotlight__cards flex flex-center h-full panel">
                 <Card
                     className="card--spotlight grid"
                     bgUrl={`${Nathya}`}
