@@ -1,6 +1,9 @@
 .footer {
     background: url(../assets/svg/footer_line.svg),
         linear-gradient(180deg, rgba(29, 26, 33, 0) -20%, #1d1a21 15.94%, #1d1a21 100%);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur;
     padding-top: 2.5rem;
@@ -11,6 +14,16 @@
     }
     a {
         @include reset-link;
+    }
+
+    h3 {
+        font-size: 2.1rem;
+        font-size: clamp(2.1rem, 1.91rem + 1vw, 3.1rem);
+    }
+    label,
+    h4 {
+        font-size: 1.06rem;
+        font-size: clamp(1.06rem, 1.036rem + 0.198vw, 1.18rem);
     }
 
     &__main {
@@ -63,6 +76,23 @@
     &__form {
         label {
             margin-bottom: 0.5rem;
+        }
+
+        &--input__container {
+            --gap: 0;
+            align-items: center;
+        }
+
+        &--input {
+            width: 15rem;
+            border: 1px solid hsl(var(--clr-magenta) / 1);
+        }
+
+        &--button {
+            align-self: stretch;
+            padding-block: 0.28em;
+            margin-block: 0;
+            margin-left: -4.8%;
         }
     }
 }

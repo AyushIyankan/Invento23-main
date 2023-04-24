@@ -10,23 +10,25 @@ export default function Footer() {
                 <h3 className="text-magenta fw-400">invento</h3>
 
                 <form action="#" method="post" className="footer__form">
-                    <label htmlFor="email_newsletter" className="text-white fw-300">
+                    <label htmlFor="email_newsletter" className="text-white fw-300 d-b">
                         Stay in the loop
                     </label>
-                    <input
-                        id="email_newsletter"
-                        className="footer__form--input"
-                        type="email"
-                        name="nf_email"
-                        placeholder="Enter Your Email"
-                        maxLength={50}
-                    />
-                    <button
-                        type="submit"
-                        className="btn btn--subscribe footer__form--button"
-                    >
-                        <span>Subscribe</span>
-                    </button>
+                    <div className="input__container flex">
+                        <input
+                            id="email_newsletter"
+                            className="footer__form--input"
+                            type="email"
+                            name="nf_email"
+                            placeholder="Enter Your Email"
+                            maxLength={50}
+                        />
+                        <button
+                            type="submit"
+                            className="btn btn--subscribe footer__form--button d-ib"
+                        >
+                            <span>Subscribe</span>
+                        </button>
+                    </div>
                 </form>
 
                 <div className="footer--contact flow">
