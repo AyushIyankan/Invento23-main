@@ -2,6 +2,7 @@
     "name": "invento_23",
     "version": "0.0.1",
     "scripts": {
+        "develop": "run-p dev scss:watch",
         "dev": "vite --host",
         "build": "tsc && vite build",
         "serve": "vite preview",
@@ -32,6 +33,7 @@
         "eslint-plugin-simple-import-sort": "^7.0.0",
         "husky": "^8.0.3",
         "lint-staged": "^13.2.1",
+        "npm-run-all": "^4.1.5",
         "postcss": "^8.4.22",
         "pre-commit": "^1.2.2",
         "prettier": "^2.5.1",
