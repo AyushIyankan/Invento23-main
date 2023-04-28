@@ -15,7 +15,7 @@ export function Hero() {
                     <SapthaText className="heading" />
                 </h1>
                 <div className="saptha__hero__logo--container">
-                    <HeroLogo className="saptha__hero__logo" />
+                    <HeroLogo className="hero__logo hero__logo--saptha" />
                 </div>
             </div>
         </div>

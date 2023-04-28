@@ -4,16 +4,6 @@
 
     align-items: center;
     min-height: 100vh;
-    &__logo > * {
-        stroke: #fff;
-        opacity: 1;
-        stroke-width: 2px;
-    }
-    &__logo {
-        aspect-ratio: 1;
-        // height: clamp(12.625rem, 7vw, 30rem);
-        height: clamp(14rem, 11.4rem + 13vw, 27rem);
-    }
 
     &__heading__container {
         margin-block: auto;
@@ -115,4 +105,8 @@
     &__cards {
         flex-wrap: wrap;
     }
+}
+
+.hero__logo--saptha > * {
+    opacity: 1;
 }
