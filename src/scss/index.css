@@ -159,6 +159,17 @@ h6 {
 .grid-z > *:nth-child(even) {
   justify-self: self-end;
 }
+@media (min-width: 45em) {
+  .grid-z {
+    margin-block: 5rem;
+  }
+  .grid-z > *:nth-child(odd),
+  .grid-z > *:nth-child(even) {
+    justify-self: center;
+    align-self: center;
+    grid-area: auto;
+  }
+}
 @media (min-width: 75em) {
   .grid-z {
     padding-inline: 10rem;
@@ -696,19 +707,20 @@ body::-webkit-scrollbar-thumb {
   margin-block: auto;
   align-content: center;
   justify-items: center;
-}
-.saptha__hero__heading__container h1 > svg {
-  margin-inline: auto;
+  overflow-x: hidden;
 }
 .saptha__hero__heading__container h1 {
   justify-content: center;
 }
 .saptha__hero__heading__container .heading {
   transform: translateX(9%);
+}
+.saptha__hero__heading__container .heading > * {
   width: 23rem;
   width: clamp(23rem, 14.4rem + 43vw, 66rem);
   height: 6rem;
   height: clamp(6rem, 3.697rem + 11.5vw, 17.5rem);
+  margin-inline: auto;
 }
 .saptha__hero__heading__container > * {
   grid-area: 2/1/3/2;

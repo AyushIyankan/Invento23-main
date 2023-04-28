@@ -16,7 +16,7 @@ export default function Footer({ background }: { background: string }) {
                     <label htmlFor="email_newsletter" className="text-white fw-300 d-b">
                         Stay in the loop
                     </label>
-                    <div className="input__container flex">
+                    <div className="input__container flex flex-col">
                         <input
                             id="email_newsletter"
                             className="footer__form--input"
