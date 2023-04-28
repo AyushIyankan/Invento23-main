@@ -711,13 +711,10 @@ body::-webkit-scrollbar-thumb {
 }
 .saptha__hero__heading__container .heading {
   transform: translateX(9%);
-}
-.saptha__hero__heading__container .heading > * {
   width: 23rem;
   width: clamp(23rem, 14.4rem + 43vw, 66rem);
   height: 6rem;
   height: clamp(6rem, 3.697rem + 11.5vw, 17.5rem);
-  margin-inline: auto;
 }
 .saptha__hero__heading__container > * {
   grid-area: 2/1/3/2;
@@ -728,7 +725,7 @@ body::-webkit-scrollbar-thumb {
 
 @media (min-width: 75em) {
   .crumb-wrap {
-    margin-top: 19rem;
+    margin-top: 10rem;
   }
 }
 
