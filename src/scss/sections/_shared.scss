@@ -90,3 +90,15 @@ body::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
     border-radius: 10px;
 }
+
+// hero logo
+.hero__logo {
+    aspect-ratio: 1;
+    // height: clamp(12.625rem, 7vw, 30rem);
+    height: clamp(14rem, 11.4rem + 13vw, 27rem);
+}
+
+.hero__logo > * {
+    stroke: #fff;
+    stroke-width: 1px;
+}

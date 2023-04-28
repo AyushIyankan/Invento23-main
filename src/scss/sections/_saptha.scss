@@ -4,24 +4,24 @@
 
     align-items: center;
     min-height: 100vh;
-    &__logo > * {
-        stroke: #fff;
-        opacity: 1;
-        stroke-width: 2px;
-    }
-    &__logo {
-        aspect-ratio: 1;
-        // height: clamp(12.625rem, 7vw, 30rem);
-        height: clamp(14rem, 11.4rem + 13vw, 27rem);
-    }
 
     &__heading__container {
         margin-block: auto;
         align-content: center;
         justify-items: center;
+
+        h1 > svg {
+            margin-inline: auto;
+        }
         h1 {
-            font-size: 4rem;
-            font-size: clamp(4rem, 2.05rem + 9.75vw, 13.75rem);
+            justify-content: center;
+        }
+        .heading {
+            transform: translateX(9%);
+            width: 23rem;
+            width: clamp(23rem, 14.4rem + 43vw, 66rem);
+            height: 6rem;
+            height: clamp(6rem, 3.697rem + 11.5vw, 17.5rem);
         }
         > * {
             grid-area: 2/1/3/2;
@@ -105,4 +105,8 @@
     &__cards {
         flex-wrap: wrap;
     }
+}
+
+.hero__logo--saptha > * {
+    opacity: 1;
 }

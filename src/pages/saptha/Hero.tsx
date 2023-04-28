@@ -1,4 +1,5 @@
 import { ReactComponent as HeroLogo } from '../../assets/svg/saptha_bg.svg'
+import { ReactComponent as SapthaText } from '../../assets/svg/sapthatext.svg'
 
 export function Hero() {
     return (
@@ -9,11 +10,12 @@ export function Hero() {
                 </p>
             </div>
             <div className="saptha__hero__heading__container grid">
-                <h1 className="heading--main uppercase fw-400 ff-days-one text-white">
-                    saptha
+                <h1 className="heading--main flex">
+                    <span className="sr-only">saptha</span>
+                    <SapthaText className="heading" />
                 </h1>
                 <div className="saptha__hero__logo--container">
-                    <HeroLogo className="saptha__hero__logo" />
+                    <HeroLogo className="hero__logo hero__logo--saptha" />
                 </div>
             </div>
         </div>
