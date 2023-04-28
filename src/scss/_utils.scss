@@ -47,8 +47,9 @@
         justify-self: self-end;
     }
 
-    @include bp(tablet) {
-        margin-block: 5rem;
+    @include bp(desktop) {
+        padding-inline: 10rem;
+        grid-template-columns: repeat(3, 1fr);
 
         > *:nth-child(odd),
         > *:nth-child(even) {
@@ -60,14 +61,8 @@
 
     @include bp(desktop) {
         padding-inline: 10rem;
-        grid-template-columns: repeat(3, 1fr);
 
-        > *:nth-child(odd),
-        > *:nth-child(even) {
-            justify-self: center;
-            align-self: center;
-            grid-area: auto;
-        }
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -236,6 +231,8 @@
 }
 
 .panel {
+    min-height: 100vh;
+    min-height: 100dvh;
     position: relative;
     z-index: 2;
 }
