@@ -47,9 +47,9 @@
         justify-self: self-end;
     }
 
-    @include bp(tablet) {
-        margin-block: 5rem;
-        grid-template-columns: repeat(2, 1fr);
+    @include bp(desktop) {
+        padding-inline: 10rem;
+        grid-template-columns: repeat(3, 1fr);
 
         > *:nth-child(odd),
         > *:nth-child(even) {

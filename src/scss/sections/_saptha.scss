@@ -16,10 +16,14 @@
 
         .heading {
             transform: translateX(9%);
+        }
+
+        .heading > * {
             width: 23rem;
             width: clamp(23rem, 14.4rem + 43vw, 66rem);
             height: 6rem;
             height: clamp(6rem, 3.697rem + 11.5vw, 17.5rem);
+            margin-inline: auto;
         }
 
         > * {
