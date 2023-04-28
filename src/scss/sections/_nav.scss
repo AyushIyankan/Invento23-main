@@ -28,7 +28,7 @@
         aspect-ratio: 1;
         cursor: pointer;
     }
-    > *:last-child {
+    > *:last-child > * {
         fill: hsl(var(--clr-white));
         stroke: hsl(var(--clr-white));
     }

@@ -9,8 +9,8 @@ export function Hero() {
                 </p>
             </div>
             <div className="saptha__hero__heading__container grid">
-                <h1 className="heading--main uppercase fw-400 ff-days-one text-white">
-                    events
+                <h1 className="heading--main flex">
+                    <span className="sr-only">events</span>
                 </h1>
                 <div className="saptha__hero__logo--container">
                     <HeroLogo className="saptha__hero__logo" />

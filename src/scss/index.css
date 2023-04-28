@@ -493,7 +493,7 @@ h6 {
   aspect-ratio: 1;
   cursor: pointer;
 }
-.logo--container > *:last-child {
+.logo--container > *:last-child > * {
   fill: hsl(var(--clr-white));
   stroke: hsl(var(--clr-white));
 }
