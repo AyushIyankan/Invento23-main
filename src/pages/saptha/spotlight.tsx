@@ -1,5 +1,5 @@
-import Nathya from '../../assets/images/natya.png'
-import Taksthi from '../../assets/images/taksthi.png'
+import Nathya from '../../assets/images/compressed/natya.jpg'
+import Taksthi from '../../assets/images/compressed/taksthi.jpg'
 import Card from '../../components/Card/'
 
 export function Spotlight() {
