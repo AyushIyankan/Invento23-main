@@ -1,5 +1,5 @@
-import Nathya from '../../assets/images/natya.png'
-import Taksthi from '../../assets/images/taksthi.png'
+import Nathya from '../../assets/images/compressed/natya.jpg'
+import Taksthi from '../../assets/images/compressed/taksthi.jpg'
 export const GROUPEVENTS = [
     {
         id: '0',
