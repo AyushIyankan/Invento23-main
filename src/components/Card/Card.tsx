@@ -1,11 +1,18 @@
+import Placeholder from '../../assets/images/card_placeholder.jpg'
+import { useProgressiveImage } from '../../hooks'
+import { webpLoader } from '../../utils'
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
     bgUrl: string
     title: string
 }
 
 export default function Card({ bgUrl, title, ...rest }: ICardProps) {
+    const loaded = useProgressiveImage(bgUrl)
+    const loadedWebp = useProgressiveImage(webpLoader(bgUrl))
     const styles: React.CSSProperties = {
-        backgroundImage: `url(${bgUrl}), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
+        backgroundImage: `url(${
+            (loadedWebp ?? loaded) || Placeholder
+        }), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         backgroundSize: 'cover',
