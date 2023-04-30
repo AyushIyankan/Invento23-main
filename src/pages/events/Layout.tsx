@@ -7,7 +7,10 @@ import { BACKGROUNDS } from '../../constants'
 export function Layout() {
     return (
         <div className="layout">
-            <Nav background={`${BACKGROUNDS.clrDarkTeal}`} />
+            <Nav
+                background={`${BACKGROUNDS.clrDarkTeal}`}
+                progress={`${BACKGROUNDS.clrDarkBlue}`}
+            />
             <Outlet />
             <Footer background={`${BACKGROUNDS.GradientDarkTeal}`} />
         </div>

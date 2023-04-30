@@ -4,11 +4,17 @@ import { ReactComponent as SearchLogo } from '../../assets/svg/ic_round-search.s
 import { ReactComponent as ExternalLinkIcon } from '../../assets/svg/icon_external-link.svg'
 import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
-import { useToggle } from '../../hooks'
+import { useScrollPosition, useToggle } from '../../hooks'
 
-export default function Nav({ background }: { background: string }) {
+export default function Nav({
+    background,
+    progress,
+}: {
+    background: string
+    progress: string
+}) {
     const [navState, toggleNavState] = useToggle(false)
-
+    const scrollPos = useScrollPosition()
     return (
         <header
             className="header--main bg-dark-purple flex"
@@ -65,6 +71,15 @@ export default function Nav({ background }: { background: string }) {
                     </p>
                 </div>
             </nav>
+            {/* #ba2548 */}
+            <span
+                className="scroll-progress"
+                style={
+                    {
+                        background: `linear-gradient(to right, ${progress} ${scrollPos}%, #eee ${scrollPos}%)`,
+                    } as React.CSSProperties
+                }
+            ></span>
         </header>
     )
 }
