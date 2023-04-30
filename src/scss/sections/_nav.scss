@@ -2,20 +2,21 @@
     justify-content: space-between;
     padding: 0.5rem 1rem;
     align-items: center;
-    border-bottom: 1px solid hsl(var(--clr-grey-60));
+    // border-bottom: 1px solid hsl(var(--clr-grey-60));
     background-image: url(../assets/svg/vector_nav.svg);
     position: fixed;
     top: 0;
     z-index: 99;
     width: 100%;
-    &::after {
-        content: "";
-        width: clamp(2.8rem, 5vw, 8.3rem);
+    > .scroll-progress {
+        // width: clamp(2.8rem, 5vw, 8.3rem);
+        width: 100%;
         display: inline-block;
-        height: 1px;
+        height: 2px;
         position: absolute;
         inset: auto auto -2% 0;
-        background-color: hsl(var(--clr-magenta));
+        // background-color: hsl(var(--clr-magenta));
+        background: #ddd;
     }
     background-color: var(--navbar-bg) !important;
 }
