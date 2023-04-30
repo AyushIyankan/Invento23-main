@@ -7,7 +7,7 @@
         "build": "tsc && vite build",
         "serve": "vite preview",
         "type-check": "tsc",
-        "lint": "eslint \"src/*/.{js,ts,tsx,json}\"",
+        "lint": "eslint --ext \".js,.jsx,.ts\"",
         "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
         "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.js",
         "scss:watch": "sass --watch src/scss/main.scss:src/scss/index.css"
