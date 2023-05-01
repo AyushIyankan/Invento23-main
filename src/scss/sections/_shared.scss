@@ -15,6 +15,21 @@
     }
 }
 
+.bg--full {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &--preview {
+        background-image: url(../assets/images/compressed/natya_large.webp);
+        background-position: center center;
+    }
+}
+
 .bg--full--saptha {
     position: fixed;
     inset: 0;

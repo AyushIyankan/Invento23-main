@@ -63,3 +63,23 @@
     color: var(--text-clr, hsl(var(--clr-white) / 1));
     background: var(--bg, hsl(var(--clr-magenta) / 1));
 }
+
+.btn--link {
+    @include reset-link;
+}
+
+.btn--register_event {
+    border-radius: 11px;
+    background-color: #fff;
+}
+
+.panel--bg {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 13.81%,
+        rgba(227, 227, 227, 0.05) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
