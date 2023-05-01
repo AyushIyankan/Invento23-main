@@ -1,0 +1,36 @@
+.eventPreview {
+    margin-top: 5rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    &__title {
+        position: fixed;
+        inset: 0;
+        margin-top: 80vh;
+        font-size: 3.25rem;
+        font-size: clamp(3.25rem, 2.65rem + 3vw, 6.25rem);
+        margin-left: clamp(1.5rem, 0.349rem + 5.75vw, 7.5rem);
+        align-self: self-end;
+    }
+
+    &__content {
+        margin-top: 100vh;
+    }
+
+    &__content > * {
+        padding-block: 3rem;
+        padding-block: clamp(3rem, 2.6rem + 2vw, 5rem);
+    }
+
+    &__description,
+    &__rules li {
+        font-size: 1.18rem;
+        font-size: clamp(1.18rem, 1.06598rem + 0.571vw, 1.75rem);
+    }
+
+    &__about > div,
+    &__about > div > a {
+        margin-top: 2.5rem;
+        margin-top: clamp(2.5rem, 2.2rem + 1.5vw, 4rem);
+    }
+}

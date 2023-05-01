@@ -6,3 +6,5 @@ dist-ssr
 node_modules/*
 .vscode
 .vscode/*
+src/scss/index.css
+src/scss/index.css.map

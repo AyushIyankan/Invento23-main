@@ -1,4 +1,4 @@
-import Nathya from '../../assets/images/compressed/natya.jpg'
+import Nathya from '../../assets/images/compressed/natya_large.jpg'
 import Taksthi from '../../assets/images/compressed/taksthi.jpg'
 export const GROUPEVENTS = [
     {
