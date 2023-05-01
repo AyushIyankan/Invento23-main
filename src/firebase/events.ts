@@ -10,10 +10,11 @@ export const getAllEvents = onSnapshot(collectionRef, (querySnapshot) => {
     querySnapshot.forEach((doc) => {
         allEvents.push({ ...doc.data(), id: doc.id })
     })
+    return allEvents
 })
 
 //filter events by category
-export const filteredEvents = async (events: any[], category: any) => {
+export const filteredEvents = async (events, category) => {
     const filteredArray = events.filter((event) => {
         return event.category == category
     })
