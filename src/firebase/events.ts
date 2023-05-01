@@ -1,2 +1,21 @@
+import { collection, doc, getDocs, onSnapshot, query } from 'firebase/firestore'
 
+import { db } from './firebase'
 
+const collectionRef = query(collection(db, 'events'))
+
+//Get all events
+const getAllEvents = onSnapshot(collectionRef, (querySnapshot) => {
+    const allEvents = []
+    querySnapshot.forEach((doc) => {
+        allEvents.push({ ...doc.data(), id: doc.id })
+    })
+})
+
+//filter events by category
+const filteredEvents = async (events: any[], category: any) => {
+    const filteredArray = events.filter((event) => {
+        return event.category == category
+    })
+    return filteredArray
+}
