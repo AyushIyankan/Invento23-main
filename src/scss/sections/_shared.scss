@@ -21,15 +21,16 @@
     z-index: -1;
     min-height: 100vh;
     min-height: 100dvh;
-    background-size: cover;
-    background-repeat: no-repeat;
 
     &--preview {
-        background-image: url(../assets/images/compressed/natya_large.webp);
+        background: url(../assets/images/compressed/natya_large.jpg) #0f0e0d no-repeat;
+        background: url(../assets/images/compressed/natya_large.webp) #0f0e0d no-repeat;
+
+        background-size: cover;
         background-position: center center;
 
         @include bp(desktop) {
-            background-position: center 17%;
+            background-position: center 0%;
         }
     }
 }
