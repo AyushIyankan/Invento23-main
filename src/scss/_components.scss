@@ -104,6 +104,8 @@
         justify-content: space-between;
         align-items: center;
 
+        padding-block: 1.18rem;
+
         span {
             font-size: 0.8rem;
             font-size: clamp(0.8rem, 0.66rem + 0.7vw, 1.5rem);
@@ -117,15 +119,20 @@
     }
 
     &-content {
+        background-color: hsl(var(--clr-greyish-white) / 1);
         opacity: 0;
         flex-basis: 0;
         overflow: hidden;
-        transition: flex-basis 0.5s, opacity 0.5s;
+        transition: flex-basis 0.5s, opacity 0.2s;
     }
 
     &-content[data-visible="true"] {
         flex-basis: auto;
         opacity: 1;
+        padding-block: 0.81rem;
+        padding-block: clamp(0.81rem, 0.5981rem + 1.06vw, 1.87rem);
+        padding-inline: 0.89rem;
+        padding-inline: clamp(0.89rem, 0.694rem + 0.9801vw, 1.87rem);
     }
 }
 

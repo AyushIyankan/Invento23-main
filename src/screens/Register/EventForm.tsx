@@ -13,36 +13,152 @@ export function EventForm() {
                 <div className="proShowWrap">
                     <ItemGroup title="Pro show">
                         <Accordion title="Day 1">
-                            <ItemCard
-                                title="Natya"
-                                date={`${now}`}
-                                fee={200}
-                                image={`${Natya}`}
-                            />
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
                         </Accordion>
                         <Accordion title="Day 2">
-                            <ItemCard
-                                title="Natya"
-                                date={`${now}`}
-                                fee={200}
-                                image={`${Natya}`}
-                            />
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
                         </Accordion>
                         <Accordion title="Day 3">
-                            <ItemCard
-                                title="Natya"
-                                date={`${now}`}
-                                fee={200}
-                                image={`${Natya}`}
-                            />
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
                         </Accordion>
                         <Accordion title="Day 4">
-                            <ItemCard
-                                title="Natya"
-                                date={`${now}`}
-                                fee={200}
-                                image={`${Natya}`}
-                            />
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                    </ItemGroup>
+                </div>
+
+                <div className="techFestWrap">
+                    <ItemGroup title="Tech Fest">
+                        <Accordion title="Workshops">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="Competitions">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="Exhibitions">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="Pre-Events">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="General Events">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                    </ItemGroup>
+                </div>
+
+                <div className="form_SapthaWrap">
+                    <ItemGroup title="Spotlignt Events">
+                        <Accordion title="Workshops">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="Group Events">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="Solo Events">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
+                        </Accordion>
+                        <Accordion title="General Events">
+                            <div className="itemCardWrap">
+                                <ItemCard
+                                    title="Natya"
+                                    date={`${now}`}
+                                    fee={200}
+                                    image={`${Natya}`}
+                                />
+                            </div>
                         </Accordion>
                     </ItemGroup>
                 </div>

@@ -6,4 +6,5 @@ export const BACKGROUNDS = {
     GradientDarkTeal: 'linear-gradient(180deg, rgba(13, 28, 37, 0) 0%, #0D1C25 20.72%)',
     clrDarkRed: `#ba2548`,
     clrDarkBlue: '#1c419c',
+    clrWhite: `#fff`,
 }
