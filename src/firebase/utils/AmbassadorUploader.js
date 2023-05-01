@@ -2,10 +2,10 @@
 var admin = require('firebase-admin')
 const collectionKey = 'campusAmbassador'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const data = require('./JSONfiles/campusAmbassadors.json')
+const data = require('../JSONfiles/campusAmbassadors.json')
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-var serviceAccount = require('./service_key.json')
+var serviceAccount = require('../service_key.json')
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -15,8 +15,6 @@ const firestore = admin.firestore()
 const settings = { timestampsInSnapshots: true }
 
 firestore.settings(settings)
-
-let count = 0
 
 if (data && typeof data === 'object') {
     Object.keys(data).forEach((docKey) => {
@@ -35,10 +33,7 @@ if (data && typeof data === 'object') {
             .set(docData)
             .then(() => {
                 console.log('Document ' + sanitizedDocId + ' successfully written!')
-                count++
             })
             .catch((error) => console.error('Error writing document: ', error))
     })
 }
-
-console.log(count)

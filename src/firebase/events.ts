@@ -5,7 +5,7 @@ import { db } from './firebase'
 const collectionRef = query(collection(db, 'events'))
 
 //Get all events
-const getAllEvents = onSnapshot(collectionRef, (querySnapshot) => {
+export const getAllEvents = onSnapshot(collectionRef, (querySnapshot) => {
     const allEvents = []
     querySnapshot.forEach((doc) => {
         allEvents.push({ ...doc.data(), id: doc.id })
@@ -13,7 +13,7 @@ const getAllEvents = onSnapshot(collectionRef, (querySnapshot) => {
 })
 
 //filter events by category
-const filteredEvents = async (events: any[], category: any) => {
+export const filteredEvents = async (events: any[], category: any) => {
     const filteredArray = events.filter((event) => {
         return event.category == category
     })
