@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 import EventPreview from './screens/EventPreview'
+import Register from './screens/Register'
 
 const routes = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const routes = createBrowserRouter([
                 element: <EventPreview />,
             },
         ],
+    },
+    {
+        path: '/register',
+        element: <Register />,
     },
 ])
 

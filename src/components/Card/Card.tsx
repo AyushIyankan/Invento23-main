@@ -1,4 +1,5 @@
 import Placeholder from '../../assets/images/card_placeholder.jpg'
+import { ReactComponent as IconAdd } from '../../assets/svg/icon-add.svg'
 import { useProgressiveImage } from '../../hooks'
 import { webpLoader } from '../../utils'
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -31,6 +32,37 @@ export default function Card({ bgUrl, title, ...rest }: ICardProps) {
             <p className="ff-days-one fw-400 text-white uppercase" style={titleStyle}>
                 {title}
             </p>
+        </div>
+    )
+}
+
+interface ItemCardProps {
+    image: string
+    title: string
+    date: string
+    fee: number
+}
+
+export function ItemCard({ image, title, date, fee }: ItemCardProps) {
+    //TODO: Restructure this
+    return (
+        <div className="itemCard bg-greyish-white">
+            <div className="itemCard_details flex">
+                <div className="wrap-img">
+                    <img src={`${image}`} alt={`${title}`} />
+                </div>
+                <h3 className="text-black underline ff-serif fw-400">{title}</h3>
+                <button className="btn btn--add flex">
+                    <span className="text-grey ff-serif">Add event</span>
+                    <IconAdd aria-hidden />
+                </button>
+            </div>
+            <div className="itemCard_More flex">
+                <span className="ff-serif text-black fw-400">
+                    Registration Fee: {fee}
+                </span>
+                <span className="ff-serif text-black fw-400"> Date: {date}</span>
+            </div>
         </div>
     )
 }

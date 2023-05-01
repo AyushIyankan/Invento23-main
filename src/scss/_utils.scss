@@ -204,6 +204,10 @@
     background-color: hsl(var(--clr-purple-dark) / 1);
 }
 
+.bg-greyish-white {
+    background-color: hsl(var(--clr-greyish-white) / 1);
+}
+
 .side-padding {
     padding-inline: var(--side-padding, 1rem);
 }
@@ -262,4 +266,8 @@
 
 .grid-center-y {
     align-items: center;
+}
+
+.container {
+    max-width: var(--max-width, 81rem);
 }
