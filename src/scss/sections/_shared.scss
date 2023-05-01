@@ -27,6 +27,10 @@
     &--preview {
         background-image: url(../assets/images/compressed/natya_large.webp);
         background-position: center center;
+
+        @include bp(desktop) {
+            background-position: center 17%;
+        }
     }
 }
 
