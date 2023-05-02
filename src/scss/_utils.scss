@@ -173,7 +173,7 @@
 }
 
 .text-magenta {
-    color: hsl(var(--clr-magenta) / 1);
+    color: hsl(var(--clr-magenta) / 1) !important;
 }
 
 .text-grey {
@@ -248,4 +248,18 @@
 
 .pb-sm {
     padding-bottom: 1.6rem;
+}
+
+.centeredContainer > * {
+    max-width: var(--max-width, 81.5rem);
+    margin-inline: auto;
+}
+
+.mh-full {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.grid-center-y {
+    align-items: center;
 }

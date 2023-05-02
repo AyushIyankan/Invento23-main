@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
+import EventPreview from './screens/EventPreview'
 
 const routes = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Events />,
+            },
+            {
+                path: '/events/:id',
+                element: <EventPreview />,
             },
         ],
     },
