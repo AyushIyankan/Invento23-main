@@ -69,7 +69,9 @@ export function RegistrationForm() {
     console.log({ errors })
     return (
         <div className="">
-            <h2 className="text-black fw-400 ff-serif ">Personal Information</h2>
+            <h2 className="FormHeading text-black fw-400 ff-serif">
+                Personal Information
+            </h2>
             <div className="FormWrap bg-white">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
