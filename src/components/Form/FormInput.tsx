@@ -1,6 +1,18 @@
-import { ErrorMessage } from '@hookform/error-message'
 import { HTMLInputTypeAttribute } from 'react'
-import { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form'
+import {
+    Control,
+    Controller,
+    FieldErrors,
+    FieldValues,
+    Path,
+    UseFormRegister,
+} from 'react-hook-form'
+import Select from 'react-select'
+
+type OptionType = {
+    label: string
+    value: string
+}
 
 export type IFormInput<T extends FieldValues> = {
     label: Path<T>
@@ -8,6 +20,7 @@ export type IFormInput<T extends FieldValues> = {
     errors?: FieldErrors<T>
     required?: boolean
     forEl: Path<T>
+    placeholder: Path<T>
 } & (
     | {
           kind: 'input'
@@ -15,7 +28,8 @@ export type IFormInput<T extends FieldValues> = {
       }
     | {
           kind: 'select'
-          options: readonly ['1', '2', '3', '4']
+          options: OptionType[]
+          control: Control<T>
       }
 )
 
@@ -25,6 +39,7 @@ export function FormInput<T extends FieldValues>({
     errors,
     required,
     forEl,
+    placeholder,
     ...props
 }: IFormInput<T>) {
     const { ref, ...rest } = register(forEl, { required })
@@ -34,33 +49,55 @@ export function FormInput<T extends FieldValues>({
     switch (props.kind) {
         case 'input':
             return (
-                <div className="FormInputWrap">
+                <div className="FormInputWrap flex flex-col">
                     <label htmlFor={`${forEl}`}>{label}</label>
                     <input
                         {...rest}
                         name={forEl}
                         type={props.inputType}
                         id={`${forEl}`}
+                        required={required}
+                        placeholder={placeholder}
                         ref={(node) => {
                             ref(node)
                         }}
                     />
-                    <span className="FormInpuError">{errors?.[`${forEl}`]?.message}</span>
+                    <span className="FormInputError">
+                        {errors?.[`${forEl}`]?.message}
+                    </span>
                 </div>
             )
         case 'select':
             return (
-                <div className="FormInputWrap">
+                <div className="FormInputWrap flex flex-col">
                     <label htmlFor={forEl}>{label}</label>
-                    <select {...rest} name={forEl} id={forEl} ref={(node) => ref(node)}>
-                        <option value="">Year</option>
-                        {props.options?.map((opt) => (
-                            <option value={opt} key={`index-${opt}`} label={opt}>
-                                opt
-                            </option>
-                        ))}
-                    </select>
+                    <Controller
+                        control={props.control}
+                        name={forEl}
+                        rules={{ required: required }}
+                        render={({ field: { ref, name, value, onChange, ...rest } }) => {
+                            const current = props.options.find((c) => c.value === value)
+                            const handleSelectChange = (
+                                opt: typeof props.options[0] | null,
+                            ) => onChange(opt?.value)
+                            return (
+                                <Select
+                                    {...rest}
+                                    name={name}
+                                    id={forEl}
+                                    ref={ref}
+                                    placeholder={placeholder}
+                                    options={props.options}
+                                    value={current}
+                                    onChange={handleSelectChange}
+                                />
+                            )
+                        }}
+                    />
                     {/* <ErrorMessage name={forEl} errors={errors?.[`${label}`]} /> */}
+                    <span className="FormInputError">
+                        {errors?.[`${forEl}`]?.message}
+                    </span>
                 </div>
             )
     }

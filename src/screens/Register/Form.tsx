@@ -17,9 +17,10 @@ export function RegistrationForm() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        control,
+        formState: { errors, isValid, isDirty },
     } = useForm<FormInputs>({
-        mode: 'onBlur',
+        mode: 'onChange',
         resolver: zodResolver(formSchema),
     })
 
@@ -31,6 +32,7 @@ export function RegistrationForm() {
                         key={field.id}
                         label={field.name as keyof FormInputs}
                         forEl={field.for as keyof FormInputs}
+                        placeholder={field.placeholder as keyof FormInputs}
                         register={register}
                         errors={errors}
                         required={field.required}
@@ -49,6 +51,8 @@ export function RegistrationForm() {
                         required={field.required}
                         kind={field.kind}
                         options={field.options}
+                        placeholder={field.placeholder as keyof FormInputs}
+                        control={control}
                     />
                 )
         }
@@ -57,15 +61,28 @@ export function RegistrationForm() {
     const onSubmit = (data: FormInputs) => {
         console.log(data)
     }
-    console.log(isValid)
-    console.log(errors)
+
+    const disableParams = !isDirty || !isValid
+
+    console.log({ isDirty, isValid })
+    console.log({ errors })
     return (
         <div className="">
             <h2 className="text-black fw-400 ff-serif ">Personal Information</h2>
-            <div className="FormWrap">
-                <form onSubmit={handleSubmit(onSubmit)} className="Form">
+            <div className="FormWrap bg-white">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="Form grid text-black ff-serif fw-400"
+                >
                     {InputFields}
-                    <button type="submit">Submit</button>
+                    <button
+                        type="submit"
+                        className="btn btn--save text-white"
+                        disabled={disableParams}
+                        aria-disabled={disableParams}
+                    >
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>

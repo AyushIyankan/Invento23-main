@@ -3,7 +3,25 @@ import { HTMLInputTypeAttribute } from 'react'
 import validator from 'validator'
 import z from 'zod'
 
-const years = ['1', "2", "3", "4"] as const
+
+const years = [
+    {
+        label: '1',
+        value: '1'
+    },
+    {
+        label: '2',
+        value: '2'
+    },
+    {
+        label: '3',
+        value: '3'
+    },
+    {
+        label: '4',
+        value: '4'
+    }
+]
 
 type FieldType = {
     id: number
@@ -35,7 +53,7 @@ export const Fields: FieldType[] = [
     {
         id: 1,
         for: 'email',
-        name: 'E-mail',
+        name: 'E-mail*',
         kind: 'input',
         placeholder: 'Enter your email',
         required: true,
@@ -44,7 +62,7 @@ export const Fields: FieldType[] = [
     {
         id: 2,
         for: 'phone',
-        name: 'Phone',
+        name: 'Phone Number*',
         kind: 'input',
         type: 'tel',
         required: true,
@@ -71,7 +89,7 @@ export const Fields: FieldType[] = [
     {
         id: 5,
         for: 'year',
-        name: 'Year',
+        name: 'Year*',
         kind: 'select',
         required: true,
         placeholder: 'select your year',
@@ -96,11 +114,14 @@ export const formSchema = z
         }),
         referral: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         college: z.string({ invalid_type_error: 'Invalid input' }).optional(),
-        year: z.enum(['1', '2', '3', '4']),
+        year: z.enum(['1', '2', '3', '4'], {
+            required_error: 'Year is required',
+            invalid_type_error: 'Select a valid year'
+        }),
     })
     .refine(
         (data) => {
-            return validator.isMobilePhone(data.phone)
+            return validator.isMobilePhone(data.phone, 'en-IN')
         },
         {
             path: ['phone'],
