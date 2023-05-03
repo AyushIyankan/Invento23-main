@@ -20,8 +20,9 @@ export function RegistrationForm() {
         control,
         formState: { errors, isValid, isDirty },
     } = useForm<FormInputs>({
-        mode: 'onChange',
+        mode: 'onBlur',
         resolver: zodResolver(formSchema),
+        reValidateMode: 'onSubmit',
     })
 
     const InputFields = Fields.map((field) => {

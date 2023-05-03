@@ -111,7 +111,7 @@ export const formSchema = z
         phone: z.string({
             required_error: 'Phone number is required',
             invalid_type_error: 'Phone number is invalid',
-        }),
+        }).min(8, { message: 'Invalid Phone number' }),
         referral: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         college: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         year: z.enum(['1', '2', '3', '4'], {
