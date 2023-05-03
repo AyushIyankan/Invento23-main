@@ -57,6 +57,12 @@
     margin-block: 0.5em;
     text-transform: uppercase;
     letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    // pointer-events: none;
 }
 
 .btn--subscribe {
@@ -84,6 +90,16 @@
 .btn--register_event {
     border-radius: 11px;
     background-color: #fff;
+}
+
+.btn--save {
+    background: #353535;
+    border-radius: 4px;
+}
+
+.btn--save:disabled {
+    background-color: hsl(var(--clr-grey) / 1);
+    cursor: not-allowed;
 }
 
 .panel--bg {
