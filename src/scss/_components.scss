@@ -110,8 +110,6 @@
 }
 
 .accordion {
-    border-bottom: 1px solid #c5c5c5;
-
     &-trigger {
         cursor: pointer;
         width: 100%;
@@ -150,6 +148,10 @@
         padding-inline: 0.89rem;
         padding-inline: clamp(0.89rem, 0.694rem + 0.9801vw, 1.87rem);
     }
+}
+
+.accordion:not(:last-child) {
+    border-bottom: 1px solid #c5c5c5;
 }
 
 // debug
