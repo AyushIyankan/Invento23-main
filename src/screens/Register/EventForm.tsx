@@ -8,8 +8,10 @@ const now = new Date().toLocaleDateString('en-US')
 export function EventForm() {
     return (
         <>
-            <h3 className="text-black-ff-serif-fw-400">Select your events</h3>
-            <div className="form__eventsWrap centeredContainer bg-white">
+            <div className="">
+                <h3 className="text-black ff-serif fw-400">Select your events</h3>
+            </div>
+            <div className="form__eventsWrap bg-white flow">
                 <div className="proShowWrap">
                     <ItemGroup title="Pro show">
                         <Accordion title="Day 1">

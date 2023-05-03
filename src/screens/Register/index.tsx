@@ -3,7 +3,7 @@ import { RegistrationForm } from './Form'
 
 export default function Register() {
     return (
-        <div style={{ marginTop: '10rem' }}>
+        <div className="formParentWrap centeredContainer flow side-padding">
             <RegistrationForm />
             <EventForm />
         </div>
