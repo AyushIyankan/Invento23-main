@@ -11,7 +11,7 @@ export function EventForm() {
             <div className="">
                 <h3 className="text-black ff-serif fw-400">Select your events</h3>
             </div>
-            <div className="form__eventsWrap bg-white flow">
+            <div className="form__eventsWrap bg-white flow grid">
                 <div className="proShowWrap">
                     <ItemGroup title="Pro show">
                         <Accordion title="Day 1">
@@ -164,6 +164,9 @@ export function EventForm() {
                         </Accordion>
                     </ItemGroup>
                 </div>
+                <button className="btn btn--save text-white ff-serif">
+                    Save Changes
+                </button>
             </div>
         </>
     )
