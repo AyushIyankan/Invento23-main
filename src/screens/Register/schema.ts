@@ -12,11 +12,12 @@ type FieldType = {
     required: boolean
     for: string
 } & (
-        | {
+        {
+            kind: 'input'
             type: HTMLInputTypeAttribute
-        }
-        | {
-            type: 'select'
+        } |
+        {
+            kind: 'select'
             options: typeof years
         }
     )
@@ -26,6 +27,7 @@ export const Fields: FieldType[] = [
         id: 0,
         for: 'name',
         name: 'Name*',
+        kind: 'input',
         type: 'text',
         placeholder: 'Enter you name',
         required: true,
@@ -34,6 +36,7 @@ export const Fields: FieldType[] = [
         id: 1,
         for: 'email',
         name: 'E-mail',
+        kind: 'input',
         placeholder: 'Enter your email',
         required: true,
         type: 'email',
@@ -42,6 +45,7 @@ export const Fields: FieldType[] = [
         id: 2,
         for: 'phone',
         name: 'Phone',
+        kind: 'input',
         type: 'tel',
         required: true,
         placeholder: 'Enter your phone number',
@@ -50,6 +54,7 @@ export const Fields: FieldType[] = [
         id: 3,
         for: 'referall',
         name: 'Referral',
+        kind: 'input',
         type: 'text',
         required: false,
         placeholder: 'Enter referral if you have any',
@@ -58,6 +63,7 @@ export const Fields: FieldType[] = [
         id: 4,
         for: 'college',
         name: 'College',
+        kind: 'input',
         type: 'text',
         required: false,
         placeholder: 'Enter your college',
@@ -66,7 +72,7 @@ export const Fields: FieldType[] = [
         id: 5,
         for: 'year',
         name: 'Year',
-        type: 'select',
+        kind: 'select',
         required: true,
         placeholder: 'select your year',
         options: years
@@ -97,6 +103,7 @@ export const formSchema = z
             return validator.isMobilePhone(data.phone)
         },
         {
+            path: ['phone'],
             message: 'Invalid Phone number',
         },
     )
