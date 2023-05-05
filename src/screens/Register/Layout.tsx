@@ -14,6 +14,7 @@ function Layout() {
             <Outlet />
             <Footer
                 background={`linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 20.1%)`}
+                theme="light"
             />
         </>
     )

@@ -130,3 +130,24 @@
         }
     }
 }
+
+.footer[data-theme="light"] {
+    --clr-text-sec: hsl(0 0% 21% / 1);
+    --icon-fill: #353535;
+    --input-placeholder: hsl(var(--clr-magenta) / 1);
+    --lines: url(../assets/svg/lines.svg);
+
+    background: var(--lines), var(--footer-gradient);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    address,
+    h4,
+    label {
+        color: var(--clr-text-sec) !important;
+    }
+
+    .footer__logo > * {
+        fill: var(--icon-fill);
+    }
+}
