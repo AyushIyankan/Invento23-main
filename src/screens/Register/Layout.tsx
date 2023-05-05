@@ -9,7 +9,8 @@ function Layout() {
         <>
             <Nav
                 background={`${BACKGROUNDS.clrWhite}`}
-                progress={`${BACKGROUNDS.clrDarkRed}`}
+                progressLineColor={`${BACKGROUNDS.clrDarkRed}`}
+                theme="light"
             />
             <Outlet />
             <Footer
