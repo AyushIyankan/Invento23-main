@@ -44,10 +44,19 @@ interface ItemCardProps {
     title: string
     date: string
     fee: number
+    actionType?: 'togglable' | 'nonTogglable'
 }
 
-export function ItemCard({ image, title, date, fee }: ItemCardProps) {
-    const [loading, toggle] = useToggle(false)
+export function ItemCard({
+    image,
+    title,
+    date,
+    fee,
+    actionType = 'togglable',
+}: ItemCardProps) {
+    const [loading, setLoading] = useState(false)
+
+    const initProp = (actionType === 'togglable' ? true : false) ?? true
 
     //TODO: Restructure this
     return (
@@ -62,10 +71,17 @@ export function ItemCard({ image, title, date, fee }: ItemCardProps) {
                     <IconAdd aria-hidden />
                 </button> */}
                 <ToggleButton
-                    initState={true}
-                    actionTrue={toggle}
-                    actionFalse={toggle}
+                    initState={initProp}
+                    actionTrue={() => {
+                        setLoading(true)
+                        setTimeout(() => setLoading(false), 1000)
+                    }}
+                    actionFalse={() => {
+                        setLoading((state) => !state)
+                        setTimeout(() => setLoading((state) => !state), 1000)
+                    }}
                     isLoading={loading}
+                    nonTogglable={actionType === 'nonTogglable' ? true : false}
                 />
             </div>
             <div className="itemCard_More flex">

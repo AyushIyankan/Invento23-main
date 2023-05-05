@@ -53,7 +53,7 @@ export function useButtonUtils({
                 clearTimeout(timeout)
             }
         }
-    }, [initialLoadingState, btnUtils])
+    }, [initialLoadingState, btnUtils.showLoader])
 
     return btnUtils
 }

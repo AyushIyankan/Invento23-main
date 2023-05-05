@@ -6,4 +6,7 @@
 -   [x] Scrollbar progress
 -   [ ] General Button component for both links and button
 -   [ ] Form state icon indicator
--   [ ] Fix footer in the register page
+-   [x] Fix footer in the register page
+-   [ ] Rewrite itemCard structure
+-   [ ] Style the newsletter field properly
+-   [ ] Add transition to various components on state change

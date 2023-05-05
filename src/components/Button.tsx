@@ -34,8 +34,6 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
         children,
     })
 
-    console.log({ width, height, showLoader })
-
     const fadeIn = useSpring({
         from: { opacity: showLoader ? 1 : 0 },
         to: { opacity: 1 },
@@ -70,18 +68,20 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
                     {children}
                 </a>
             )
-        case 'internalUrl':
+        case 'internalUrl': {
+            const { classNames, ...others } = props
             return (
-                <Link {...props} className={props.classNames}>
+                <Link {...others} className={classNames}>
                     {children}
                 </Link>
             )
+        }
     }
 }
 
 interface IToggleProps {
     initState: boolean
-    noToggle?: boolean
+    nonTogglable?: boolean
     isLoading?: boolean
     actionTrue: () => void
     actionFalse: () => void
@@ -94,8 +94,9 @@ export function ToggleButton({
     ...props
 }: IToggleProps) {
     const [state, toggle] = useToggle(initState)
+    console.log('initial Toggle btn state', state)
     const handleOnclick = () => {
-        if (!props.noToggle) {
+        if (!props.nonTogglable) {
             toggle()
         }
         state ? actionTrue() : actionFalse()
@@ -110,7 +111,7 @@ export function ToggleButton({
             isLoading={props.isLoading || false}
         >
             <span className="sr-only">{state ? 'Add item' : 'Remove Item'}</span>
-            {state ? <IconAdd aria-hidden /> : <IconRemove />}
+            {state ? <IconAdd aria-hidden /> : <IconRemove aria-hidden />}
         </Button>
     )
 }
