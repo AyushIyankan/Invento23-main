@@ -3,24 +3,23 @@ import { HTMLInputTypeAttribute } from 'react'
 import validator from 'validator'
 import z from 'zod'
 
-
 const years = [
     {
         label: '1',
-        value: '1'
+        value: '1',
     },
     {
         label: '2',
-        value: '2'
+        value: '2',
     },
     {
         label: '3',
-        value: '3'
+        value: '3',
     },
     {
         label: '4',
-        value: '4'
-    }
+        value: '4',
+    },
 ]
 
 type FieldType = {
@@ -30,15 +29,15 @@ type FieldType = {
     required: boolean
     for: string
 } & (
-        {
-            kind: 'input'
-            type: HTMLInputTypeAttribute
-        } |
-        {
-            kind: 'select'
-            options: typeof years
-        }
-    )
+    | {
+          kind: 'input'
+          type: HTMLInputTypeAttribute
+      }
+    | {
+          kind: 'select'
+          options: typeof years
+      }
+)
 
 export const Fields: FieldType[] = [
     {
@@ -93,8 +92,8 @@ export const Fields: FieldType[] = [
         kind: 'select',
         required: true,
         placeholder: 'select your year',
-        options: years
-    }
+        options: years,
+    },
 ]
 
 export const formSchema = z
@@ -108,15 +107,17 @@ export const formSchema = z
                 required_error: 'email is required',
             })
             .email('Invalid email'),
-        phone: z.string({
-            required_error: 'Phone number is required',
-            invalid_type_error: 'Phone number is invalid',
-        }).min(8, { message: 'Invalid Phone number' }),
+        phone: z
+            .string({
+                required_error: 'Phone number is required',
+                invalid_type_error: 'Phone number is invalid',
+            })
+            .min(8, { message: 'Invalid Phone number' }),
         referral: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         college: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         year: z.enum(['1', '2', '3', '4'], {
             required_error: 'Year is required',
-            invalid_type_error: 'Select a valid year'
+            invalid_type_error: 'Select a valid year',
         }),
     })
     .refine(
