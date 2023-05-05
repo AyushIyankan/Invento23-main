@@ -1,7 +1,10 @@
+import { useState } from 'react'
+
 import Placeholder from '../../assets/images/card_placeholder.jpg'
 import { ReactComponent as IconAdd } from '../../assets/svg/icon-add.svg'
-import { useProgressiveImage } from '../../hooks'
+import { useProgressiveImage, useToggle } from '../../hooks'
 import { webpLoader } from '../../utils'
+import { ToggleButton } from '../Button'
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
     bgUrl: string
     title: string
@@ -44,18 +47,26 @@ interface ItemCardProps {
 }
 
 export function ItemCard({ image, title, date, fee }: ItemCardProps) {
+    const [loading, toggle] = useToggle(false)
+
     //TODO: Restructure this
     return (
-        <div className="itemCard bg-greyish-white">
+        <div className="itemCard ">
             <div className="itemCard_details flex">
                 <div className="wrap-img">
                     <img src={`${image}`} alt={`${title}`} />
                 </div>
                 <h3 className="text-black underline ff-serif fw-400">{title}</h3>
-                <button className="btn btn--add flex">
+                {/* <button className="btn btn--add flex">
                     <span className="text-grey ff-serif">Add event</span>
                     <IconAdd aria-hidden />
-                </button>
+                </button> */}
+                <ToggleButton
+                    initState={true}
+                    actionTrue={toggle}
+                    actionFalse={toggle}
+                    isLoading={loading}
+                />
             </div>
             <div className="itemCard_More flex">
                 <span className="ff-serif text-black fw-400">
