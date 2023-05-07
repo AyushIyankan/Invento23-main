@@ -1,36 +1,37 @@
-import Natya from '../../assets/images/compressed/natya.jpg'
+import { v4 as uuidv4 } from 'uuid'
 
+import Natya from '../../assets/images/compressed/natya.jpg'
 export const BUCKET = [
     {
-        id: '1',
+        id: uuidv4(),
         title: 'Natya',
         date: '22/05/23',
         fee: 200,
         image: Natya,
     },
     {
-        id: '2',
+        id: uuidv4(),
         title: 'Natya',
         date: '22/05/23',
         fee: 200,
         image: Natya,
     },
     {
-        id: '3',
+        id: uuidv4(),
         title: 'Natya',
         date: '22/05/23',
         fee: 200,
         image: Natya,
     },
     {
-        id: '4',
+        id: uuidv4(),
         title: 'Natya',
         date: '22/05/23',
         fee: 200,
         image: Natya,
     },
     {
-        id: '5',
+        id: uuidv4(),
         title: 'Natya',
         date: '22/05/23',
         fee: 200,

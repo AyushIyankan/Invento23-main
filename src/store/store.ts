@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
 
 import { FormSchema } from '../screens/Register/schema'
 
@@ -18,16 +19,18 @@ interface ItemStore {
     removeItem: (id: Item[`id`]) => void
 }
 
-export const useStore = create<ItemStore>((set) => ({
-    items: [],
-    addItem: (item: Item) =>
-        set((state) => ({
-            ...state,
-            items: [...state.items, { ...item }],
-        })),
-    removeItem: (id: Item[`id`]) =>
-        set((state) => ({
-            ...state,
-            items: state.items.filter((item) => item.id !== id),
-        })),
-}))
+export const useStore = create<ItemStore>()(
+    devtools((set) => ({
+        items: [],
+        addItem: (item: Item) =>
+            set((state) => ({
+                ...state,
+                items: [...state.items, { ...item }],
+            })),
+        removeItem: (id: Item[`id`]) =>
+            set((state) => ({
+                ...state,
+                items: state.items.filter((item) => item.id !== id),
+            })),
+    })),
+)

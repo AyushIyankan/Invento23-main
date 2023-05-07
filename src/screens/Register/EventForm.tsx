@@ -1,18 +1,22 @@
+import { useState } from 'react'
+
 import Natya from '../../assets/images/compressed/natya.jpg'
 import { Accordion } from '../../components/Accordion'
 import { ItemCard } from '../../components/Card/Card'
 import { ItemGroup } from '../../components/ItemGroup'
+import { useToggle } from '../../hooks'
 import { useStore } from '../../store'
 import { BUCKET } from './data'
 
-const now = new Date().toLocaleDateString('en-US')
-
 export function EventForm() {
-    const { addItem, removeItem } = useStore((state) => state)
+    const { addItem, removeItem, items: bucket } = useStore((state) => state)
+    const [selectedKey, setSelectedKey] = useState<string[]>([])
 
     const items = BUCKET.map((item) => {
         return (
             <ItemCard
+                selected={bucket.some((e) => e.id === item.id)}
+                onClick={() => setSelectedKey((state) => [...state, item.id])}
                 title={item.title}
                 date={item.date}
                 fee={item.fee}
@@ -21,7 +25,10 @@ export function EventForm() {
                 actionType="togglable"
                 actions={[
                     () => addItem({ ...item, fee: item.fee.toString() }),
-                    () => removeItem(item.id),
+                    () => {
+                        removeItem(item.id)
+                        setSelectedKey((state) => state.filter((key) => key !== item.id))
+                    },
                 ]}
             />
         )

@@ -1,13 +1,13 @@
+import { useState } from 'react'
+
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
+import { useStore } from '../../store'
 
-interface ISummaryProps<T> {
-    bucket: T[]
-}
+export function Summary() {
+    const { items: bucket, removeItem } = useStore((state) => state)
+    const [selectedindex, setSelectedindex] = useState(0)
 
-export function Summary<T extends { id: string; image: string }>({
-    bucket,
-}: ISummaryProps<T>) {
     const bucketItems = bucket.map((item) => {
         return (
             <ItemCard
@@ -17,6 +17,9 @@ export function Summary<T extends { id: string; image: string }>({
                 fee={200}
                 image={item?.image}
                 actionType="nonTogglable"
+                action={() => removeItem(item.id)}
+                selected={true}
+                onClick={() => setSelectedindex(Number(item.id))}
             />
         )
     })

@@ -80,26 +80,23 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
 }
 
 interface IToggleProps {
-    initState: boolean
-    nonTogglable?: boolean
+    selected: boolean
     isLoading?: boolean
+    toggle: () => void
     actionTrue: () => void
     actionFalse: () => void
 }
 
 export function ToggleButton({
-    initState,
+    selected,
     actionTrue,
     actionFalse,
+    toggle,
     ...props
 }: IToggleProps) {
-    const [state, toggle] = useToggle(initState)
-    console.log('initial Toggle btn state', state)
     const handleOnclick = () => {
-        if (!props.nonTogglable) {
-            toggle()
-        }
-        state ? actionTrue() : actionFalse()
+        toggle()
+        selected ? actionFalse() : actionTrue()
     }
 
     return (
@@ -110,8 +107,8 @@ export function ToggleButton({
             // isLoading={true}
             isLoading={props.isLoading || false}
         >
-            <span className="sr-only">{state ? 'Add item' : 'Remove Item'}</span>
-            {state ? <IconAdd aria-hidden /> : <IconRemove aria-hidden />}
+            <span className="sr-only">{selected ? 'Remove Item' : 'Add Item'}</span>
+            {selected ? <IconRemove aria-hidden /> : <IconAdd aria-hidden />}
         </Button>
     )
 }

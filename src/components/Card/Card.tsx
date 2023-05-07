@@ -39,25 +39,26 @@ export default function Card({ bgUrl, title, ...rest }: ICardProps) {
     )
 }
 
-interface ItemCardProps {
+type ItemCardProps = {
     image: string
     title: string
     date: string
     fee: number
-    actionType?: 'togglable' | 'nonTogglable'
-}
+    selected: boolean
+    onClick: () => void
+} & (
+    | {
+          actionType: 'togglable'
+          actions: [() => void, () => void]
+      }
+    | {
+          actionType: 'nonTogglable'
+          action: () => void
+      }
+)
 
-export function ItemCard({
-    image,
-    title,
-    date,
-    fee,
-    actionType = 'togglable',
-}: ItemCardProps) {
+export function ItemCard({ image, title, date, fee, ...props }: ItemCardProps) {
     const [loading, setLoading] = useState(false)
-
-    const initProp = (actionType === 'togglable' ? true : false) ?? true
-
     //TODO: Restructure this
     return (
         <div className="itemCard ">
@@ -71,17 +72,16 @@ export function ItemCard({
                     <IconAdd aria-hidden />
                 </button> */}
                 <ToggleButton
-                    initState={initProp}
-                    actionTrue={() => {
-                        setLoading(true)
-                        setTimeout(() => setLoading(false), 1000)
-                    }}
-                    actionFalse={() => {
-                        setLoading((state) => !state)
-                        setTimeout(() => setLoading((state) => !state), 1000)
-                    }}
+                    selected={props.selected}
+                    toggle={props.onClick}
+                    // actionTrue={}
+                    actionTrue={
+                        props.actionType === 'togglable' ? props.actions[0] : props.action
+                    }
+                    actionFalse={
+                        props.actionType === 'togglable' ? props.actions[1] : props.action
+                    }
                     isLoading={loading}
-                    nonTogglable={actionType === 'nonTogglable' ? true : false}
                 />
             </div>
             <div className="itemCard_More flex">
