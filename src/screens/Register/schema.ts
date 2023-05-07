@@ -29,15 +29,15 @@ type FieldType = {
     required: boolean
     for: string
 } & (
-    | {
-          kind: 'input'
-          type: HTMLInputTypeAttribute
-      }
-    | {
-          kind: 'select'
-          options: typeof years
-      }
-)
+        | {
+            kind: 'input'
+            type: HTMLInputTypeAttribute
+        }
+        | {
+            kind: 'select'
+            options: typeof years
+        }
+    )
 
 export const Fields: FieldType[] = [
     {
@@ -69,7 +69,7 @@ export const Fields: FieldType[] = [
     },
     {
         id: 3,
-        for: 'referall',
+        for: 'referral',
         name: 'Referral',
         kind: 'input',
         type: 'text',

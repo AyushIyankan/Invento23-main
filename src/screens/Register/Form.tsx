@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
 import { FormInput } from '../../components/Form'
+import { useDetailStore } from '../../store'
 import { Fields, formSchema } from './schema'
 
 interface FormInputs {
@@ -14,15 +15,17 @@ interface FormInputs {
 }
 
 export function RegistrationForm() {
+    const { personalDetails, setData } = useDetailStore((state) => state)
     const {
         register,
         handleSubmit,
         control,
         formState: { errors, isValid, isDirty },
     } = useForm<FormInputs>({
-        mode: 'onBlur',
+        mode: 'onChange',
         resolver: zodResolver(formSchema),
         reValidateMode: 'onSubmit',
+        defaultValues: personalDetails,
     })
 
     const InputFields = Fields.map((field) => {
@@ -60,13 +63,15 @@ export function RegistrationForm() {
     })
 
     const onSubmit = (data: FormInputs) => {
-        console.log(data)
+        console.log({ data, referral: data.referral })
+        setData(data)
     }
 
-    const disableParams = !isDirty || !isValid
+    // const disableParams = !isDirty || !isValid
+    const disableParams = !isValid
 
-    console.log({ isDirty, isValid })
-    console.log({ errors })
+    // console.log({ isDirty, isValid })
+    // console.log({ errors })
     return (
         <div className="">
             <h2 className="FormHeading text-black fw-400 ff-serif">
@@ -84,7 +89,7 @@ export function RegistrationForm() {
                         disabled={disableParams}
                         aria-disabled={disableParams}
                     >
-                        Submit
+                        Save Changes
                     </button>
                 </form>
             </div>

@@ -7,7 +7,7 @@ export default function Register() {
         <div className="formParentWrap centeredContainer flow side-padding">
             <RegistrationForm />
             <EventForm />
-            <Summary bucket={BUCKET} />
+            <Summary />
         </div>
     )
 }
