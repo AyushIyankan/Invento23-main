@@ -21,6 +21,7 @@
         "react-router-dom": "^6.10.0",
         "react-select": "^5.7.3",
         "react-spring": "^9.7.1",
+        "uuid": "^9.0.0",
         "validator": "^13.9.0",
         "zod": "^3.21.4",
         "zustand": "^4.3.8"
@@ -28,6 +29,7 @@
     "devDependencies": {
         "@types/react": "^17.0.38",
         "@types/react-dom": "^17.0.11",
+        "@types/uuid": "^9.0.1",
         "@types/validator": "^13.7.15",
         "@typescript-eslint/eslint-plugin": "^5.10.2",
         "@typescript-eslint/parser": "^5.10.2",
