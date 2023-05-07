@@ -2,10 +2,31 @@ import Natya from '../../assets/images/compressed/natya.jpg'
 import { Accordion } from '../../components/Accordion'
 import { ItemCard } from '../../components/Card/Card'
 import { ItemGroup } from '../../components/ItemGroup'
+import { useStore } from '../../store'
+import { BUCKET } from './data'
 
 const now = new Date().toLocaleDateString('en-US')
 
 export function EventForm() {
+    const { addItem, removeItem } = useStore((state) => state)
+
+    const items = BUCKET.map((item) => {
+        return (
+            <ItemCard
+                title={item.title}
+                date={item.date}
+                fee={item.fee}
+                image={item.image}
+                key={item.id}
+                actionType="togglable"
+                actions={[
+                    () => addItem({ ...item, fee: item.fee.toString() }),
+                    () => removeItem(item.id),
+                ]}
+            />
+        )
+    })
+
     return (
         <>
             <div className="">
@@ -15,57 +36,21 @@ export function EventForm() {
                 <div className="proShowWrap">
                     <ItemGroup title="Pro show">
                         <Accordion title="Day 1">
-                            <div className="itemCardWrap">
-                                <ItemCard
-                                    title="Natya"
-                                    date={`${now}`}
-                                    fee={200}
-                                    image={`${Natya}`}
-                                />
-                            </div>
-                            <div className="itemCardWrap">
-                                <ItemCard
-                                    title="Natya"
-                                    date={`${now}`}
-                                    fee={200}
-                                    image={`${Natya}`}
-                                />
-                            </div>
+                            <div className="itemCardWrap">{items}</div>
                         </Accordion>
                         <Accordion title="Day 2">
-                            <div className="itemCardWrap">
-                                <ItemCard
-                                    title="Natya"
-                                    date={`${now}`}
-                                    fee={200}
-                                    image={`${Natya}`}
-                                />
-                            </div>
+                            <div className="itemCardWrap">{items}</div>
                         </Accordion>
                         <Accordion title="Day 3">
-                            <div className="itemCardWrap">
-                                <ItemCard
-                                    title="Natya"
-                                    date={`${now}`}
-                                    fee={200}
-                                    image={`${Natya}`}
-                                />
-                            </div>
+                            <div className="itemCardWrap">{items}</div>
                         </Accordion>
                         <Accordion title="Day 4">
-                            <div className="itemCardWrap">
-                                <ItemCard
-                                    title="Natya"
-                                    date={`${now}`}
-                                    fee={200}
-                                    image={`${Natya}`}
-                                />
-                            </div>
+                            <div className="itemCardWrap">{items}</div>
                         </Accordion>
                     </ItemGroup>
                 </div>
 
-                <div className="techFestWrap">
+                {/* <div className="techFestWrap">
                     <ItemGroup title="Tech Fest">
                         <Accordion title="Workshops">
                             <div className="itemCardWrap">
@@ -163,7 +148,7 @@ export function EventForm() {
                             </div>
                         </Accordion>
                     </ItemGroup>
-                </div>
+                </div> */}
                 <button className="btn btn--save text-white ff-serif">
                     Save Changes
                 </button>
