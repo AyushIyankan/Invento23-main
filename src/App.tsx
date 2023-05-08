@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import { AboutLayout, AboutUs } from './pages/AboutUs'
 import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 import EventPreview from './screens/EventPreview'
@@ -39,6 +40,16 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Register />,
+            },
+        ],
+    },
+    {
+        path: '/about',
+        element: <AboutLayout />,
+        children: [
+            {
+                index: true,
+                element: <AboutUs />,
             },
         ],
     },

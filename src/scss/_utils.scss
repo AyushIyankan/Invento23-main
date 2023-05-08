@@ -208,6 +208,10 @@
     background-color: hsl(var(--clr-greyish-white) / 1);
 }
 
+.bg-dark-red {
+    background-color: hsl(var(--clr-dark-red) / 1);
+}
+
 .side-padding {
     padding-inline: var(--side-padding, 1rem);
 }

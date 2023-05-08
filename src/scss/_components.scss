@@ -257,3 +257,42 @@
     font-size: 0.875rem;
     font-size: clamp(0.875rem, 0.85rem + 0.125vw, 1rem);
 }
+
+.striked-heading {
+    position: relative;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 50% -6% 50% -6%;
+        transform: translateY(-60%);
+        background-color: #fff;
+        // width: 100%;
+        border: 1px solid #fff;
+    }
+
+    &::after {
+        content: "";
+        // display: inline-block;
+        position: absolute;
+        inset: 50% auto 50% -0.6em;
+        transform: translateY(-50%);
+        // height: 20px;
+        // width: 20px;
+        // background-color: #fff;
+        border-width: 0.4em;
+        border-style: solid;
+        border-left-color: #fff;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-top-color: transparent;
+    }
+}
+
+.card__profile {
+    .image > * {
+        height: 17rem;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}
