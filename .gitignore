@@ -6,7 +6,5 @@ dist-ssr
 node_modules/*
 .vscode
 .vscode/*
-.env
-service_key.json
 src/scss/index.css
 src/scss/index.css.map
