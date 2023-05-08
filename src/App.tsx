@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 import EventPreview from './screens/EventPreview'
+import Register from './screens/Register'
+import { FormLayout } from './screens/Register'
 
 const routes = createBrowserRouter([
     {
@@ -27,6 +29,16 @@ const routes = createBrowserRouter([
             {
                 path: '/events/:id',
                 element: <EventPreview />,
+            },
+        ],
+    },
+    {
+        path: '/register',
+        element: <FormLayout />,
+        children: [
+            {
+                index: true,
+                element: <Register />,
             },
         ],
     },

@@ -6,19 +6,20 @@ import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
 import { useScrollPosition, useToggle } from '../../hooks'
 
-export default function Nav({
-    background,
-    progress,
-}: {
+interface INavBarProps {
     background: string
-    progress: string
-}) {
+    progressLineColor: string
+    theme?: 'light'
+}
+
+export default function Nav({ background, progressLineColor, theme }: INavBarProps) {
     const [navState, toggleNavState] = useToggle(false)
     const scrollPos = useScrollPosition()
     return (
         <header
             className="header--main bg-dark-purple flex"
             style={{ '--navbar-bg': background } as React.CSSProperties}
+            data-theme={theme}
         >
             <div className="logo--container flex">
                 <Logo className="logo--invento" />
@@ -76,7 +77,7 @@ export default function Nav({
                 className="scroll-progress"
                 style={
                     {
-                        background: `linear-gradient(to right, ${progress} ${scrollPos}%, #eee ${scrollPos}%)`,
+                        background: `linear-gradient(to right, ${progressLineColor} ${scrollPos}%, #eee ${scrollPos}%)`,
                     } as React.CSSProperties
                 }
             ></span>

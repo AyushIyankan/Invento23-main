@@ -9,7 +9,7 @@ export function Layout() {
         <div className="layout">
             <Nav
                 background={`${BACKGROUNDS.clrDarkTeal}`}
-                progress={`${BACKGROUNDS.clrDarkBlue}`}
+                progressLineColor={`${BACKGROUNDS.clrDarkBlue}`}
             />
             <Outlet />
             <Footer background={`${BACKGROUNDS.GradientDarkTeal}`} />
