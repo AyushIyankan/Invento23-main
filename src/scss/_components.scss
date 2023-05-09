@@ -296,3 +296,60 @@
         object-fit: cover;
     }
 }
+
+.podium {
+    --gap: 0.3rem;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+
+    picture {
+        width: fit-content;
+        align-self: center;
+        position: relative;
+        z-index: 100;
+    }
+
+    &-image {
+        border-radius: 15px;
+        width: 6.25rem;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+
+    .inner {
+        position: relative;
+        > * {
+            grid-row: 1/2;
+            grid-column: 1/2;
+        }
+    }
+
+    .icon-position {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .wrap-points {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%);
+    }
+
+    .wrap-image {
+        // filter: blur(130px);
+        position: relative;
+    }
+    .bg {
+        z-index: 10;
+        position: absolute;
+        inset: -18% 0 0 0;
+        background: hsl(var(--clr-magenta) / 1);
+        filter: blur(100px);
+    }
+    .unblur {
+        filter: blur(0);
+    }
+}
