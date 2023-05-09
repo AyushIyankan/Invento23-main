@@ -4,10 +4,15 @@ import { AboutLayout, AboutUs } from './pages/AboutUs'
 import Events, { Layout as EventsLayout } from './pages/events'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 import EventPreview from './screens/EventPreview'
+import { NotFound } from './screens/NotFound'
 import Register from './screens/Register'
 import { FormLayout } from './screens/Register'
 
 const routes = createBrowserRouter([
+    {
+        path: '*',
+        element: <NotFound />,
+    },
     {
         path: '/saptha',
         element: <SapthaLayout />,
