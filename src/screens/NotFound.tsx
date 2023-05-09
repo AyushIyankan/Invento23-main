@@ -8,7 +8,7 @@ export function NotFound() {
     return (
         <div className="layout">
             <Nav
-                background={BACKGROUNDS.clrDarkBlue}
+                background={BACKGROUNDS.clrDark}
                 progressLineColor={BACKGROUNDS.clrDarkRed600}
             />
             <section className="NotFound mh-full grid grid-3-col">

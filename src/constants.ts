@@ -8,4 +8,5 @@ export const BACKGROUNDS = {
     clrDarkBlue: '#1c419c',
     clrWhite: `#fff`,
     clrDarkRed600: 'hsl(346, 98%, 17%)',
+    clrDark: 'hsl(202, 92%, 5%)',
 }
