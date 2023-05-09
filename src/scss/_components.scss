@@ -302,6 +302,11 @@
     display: inline-grid;
     grid-template-columns: 1fr;
 
+    h4 {
+        position: relative;
+        z-index: 100;
+    }
+
     picture {
         width: fit-content;
         align-self: center;
@@ -318,6 +323,7 @@
 
     .inner {
         position: relative;
+        z-index: 100;
         > * {
             grid-row: 1/2;
             grid-column: 1/2;
