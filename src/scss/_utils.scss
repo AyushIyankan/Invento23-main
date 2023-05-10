@@ -17,6 +17,13 @@
     gap: var(--gap, 1rem);
 }
 
+.grid-3-col {
+    grid-template-columns: minmax(1.8rem, 1fr) minmax(0, clamp(21rem, 2.193rem + 94vw, 115rem)) minmax(1.8rem, 1fr);
+    > * {
+        grid-column: 2/3;
+    }
+}
+
 .grid-2-col {
     grid-template-columns: minmax(var(--side-padding, 1rem), 1.8rem) 1fr minmax(var(--side-padding, 1rem), 1.8rem);
     > * {
@@ -90,6 +97,10 @@
 
 .uppercase {
     text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }
 
 .underline {
@@ -206,6 +217,14 @@
 
 .bg-greyish-white {
     background-color: hsl(var(--clr-greyish-white) / 1);
+}
+
+.bg-dark-red {
+    background-color: hsl(var(--clr-dark-red) / 1);
+}
+
+.bg-blue-gray {
+    background-color: hsl(var(--clr-blue-gray) / 1);
 }
 
 .side-padding {

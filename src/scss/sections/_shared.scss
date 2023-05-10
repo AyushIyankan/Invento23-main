@@ -98,6 +98,8 @@ body {
     --sb-size: 5px;
 
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    padding-top: 4.6rem;
+    // padding-top: clamp(4.6rem, 4.27rem + 1.6504vw, 6.25rem);
 }
 
 body::-webkit-scrollbar {

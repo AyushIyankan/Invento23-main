@@ -1,0 +1,42 @@
+.NotFound {
+    position: relative;
+    background: linear-gradient(180deg, #001019 0%, #001d2e 100%);
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: url(../assets/svg/invento__logo-outline-full.svg) no-repeat;
+        background-position: -20% center;
+        transform: translateX(-30%);
+        height: 100%;
+        width: 100%;
+        @include bp(tablet) {
+            background-position: -20% center;
+            background-size: 40%;
+            left: 0;
+            transform: unset;
+        }
+
+        @include bp(desktop) {
+            background-size: 32%;
+        }
+
+        opacity: 0.3;
+    }
+
+    > * {
+        justify-self: center;
+        align-self: center;
+    }
+
+    h2 {
+        margin-bottom: 5rem;
+        font-size: 1.18rem;
+        font-size: clamp(1.18rem, 0.979rem + 1.02vw, 2.18rem);
+    }
+
+    .inner {
+        font-size: 0.93rem !important;
+        font-size: clamp(0.93rem, 0.8541rem + 0.38vw, 1.31rem) !important;
+    }
+}
