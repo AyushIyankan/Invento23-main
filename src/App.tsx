@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { AboutLayout, AboutUs } from './pages/AboutUs'
 import Events, { Layout as EventsLayout } from './pages/events'
+import { Leaderboard, LeaderboardLayout } from './pages/Leaderboard'
 import Saptha, { Layout as SapthaLayout } from './pages/saptha'
 import EventPreview from './screens/EventPreview'
 import { NotFound } from './screens/NotFound'
@@ -55,6 +56,16 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <AboutUs />,
+            },
+        ],
+    },
+    {
+        path: '/leaderboards',
+        element: <LeaderboardLayout />,
+        children: [
+            {
+                index: true,
+                element: <Leaderboard />,
             },
         ],
     },

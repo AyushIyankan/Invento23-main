@@ -99,6 +99,10 @@
     text-transform: uppercase;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
 .underline {
     text-decoration: underline;
 }
@@ -217,6 +221,10 @@
 
 .bg-dark-red {
     background-color: hsl(var(--clr-dark-red) / 1);
+}
+
+.bg-blue-gray {
+    background-color: hsl(var(--clr-blue-gray) / 1);
 }
 
 .side-padding {
