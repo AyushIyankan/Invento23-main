@@ -20,19 +20,19 @@ export function Leaderboard() {
                                 name="ril"
                                 points="1000"
                                 position="2"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                             <Podium
                                 name="ril"
                                 points="1000"
                                 position="1"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                             <Podium
                                 name="ril"
                                 points="1000"
                                 position="3"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                         </div>
                         <div className="wrap-table">
