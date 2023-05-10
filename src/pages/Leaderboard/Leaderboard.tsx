@@ -1,4 +1,3 @@
-import Placeholder from '../../assets/images/compressed/natya_large.jpg'
 import Podium from '../../components/Podium'
 import ScoreTable from '../../components/ScoreTable'
 import { COLS, FakeTableData } from './data'

@@ -1,9 +1,7 @@
-import NotFoundImg from '../assets/images/compressed/404.jpg'
 import Footer from '../components/Footer'
 import { ImgWithFallback } from '../components/ImgWithFallback'
 import Nav from '../components/Navigation'
 import { BACKGROUNDS } from '../constants'
-import { webpLoader } from '../utils'
 
 export function NotFound() {
     return (

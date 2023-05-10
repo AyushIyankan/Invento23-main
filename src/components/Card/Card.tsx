@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import Placeholder from '../../assets/images/card_placeholder.jpg'
-import { useProgressiveImage, useToggle } from '../../hooks'
+import { useProgressiveImage } from '../../hooks'
 import { webpLoader } from '../../utils'
 import { ToggleButton } from '../Button'
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,10 +10,10 @@ interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function Card({ bgUrl, title, ...rest }: ICardProps) {
     const loaded = useProgressiveImage(bgUrl)
-    const loadedWebp = useProgressiveImage(webpLoader(bgUrl))
+    const loadedWebp = webpLoader(loaded ?? bgUrl)
     const styles: React.CSSProperties = {
         backgroundImage: `url(${
-            (loadedWebp ?? loaded) || Placeholder
+            (loadedWebp ?? loaded) || '/static/card_placeholder.jpg'
         }), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
