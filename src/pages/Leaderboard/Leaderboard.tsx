@@ -1,4 +1,3 @@
-import Placeholder from '../../assets/images/compressed/natya_large.jpg'
 import Podium from '../../components/Podium'
 import ScoreTable from '../../components/ScoreTable'
 import { COLS, FakeTableData } from './data'
@@ -20,19 +19,19 @@ export function Leaderboard() {
                                 name="ril"
                                 points="1000"
                                 position="2"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                             <Podium
                                 name="ril"
                                 points="1000"
                                 position="1"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                             <Podium
                                 name="ril"
                                 points="1000"
                                 position="3"
-                                image={Placeholder}
+                                image="/static/natya_large.jpg"
                             />
                         </div>
                         <div className="wrap-table">

@@ -3,7 +3,7 @@ import { ReactComponent as PodiumCube } from '../assets/svg/podium.svg'
 import { ReactComponent as LogoFirst } from '../assets/svg/position_first.svg'
 import { ReactComponent as LogoSecond } from '../assets/svg/position_second.svg'
 import { ReactComponent as LogoThird } from '../assets/svg/position_third.svg'
-import { webpLoader } from '../utils'
+import { ImgWithFallback } from './ImgWithFallback'
 interface IPodium {
     name: string
     points: string
@@ -16,11 +16,16 @@ export default function Podium({ name, points, position, image }: IPodium) {
         <div className="podium">
             <div className="wrap-image iflex flex-col">
                 <div className="bg"></div>
-                <picture>
-                    <source srcSet={webpLoader(image)} />
-                    <source srcSet={image} />
-                    <img className="podium-image" src={image} alt={name} />
-                </picture>
+                {/* <picture>
+                    <source type="image/webp" srcSet={webp.image ?? image} />
+                    <source type="image/jpeg" srcSet={image} />
+                    <img className="podium-image" src={webp.image ?? image} alt={name} />
+                </picture> */}
+                <ImgWithFallback
+                    imgClass="podium-image"
+                    src={image}
+                    imgDescription={name}
+                />
                 <h4 className="text-white fw-400 ff-serif capitalize t-center">{name}</h4>
             </div>
             <div className="inner grid">

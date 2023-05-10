@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom'
 
-import Nathya from '../../assets/images/compressed/natya_large.jpg'
-
 export default function EventPreview() {
     return (
         <section className="eventPreview">

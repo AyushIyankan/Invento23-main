@@ -1,3 +1,5 @@
+import { ImgWithFallback } from '../ImgWithFallback'
+
 interface IProfileCard {
     name: string
     designation: string
@@ -8,7 +10,7 @@ export function ProfileCard({ name, designation, imageUrl }: IProfileCard) {
     return (
         <div className="card__profile grid">
             <div className="image">
-                <img src={imageUrl} alt={name} />
+                <ImgWithFallback src={imageUrl} imgDescription={name} />
             </div>
             <div className="content">
                 <h4 className="header text-white ff-serif fw-500">{name}</h4>

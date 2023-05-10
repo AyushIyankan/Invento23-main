@@ -1,5 +1,3 @@
-import Nathya from '../../assets/images/compressed/natya.jpg'
-import Taksthi from '../../assets/images/compressed/taksthi.jpg'
 import Card from '../../components/Card/'
 
 export function Spotlight() {
@@ -13,12 +11,12 @@ export function Spotlight() {
             <div className="saptha__spotlight__cards flex flex-center h-full panel">
                 <Card
                     className="card--spotlight grid"
-                    bgUrl={`${Nathya}`}
+                    bgUrl="/static/natya.jpg"
                     title="nathya"
                 />
                 <Card
                     className="card--spotlight grid"
-                    bgUrl={`${Taksthi}`}
+                    bgUrl="/static/taksthi.jpg"
                     title="taksthi"
                 />
             </div>

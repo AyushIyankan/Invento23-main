@@ -1,4 +1,3 @@
-import Placeholder from '../../assets/images/card_placeholder.jpg'
 import { ProfileCard } from '../../components/Card'
 
 export function AboutUs() {
@@ -13,53 +12,53 @@ export function AboutUs() {
                 <div className="cards grid">
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
 
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl={Placeholder}
+                        imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
                 </div>
