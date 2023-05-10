@@ -4,7 +4,7 @@ import { animated, useSpring } from 'react-spring'
 
 import { ReactComponent as IconAdd } from '../assets/svg/icon-add.svg'
 import { ReactComponent as IconRemove } from '../assets/svg/icon-remove.svg'
-import { useButtonUtils, useToggle } from '../hooks'
+import { useButtonUtils } from '../hooks'
 
 type IButtonProps = {
     children: React.ReactNode

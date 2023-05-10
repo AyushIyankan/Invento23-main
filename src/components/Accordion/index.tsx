@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 
 import { ReactComponent as AccordionDown } from '../../assets/svg/accordion-down.svg'
 import { ReactComponent as AccordionUp } from '../../assets/svg/accordion-up.svg'

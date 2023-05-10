@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import Placeholder from '../../assets/images/card_placeholder.jpg'
-import { ReactComponent as IconAdd } from '../../assets/svg/icon-add.svg'
 import { useProgressiveImage, useToggle } from '../../hooks'
 import { webpLoader } from '../../utils'
 import { ToggleButton } from '../Button'

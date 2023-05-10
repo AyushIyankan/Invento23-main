@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 import Placeholder from '../../assets/images/compressed/natya_large.jpg'
 import Podium from '../../components/Podium'
 import ScoreTable from '../../components/ScoreTable'
