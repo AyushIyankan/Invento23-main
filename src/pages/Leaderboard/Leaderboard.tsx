@@ -19,7 +19,7 @@ export function Leaderboard() {
                             <Podium
                                 name="ril"
                                 points="1000"
-                                position="1"
+                                position="2"
                                 image={Placeholder}
                             />
                             <Podium
@@ -31,7 +31,7 @@ export function Leaderboard() {
                             <Podium
                                 name="ril"
                                 points="1000"
-                                position="1"
+                                position="3"
                                 image={Placeholder}
                             />
                         </div>
