@@ -23,7 +23,9 @@ export default function ScoreTable<T extends object>({ data, columns }: IScoreTa
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((col) => (
-                            <th {...col.getHeaderProps()}>{col.render('Header')}</th>
+                            <th {...col.getHeaderProps()}>
+                                <>{col.render('Header')}</>
+                            </th>
                         ))}
                     </tr>
                 ))}
@@ -42,7 +44,7 @@ export default function ScoreTable<T extends object>({ data, columns }: IScoreTa
                                         {...cell.getCellProps()}
                                         data-cell={cell.column.id}
                                     >
-                                        {cell.render('Cell')}
+                                        <>{cell.render('Cell')}</>
                                     </td>
                                 )
                             })}

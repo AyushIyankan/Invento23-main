@@ -63,7 +63,7 @@ export function FormInput<T extends FieldValues>({
                         }}
                     />
                     <span className="FormInputError">
-                        {errors?.[`${forEl}`]?.message}
+                        {errors?.[`${forEl}`]?.message as string}
                     </span>
                 </div>
             )
@@ -96,7 +96,7 @@ export function FormInput<T extends FieldValues>({
                     />
                     {/* <ErrorMessage name={forEl} errors={errors?.[`${label}`]} /> */}
                     <span className="FormInputError">
-                        {errors?.[`${forEl}`]?.message}
+                        {errors?.[`${forEl}`]?.message as string}
                     </span>
                 </div>
             )
