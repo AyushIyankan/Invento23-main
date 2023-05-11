@@ -95,24 +95,24 @@ body {
     --sb-thumb-color: #ba2548;
     --sb-size: 5px;
 
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    // scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     padding-top: 4.6rem;
     // padding-top: clamp(4.6rem, 4.27rem + 1.6504vw, 6.25rem);
 }
 
-body::-webkit-scrollbar {
-    width: var(--sb-size);
-}
+// body::-webkit-scrollbar {
+//     width: var(--sb-size);
+// }
 
-body::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 10px;
-}
+// body::-webkit-scrollbar-track {
+//     background: var(--sb-track-color);
+//     border-radius: 10px;
+// }
 
-body::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 10px;
-}
+// body::-webkit-scrollbar-thumb {
+//     background: var(--sb-thumb-color);
+//     border-radius: 10px;
+// }
 
 // hero logo
 .hero__logo {
