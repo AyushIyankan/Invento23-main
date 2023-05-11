@@ -60,15 +60,17 @@ export function ItemCard({ image, title, date, fee, ...props }: ItemCardProps) {
     //TODO: Restructure this
     return (
         <div className="itemCard ">
-            <div className="itemCard_details flex">
-                <div className="wrap-img">
+            <div className="itemCard_details grid">
+                <div className="wrap-img flex">
                     <img src={`${image}`} alt={`${title}`} />
                 </div>
                 <h3 className="text-black underline ff-serif fw-400">{title}</h3>
-                {/* <button className="btn btn--add flex">
-                    <span className="text-grey ff-serif">Add event</span>
-                    <IconAdd aria-hidden />
-                </button> */}
+
+                <p className="ff-serif text-black fw-400 detail-fee">
+                    Registration Fee: {fee}
+                </p>
+                <p className="ff-serif text-black fw-400 detail-date"> Date: {date}</p>
+
                 <ToggleButton
                     selected={props.selected}
                     toggle={props.onClick}
@@ -81,12 +83,6 @@ export function ItemCard({ image, title, date, fee, ...props }: ItemCardProps) {
                     }
                     isLoading={loading}
                 />
-            </div>
-            <div className="itemCard_More flex">
-                <span className="ff-serif text-black fw-400">
-                    Registration Fee: {fee}
-                </span>
-                <span className="ff-serif text-black fw-400"> Date: {date}</span>
             </div>
         </div>
     )

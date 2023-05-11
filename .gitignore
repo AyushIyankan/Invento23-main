@@ -8,3 +8,5 @@ node_modules/*
 .vscode/*
 src/scss/index.css
 src/scss/index.css.map
+.unlighthouse
+.unlighthouse/*

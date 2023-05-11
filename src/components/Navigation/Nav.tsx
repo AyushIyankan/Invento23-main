@@ -40,17 +40,17 @@ export default function Nav({ background, progressLineColor, theme }: INavBarPro
             >
                 <ul className="primary-navigation flow" id="primary-navigation">
                     <li>
-                        <NavLink className={`navlink flex`} to={'/saptha'}>
-                            tickets <ExternalLinkIcon />
+                        <NavLink className={`navlink flex`} to={'/about'}>
+                            About us <ExternalLinkIcon />
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={`navlink flex`} to={'/saptha'}>
+                        <NavLink className={`navlink flex`} to={'/'}>
                             home <ExternalLinkIcon />
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={`navlink flex`} to={'/saptha'}>
+                        <NavLink className={`navlink flex`} to={'/events'}>
                             events <ExternalLinkIcon />
                         </NavLink>
                     </li>
@@ -60,8 +60,8 @@ export default function Nav({ background, progressLineColor, theme }: INavBarPro
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={`navlink flex`} to={'/saptha'}>
-                            link <ExternalLinkIcon />
+                        <NavLink className={`navlink flex`} to={'/register'}>
+                            Register <ExternalLinkIcon />
                         </NavLink>
                     </li>
                 </ul>
