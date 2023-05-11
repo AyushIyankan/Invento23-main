@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import Loading from './components/Loading'
+
 const LazyNotFound = lazy(() =>
     import('./screens/NotFound').then((m) => {
         return { default: m.NotFound }
@@ -119,7 +121,7 @@ const routes = createBrowserRouter([
 
 function App() {
     return (
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Loading />}>
             <RouterProvider router={routes} />
         </Suspense>
     )

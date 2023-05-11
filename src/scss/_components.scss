@@ -360,3 +360,25 @@
         filter: blur(0);
     }
 }
+
+.wrap-loading {
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+
+    > .loading-icon {
+        height: 6.5rem;
+        width: 4.5rem;
+        animation: blink 0.6s ease-in-out infinite alternate;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
