@@ -129,6 +129,7 @@
 
 .btn--checkout {
     justify-self: center;
+    color: #fff;
 }
 
 .Btn--loader {
@@ -290,7 +291,7 @@
 }
 
 .card__profile {
-    .image > * {
+    .image img {
         height: 17rem;
         aspect-ratio: 1;
         object-fit: cover;
