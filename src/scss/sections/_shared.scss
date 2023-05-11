@@ -23,8 +23,8 @@
     min-height: 100dvh;
 
     &--preview {
-        background: url(../assets/images/compressed/natya_large.jpg) #0f0e0d no-repeat;
-        background: url(../assets/images/compressed/natya_large.webp) #0f0e0d no-repeat;
+        background: url(/static/natya_large.jpg) #0f0e0d no-repeat;
+        background: url(/static/natya_large.webp) #0f0e0d no-repeat;
 
         background-size: cover;
         background-position: center center;
@@ -41,18 +41,16 @@
     z-index: -1;
     min-height: 100vh;
     min-height: 100dvh;
-    background: url(../assets/images/compressed/saptha_hero_bg_mobile.jpg);
-    background: url(../assets/images/compressed/saptha_hero_bg_mobile.webp);
+    background: url(/static/saptha_hero_bg_mobile.jpg);
+    background: url(/static/saptha_hero_bg_mobile.webp);
     background-size: cover;
     background-repeat: no-repeat;
     // background-position: center top;
     // background-attachment: fixed;
 
     @media (min-width: 31em) {
-        background: url(../assets/images/compressed/saptha_hero_bg.jpg),
-            linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
-        background: url(../assets/images/compressed/saptha_hero_bg.webp),
-            linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
+        background: url(/static/saptha_hero_bg.jpg), linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
+        background: url(/static/saptha_hero_bg.webp), linear-gradient(90deg, #080d0e 0%, #15100d 75.31%, #080d0e 100%);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center top;
