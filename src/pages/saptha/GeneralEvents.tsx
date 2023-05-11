@@ -1,15 +1,19 @@
+import { Link } from 'react-router-dom'
+
 import Card from '../../components/Card'
 import { GROUPEVENTS } from './data'
 
 export function GeneralEvents() {
     const cards = GROUPEVENTS.map((d) => {
         return (
-            <Card
-                key={`event-${d.id}`}
-                title={d.title}
-                bgUrl={d.bgUri}
-                className="card--groupevent"
-            />
+            <Link to={'/events/2'} key={`event-link-${d.id}`}>
+                <Card
+                    key={`event-${d.id}`}
+                    title={d.title}
+                    bgUrl={d.bgUri}
+                    className="card--groupevent"
+                />
+            </Link>
         )
     })
 
