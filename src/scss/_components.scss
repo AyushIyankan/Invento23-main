@@ -181,20 +181,18 @@
     }
 
     &-content {
-        background-color: hsl(var(--clr-greyish-white) / 1);
-        opacity: 0;
-        flex-basis: 0;
-        overflow: hidden;
-        transition: flex-basis 0.5s, opacity 0.2s;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.5s ease-in-out;
+        > * {
+            overflow: hidden;
+        }
     }
 
     &-content[data-visible="true"] {
-        flex-basis: auto;
-        opacity: 1;
-        padding-block: 0.81rem;
-        padding-block: clamp(0.81rem, 0.5981rem + 1.06vw, 1.87rem);
-        padding-inline: 0.89rem;
-        padding-inline: clamp(0.89rem, 0.694rem + 0.9801vw, 1.87rem);
+        background-color: hsl(var(--clr-greyish-white) / 1);
+
+        grid-template-rows: 1fr;
     }
 }
 
@@ -217,6 +215,11 @@
 .itemCard {
     --gap: 1.5rem;
     margin-block: 1rem;
+    padding-block: 0.81rem;
+    padding-block: clamp(0.81rem, 0.5981rem + 1.06vw, 1.87rem);
+    padding-inline: 0.89rem;
+    padding-inline: clamp(0.89rem, 0.694rem + 0.9801vw, 1.87rem);
+
     border-bottom: 0.5px solid hsl(var(--clr-grey) / 1);
     > * {
         justify-content: space-between;

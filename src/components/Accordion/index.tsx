@@ -13,7 +13,7 @@ export function Accordion({ title, children }: PropsWithChildren<AccordionProps>
 
     return (
         <div className="accordion">
-            <div className="accordion-panel flex flex-col">
+            <div className="accordion-panel">
                 <h2 id="panel-heading">
                     <button
                         className="accordion-trigger flex"
