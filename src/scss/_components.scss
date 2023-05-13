@@ -132,6 +132,28 @@
     color: #fff;
 }
 
+.btn-ca {
+    color: hsl(var(--clr-white) / 1);
+    border-radius: 16.5px;
+
+    &-explore {
+        background: transparent;
+        border: 1px solid #fff;
+    }
+
+    &-reg {
+        background: var(--card-gradient);
+        background-size: 200%;
+        background-position: left;
+        transition: background-position 0.5s;
+
+        &:hover,
+        &:focus {
+            background-position: right;
+        }
+    }
+}
+
 .Btn--loader {
     border: 4px solid rgba(255, 255, 255, 0.2);
     border-left: 4px solid;
@@ -335,6 +357,31 @@
     }
 }
 
+.btn--share {
+    background: transparent;
+}
+
+.card-share {
+    --flow-space: 2em;
+
+    border-radius: 15px;
+    background-image: var(--card-gradient);
+    max-width: 20rem;
+    padding-block: 1.09rem;
+    padding-block: clamp(1.09rem, 0.8581rem + 1.16vw, 2.25rem);
+
+    padding-inline: 1.1875rem;
+    padding-inline: clamp(1.1875rem, 0.9375rem + 1.25vw, 2.4375rem);
+
+    max-width: 41.25rem;
+    // max-width: clamp(20.0475rem, 15.8069rem + 21.2025vw, 41.25rem);
+
+    p {
+        padding-top: 4.1875rem;
+        padding-top: clamp(4.1875rem, 3.35rem + 4.1875vw, 8.375rem);
+    }
+}
+
 .podium {
     --gap: 0.3rem;
     display: inline-grid;
@@ -418,4 +465,54 @@
     100% {
         opacity: 0;
     }
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip::before,
+.tooltip::after {
+    --scale: 0;
+    --arrow-size: 10px;
+    --tooltip-color: #333;
+
+    position: absolute;
+    top: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--y-translate, 0)) scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+}
+
+.tooltip::before {
+    --y-translate: calc(-100% - var(--arrow-size));
+
+    content: attr(data-tooltip);
+    color: #fff;
+    border-radius: 0.3rem;
+    text-align: center;
+    // width: max-content;
+    // max-width: 100%;
+    text-transform: none;
+    font-family: var(--ff-serif);
+    background-color: var(--tooltip-color);
+    width: fit-content;
+    padding: 0.2rem;
+}
+
+.tooltip:focus::before,
+.tooltip:focus::after,
+.tooltip:hover::before,
+.tooltip:hover::after {
+    --scale: 1;
+}
+
+.tooltip::after {
+    --y-translate: calc(-1 * var(--arrow-size));
+
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
 }
