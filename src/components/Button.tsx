@@ -1,10 +1,11 @@
-import React, { useRef } from 'react'
+import React, { CSSProperties, forwardRef, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { animated, useSpring } from 'react-spring'
 
 import { ReactComponent as IconAdd } from '../assets/svg/icon-add.svg'
 import { ReactComponent as IconRemove } from '../assets/svg/icon-remove.svg'
 import { useButtonUtils } from '../hooks'
+import { mergeRefs } from '../utils'
 
 type IButtonProps = {
     children: React.ReactNode
@@ -26,7 +27,10 @@ type IButtonProps = {
 
 const Loader = () => <div className="Btn--loader"></div>
 
-export default function Button({ children, isLoading, ...props }: IButtonProps) {
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(function Btn(
+    { children, isLoading, ...props }: IButtonProps,
+    ref,
+) {
     const btnRef = useRef<HTMLButtonElement>(null)
     const { width, height, showLoader } = useButtonUtils({
         btnRef,
@@ -42,13 +46,12 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
         from: { opacity: showLoader ? 0 : 1 },
         to: { opacity: 1 },
     })
-
     switch (props.type) {
         case 'button':
             return (
                 <button
                     {...props}
-                    ref={btnRef}
+                    ref={mergeRefs(btnRef, ref)}
                     style={
                         showLoader ? { width: `${width}px`, height: `${height}px` } : {}
                     }
@@ -58,7 +61,11 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
                             <Loader />
                         </animated.div>
                     ) : (
-                        <animated.div style={fadeIn}>{children}</animated.div>
+                        <animated.div
+                            style={({ pointerEvents: 'none' } as CSSProperties, fadeIn)}
+                        >
+                            {children}
+                        </animated.div>
                     )}
                 </button>
             )
@@ -77,7 +84,7 @@ export default function Button({ children, isLoading, ...props }: IButtonProps) 
             )
         }
     }
-}
+})
 
 interface IToggleProps {
     selected: boolean
@@ -112,3 +119,5 @@ export function ToggleButton({
         </Button>
     )
 }
+
+export default Button

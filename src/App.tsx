@@ -21,6 +21,14 @@ const LazyLeaderBoard = lazy(() =>
     }),
 )
 
+const LazyCALayout = lazy(() =>
+    import('./pages/CampusAmbassadors/Layout').then((m) => {
+        return { default: m.Layout }
+    }),
+)
+
+const LazyCA = lazy(() => import('./pages/CampusAmbassadors'))
+
 const LazyAboutLayout = lazy(() =>
     import('./pages/AboutUs/Layout').then((m) => {
         return { default: m.Layout }
@@ -114,6 +122,16 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <LazyLeaderBoard />,
+            },
+        ],
+    },
+    {
+        path: '/ca',
+        element: <LazyCALayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyCA />,
             },
         ],
     },

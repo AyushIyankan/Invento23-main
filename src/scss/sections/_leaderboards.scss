@@ -114,7 +114,9 @@
 
         td {
             display: grid;
-            grid-template-columns: 10ch auto;
+            align-items: center;
+            grid-template-columns: 6ch auto;
+            justify-items: start;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
         }
