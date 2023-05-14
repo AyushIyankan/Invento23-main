@@ -9,9 +9,7 @@ import { WorkShops } from './Workshops'
 export default function Events() {
     return (
         <>
-            <div className="bg--container">
-                <div className="bg--full--saptha"></div>
-            </div>
+            <div className="bg--full--saptha"></div>
             <Hero />
             <About />
             <WorkShops />
