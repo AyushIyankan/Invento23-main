@@ -16,6 +16,8 @@ html {
     .footer {
         // margin-top: auto;
         // grid-column: -1;
+        position: relative;
+        z-index: 88;
     }
 }
 
@@ -42,8 +44,9 @@ html {
 .bg--full--saptha {
     position: fixed;
     inset: 0;
+    width: 100%;
     z-index: -1;
-    height: 100%;
+    height: 110vh;
     // min-height: 100dvh;
     background: url(/static/saptha_hero_bg_mobile.jpg);
     background: url(/static/saptha_hero_bg_mobile.webp);
