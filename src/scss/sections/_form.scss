@@ -1,5 +1,6 @@
 .formParentWrap {
     background: hsl(var(--clr-greyish-white) / 1);
+    padding-bottom: 5rem;
 }
 
 .FormWrap {
@@ -71,4 +72,22 @@
     padding-inline: clamp(1.25rem, 0.75rem + 2.5vw, 3.75rem);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 7px;
+}
+
+.form__eventsSummary {
+    grid-template-rows: 0fr;
+    justify-items: center;
+    transition: grid-template-rows 0.3s;
+
+    > * {
+        overflow: hidden;
+    }
+}
+
+[data-filled="true"].form__eventsSummary {
+    grid-template-rows: 1fr;
+
+    > * {
+        overflow: unset;
+    }
 }
