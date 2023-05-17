@@ -111,8 +111,16 @@
     font-family: var(--ff-serif);
 }
 
+.ff-montserrat {
+    font-family: var(--ff-montserrat);
+}
+
 .ff-days-one {
     font-family: var(--ff-days-one);
+}
+
+.ff-gothic {
+    font-family: var(--ff-gothic);
 }
 
 .fs-100 {
@@ -181,6 +189,10 @@
 
 .text-white {
     color: hsl(var(--clr-white) / 1);
+}
+
+.text-turquoise {
+    color: hsl(var(--clr-turquoise) / 1) !important;
 }
 
 .text-magenta {

@@ -1,4 +1,5 @@
 @import "reset";
+@import "font";
 @import "mixins";
 @import "variables";
 @import "utils";
@@ -15,7 +16,7 @@
 @import "sections/404";
 @import "sections/leaderboards";
 @import "sections/ca";
-
+@import "sections/landing";
 // debug
 // * {
 //     outline: 1px red solid !important;

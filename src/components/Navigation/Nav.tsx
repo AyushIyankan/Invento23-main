@@ -1,29 +1,47 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { ReactComponent as RegisterArrow } from '../../assets/svg/Arrow.svg'
 import { ReactComponent as SearchLogo } from '../../assets/svg/ic_round-search.svg'
 import { ReactComponent as ExternalLinkIcon } from '../../assets/svg/icon_external-link.svg'
 import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
 import { useScrollPosition, useToggle } from '../../hooks'
 
-interface INavBarProps {
+interface INavBarProps extends React.HTMLAttributes<HTMLElement> {
     background: string
     progressLineColor: string
     theme?: 'light'
+    type?: 'landing'
 }
 
-export default function Nav({ background, progressLineColor, theme }: INavBarProps) {
+export default function Nav({
+    background,
+    progressLineColor,
+    theme,
+    type,
+    ...delegated
+}: INavBarProps) {
     const [navState, toggleNavState] = useToggle(false)
     const scrollPos = useScrollPosition()
+    const { className, ...rest } = delegated
     return (
         <header
-            className="header--main bg-dark-purple flex"
+            className={`${className} header--main bg-dark-purple flex`}
             style={{ '--navbar-bg': background } as React.CSSProperties}
             data-theme={theme}
+            {...rest}
         >
             <div className="logo--container flex">
-                <Logo className="logo--invento" />
-                <SearchLogo className="logo--search" />
+                <div className="wrap-invento-logo">
+                    <div className="shadow"></div>
+                    <Logo className="logo--invento" />
+                </div>
+                {type === 'landing' ? (
+                    <RegisterArrow className="register--logo" />
+                ) : (
+                    <SearchLogo className="logo--search" />
+                )}
             </div>
             <button
                 onClick={toggleNavState}
@@ -72,15 +90,16 @@ export default function Nav({ background, progressLineColor, theme }: INavBarPro
                     </p>
                 </div>
             </nav>
-            {/* #ba2548 */}
-            <span
-                className="scroll-progress"
-                style={
-                    {
-                        background: `linear-gradient(to right, ${progressLineColor} ${scrollPos}%, #eee ${scrollPos}%)`,
-                    } as React.CSSProperties
-                }
-            ></span>
+            {type !== 'landing' && (
+                <span
+                    className="scroll-progress"
+                    style={
+                        {
+                            background: `linear-gradient(to right, ${progressLineColor} ${scrollPos}%, #eee ${scrollPos}%)`,
+                        } as React.CSSProperties
+                    }
+                ></span>
+            )}
         </header>
     )
 }
