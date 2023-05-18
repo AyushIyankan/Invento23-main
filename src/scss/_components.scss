@@ -516,3 +516,185 @@
     border-top-color: var(--tooltip-color);
     transform-origin: top center;
 }
+
+.e-card {
+    display: flex;
+    flex-direction: column;
+    .main-content {
+        max-width: 28rem;
+        max-height: 37.5rem;
+        min-width: 20rem;
+        border-radius: 30px;
+        border: 1px solid var(--card-color);
+        overflow: hidden;
+    }
+
+    img {
+        transform: rotate(-12.38deg) translateY(-1.5rem) translateX(0.9rem);
+        object-fit: cover;
+        // width: 100%;
+        // height: 100%;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        // svg filter
+        filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
+        filter: gray;
+        -webkit-filter: grayscale(1);
+        transition: 1s filter, 1s -webkit-filter;
+    }
+
+    .wrap-header {
+        margin-top: 1rem;
+        margin-left: 2rem;
+        margin-bottom: 1.6rem;
+
+        h4 {
+            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+
+            color: #000;
+            text-shadow: -1px -1px 0 var(--card-color), 1px -1px 0 var(--card-color), -1px 1px 0 var(--card-color),
+                1px 1px 0 var(--card-color);
+            max-width: 12rem;
+            max-width: clamp(12rem, 10.575rem + 7.1251vw, 19.125rem);
+            word-wrap: break-word;
+            // max-width: 29rem;
+
+            // @include bp(tablet) {
+            //     max-width: 10ch;
+            // }
+
+            // @include bp(desktop) {
+            //     max-width: 39ch;
+            // }
+
+            position: relative;
+        }
+
+        h4::before {
+            content: attr(data-content);
+            display: block;
+            position: absolute;
+            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
+            color: #fff;
+            inset: -2px;
+        }
+    }
+
+    .wrap-date {
+        p {
+            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+            display: inline-block;
+        }
+
+        .marquee {
+            --gap: 1rem;
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+
+            &__content {
+                flex-shrink: 0;
+                display: flex;
+                justify-content: space-around;
+                min-width: 100%;
+                gap: var(--gap);
+
+                animation: scroll 10s linear infinite;
+            }
+        }
+    }
+
+    &:hover,
+    &:focus {
+        img {
+            filter: none;
+            -webkit-filter: grayscale(0);
+        }
+
+        .marquee__content {
+            animation-play-state: paused;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .marquee__content {
+            animation-play-state: paused !important;
+        }
+    }
+
+    @keyframes scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(calc(-100% - var(--gap)));
+        }
+    }
+}
+
+.btn--ecard {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 1.4rem + 0.5vw, 2rem);
+    position: relative;
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    transition: 1s filter;
+    -webkit-transition: 1s -webkit-filter;
+    -moz-transition: 1s -moz-filter;
+    -ms-transition: 1s -ms-filter;
+    -o-transition: 1s -o-filter;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        inset: 0;
+        z-index: -1;
+        background-color: var(--card-color);
+        border-radius: inherit;
+    }
+
+    &:hover::before,
+    &:focus::before {
+        filter: blur(10px);
+        -webkit-filter: blur(10px);
+    }
+}
+
+@include bp(desktop) {
+    .e-card {
+        // overflow: hidden;
+        position: relative;
+    }
+
+    .main-content {
+        transition: transform 0.3s;
+    }
+
+    .btn--ecard {
+        position: absolute;
+        left: 50%;
+        visibility: hidden;
+        transform: translateX(-50%) translateY(400%);
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .e-card:hover .btn--ecard {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(400%) translateX(-50%);
+    }
+
+    .e-card:hover .main-content {
+        transform: translateY(-30%);
+    }
+}
