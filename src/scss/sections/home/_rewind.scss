@@ -6,10 +6,22 @@
 .marquee--rewind {
     --duration: 60s;
     --gap: 2rem;
+    // transform: rotate("3deg");
+}
+
+.parallax {
     margin-top: 3.75rem;
     margin-top: clamp(3.75rem, 3.064rem + 3.427vw, 7.18rem);
     transform: skewY(5.5deg);
-    // transform: rotate("3deg");
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.scroller {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .rewind-text-container {
@@ -65,4 +77,10 @@
             -webkit-background-clip: text;
         }
     }
+}
+
+.wrap-slider,
+.wrap-sliders {
+    margin-top: 2rem;
+    margin-top: clamp(2rem, 1.4rem + 3vw, 5rem);
 }
