@@ -2,6 +2,7 @@ import {
     motion,
     useAnimationFrame,
     useMotionValue,
+    useReducedMotion,
     useScroll,
     useSpring,
     useTransform,
@@ -55,12 +56,17 @@ const RewindMarquee = () => {
         clamp: false,
     })
 
-    const x = useTransform(baseX, (val) => `${wrap(-20, -45, val)}%`)
+    const shouldReduceMotion = useReducedMotion()
+
+    const x = shouldReduceMotion
+        ? 0
+        : useTransform(baseX, (val) => `${wrap(-20, -45, val)}%`)
 
     const directionFactor = useRef<number>(1)
 
     useAnimationFrame((time, delta) => {
-        let moveBy = directionFactor.current * -5 * (delta / 1000)
+        // factor * baseVelocity * delta in time
+        let moveBy = directionFactor.current * 5 * (delta / 1000)
 
         if (velocityFactor.get() > 0) {
             directionFactor.current = 1
