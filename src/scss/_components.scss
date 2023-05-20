@@ -524,6 +524,12 @@
     filter: gray;
     -webkit-filter: grayscale(1);
     transition: 1s filter, 1s -webkit-filter;
+
+    &:hover,
+    &:focus {
+        filter: grayscale(0%);
+        -webkit-filter: grayscale(0%);
+    }
 }
 
 .e-card {
@@ -683,7 +689,7 @@
     }
 
     .main-content {
-        transition: transform 0.3s;
+        transition: transform 0.3s 0.2s;
     }
 
     .btn--ecard {
@@ -692,7 +698,7 @@
         visibility: hidden;
         transform: translateX(-50%) translateY(400%);
         opacity: 0;
-        transition: opacity 0.3s, transform 0.3s;
+        transition: opacity 0.3s 0.2s, transform 0.3s 0.2s;
     }
 
     .e-card:hover .btn--ecard {
@@ -767,16 +773,28 @@
 }
 
 .slider {
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(150px, 1fr);
+    --duration: 60s;
+    --gap: 1rem;
 
-    @include bp(tablet) {
-        grid-auto-columns: minmax(300px, auto);
-    }
+    // grid-auto-flow: column;
+    // grid-auto-columns: minmax(150px, 1fr);
 
-    > img {
+    // @include bp(tablet) {
+    //     grid-auto-columns: minmax(300px, auto);
+    // }
+
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .marquee__group {
+        animation-fill-mode: none;
+        animation-delay: 2s;
+    }
+
+    &:hover .marquee__group {
+        animation-play-state: paused;
     }
 }

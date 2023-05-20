@@ -19,7 +19,11 @@ export function EventCard({ date, imgSrc, title, color }: ECardProps) {
         <div className="e-card" style={cardStyle}>
             <div className="main-content">
                 <div className="image">
-                    <ImgWithFallback imgDescription={title} src={imgSrc} />
+                    <ImgWithFallback
+                        imgDescription={title}
+                        src={imgSrc}
+                        imgClass="img-greyscale"
+                    />
                 </div>
                 <div className="wrap-header">
                     <h4 className="ff-gothic fw-400 uppercase" data-content={title}>
