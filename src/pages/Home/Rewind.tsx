@@ -11,6 +11,9 @@ import {
 } from 'framer-motion'
 import { useRef } from 'react'
 
+import { ReactComponent as Heart } from '../../assets/svg/heart.svg'
+import { ReactComponent as InventoLogo } from '../../assets/svg/invento__logo-outline-small.svg'
+import { ReactComponent as Spinner } from '../../assets/svg/spinner.svg'
 import Slider from '../../components/Slider'
 import { SLIDERITEMS } from './data'
 
@@ -109,16 +112,42 @@ const RewindMarquee = () => {
 }
 
 export function Rewind() {
+    const constraintRef = useRef<HTMLDivElement>(null)
     return (
         <div className="wrap-rewind mh-full">
-            <div className="wrap-sliders">
+            <div className="wrap-sliders group-wrapper group--top" ref={constraintRef}>
                 <RewindMarquee />
-                <div className="wrap-slider">
+                <Heart className="heart-sm" />
+                <motion.div
+                    className="invento-sm"
+                    // initial={{ opacity: 0 }}
+                    whileHover={{ rotate: 360 }}
+                    transition={{ type: 'spring', duration: 5, bounce: 0.6 }}
+                    drag
+                    dragConstraints={constraintRef}
+                    whileDrag={{ cursor: 'grabbing' }}
+                >
+                    <InventoLogo />
+                </motion.div>
+                <div className="wrap-slider slider--top">
                     <Slider images={SLIDERITEMS} />
                 </div>
-                <div className="wrap-sliders">
+                <div className="wrap-sliders group-wrapper group--bottom">
                     <RewindMarquee />
-                    <div className="wrap-slider">
+                    <motion.div
+                        className="spinner-sm"
+                        whileHover={{ rotate: 360 }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 56,
+                            mass: 3,
+                            damping: 4.1,
+                        }}
+                    >
+                        <Spinner />
+                    </motion.div>
+
+                    <div className="wrap-slider slider--bottom">
                         <Slider images={SLIDERITEMS} />
                     </div>
                 </div>

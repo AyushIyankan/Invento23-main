@@ -1,6 +1,7 @@
 .wrap-rewind {
     margin-top: 3.3125rem;
     margin-top: clamp(3.3125rem, 2.6875rem + 3.125vw, 6.4375rem);
+    margin-bottom: 8rem;
 }
 
 .marquee--rewind {
@@ -83,4 +84,42 @@
 .wrap-sliders {
     margin-top: 2rem;
     margin-top: clamp(2rem, 1.4rem + 3vw, 5rem);
+}
+
+.group--top,
+.group--bottom {
+    position: relative;
+}
+
+.invento-sm,
+.heart-sm,
+.spinner-sm {
+    display: none;
+    position: absolute;
+    z-index: 2;
+
+    @include bp(tablet) {
+        display: block;
+    }
+}
+
+.invento-sm {
+    inset: 10% auto auto 10%;
+}
+
+.heart-sm {
+    inset: auto 19% 54% auto;
+}
+
+.spinner-sm {
+    inset: auto auto -10% 40%;
+}
+
+.wrap-slider {
+    // margin-top: 8rem;
+    transform: rotate(-3deg);
+    @include bp(desktop) {
+        margin-top: 8%;
+        transform: rotate(-4deg);
+    }
 }

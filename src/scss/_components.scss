@@ -744,6 +744,7 @@
     gap: var(--gap);
     min-width: 100%;
     animation: scroll var(--duration) linear infinite;
+    animation-delay: 1s;
 }
 
 .marquee__content {
