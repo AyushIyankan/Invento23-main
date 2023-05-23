@@ -1,19 +1,25 @@
+import { CSSProperties } from 'react'
+
 import { ReactComponent as LinkedInLogo } from '../../assets/svg/carbon_logo-linkedin.svg'
 import { ReactComponent as YoutubeLogo } from '../../assets/svg/carbon_logo-youtube.svg'
 import { ReactComponent as FacebookLogo } from '../../assets/svg/ic_sharp-facebook.svg'
 import { ReactComponent as InstagramLogo } from '../../assets/svg/ion_logo-instagram.svg'
+import Button from '../Button'
 
-interface IFooterProps {
+interface IFooterProps extends React.HTMLAttributes<HTMLElement> {
     background: string
     theme?: 'light'
 }
 
-export default function Footer({ background, theme }: IFooterProps) {
+export default function Footer({ background, theme, ...delegated }: IFooterProps) {
+    const { className, ...rest } = delegated
+
     return (
         <footer
-            className="footer ff-serif text-grey"
+            className={`footer ff-serif text-grey ${className}`}
             style={{ '--footer-gradient': background } as React.CSSProperties}
             data-theme={theme}
+            {...rest}
         >
             <div className="footer__main flow">
                 <h3 className="text-magenta fw-400">invento</h3>
@@ -52,34 +58,63 @@ export default function Footer({ background, theme }: IFooterProps) {
                     </div>
                 </div>
 
-                <div className="footer__aboutUs">
-                    <h4 className="text-white fw-400" style={{ marginBottom: '3.75rem' }}>
-                        About Us
-                    </h4>
-                </div>
+                <nav
+                    className="footer__aboutUs flow"
+                    style={
+                        {
+                            // marginBottom: '3.75rem',
+                            '--flow-space': '0.8rem',
+                        } as CSSProperties
+                    }
+                >
+                    <h4 className="text-white fw-400">About Us</h4>
+                    <ul className="footer__navlist flex flex-col">
+                        <li className="footer__nav--item">
+                            <Button type="internalUrl" to="/about">
+                                the team
+                            </Button>
+                        </li>
+                    </ul>
+                </nav>
 
                 <nav className="footer__nav flow">
                     <h4 className="text-white fw-400">Useful links</h4>
                     <ul className="footer__navlist flex flex-col">
                         <li className="footer__nav--item">
-                            <a href="#natya" className="footer__link">
+                            <Button
+                                type="internalUrl"
+                                to="/saptha"
+                                classNames="footer__link"
+                            >
                                 Natya
-                            </a>
+                            </Button>
                         </li>
                         <li className="footer__nav--item">
-                            <a href="#natya" className="footer__link">
-                                Natya
-                            </a>
+                            <Button
+                                type="internalUrl"
+                                to="/saptha"
+                                classNames="footer__link"
+                            >
+                                Saptha
+                            </Button>
                         </li>
                         <li className="footer__nav--item">
-                            <a href="#natya" className="footer__link">
-                                Natya
-                            </a>
+                            <Button
+                                type="internalUrl"
+                                to="/proshow"
+                                classNames="footer__link"
+                            >
+                                proshow
+                            </Button>
                         </li>
                         <li className="footer__nav--item">
-                            <a href="#natya" className="footer__link">
-                                Natya
-                            </a>
+                            <Button
+                                type="internalUrl"
+                                to="/saptha"
+                                classNames="footer__link"
+                            >
+                                taksthi
+                            </Button>
                         </li>
                     </ul>
                 </nav>

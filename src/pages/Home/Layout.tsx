@@ -13,7 +13,7 @@ export function Layout() {
                 type="landing"
             />
             <Outlet />
-            <Footer background="#000" />
+            <Footer background="#000" className="footer-landing" />
         </div>
     )
 }

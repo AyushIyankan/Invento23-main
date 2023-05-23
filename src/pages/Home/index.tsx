@@ -8,6 +8,7 @@ export default function Home() {
             <Hero />
             <Crowstealers />
             <Rewind />
+            {/* <Footer background="#000" className="footer-landing" /> */}
         </div>
     )
 }
