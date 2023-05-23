@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { CSSProperties } from 'react'
+import { CSSProperties, forwardRef } from 'react'
 
 import { ReactComponent as IconArrow } from '../../assets/svg/Arrow.svg'
 import Button from '../Button'
@@ -11,7 +11,10 @@ interface ECardProps {
     color?: string
 }
 
-export function EventCard({ date, imgSrc, title, color }: ECardProps) {
+export const EventCard = forwardRef<HTMLElement, ECardProps>(function Ecard(
+    { date, imgSrc, title, color }: ECardProps,
+    ref,
+) {
     const cardStyle = {
         '--card-color': color ?? '#126fd5',
     } as CSSProperties
@@ -63,6 +66,6 @@ export function EventCard({ date, imgSrc, title, color }: ECardProps) {
             </Button>
         </div>
     )
-}
+})
 
 export const MEventCard = motion(EventCard)
