@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { CSSProperties } from 'react'
 
 import { ReactComponent as IconArrow } from '../../assets/svg/Arrow.svg'
@@ -63,3 +64,5 @@ export function EventCard({ date, imgSrc, title, color }: ECardProps) {
         </div>
     )
 }
+
+export const MEventCard = motion(EventCard)

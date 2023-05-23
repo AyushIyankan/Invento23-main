@@ -121,11 +121,10 @@ export function Rewind() {
                 <motion.div
                     className="invento-sm"
                     // initial={{ opacity: 0 }}
-                    whileHover={{ rotate: 360 }}
+                    whileHover={{ rotate: 360, cursor: 'grabbing' }}
                     transition={{ type: 'spring', duration: 5, bounce: 0.6 }}
                     drag
                     dragConstraints={constraintRef}
-                    whileDrag={{ cursor: 'grabbing' }}
                 >
                     <InventoLogo />
                 </motion.div>
