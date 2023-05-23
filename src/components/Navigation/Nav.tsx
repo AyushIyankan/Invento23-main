@@ -7,6 +7,7 @@ import { ReactComponent as ExternalLinkIcon } from '../../assets/svg/icon_extern
 import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
 import { useScrollPosition, useToggle } from '../../hooks'
+import Button from '../Button'
 
 interface INavBarProps extends React.HTMLAttributes<HTMLElement> {
     background: string
@@ -33,19 +34,39 @@ export default function Nav({
             {...rest}
         >
             <div className="logo--container flex">
-                <div className="wrap-invento-logo">
-                    <div className="shadow"></div>
-                    <Logo className="logo--invento" />
-                </div>
+                {type !== 'landing' && (
+                    <div className="wrap-invento-logo">
+                        {/* <div className="shadow"></div> */}
+                        <Button type="internalUrl" to="/">
+                            <Logo className="logo--invento" />
+                        </Button>
+                    </div>
+                )}
                 {type === 'landing' ? (
-                    <RegisterArrow className="register--logo" />
+                    <Button
+                        type="internalUrl"
+                        to="/register"
+                        classNames="link--register grid"
+                    >
+                        <span className="sr-only">Register</span>
+                        <RegisterArrow className="register--logo" />
+                    </Button>
                 ) : (
                     <SearchLogo className="logo--search" />
                 )}
             </div>
+            {type === 'landing' && (
+                <div className="wrap-invento-logo">
+                    <div className="shadow"></div>
+                    <Button type="internalUrl" to="/">
+                        <span className="sr-only">Home</span>
+                        <Logo className="logo--invento" />
+                    </Button>
+                </div>
+            )}
             <button
                 onClick={toggleNavState}
-                className={`mobile-nav-toggle ${navState ? 'opened' : ''}`}
+                className={`mobile-nav-toggle link--menu ${navState ? 'opened' : ''}`}
                 aria-expanded={navState}
                 aria-controls="primary-navigation"
             >

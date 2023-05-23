@@ -36,35 +36,72 @@ body {
     inset: 1% 1% auto 1%;
     align-items: center;
     border: 2px solid hsl(var(--clr-purple));
-    justify-content: unset;
-    .mobile-nav-toggle {
-        inset: 3% 2% auto auto;
-    }
+    justify-content: space-between;
 
     .logo--container {
-        width: 100%;
-        > .register--logo {
+        .register--logo {
             order: -1;
-        }
-
-        .wrap-invento-logo {
-            margin-inline: auto;
-            position: relative;
-            > .logo--invento > * {
-                fill: hsl(var(--clr-purple));
-            }
-
-            .shadow {
-                position: absolute;
-                inset: 0;
-                background-color: hsl(var(--clr-purple));
-                filter: blur(10px) drop-shadow(0px 0px 100px #22b9ca);
-            }
         }
     }
 
     .register--logo > * {
         fill: #000;
+    }
+    .wrap-invento-logo {
+        margin-inline: auto;
+        position: relative;
+        .logo--invento > * {
+            fill: hsl(var(--clr-purple));
+        }
+
+        .shadow {
+            z-index: -1;
+            position: absolute;
+            inset: 0;
+            // background-color: hsl(var(--clr-purple));
+            background-color: #22b9ca;
+            filter: blur(25px) drop-shadow(0px 0px 100px #22b9ca);
+        }
+    }
+
+    @include bp(desktop) {
+        .link--register {
+            align-self: center;
+            --gap: 0.25rem;
+            grid-auto-flow: column;
+            grid-auto-columns: 25px;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-family: var(--ff-gothic);
+        }
+
+        .link--register::before {
+            content: "register";
+            margin-left: 1rem;
+        }
+
+        .link--menu {
+            display: grid;
+            --gap: 0.25rem;
+            grid-auto-flow: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            font-family: var(--ff-gothic);
+        }
+
+        .link--menu::before {
+            content: "Menu";
+        }
+
+        .opened.link--menu::before {
+            content: " ";
+        }
     }
 }
 

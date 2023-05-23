@@ -20,6 +20,7 @@ export default function Crowstealers() {
             transition: {
                 staggerChildren: 0.5,
                 when: 'afterChildren',
+                delayChildren: 0.5,
             },
         },
     }
