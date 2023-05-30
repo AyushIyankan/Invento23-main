@@ -2,6 +2,13 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Loading from './components/Loading'
+const LazyHomeLayout = lazy(() =>
+    import('./pages/Home/Layout').then((m) => {
+        return { default: m.Layout }
+    }),
+)
+
+const LazyHome = lazy(() => import('./pages/Home'))
 
 const LazyNotFound = lazy(() =>
     import('./screens/NotFound').then((m) => {
@@ -69,6 +76,16 @@ const routes = createBrowserRouter([
     {
         path: '*',
         element: <LazyNotFound />,
+    },
+    {
+        path: '/',
+        element: <LazyHomeLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyHome />,
+            },
+        ],
     },
     {
         path: '/saptha',

@@ -1,0 +1,125 @@
+.wrap-rewind {
+    margin-top: 3.3125rem;
+    margin-top: clamp(3.3125rem, 2.6875rem + 3.125vw, 6.4375rem);
+    margin-bottom: 8rem;
+}
+
+.marquee--rewind {
+    --duration: 60s;
+    --gap: 2rem;
+    // transform: rotate("3deg");
+}
+
+.parallax {
+    margin-top: 3.75rem;
+    margin-top: clamp(3.75rem, 3.064rem + 3.427vw, 7.18rem);
+    transform: skewY(5.5deg);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.scroller {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.rewind-text-container {
+    --stroke-color: #81868c;
+
+    white-space: nowrap;
+    position: relative;
+    .lg {
+        font-size: 4rem;
+        font-size: clamp(4rem, 3.6rem + 2vw, 6rem);
+    }
+
+    .sm {
+        --gap: 0.9rem;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        inset: 50% auto auto 1%;
+        transform: translateY(-40%);
+        h4 {
+            background: linear-gradient(
+                    90deg,
+                    #0ec4dd 51.01%,
+                    #1450c6 56.2%,
+                    #1c99df 61.39%,
+                    #514cb8 66.58%,
+                    #4212ad 71.77%,
+                    #921e6b 76.96%
+                ),
+                linear-gradient(
+                    90deg,
+                    #1774ff 22.72%,
+                    #116ad3 28.17%,
+                    #1c99df 33.63%,
+                    #514cb8 39.08%,
+                    #4212ad 44.53%,
+                    #921e6b 49.99%
+                ),
+                linear-gradient(
+                    90.02deg,
+                    #1a9fff -0.07%,
+                    #2064ca 4.58%,
+                    #1c99df 9.24%,
+                    #514cb8 13.89%,
+                    #4212ad 18.54%,
+                    #921e6b 23.19%
+                );
+            letter-spacing: 0.05em;
+            font-size: 1.25rem;
+            font-size: clamp(1.25rem, 1rem + 1.25vw, 2.5rem);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+        }
+    }
+}
+
+.wrap-slider,
+.wrap-sliders {
+    margin-top: 2rem;
+    margin-top: clamp(2rem, 1.4rem + 3vw, 5rem);
+}
+
+.group--top,
+.group--bottom {
+    position: relative;
+}
+
+.invento-sm,
+.heart-sm,
+.spinner-sm {
+    display: none;
+    position: absolute;
+    z-index: 2;
+
+    @include bp(tablet) {
+        display: block;
+    }
+}
+
+.invento-sm {
+    inset: 10% auto auto 10%;
+}
+
+.heart-sm {
+    inset: auto 19% 54% auto;
+}
+
+.spinner-sm {
+    inset: auto auto -10% 40%;
+}
+
+.wrap-slider {
+    // margin-top: 8rem;
+    transform: rotate(-3deg);
+    @include bp(desktop) {
+        margin-top: 8%;
+        transform: rotate(-4deg);
+    }
+}

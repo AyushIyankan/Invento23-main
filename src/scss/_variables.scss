@@ -36,12 +36,14 @@ $bp-desktop: 75em;
     --clr-grey: 0 0% 53%;
     --clr-grey-60: 0 0% 60%;
     --clr-magenta: 346 67% 44%;
+    --clr-purple: 313 88% 53%;
     --clr-purple-dark: 266 12% 12%;
     --clr-blue: 211 99% 50%;
     --clr-dark-teal: 203 48% 10%;
     --clr-greyish-white: 20 18% 97%;
     --clr-dark-red: 346 91% 21%;
     --clr-blue-gray: 228 22% 13%;
+    --clr-turquoise: 193 88% 40%;
 
     --fw-300: 300;
     --fw-200: 200;
@@ -49,5 +51,7 @@ $bp-desktop: 75em;
     --fw-500: 500;
     --ff-serif: "Poppins", sans-serif;
     --ff-days-one: "Days One", sans-serif;
+    --ff-gothic: "Dela Gothic One", cursive;
+    --ff-montserrat: "Montserrat", sans-serif;
     --card-gradient: linear-gradient(90deg, #0db4be 0%, #70398e 31.56%, #e12fa5 60.73%, #bf5234 100%);
 }

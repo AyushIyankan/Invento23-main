@@ -1,4 +1,5 @@
 @import "reset";
+@import "font";
 @import "mixins";
 @import "variables";
 @import "utils";
@@ -15,8 +16,12 @@
 @import "sections/404";
 @import "sections/leaderboards";
 @import "sections/ca";
+@import "sections/home/landing";
+@import "sections/home/rewind";
+@import "sections/home/footer";
 
 // debug
+
 // * {
 //     outline: 1px red solid !important;
 //     visibility: visible !important;
