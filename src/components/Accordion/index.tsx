@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { PropsWithChildren, useId } from 'react'
 
-import { ReactComponent as AccordionDown } from '../../assets/svg/accordion-down.svg'
 import { ReactComponent as AccordionUp } from '../../assets/svg/accordion-up.svg'
 import { useToggle } from '../../hooks'
 
@@ -15,7 +14,7 @@ export function Accordion({ title, children }: PropsWithChildren<AccordionProps>
     const accordionId = useId()
 
     return (
-        <div className="accordion">
+        <div className="accordion" data-state={state ? 'open' : 'close'}>
             <div className="accordion-panel">
                 <h2 id={`panel-heading-${accordionId}`}>
                     <button
@@ -31,11 +30,7 @@ export function Accordion({ title, children }: PropsWithChildren<AccordionProps>
                         >
                             {title}
                         </span>
-                        {state ? (
-                            <AccordionUp aria-hidden fill="#000" />
-                        ) : (
-                            <AccordionDown aria-hidden />
-                        )}
+                        <AccordionUp aria-hidden className="accordion-state-icon" />
                     </button>
                 </h2>
                 <AnimatePresence initial={false}>
