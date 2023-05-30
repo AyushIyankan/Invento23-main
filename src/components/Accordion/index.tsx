@@ -1,6 +1,6 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { PropsWithChildren, useId } from 'react'
 
-import { ReactComponent as AccordionDown } from '../../assets/svg/accordion-down.svg'
 import { ReactComponent as AccordionUp } from '../../assets/svg/accordion-up.svg'
 import { useToggle } from '../../hooks'
 
@@ -14,7 +14,7 @@ export function Accordion({ title, children }: PropsWithChildren<AccordionProps>
     const accordionId = useId()
 
     return (
-        <div className="accordion">
+        <div className="accordion" data-state={state ? 'open' : 'close'}>
             <div className="accordion-panel">
                 <h2 id={`panel-heading-${accordionId}`}>
                     <button
@@ -30,16 +30,16 @@ export function Accordion({ title, children }: PropsWithChildren<AccordionProps>
                         >
                             {title}
                         </span>
-                        {state ? (
-                            <AccordionUp aria-hidden />
-                        ) : (
-                            <AccordionDown aria-hidden />
-                        )}
+                        <AccordionUp aria-hidden className="accordion-state-icon" />
                     </button>
                 </h2>
-                <AccordionItem visibility={state} accordionId={accordionId}>
-                    {children}
-                </AccordionItem>
+                <AnimatePresence initial={false}>
+                    {state && (
+                        <AccordionItem visibility={state} accordionId={accordionId}>
+                            {children}
+                        </AccordionItem>
+                    )}
+                </AnimatePresence>
             </div>
         </div>
     )
@@ -56,14 +56,32 @@ export function AccordionItem({
     children,
 }: PropsWithChildren<IAccordionItem>) {
     return (
-        <div
+        <motion.div
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            // variants={{
+            //     open: { opacity: 1, height: 'auto' },
+            //     collapsed: { opacity: 0, height: 0 },
+            // }}
+            variants={{
+                open: { opacity: 1, gridTemplateRows: '1fr' },
+                collapsed: { opacity: 0, gridTemplateRows: '0fr' },
+            }}
+            // transition={{ duration: 0.6, ease: [0.04, 0.62, 0.23, 0.98] }}
+            transition={{ duration: 0.6 }}
             className="accordion-content"
             id={`panel-content-${accordionId}`}
             aria-labelledby={`panel-heading-${accordionId}`}
             role="region"
             data-visible={visibility}
         >
-            {children}
-        </div>
+            <motion.div
+                variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
+                transition={{ duration: 0.5 }}
+            >
+                {children}
+            </motion.div>
+        </motion.div>
     )
 }

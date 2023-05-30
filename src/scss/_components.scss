@@ -68,6 +68,11 @@
 .btn--subscribe {
     color: var(--text-clr, hsl(var(--clr-white) / 1));
     background: var(--bg, hsl(var(--clr-magenta) / 1));
+
+    &:hover,
+    &:focus {
+        background: lighten($color: #bb2548, $amount: 10%);
+    }
 }
 
 .btn--link {
@@ -120,6 +125,11 @@
 .btn--save {
     background: #353535;
     border-radius: 4px;
+
+    &:hover,
+    &:focus {
+        background: lighten($color: #353535, $amount: 10%);
+    }
 }
 
 .btn--save:disabled {
@@ -204,8 +214,8 @@
 
     &-content {
         display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.5s ease-in-out;
+        // grid-template-rows: 0fr;
+        // transition: grid-template-rows 0.5s ease-in-out;
         > * {
             overflow: hidden;
         }
@@ -214,12 +224,23 @@
     &-content[data-visible="true"] {
         background-color: hsl(var(--clr-greyish-white) / 1);
 
-        grid-template-rows: 1fr;
+        // grid-template-rows: 1fr;
     }
 }
 
 .accordion:not(:last-child) {
     border-bottom: 1px solid #c5c5c5;
+}
+
+.accordion-state-icon {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+.accordion[data-state="open"] .accordion-state-icon {
+    transform: rotate(0deg);
+}
+.accordion[data-state="open"] .accordion-state-icon > * {
+    fill: #000;
 }
 
 // debug
@@ -234,6 +255,13 @@
 }
 
 //debug-end
+
+.itemCardWrap {
+    > .itemCard:last-child {
+        border-bottom: 0;
+    }
+}
+
 .itemCard {
     --gap: 1rem;
     margin-block: 1rem;
@@ -802,5 +830,38 @@
 
     &:hover .marquee__group {
         animation-play-state: paused;
+    }
+}
+
+.gradient-borders {
+    --border-width: 3px;
+    position: relative;
+    border-radius: var(--border-width);
+
+    &:focus::after,
+    &:hover::after {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--border-width));
+        left: calc(-1 * var(--border-width));
+        height: calc(100% + var(--border-width) * 2);
+        width: calc(100% + var(--border-width) * 2);
+        border-radius: calc(2 * var(--border-width));
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+        z-index: -1;
+        background-size: 300% 300%;
+        animation: animatedgradient 3s ease alternate infinite;
+    }
+}
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }

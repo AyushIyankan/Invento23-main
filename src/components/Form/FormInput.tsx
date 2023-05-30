@@ -25,6 +25,7 @@ export type IFormInput<T extends FieldValues> = {
     | {
           kind: 'input'
           inputType: HTMLInputTypeAttribute
+          autocomplete?: HTMLInputElement['autocomplete']
       }
     | {
           kind: 'select'
@@ -61,6 +62,7 @@ export function FormInput<T extends FieldValues>({
                         ref={(node) => {
                             ref(node)
                         }}
+                        autoComplete={props.autocomplete}
                     />
                     <span className="FormInputError">
                         {errors?.[`${forEl}`]?.message as string}

@@ -74,10 +74,20 @@
     border-radius: 7px;
 }
 
+.form__summaryWrap {
+    background-color: #fff;
+
+    .itemCard {
+        border: 0;
+        background-color: #f8f6f5;
+        border-radius: 10px;
+    }
+}
+
 .form__eventsSummary {
     grid-template-rows: 0fr;
     justify-items: center;
-    transition: grid-template-rows 0.3s;
+    // transition: grid-template-rows 0.3s;
 
     > * {
         overflow: hidden;
@@ -85,7 +95,7 @@
 }
 
 [data-filled="true"].form__eventsSummary {
-    grid-template-rows: 1fr;
+    // grid-template-rows: 1fr;
 
     > * {
         overflow: unset;

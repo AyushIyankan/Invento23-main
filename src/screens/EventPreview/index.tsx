@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
+import Button from '../../components/Button'
+
 function ScrollToTopOnMount() {
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -37,12 +39,13 @@ export default function EventPreview() {
                         <div className="flow">
                             <span className="d-b">Date: 22-06-2023</span>
                             <span className="d-b">Prizes worth: 10k</span>
-                            <NavLink
+                            <Button
+                                type="internalUrl"
                                 to={'/register'}
-                                className={`text-magenta btn d-ib btn--link btn--register_event`}
+                                classNames={`text-magenta btn d-ib btn--link btn--register_event gradient-borders`}
                             >
                                 register now
-                            </NavLink>
+                            </Button>
                         </div>
                     </div>
                     <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">

@@ -1,10 +1,10 @@
-import React, { CSSProperties, forwardRef, useRef } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { animated, useSpring } from 'react-spring'
 
+// import { animated, useSpring } from 'react-spring'
 import { ReactComponent as IconAdd } from '../assets/svg/icon-add.svg'
 import { ReactComponent as IconRemove } from '../assets/svg/icon-remove.svg'
-import { useButtonUtils } from '../hooks'
+// import { useButtonUtils } from '../hooks'
 import { mergeRefs } from '../utils'
 
 type IButtonProps = {
@@ -25,38 +25,39 @@ type IButtonProps = {
       } & React.HTMLProps<HTMLButtonElement>)
 )
 
-const Loader = () => <div className="Btn--loader"></div>
+// const Loader = () => <div className="Btn--loader"></div>
 
 const Button = forwardRef<HTMLButtonElement, IButtonProps>(function Btn(
-    { children, isLoading, ...props }: IButtonProps,
+    { children, ...props }: IButtonProps,
     ref,
 ) {
     const btnRef = useRef<HTMLButtonElement>(null)
-    const { width, height, showLoader } = useButtonUtils({
-        btnRef,
-        initialLoadingState: isLoading || false,
-        children,
-    })
+    // const { width, height, showLoader } = useButtonUtils({
+    //     btnRef,
+    //     initialLoadingState: isLoading || false,
+    //     children,
+    // })
 
-    const fadeIn = useSpring({
-        from: { opacity: showLoader ? 1 : 0 },
-        to: { opacity: 1 },
-    })
-    const fadeOut = useSpring({
-        from: { opacity: showLoader ? 0 : 1 },
-        to: { opacity: 1 },
-    })
+    // const fadeIn = useSpring({
+    //     from: { opacity: showLoader ? 1 : 0 },
+    //     to: { opacity: 1 },
+    // })
+    // const fadeOut = useSpring({
+    //     from: { opacity: showLoader ? 0 : 1 },
+    //     to: { opacity: 1 },
+    // })
+    //TODO: Rewrite this
     switch (props.type) {
         case 'button':
             return (
                 <button
                     {...props}
                     ref={mergeRefs(btnRef, ref)}
-                    style={
-                        showLoader ? { width: `${width}px`, height: `${height}px` } : {}
-                    }
+                    // style={
+                    //     showLoader ? { width: `${width}px`, height: `${height}px` } : {}
+                    // }
                 >
-                    {showLoader ? (
+                    {/* {showLoader ? (
                         <animated.div style={fadeOut}>
                             <Loader />
                         </animated.div>
@@ -66,7 +67,8 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(function Btn(
                         >
                             {children}
                         </animated.div>
-                    )}
+                    )} */}
+                    {children}
                 </button>
             )
         case 'externalUrl':
