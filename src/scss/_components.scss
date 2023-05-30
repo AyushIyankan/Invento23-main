@@ -204,8 +204,8 @@
 
     &-content {
         display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.5s ease-in-out;
+        // grid-template-rows: 0fr;
+        // transition: grid-template-rows 0.5s ease-in-out;
         > * {
             overflow: hidden;
         }
@@ -214,7 +214,7 @@
     &-content[data-visible="true"] {
         background-color: hsl(var(--clr-greyish-white) / 1);
 
-        grid-template-rows: 1fr;
+        // grid-template-rows: 1fr;
     }
 }
 
@@ -234,6 +234,13 @@
 }
 
 //debug-end
+
+.itemCardWrap {
+    > .itemCard:last-child {
+        border-bottom: 0;
+    }
+}
+
 .itemCard {
     --gap: 1rem;
     margin-block: 1rem;
