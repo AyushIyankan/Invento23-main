@@ -68,6 +68,11 @@
 .btn--subscribe {
     color: var(--text-clr, hsl(var(--clr-white) / 1));
     background: var(--bg, hsl(var(--clr-magenta) / 1));
+
+    &:hover,
+    &:focus {
+        background: lighten($color: #bb2548, $amount: 10%);
+    }
 }
 
 .btn--link {
@@ -120,6 +125,11 @@
 .btn--save {
     background: #353535;
     border-radius: 4px;
+
+    &:hover,
+    &:focus {
+        background: lighten($color: #353535, $amount: 10%);
+    }
 }
 
 .btn--save:disabled {
@@ -220,6 +230,17 @@
 
 .accordion:not(:last-child) {
     border-bottom: 1px solid #c5c5c5;
+}
+
+.accordion-state-icon {
+    transform: rotate(180deg);
+    transition: transform 0.5s ease-in-out;
+}
+.accordion[data-state="open"] .accordion-state-icon {
+    transform: rotate(0deg);
+}
+.accordion[data-state="open"] .accordion-state-icon > * {
+    fill: #000;
 }
 
 // debug
