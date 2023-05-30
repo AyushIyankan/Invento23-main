@@ -32,6 +32,7 @@ type FieldType = {
         | {
             kind: 'input'
             type: HTMLInputTypeAttribute
+            autocompleteprop?: string
         }
         | {
             kind: 'select'
@@ -48,6 +49,7 @@ export const Fields: FieldType[] = [
         type: 'text',
         placeholder: 'Enter you name',
         required: true,
+        autocompleteprop: 'name',
     },
     {
         id: 1,
@@ -57,6 +59,7 @@ export const Fields: FieldType[] = [
         placeholder: 'Enter your email',
         required: true,
         type: 'email',
+        autocompleteprop: 'email',
     },
     {
         id: 2,
@@ -66,6 +69,7 @@ export const Fields: FieldType[] = [
         type: 'tel',
         required: true,
         placeholder: 'Enter your phone number',
+        autocompleteprop: 'tel',
     },
     {
         id: 3,
@@ -84,6 +88,7 @@ export const Fields: FieldType[] = [
         type: 'text',
         required: false,
         placeholder: 'Enter your college',
+        autocompleteprop: 'organization',
     },
     {
         id: 5,

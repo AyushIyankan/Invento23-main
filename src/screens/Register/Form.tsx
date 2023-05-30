@@ -42,6 +42,7 @@ export function RegistrationForm() {
                         required={field.required}
                         kind={field.kind}
                         inputType={field.type}
+                        autocomplete={field.autocompleteprop}
                     />
                 )
             case 'select':
