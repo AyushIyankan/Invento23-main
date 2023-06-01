@@ -1,7 +1,12 @@
 import { lazy, Suspense } from 'react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Loading from './components/Loading'
+
+const queryClient = new QueryClient()
+
 const LazyHomeLayout = lazy(() =>
     import('./pages/Home/Layout').then((m) => {
         return { default: m.Layout }
@@ -157,7 +162,10 @@ const routes = createBrowserRouter([
 function App() {
     return (
         <Suspense fallback={<Loading />}>
-            <RouterProvider router={routes} />
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={routes} />
+                <ReactQueryDevtools initialIsOpen={true} />
+            </QueryClientProvider>
         </Suspense>
     )
 }
