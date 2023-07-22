@@ -1,8 +1,36 @@
-import { motion, Variants } from 'framer-motion'
+import { motion, useInView, Variants } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 import { MEventCard } from '../../components/Card'
 
 export default function Crowstealers() {
+    const emotes = ['🥁', '🎤', '🎙️', '🎵']
+    const [emote, setEmote] = useState(0)
+
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    const isInView = useInView(containerRef)
+
+    useEffect(() => {
+        if (!isInView) return
+
+        // if (emote > emotes.length - 1) {
+        //     const timeout = setTimeout(() => setEmote(0), 2000)
+        //     return () => {
+        //         clearInterval(timeout)
+        //     }
+        // }
+
+        const timeout = setTimeout(() => {
+            setEmote((s) => (s === emotes.length - 1 ? 0 : s + 1))
+            console.log(`updated to ${emote}`, emotes[emote])
+        }, 2000)
+
+        return () => {
+            clearInterval(timeout)
+        }
+    }, [emote, isInView])
+
     const container: Variants = {
         visible: {
             opacity: 1,
@@ -38,19 +66,27 @@ export default function Crowstealers() {
             },
         },
     }
+
     return (
-        <div className="wrap-crowdstealers">
-            <h3 className="ff-gothic uppercase fw-400">Crowd stealers 🎤</h3>
+        <div className="wrap-crowdstealers" ref={containerRef}>
+            <h3 className="ff-gothic uppercase fw-400">
+                Crowd stealers
+                <motion.span
+                    key={emotes[emote]}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {emotes[emote]}
+                </motion.span>
+            </h3>
             <motion.div
                 className="crowdstealers grid"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={container}
-                // viewport={{ once: true }}
-                // initial={{ opacity: 0, x: -50 }}
-                // whileInView={{ opacity: 1, x: 0 }}
-                // transition={{ staggerChildren: 0.8, delayChildren: 10 }}
             >
                 <MEventCard
                     date="June 24"
