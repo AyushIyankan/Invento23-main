@@ -16,7 +16,7 @@ interface IFooterProps extends React.HTMLAttributes<HTMLElement> {
 export default function Footer({ background, theme, ...delegated }: IFooterProps) {
     const { className, ...rest } = delegated
 
-    const isMobile = useMediaQuery('(max-width: 600px)')
+    const isFooterFormAbove = useMediaQuery('(min-width: 75em)')
 
     return (
         <footer
@@ -175,7 +175,11 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
             </div>
             {/* <div className="footer__sub flex flex-center"> */}
             <div
-                className={classUtil({ 'flex-center': isMobile }, 'footer__sub', 'flex')}
+                className={classUtil(
+                    { 'flex-center': !isFooterFormAbove },
+                    'footer__sub',
+                    'flex',
+                )}
             >
                 <a href="#terms" className="footer__link">
                     <span className="underline">Terms of Service</span>
