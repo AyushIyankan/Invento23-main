@@ -20,3 +20,14 @@ export function mergeRefs<T = any>(
         })
     }
 }
+
+export function classUtil<T extends Record<string, boolean>>(
+    conditionalObject: T,
+    ...classArr: string[]
+): string {
+    const classList = Object.keys(conditionalObject).map((classItem) => {
+        if (conditionalObject[classItem]) return classItem
+    })
+
+    return [...classArr, ...classList].join(' ')
+}

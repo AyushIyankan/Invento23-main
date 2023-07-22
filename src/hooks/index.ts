@@ -1,4 +1,5 @@
 export * from './useButtonUtils'
+export * from './useMediaQuery'
 export * from './useProgressiveImage'
 export * from './useScrollPosition'
 export * from './useToggle'
