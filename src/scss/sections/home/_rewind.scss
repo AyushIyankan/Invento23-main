@@ -2,6 +2,10 @@
     margin-top: 3.3125rem;
     margin-top: clamp(3.3125rem, 2.6875rem + 3.125vw, 6.4375rem);
     margin-bottom: 8rem;
+    overflow: hidden;
+    @include bp(tablet) {
+        padding-bottom: 4.7rem;
+    }
 }
 
 .marquee--rewind {
@@ -23,6 +27,9 @@
     display: flex;
     flex-wrap: nowrap;
     white-space: nowrap;
+    h4 {
+        will-change: transform;
+    }
 }
 
 .rewind-text-container {

@@ -4,7 +4,10 @@
         font-size: 1rem;
         font-size: clamp(1rem, 0.7rem + 1.5vw, 2.5rem);
 
-        text-shadow: 0px 0px 4px #c352e7, 0px 0px 15px #c352e7, 0px 0px 20px #c352e7;
+        text-shadow:
+            0px 0px 4px #c352e7,
+            0px 0px 15px #c352e7,
+            0px 0px 20px #c352e7;
 
         @supports (-webkit-text-stroke: 1px black) {
             -webkit-text-stroke: 1px #fff;
@@ -33,6 +36,7 @@ body {
     padding-inline: clamp(1rem, 0.8rem + 1vw, 2rem);
     border-radius: 50px;
     width: 98vw;
+    height: 3.75rem;
     inset: 1% 1% auto 1%;
     align-items: center;
     border: 2px solid hsl(var(--clr-purple));
@@ -62,6 +66,10 @@ body {
             background-color: #22b9ca;
             filter: blur(25px) drop-shadow(0px 0px 100px #22b9ca);
         }
+    }
+
+    @include bp(tablet) {
+        height: unset;
     }
 
     @include bp(desktop) {
@@ -156,7 +164,11 @@ body {
 
 .wrap-large-links {
     color: #000;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
     // @supports (-webkit-text-stroke: 1px black) {
     //     p {
     //         -webkit-text-stroke: 1px #fff;

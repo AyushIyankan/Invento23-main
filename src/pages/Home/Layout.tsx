@@ -13,7 +13,9 @@ export function Layout() {
                 type="landing"
             />
             <Outlet />
-            <Footer background="#000" className="footer-landing" />
+            <div className="main-wrapper grid">
+                <Footer background="#101010" className="footer-landing" />
+            </div>
         </div>
     )
 }
