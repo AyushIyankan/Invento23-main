@@ -2,7 +2,7 @@ import { ImgWithFallback } from '../../components/ImgWithFallback'
 
 export function Hero() {
     return (
-        <div className="landing-hero mh-full text-white grid">
+        <div className="landing-hero text-white grid">
             <div className="heading__container t3d-container">
                 <h1 className="sr-only">Invento&apos;23</h1>
                 <ImgWithFallback

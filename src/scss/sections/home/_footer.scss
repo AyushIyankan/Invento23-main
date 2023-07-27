@@ -6,6 +6,10 @@
         padding-top: unset;
     }
 
+    &.footer {
+        background: var(--footer-gradient);
+    }
+
     .footer__main {
         border-radius: 30px;
         border: 2px solid hsl(var(--clr-purple));
@@ -63,7 +67,9 @@
                 color: #fff;
                 opacity: 0.6;
             }
-            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transition:
+                border-color 0.3s ease-in-out,
+                box-shadow 0.3s ease-in-out;
             box-shadow: 0;
             // caret-color: rgb(0, 200, 0);
         }
@@ -72,6 +78,19 @@
         input:focus {
             box-shadow: 0 2px 20px -2px hsl(222, 68%, 27%);
             border-color: hsl(222, 89%, 65%);
+        }
+    }
+    .footer__sub {
+        border-top: 0;
+        a {
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #fff;
+        }
+
+        @include bp(desktop) {
+            --gap: 10px;
         }
     }
 }

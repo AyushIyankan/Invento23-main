@@ -15,3 +15,19 @@ root.render(
         <App />
     </React.StrictMode>,
 )
+
+// function debugCss() {
+//     const sheet = window.document.styleSheets[1]
+//     sheet.insertRule(
+//         `
+// * {
+//     outline: 1px red solid !important;
+//     visibility: visible !important;
+// }`,
+//         sheet.cssRules.length,
+//     )
+// }
+
+// function clearDebugCss() {}
+
+// window.debugCss = debugCss

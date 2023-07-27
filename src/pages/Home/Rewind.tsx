@@ -19,7 +19,7 @@ import { SLIDERITEMS } from './data'
 
 const RewindText = () => {
     return (
-        <div className="rewind-text-container" style={{}}>
+        <div className="rewind-text-container">
             <div className="lg flex">
                 <h3 className="ff-gothic uppercase stroked-text fw-400">
                     rewinding invento 2020 ✦{' '}
@@ -33,9 +33,6 @@ const RewindText = () => {
                 <h4 aria-hidden className="ff-gothic uppercase fw-400">
                     Rewinding invento ✦
                 </h4>
-                {/* <h4 aria-hidden className="ff-gothic uppercase fw-400">
-                Rewinding invento ✦
-            </h4> */}
             </div>
         </div>
     )
@@ -51,8 +48,10 @@ const RewindMarquee = () => {
     const scrollVelocity = useVelocity(scrollY)
 
     const smoothFactor = useSpring(scrollVelocity, {
-        damping: 50,
-        stiffness: 300,
+        // damping: 50,
+        // stiffness: 300,
+        damping: 25,
+        stiffness: 100,
     })
 
     const velocityFactor = useTransform(smoothFactor, [0, 1000], [0, 5], {
@@ -61,9 +60,10 @@ const RewindMarquee = () => {
 
     const shouldReduceMotion = useReducedMotion()
 
+    // wrap -20,-45
     const x = shouldReduceMotion
         ? 0
-        : useTransform(baseX, (val) => `${wrap(-20, -45, val)}%`)
+        : useTransform(baseX, (val) => `${wrap(-1, -55, val)}%`)
 
     const directionFactor = useRef<number>(1)
 
@@ -86,15 +86,6 @@ const RewindMarquee = () => {
     })
 
     return (
-        // <motion.div className="marquee marquee--rewind" style={{ x }}>
-        //     <div className="marquee__group">
-        //         <RewindText />
-        //     </div>
-        //     <div aria-hidden className="marquee__group">
-        //         <RewindText />
-        //     </div>
-        // </motion.div>
-
         <motion.div className="parallax">
             <motion.div className="scroller" style={{ x }}>
                 <motion.span>

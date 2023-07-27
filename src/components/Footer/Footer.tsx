@@ -4,6 +4,8 @@ import { ReactComponent as LinkedInLogo } from '../../assets/svg/carbon_logo-lin
 import { ReactComponent as YoutubeLogo } from '../../assets/svg/carbon_logo-youtube.svg'
 import { ReactComponent as FacebookLogo } from '../../assets/svg/ic_sharp-facebook.svg'
 import { ReactComponent as InstagramLogo } from '../../assets/svg/ion_logo-instagram.svg'
+import { useMediaQuery } from '../../hooks'
+import { classUtil } from '../../utils'
 import Button from '../Button'
 
 interface IFooterProps extends React.HTMLAttributes<HTMLElement> {
@@ -13,6 +15,8 @@ interface IFooterProps extends React.HTMLAttributes<HTMLElement> {
 
 export default function Footer({ background, theme, ...delegated }: IFooterProps) {
     const { className, ...rest } = delegated
+
+    const isFooterFormAbove = useMediaQuery('(min-width: 75em)')
 
     return (
         <footer
@@ -169,7 +173,14 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                     </div>
                 </div>
             </div>
-            <div className="footer__sub flex flex-center">
+            {/* <div className="footer__sub flex flex-center"> */}
+            <div
+                className={classUtil(
+                    { 'flex-center': !isFooterFormAbove },
+                    'footer__sub',
+                    'flex',
+                )}
+            >
                 <a href="#terms" className="footer__link">
                     <span className="underline">Terms of Service</span>
                 </a>
