@@ -1,20 +1,10 @@
-import { Link } from 'react-router-dom'
-
-import Card from '../../components/Card'
-import { GROUPEVENTS } from './data'
+import CardGroup from '../../components/Card/CardGroup'
+import { useSelectedQuery } from '../../hooks/useEventsQuery'
 
 export function GeneralEvents() {
-    const cards = GROUPEVENTS.map((d) => {
-        return (
-            <Link to={'/events/2'} key={`event-link-${d.id}`}>
-                <Card
-                    key={`event-${d.id}`}
-                    title={d.title}
-                    bgUrl={d.bgUri}
-                    className="card--groupevent"
-                />
-            </Link>
-        )
+    const { data } = useSelectedQuery('generalevents')
+    const cards = data?.map((d) => {
+        return <CardGroup event={d} key={d._id + d._v} />
     })
 
     return (
