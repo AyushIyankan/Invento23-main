@@ -1,7 +1,11 @@
 import { useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+// import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
 
 import Button from '../../components/Button'
+import useEventQuery from '../../hooks/useEventQuery'
+import { transformDate, transformTime } from '../../utils'
+import { NotFound } from '../NotFound'
 
 function ScrollToTopOnMount() {
     useEffect(() => {
@@ -12,32 +16,44 @@ function ScrollToTopOnMount() {
 }
 
 export default function EventPreview() {
+    const { id = '232' } = useParams<{ id: string }>()
+
+    const event = useEventQuery(id)
+
+    if (event.error || !event.data?.event) return <NotFound />
+
+    const {
+        name,
+        date,
+        time,
+        description,
+        rules,
+        photo: { secure_url },
+    } = event.data.event
+
+    const eventRules = rules.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
+
     return (
         <>
             <ScrollToTopOnMount />
             <section className="eventPreview">
                 <div className="bg__container grid">
-                    <div className="bg--full bg--full--preview"></div>
+                    <div
+                        className="bg--full bg--full--preview"
+                        data-bg={secure_url}
+                    ></div>
 
                     <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
-                        Natya
+                        {name}
                     </p>
                 </div>
                 <div className="eventPreview__content panel--bg mh-full grid">
                     <div className="eventPreview__about text-white ff-serif centeredContainer side-padding flow">
-                        <h4 className="fw-500 fs-650">About Natya</h4>
-                        <p className="eventPreview__description">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Alias minima reiciendis vel quo dolore dolor in laboriosam et,
-                            repellendus exercitationem quos quis fugit. Sunt error
-                            delectus odit libero perferendis tenetur! Unde ratione,
-                            possimus nobis maiores quia error illum sint sunt adipisci
-                            quos autem, nisi iste quibusdam, in provident. Voluptates
-                            voluptatem, quaerat temporibus nobis inventore labore earum
-                            incidunt fugiat sit aspernatur?
-                        </p>
+                        <h4 className="fw-500 fs-650">About {name}</h4>
+                        <p className="eventPreview__description">{description}</p>
                         <div className="flow">
-                            <span className="d-b">Date: 22-06-2023</span>
+                            <span className="d-b">Date: {transformDate(date)}</span>
+                            <span className="d-b">Time: {transformTime(time)}</span>
                             <span className="d-b">Prizes worth: 10k</span>
                             <Button
                                 type="internalUrl"
@@ -50,32 +66,7 @@ export default function EventPreview() {
                     </div>
                     <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
                         <h4 className="fs-650 fw-500">Rules and Regulations</h4>
-                        <ul className="flow">
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                            <li>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                Beatae, repudiandae!
-                            </li>
-                        </ul>
+                        <ul className="flow">{eventRules}</ul>
                     </div>
                 </div>
             </section>
