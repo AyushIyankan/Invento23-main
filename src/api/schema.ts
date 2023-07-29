@@ -29,8 +29,18 @@ const eventSchema = z.object({
     contactNameSecond: z.string(),
     contactNumberSecond: z.string(),
     regFee: z.number(),
-    eventType: z.string(),
-    category: z.string(),
+    eventType: z.enum(['proshow', 'techfest', 'saptha', 'taksthi']),
+    category: z.enum([
+        'workshops',
+        'competitions',
+        'exhibitions',
+        'preevents',
+        'generalevents',
+        'spotlight',
+        'group',
+        'solo',
+        'expo',
+    ]),
     isPreEvent: z.boolean(),
     description: z.string(),
     department: z.string().max(3),
@@ -42,7 +52,7 @@ const eventSchema = z.object({
 
 type BaseResponse = z.infer<typeof baseSchema>
 
-type EventType = z.infer<typeof eventSchema>
+export type EventType = z.infer<typeof eventSchema>
 
 export type EventsResponse = BaseResponse & {
     events: EventType[]
