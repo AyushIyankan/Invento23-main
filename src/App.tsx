@@ -164,7 +164,7 @@ function App() {
         <Suspense fallback={<Loading />}>
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={routes} />
-                <ReactQueryDevtools initialIsOpen={true} />
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </Suspense>
     )

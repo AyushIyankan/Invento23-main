@@ -31,3 +31,24 @@ export function classUtil<T extends Record<string, boolean>>(
 
     return [...classArr, ...classList].join(' ')
 }
+
+export const transformDate = (date: string) => {
+    const v = new Date(date)
+    const result = v.toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    })
+
+    return result
+}
+
+export const transformTime = (time: string) => {
+    const v = new Date(time)
+    const result = v.toLocaleTimeString('en-IN', {
+        hour: '2-digit',
+        minute: '2-digit',
+    })
+
+    return result
+}

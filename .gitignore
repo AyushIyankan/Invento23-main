@@ -10,3 +10,5 @@ src/scss/index.css
 src/scss/index.css.map
 .unlighthouse
 .unlighthouse/*
+.env
+.env.local
