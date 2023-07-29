@@ -10,3 +10,5 @@ export const BACKGROUNDS = {
     clrDarkRed600: 'hsl(346, 98%, 17%)',
     clrDark: 'hsl(202, 92%, 5%)',
 }
+
+export const API_URI = import.meta.env.VITE_API_BASE_URL
