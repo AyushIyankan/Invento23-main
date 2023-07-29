@@ -27,7 +27,7 @@ export function NotFound() {
                     />
                 </div>
             </section>
-            <Footer background={BACKGROUNDS.GradientDarkPurple} />
+            {/* <Footer background={BACKGROUNDS.GradientDarkPurple} /> */}
         </div>
     )
 }
