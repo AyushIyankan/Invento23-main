@@ -16,10 +16,10 @@ export function Hero() {
             <div className="hero-bg"></div>
 
             <div className="wrap-large-links ff-gothic fw-400">
-                <p className="uppercase">Natya</p>
-                <p className="uppercase">saptha</p>
-                <p className="uppercase">taksthi</p>
-                <p className="uppercase">proshow</p>
+                <a className="uppercase d-b text-decoration-none">Natya</a>
+                <a className="uppercase d-b text-decoration-none">saptha</a>
+                <a className="uppercase d-b text-decoration-none">taksthi</a>
+                <a className="uppercase d-b text-decoration-none">proshow</a>
             </div>
 
             <div className="wrap-small-links ff-montserrat fw-500 uppercase flex">
