@@ -29,9 +29,17 @@ export default function EventPreview() {
         description,
         rules,
         photo: { secure_url },
+        prizeMoney,
+        isOnline,
+        department,
+        contactNameFirst,
+        contactNameSecond,
+        contactNumberFirst,
+        contactNumberSecond,
     } = event.data.event
 
     const eventRules = rules.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
+    const prizesWorth = Object.values(prizeMoney).reduce((acc, curr) => acc + curr, 0)
 
     return (
         <>
@@ -54,7 +62,36 @@ export default function EventPreview() {
                         <div className="flow">
                             <span className="d-b">Date: {transformDate(date)}</span>
                             <span className="d-b">Time: {transformTime(time)}</span>
-                            <span className="d-b">Prizes worth: 10k</span>
+                            <span className="d-b">
+                                Prizes worth: {prizesWorth > 0 ? prizesWorth : 'TBA'}
+                            </span>
+                            <span className="d-b">
+                                Mode: {isOnline ? 'Online' : 'Offline'}
+                            </span>
+                            <span className="d-b">
+                                Hosted by: {department} department
+                            </span>
+                            <span className="d-b">
+                                <h5 className="ff-days-one">Contacts: </h5>
+                                <div className="flow contact-wrap">
+                                    {contactNameFirst && contactNumberFirst && (
+                                        <span className="d-b">
+                                            {contactNameFirst} - {''}
+                                            <a
+                                                className="text-white text-decoration-none"
+                                                href={`tel:${contactNumberFirst}`}
+                                            >
+                                                {contactNumberFirst}
+                                            </a>
+                                        </span>
+                                    )}
+                                    {contactNameSecond && contactNumberSecond && (
+                                        <span className="d-b">
+                                            {contactNameSecond} - {contactNumberSecond}
+                                        </span>
+                                    )}
+                                </div>
+                            </span>
                             <Button
                                 type="internalUrl"
                                 to={'/register'}
@@ -66,7 +103,11 @@ export default function EventPreview() {
                     </div>
                     <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
                         <h4 className="fs-650 fw-500">Rules and Regulations</h4>
-                        <ul className="flow">{eventRules}</ul>
+                        {rules.length === 0 ? (
+                            <p>No rules found.</p>
+                        ) : (
+                            <ul className="flow">{eventRules}</ul>
+                        )}
                     </div>
                 </div>
             </section>

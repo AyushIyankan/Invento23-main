@@ -10,9 +10,9 @@ const eventSchema = z.object({
         secure_url: z.string(),
     }),
     prizeMoney: z.object({
-        first: z.string(),
-        second: z.string(),
-        third: z.string(),
+        first: z.number(),
+        second: z.number(),
+        third: z.number(),
     }),
     prize: z.object({
         first: z.string(),
