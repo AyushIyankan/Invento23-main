@@ -130,3 +130,11 @@
         transform: rotate(-4deg);
     }
 }
+
+.wrap-slider-img {
+    img {
+        max-height: 25rem;
+        max-width: 20rem;
+        object-fit: cover;
+    }
+}
