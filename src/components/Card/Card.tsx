@@ -3,36 +3,36 @@ import { useState } from 'react'
 import { useProgressiveImage } from '../../hooks'
 import { webpLoader } from '../../utils'
 import { ToggleButton } from '../Button'
+import { ImgWithFallback } from '../ImgWithFallback'
 interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
     bgUrl: string
     title: string
 }
 
 export default function Card({ bgUrl, title, ...rest }: ICardProps) {
-    const loaded = useProgressiveImage(bgUrl)
-    const loadedWebp = webpLoader(loaded ?? bgUrl)
-    const styles: React.CSSProperties = {
-        backgroundImage: `url(${
-            (loadedWebp ?? loaded) || '/static/card_placeholder.jpg'
-        }), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        borderRadius: '10px',
-        display: 'grid',
-    }
-
-    const titleStyle: React.CSSProperties = {
-        fontSize: 'clamp(1.8rem, 1.54rem + 1.3vw, 3.1rem)',
-        justifySelf: 'end',
-        alignSelf: 'self-end',
-    }
+    // const loaded = useProgressiveImage(bgUrl)
+    // const loadedWebp = webpLoader(loaded ?? bgUrl)
+    // const styles: React.CSSProperties = {
+    //     backgroundImage: `url(${
+    //          || '/static/card_placeholder.jpg'
+    //     }), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundPosition: 'center center',
+    //     backgroundSize: 'cover',
+    //     borderRadius: '10px',
+    //     display: 'grid',
+    //     // gridTemplateRows: '1fr 1fr',
+    //     // gap: '1rem',
+    // }
 
     return (
-        <div {...rest} style={styles}>
-            <p className="ff-days-one fw-400 text-white uppercase" style={titleStyle}>
-                {title}
-            </p>
+        <div {...rest} className="event-card">
+            <div className="event-card-img">
+                <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
+            </div>
+            <div className="event-card-title">
+                <p className="ff-days-one fw-300 text-white uppercase">{title}</p>
+            </div>
         </div>
     )
 }
