@@ -12,11 +12,11 @@
         // width: clamp(2.8rem, 5vw, 8.3rem);
         width: 100%;
         display: inline-block;
-        height: 2px;
+        height: 3px;
         position: absolute;
         inset: auto auto -2% 0;
-        // background-color: hsl(var(--clr-magenta));
-        background: #ddd;
+        transform-origin: 0%;
+        background: linear-gradient(90deg, hsl(var(--clr-magenta)) 0%, hsl(var(--clr-blue)) 100%);
     }
     background-color: var(--navbar-bg) !important;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
