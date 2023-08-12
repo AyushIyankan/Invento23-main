@@ -10,7 +10,7 @@
     max-width: clamp(13.75rem, 11.9rem + 9.25vw, 23rem);
 
     transition: transform 0.3s ease-in-out;
-    &:hover {
+    &:hover .event-card-img img {
         transform: scale(1.1);
         transition: 0.5s;
     }
@@ -35,6 +35,7 @@
     overflow: hidden;
 
     img {
+        transition: transform 0.3s ease-in-out;
         width: 100%;
         height: 100%;
         object-fit: cover;
