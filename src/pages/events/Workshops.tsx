@@ -4,7 +4,6 @@ import { useSelectedQuery } from '../../hooks/useEventsQuery'
 
 export function WorkShops() {
     const { data } = useSelectedQuery('workshops')
-    console.log(data)
     const cards = data?.map((d) => {
         return <CardGroup event={d} key={d._id + d._v} />
     })

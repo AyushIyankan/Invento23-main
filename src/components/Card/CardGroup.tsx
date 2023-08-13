@@ -13,7 +13,7 @@ function CardGroup({ event }: { event: EventType }) {
             <Card
                 key={`event-${event._id}`}
                 title={event.name}
-                bgUrl={event.photo.secure_url}
+                bgUrl={event?.photo?.secure_url ?? '/static/images/natya.jpg'}
                 className="card--groupevent"
             />
         </Link>

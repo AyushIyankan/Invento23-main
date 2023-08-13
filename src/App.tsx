@@ -1,8 +1,11 @@
+import 'react-toastify/dist/ReactToastify.min.css'
+
 import { Cloudinary } from '@cloudinary/url-gen'
 import { lazy, Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import Loading from './components/Loading'
 
@@ -172,6 +175,7 @@ function App() {
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={routes} />
                 <ReactQueryDevtools initialIsOpen={false} />
+                <ToastContainer />
             </QueryClientProvider>
         </Suspense>
     )

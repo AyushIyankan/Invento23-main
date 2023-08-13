@@ -14,20 +14,20 @@ export function Summary() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            key={`wrapper-` + item.id}
+            key={`wrapper-` + item._id}
             transition={{ type: 'spring' }}
         >
             <ItemCard
-                key={item?.id}
-                title={item.title}
+                key={item?._id}
+                title={item.name}
                 date={item.date}
-                fee={Number(item.fee)}
-                image={item.image}
+                fee={Number(item.regFee)}
+                image={item?.photo?.secure_url || '/static/images/natya.jpg'}
                 actionType="nonTogglable"
-                action={() => removeItem(item.id)}
+                action={() => removeItem(item._id)}
                 selected={true}
                 onClick={() => {
-                    setSelectedindex(Number(item.id))
+                    setSelectedindex(Number(item._id))
                     // setisFilled((state) => !state)
                 }}
             />

@@ -1,6 +1,7 @@
 import { HTMLMotionProps, motion, Variants } from 'framer-motion'
 import { useState } from 'react'
 
+import { transformDate } from '../../utils'
 import { ToggleButton } from '../Button'
 import { ImgWithFallback } from '../ImgWithFallback'
 interface ICardProps extends HTMLMotionProps<'div'> {
@@ -87,7 +88,10 @@ export function ItemCard({ image, title, date, fee, ...props }: ItemCardProps) {
                 <p className="ff-serif text-black fw-400 detail-fee">
                     Registration Fee: {fee}
                 </p>
-                <p className="ff-serif text-black fw-400 detail-date"> Date: {date}</p>
+                <p className="ff-serif text-black fw-400 detail-date">
+                    {' '}
+                    Date: {transformDate(date)}
+                </p>
 
                 <ToggleButton
                     selected={props.selected}
