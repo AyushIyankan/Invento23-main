@@ -12,7 +12,7 @@ export function Spotlight() {
                 <Card
                     className="card--spotlight grid"
                     bgUrl="/static/natya.jpg"
-                    title="nathya"
+                    title="natya"
                 />
                 <Card
                     className="card--spotlight grid"
