@@ -9,7 +9,14 @@ import { ToastContainer } from 'react-toastify'
 
 import Loading from './components/Loading'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 5,
+            refetchOnWindowFocus: false,
+        },
+    },
+})
 
 const LazyHomeLayout = lazy(() =>
     import('./pages/Home/Layout').then((m) => {
@@ -175,7 +182,7 @@ function App() {
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={routes} />
                 <ReactQueryDevtools initialIsOpen={false} />
-                <ToastContainer />
+                <ToastContainer theme="dark" autoClose={1000} limit={1} />
             </QueryClientProvider>
         </Suspense>
     )

@@ -1,6 +1,7 @@
 import { HTMLMotionProps, motion, Variants } from 'framer-motion'
 import { useState } from 'react'
 
+// import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
 import { ToggleButton } from '../Button'
 import { ImgWithFallback } from '../ImgWithFallback'
@@ -37,7 +38,17 @@ const textVariants: Variants = {
     },
 }
 
+const touchTextVariants: Variants = {
+    rest: {
+        opacity: 1,
+        y: '0%',
+    },
+}
+
 export default function Card({ bgUrl, title, ...rest }: ICardProps) {
+    // Fix this not working
+    // const isMobile = useMediaQuery('(min-width: 48em)')
+    //debugger
     return (
         <motion.div
             {...rest}
@@ -46,10 +57,16 @@ export default function Card({ bgUrl, title, ...rest }: ICardProps) {
             initial="rest"
             animate="rest"
         >
-            <motion.div className="event-card-img" variants={parentVariants}>
+            <motion.div
+                className="event-card-img"
+                // variants={!isMobile ? parentVariants : undefined}
+            >
                 <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
             </motion.div>
-            <motion.div className="event-card-title" variants={textVariants}>
+            <motion.div
+                className="event-card-title"
+                // variants={!isMobile ? textVariants : touchTextVariants}
+            >
                 <p className="ff-days-one fw-300 text-white uppercase">{title}</p>
             </motion.div>
         </motion.div>

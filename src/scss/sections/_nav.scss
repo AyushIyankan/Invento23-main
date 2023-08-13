@@ -134,7 +134,7 @@
 
     .navlink {
         --gap: 1.1rem;
-
+        width: fit-content;
         &:focus,
         &:hover {
             color: hsl(var(--clr-blue) / 1);
