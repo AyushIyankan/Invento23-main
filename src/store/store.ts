@@ -1,22 +1,17 @@
 import { create, StoreApi } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
+import { EventType } from '../api/schema'
 import { FormSchema } from '../screens/Register/schema'
 
 type FormData = FormSchema
 
-interface Item {
-    id: string
-    title: string
-    date: string
-    fee: string
-    image: string
-}
+type Item = Pick<EventType, '_id' | 'name' | 'date' | 'photo' | 'regFee'>
 
 interface ItemStore {
     items: Item[]
     addItem: (item: Item) => void
-    removeItem: (id: Item[`id`]) => void
+    removeItem: (id: Item[`_id`]) => void
 }
 
 interface DetailStore {
@@ -34,14 +29,14 @@ export const useStore = create<ItemStore>()(
                 items: [],
                 addItem: (item: Item) =>
                     set((state) => ({
-                        ...state,
+                        // ...state,
                         items: [...state.items, { ...item }],
                     })),
 
-                removeItem: (id: Item[`id`]) =>
+                removeItem: (id: Item[`_id`]) =>
                     set((state) => ({
                         ...state,
-                        items: state.items.filter((item) => item.id !== id),
+                        items: state.items.filter((item) => item._id !== id),
                     })),
             }),
             {

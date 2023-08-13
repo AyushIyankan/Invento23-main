@@ -4,6 +4,19 @@ const baseSchema = z.object({
     success: z.boolean(),
 })
 
+export const eventTypes = ['proshow', 'techfest', 'saptha', 'taksthi'] as const
+export const eventCategories = [
+    'workshops',
+    'competitions',
+    'exhibitions',
+    'preevents',
+    'generalevents',
+    'spotlight',
+    'group',
+    'solo',
+    'expo',
+] as const
+
 const eventSchema = z.object({
     photo: z.object({
         id: z.string(),
@@ -29,18 +42,8 @@ const eventSchema = z.object({
     contactNameSecond: z.string(),
     contactNumberSecond: z.string(),
     regFee: z.number(),
-    eventType: z.enum(['proshow', 'techfest', 'saptha', 'taksthi']),
-    category: z.enum([
-        'workshops',
-        'competitions',
-        'exhibitions',
-        'preevents',
-        'generalevents',
-        'spotlight',
-        'group',
-        'solo',
-        'expo',
-    ]),
+    eventType: z.enum(eventTypes),
+    category: z.enum(eventCategories),
     isPreEvent: z.boolean(),
     description: z.string(),
     department: z.string().max(3),
