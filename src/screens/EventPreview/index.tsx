@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import { cld } from '../../App'
 import Button from '../../components/Button'
+import { ImgWithFallback } from '../../components/ImgWithFallback'
 import Loading from '../../components/Loading'
 import useEventQuery from '../../hooks/useEventQuery'
 import { transformDate, transformTime } from '../../utils'
@@ -34,8 +35,7 @@ export default function EventPreview() {
         time,
         description,
         rules,
-        photo: { secure_url, id: imgId },
-        prizeMoney,
+        prize,
         isOnline,
         department,
         contactNameFirst,
@@ -44,8 +44,9 @@ export default function EventPreview() {
         contactNumberSecond,
     } = event.data.event
 
-    const eventRules = rules.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
-    const prizesWorth = Object.values(prizeMoney).reduce((acc, curr) => acc + curr, 0)
+    const { id: imgId } = event.data.event.photo || {}
+
+    const eventRules = rules?.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
 
     return (
         <>
@@ -54,21 +55,36 @@ export default function EventPreview() {
                 <div className="bg__container grid">
                     <div className="preview-background" ref={ref} aria-hidden>
                         {/* <ImgWithFallback src={secure_url} imgDescription="" /> */}
-                        <AdvancedImage
-                            style={{
-                                maxWidth: '100%',
-                            }}
-                            cldImg={cld.image(imgId).format('auto').quality('auto')}
-                            plugins={[
-                                lazyload(),
-                                responsive({
-                                    steps: 390,
-                                }),
-                                placeholder({
-                                    mode: 'vectorize',
-                                }),
-                            ]}
-                        />
+                        {imgId ? (
+                            <AdvancedImage
+                                style={{
+                                    maxWidth: '100%',
+                                }}
+                                cldImg={cld.image(imgId).format('auto').quality('auto')}
+                                plugins={[
+                                    lazyload(),
+                                    responsive({
+                                        steps: [390, 680, 900, 1150, 1500],
+                                    }),
+                                    placeholder({
+                                        mode: 'vectorize',
+                                    }),
+                                ]}
+                            />
+                        ) : (
+                            <ImgWithFallback
+                                src="/static/natya_large.jpg"
+                                imgDescription=""
+                            />
+                        )}
+                        {/* <ImgWithFallback
+                            // src="/static/natya_large.jpg"
+                            src={
+                                event.data.event.photo?.secure_url ||
+                                '/static/natya_large.jpg'
+                            }
+                            imgDescription=""
+                        /> */}
                     </div>
 
                     <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
@@ -81,16 +97,20 @@ export default function EventPreview() {
                         <p className="eventPreview__description">{description}</p>
                         <div className="flow fw-500 event-preview-details">
                             <span className="d-b">Date: {transformDate(date)}</span>
-                            <span className="d-b">Time: {transformTime(time)}</span>
+                            {time && (
+                                <span className="d-b">Time: {transformTime(time)}</span>
+                            )}
                             <span className="d-b">
-                                Prizes worth: {prizesWorth > 0 ? prizesWorth : 'TBA'}
+                                Prizes worth: {prize ? prize : 'TBA'}
                             </span>
                             <span className="d-b">
                                 Mode: {isOnline ? 'Online' : 'Offline'}
                             </span>
-                            <span className="d-b">
-                                Hosted by: {department} department
-                            </span>
+                            {department && (
+                                <span className="d-b">
+                                    Hosted by: {department} department
+                                </span>
+                            )}
                             <span className="d-b">
                                 <h5 className="ff-days-one">Contacts: </h5>
                                 <div className="flow contact-wrap">
@@ -129,7 +149,7 @@ export default function EventPreview() {
                     </div>
                     <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
                         <h4 className="fs-650 fw-500">Rules and Regulations</h4>
-                        {rules.length === 0 ? (
+                        {rules?.length === 0 ? (
                             <p>No rules found.</p>
                         ) : (
                             <ul className="flow">{eventRules}</ul>

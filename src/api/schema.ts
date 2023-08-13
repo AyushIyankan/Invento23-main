@@ -18,37 +18,30 @@ export const eventCategories = [
 ] as const
 
 const eventSchema = z.object({
-    photo: z.object({
-        id: z.string(),
-        secure_url: z.string(),
-    }),
-    prizeMoney: z.object({
-        first: z.number(),
-        second: z.number(),
-        third: z.number(),
-    }),
-    prize: z.object({
-        first: z.string(),
-        second: z.string(),
-        third: z.string(),
-    }),
+    photo: z
+        .object({
+            id: z.string(),
+            secure_url: z.string(),
+        })
+        .optional(),
+    prize: z.string().default(''),
     _id: z.string(),
     name: z.string(),
     date: z.string().datetime(),
-    time: z.string().datetime(),
+    time: z.string().datetime().default('TBA'),
     isOnline: z.boolean(),
-    contactNameFirst: z.string(),
-    contactNumberFirst: z.string(),
-    contactNameSecond: z.string(),
-    contactNumberSecond: z.string(),
+    contactNameFirst: z.string().default(''),
+    contactNumberFirst: z.string().default(''),
+    contactNameSecond: z.string().default(''),
+    contactNumberSecond: z.string().default(''),
     regFee: z.number(),
     eventType: z.enum(eventTypes),
     category: z.enum(eventCategories),
     isPreEvent: z.boolean(),
     description: z.string(),
     department: z.string().max(3),
-    rules: z.array(z.string()),
-    ticketBooked: z.number(),
+    rules: z.array(z.string()).default([]),
+    ticketBooked: z.number().optional(),
     createdAt: z.string().datetime(),
     _v: z.number(),
 })

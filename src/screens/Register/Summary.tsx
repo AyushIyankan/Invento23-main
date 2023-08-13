@@ -8,8 +8,6 @@ export function Summary() {
     const { items: bucket, removeItem } = useStore((state) => state)
     const [selectedindex, setSelectedindex] = useState(0)
 
-    console.log('bucket', bucket)
-
     const bucketItems = bucket.map((item) => (
         <motion.div
             layout
@@ -24,7 +22,7 @@ export function Summary() {
                 title={item.name}
                 date={item.date}
                 fee={Number(item.regFee)}
-                image={item.photo.secure_url}
+                image={item?.photo?.secure_url || '/static/images/natya.jpg'}
                 actionType="nonTogglable"
                 action={() => removeItem(item._id)}
                 selected={true}

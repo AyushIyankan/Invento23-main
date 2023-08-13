@@ -1,9 +1,9 @@
 import CardGroup from '../../components/Card/CardGroup'
 import { useSelectedQuery } from '../../hooks/useEventsQuery'
-// import { GROUPEVENTS } from '../saptha/data'
 
 export function Competitions() {
     const { data } = useSelectedQuery('competitions')
+    console.log('comps', data)
     const cards = data?.map((d) => {
         return <CardGroup event={d} key={d._id + d._v} />
     })

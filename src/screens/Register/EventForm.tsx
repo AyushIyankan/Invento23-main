@@ -43,7 +43,7 @@ export function EventForm() {
                 title={event.name}
                 date={event.date}
                 fee={event.regFee}
-                image={event.photo.secure_url}
+                image={event.photo?.secure_url || '/static/images/natya.jpg'}
                 key={event._id}
                 actionType="togglable"
                 actions={[
@@ -68,8 +68,6 @@ export function EventForm() {
         return acc
     }, {})
 
-    console.log(groupedEvents)
-
     const renderEventsForDay = (day: string) => {
         const dayEvents = groupedEvents?.[day] || []
         return dayEvents.map((event) => {
@@ -80,7 +78,7 @@ export function EventForm() {
                     title={event.name}
                     date={event.date}
                     fee={event.regFee}
-                    image={event.photo.secure_url}
+                    image={event.photo?.secure_url || '/static/images/natya.jpg'}
                     key={event._id}
                     actionType="togglable"
                     actions={[
