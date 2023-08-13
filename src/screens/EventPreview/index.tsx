@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
-// import { useQuery } from 'react-query'
+import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/react'
+import { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { cld } from '../../App'
 import Button from '../../components/Button'
+import Loading from '../../components/Loading'
 import useEventQuery from '../../hooks/useEventQuery'
 import { transformDate, transformTime } from '../../utils'
 import { NotFound } from '../NotFound'
@@ -16,11 +18,15 @@ function ScrollToTopOnMount() {
 }
 
 export default function EventPreview() {
+    const ref = useRef<HTMLDivElement>(null)
+
     const { id = '232' } = useParams<{ id: string }>()
 
     const event = useEventQuery(id)
 
-    if (event.error || !event.data?.event) return <NotFound />
+    if (event.isLoading) return <Loading />
+
+    if (event.error || !event.data) return <NotFound />
 
     const {
         name,
@@ -28,20 +34,42 @@ export default function EventPreview() {
         time,
         description,
         rules,
-        photo: { secure_url },
+        photo: { secure_url, id: imgId },
+        prizeMoney,
+        isOnline,
+        department,
+        contactNameFirst,
+        contactNameSecond,
+        contactNumberFirst,
+        contactNumberSecond,
     } = event.data.event
 
     const eventRules = rules.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
+    const prizesWorth = Object.values(prizeMoney).reduce((acc, curr) => acc + curr, 0)
 
     return (
         <>
             <ScrollToTopOnMount />
             <section className="eventPreview">
                 <div className="bg__container grid">
-                    <div
-                        className="bg--full bg--full--preview"
-                        data-bg={secure_url}
-                    ></div>
+                    <div className="preview-background" ref={ref} aria-hidden>
+                        {/* <ImgWithFallback src={secure_url} imgDescription="" /> */}
+                        <AdvancedImage
+                            style={{
+                                maxWidth: '100%',
+                            }}
+                            cldImg={cld.image(imgId).format('auto').quality('auto')}
+                            plugins={[
+                                lazyload(),
+                                responsive({
+                                    steps: 390,
+                                }),
+                                placeholder({
+                                    mode: 'vectorize',
+                                }),
+                            ]}
+                        />
+                    </div>
 
                     <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
                         {name}
@@ -51,10 +79,45 @@ export default function EventPreview() {
                     <div className="eventPreview__about text-white ff-serif centeredContainer side-padding flow">
                         <h4 className="fw-500 fs-650">About {name}</h4>
                         <p className="eventPreview__description">{description}</p>
-                        <div className="flow">
+                        <div className="flow fw-500 event-preview-details">
                             <span className="d-b">Date: {transformDate(date)}</span>
                             <span className="d-b">Time: {transformTime(time)}</span>
-                            <span className="d-b">Prizes worth: 10k</span>
+                            <span className="d-b">
+                                Prizes worth: {prizesWorth > 0 ? prizesWorth : 'TBA'}
+                            </span>
+                            <span className="d-b">
+                                Mode: {isOnline ? 'Online' : 'Offline'}
+                            </span>
+                            <span className="d-b">
+                                Hosted by: {department} department
+                            </span>
+                            <span className="d-b">
+                                <h5 className="ff-days-one">Contacts: </h5>
+                                <div className="flow contact-wrap">
+                                    {contactNameFirst && contactNumberFirst && (
+                                        <span className="d-b">
+                                            {contactNameFirst} - {''}
+                                            <a
+                                                className="text-white text-decoration-none"
+                                                href={`tel:${contactNumberFirst}`}
+                                            >
+                                                {contactNumberFirst}
+                                            </a>
+                                        </span>
+                                    )}
+                                    {contactNameSecond && contactNumberSecond && (
+                                        <span className="d-b">
+                                            {contactNameSecond} - {''}
+                                            <a
+                                                className="text-white text-decoration-none"
+                                                href={`tel:${contactNumberSecond}`}
+                                            >
+                                                {contactNumberSecond}
+                                            </a>
+                                        </span>
+                                    )}
+                                </div>
+                            </span>
                             <Button
                                 type="internalUrl"
                                 to={'/register'}
@@ -66,7 +129,11 @@ export default function EventPreview() {
                     </div>
                     <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
                         <h4 className="fs-650 fw-500">Rules and Regulations</h4>
-                        <ul className="flow">{eventRules}</ul>
+                        {rules.length === 0 ? (
+                            <p>No rules found.</p>
+                        ) : (
+                            <ul className="flow">{eventRules}</ul>
+                        )}
                     </div>
                 </div>
             </section>

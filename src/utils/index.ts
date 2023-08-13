@@ -1,11 +1,18 @@
 import type { LegacyRef, MutableRefObject, RefCallback } from 'react'
 
-export function webpLoader(initialSource: string) {
-    const split = initialSource.split('.')
-    split.pop()
-    split.push('webp')
-    const str = split.join('.')
-    return str
+export async function webpLoader(initialSource: string) {
+    if (initialSource.startsWith('/')) {
+        const split = initialSource.split('.')
+        split.pop()
+        split.push('webp')
+        const str = split.join('.')
+        return str
+    }
+
+    const res = await fetch(initialSource)
+    const blob = await res.blob()
+    const url = URL.createObjectURL(blob)
+    return url
 }
 
 export function mergeRefs<T = any>(

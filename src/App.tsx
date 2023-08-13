@@ -1,3 +1,4 @@
+import { Cloudinary } from '@cloudinary/url-gen'
 import { lazy, Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -12,6 +13,12 @@ const LazyHomeLayout = lazy(() =>
         return { default: m.Layout }
     }),
 )
+
+export const cld = new Cloudinary({
+    cloud: {
+        cloudName: import.meta.env.VITE_CLOUD_NAME,
+    },
+})
 
 const LazyHome = lazy(() => import('./pages/Home'))
 

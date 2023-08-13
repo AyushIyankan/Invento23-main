@@ -1,3 +1,4 @@
+import { motion, useScroll, useSpring } from 'framer-motion'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -24,7 +25,12 @@ export default function Nav({
     ...delegated
 }: INavBarProps) {
     const [navState, toggleNavState] = useToggle(false)
-    const scrollPos = useScrollPosition()
+    const { scrollYProgress } = useScroll()
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    })
     const { className, ...rest } = delegated
     return (
         <header
@@ -79,23 +85,23 @@ export default function Nav({
             >
                 <ul className="primary-navigation flow" id="primary-navigation">
                     <li>
+                        <NavLink className={`navlink flex`} to={'/'}>
+                            Home <ExternalLinkIcon />
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink className={`navlink flex`} to={'/about'}>
                             About us <ExternalLinkIcon />
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={`navlink flex`} to={'/'}>
-                            home <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink className={`navlink flex`} to={'/events'}>
-                            events <ExternalLinkIcon />
+                            Events <ExternalLinkIcon />
                         </NavLink>
                     </li>
                     <li>
                         <NavLink className={`navlink flex`} to={'/saptha'}>
-                            saptha <ExternalLinkIcon />
+                            Saptha <ExternalLinkIcon />
                         </NavLink>
                     </li>
                     <li>
@@ -112,14 +118,16 @@ export default function Nav({
                 </div>
             </nav>
             {type !== 'landing' && (
-                <span
+                <motion.span
                     className="scroll-progress"
                     style={
                         {
-                            background: `linear-gradient(to right, ${progressLineColor} ${scrollPos}%, #eee ${scrollPos}%)`,
+                            // background: `linear-gradient(to right, ${progressLineColor} ${scrollPos}%, #eee ${scrollPos}%)`,
+                            scaleX,
+                            '--progress-line-color': progressLineColor,
                         } as React.CSSProperties
                     }
-                ></span>
+                ></motion.span>
             )}
         </header>
     )

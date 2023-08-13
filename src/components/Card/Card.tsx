@@ -1,39 +1,57 @@
+import { HTMLMotionProps, motion, Variants } from 'framer-motion'
 import { useState } from 'react'
 
-import { useProgressiveImage } from '../../hooks'
-import { webpLoader } from '../../utils'
 import { ToggleButton } from '../Button'
-interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
+import { ImgWithFallback } from '../ImgWithFallback'
+interface ICardProps extends HTMLMotionProps<'div'> {
     bgUrl: string
     title: string
 }
 
+const parentVariants: Variants = {
+    rest: {
+        transition: {
+            duration: 2,
+            type: 'tween',
+            ease: 'easeIn',
+        },
+    },
+    hover: {
+        transition: {
+            duration: 0.4,
+            type: 'tween',
+            ease: 'easeOut',
+        },
+    },
+}
+
+const textVariants: Variants = {
+    rest: {
+        opacity: 0,
+        y: '-50%',
+    },
+    hover: {
+        opacity: 1,
+        y: '0%',
+    },
+}
+
 export default function Card({ bgUrl, title, ...rest }: ICardProps) {
-    const loaded = useProgressiveImage(bgUrl)
-    const loadedWebp = webpLoader(loaded ?? bgUrl)
-    const styles: React.CSSProperties = {
-        backgroundImage: `url(${
-            (loadedWebp ?? loaded) || '/static/card_placeholder.jpg'
-        }), linear-gradient(90deg, #0C0B0B 0%, #060505 9.27%, #0E0D0D 81.79%, #0B0A0A 92.72%)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-        borderRadius: '10px',
-        display: 'grid',
-    }
-
-    const titleStyle: React.CSSProperties = {
-        fontSize: 'clamp(1.8rem, 1.54rem + 1.3vw, 3.1rem)',
-        justifySelf: 'end',
-        alignSelf: 'self-end',
-    }
-
     return (
-        <div {...rest} style={styles}>
-            <p className="ff-days-one fw-400 text-white uppercase" style={titleStyle}>
-                {title}
-            </p>
-        </div>
+        <motion.div
+            {...rest}
+            className="event-card"
+            whileHover="hover"
+            initial="rest"
+            animate="rest"
+        >
+            <motion.div className="event-card-img" variants={parentVariants}>
+                <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
+            </motion.div>
+            <motion.div className="event-card-title" variants={textVariants}>
+                <p className="ff-days-one fw-300 text-white uppercase">{title}</p>
+            </motion.div>
+        </motion.div>
     )
 }
 
