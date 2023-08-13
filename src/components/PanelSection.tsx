@@ -15,7 +15,7 @@ export default function PanelSection({ title, items, panelType }: IPanelSectionP
 
     return (
         <section
-            className={`saptha__groupevents bg__blur--${panelType} effect__wrap`}
+            className={`saptha__groupevents bg__blur--${panelType} effect__wrap pb-sm`}
             style={
                 {
                     '--panel-color':
