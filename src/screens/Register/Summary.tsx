@@ -22,7 +22,7 @@ export function Summary() {
                 title={item.name}
                 date={item.date}
                 fee={Number(item.regFee)}
-                image={item?.photo?.secure_url || '/static/images/natya.jpg'}
+                image={item?.photo?.secure_url || '/static/natya.jpg'}
                 actionType="nonTogglable"
                 action={() => removeItem(item._id)}
                 selected={true}

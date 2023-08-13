@@ -43,7 +43,7 @@ export function EventForm() {
                 title={event.name}
                 date={event.date}
                 fee={event.regFee}
-                image={event.photo?.secure_url || '/static/images/natya.jpg'}
+                image={event.photo?.secure_url || '/static/natya.jpg'}
                 key={event._id}
                 actionType="togglable"
                 actions={[
@@ -78,7 +78,7 @@ export function EventForm() {
                     title={event.name}
                     date={event.date}
                     fee={event.regFee}
-                    image={event.photo?.secure_url || '/static/images/natya.jpg'}
+                    image={event.photo?.secure_url || '/static/natya.jpg'}
                     key={event._id}
                     actionType="togglable"
                     actions={[
