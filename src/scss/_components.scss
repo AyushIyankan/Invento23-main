@@ -292,7 +292,7 @@
             grid-template-columns: repeat(5, 1fr);
 
             > * {
-                justify-self: center;
+                // justify-self: center;
                 align-self: center;
             }
 
@@ -324,6 +324,28 @@
             height: clamp(4rem, 3.8rem + 1vw, 5rem);
             width: 4rem;
             width: clamp(4rem, 3.8rem + 1vw, 5rem);
+        }
+    }
+
+    &_group {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: start;
+        // gap: 0.5rem;
+        // width: 70%;
+
+        input {
+            width: 100%;
+        }
+
+        button {
+            justify-self: self-start;
+            border: 1px solid hsl(var(--clr-grey) / 1);
+
+            &:hover {
+                background-color: hsl(var(--clr-greyish-white) / 1);
+            }
         }
     }
 }
