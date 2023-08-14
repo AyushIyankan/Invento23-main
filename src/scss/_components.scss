@@ -318,7 +318,7 @@
 
     .wrap-img {
         width: fit-content;
-        > img {
+        img {
             object-fit: cover;
             height: 4rem;
             height: clamp(4rem, 3.8rem + 1vw, 5rem);
