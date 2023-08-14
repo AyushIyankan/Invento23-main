@@ -32,7 +32,7 @@ type FieldType = {
         | {
             kind: 'input'
             type: HTMLInputTypeAttribute
-            autocompleteprop?: string
+            autocompleteprop?: React.InputHTMLAttributes<HTMLInputElement>['autoComplete']
         }
         | {
             kind: 'select'

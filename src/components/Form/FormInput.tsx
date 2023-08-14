@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from 'react'
+import { HTMLInputTypeAttribute, InputHTMLAttributes } from 'react'
 import {
     Control,
     Controller,
@@ -25,7 +25,7 @@ export type IFormInput<T extends FieldValues> = {
     | {
           kind: 'input'
           inputType: HTMLInputTypeAttribute
-          autocomplete?: HTMLInputElement['autocomplete']
+          autocomplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete']
       }
     | {
           kind: 'select'
