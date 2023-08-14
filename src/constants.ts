@@ -1,3 +1,5 @@
+import { eventCategories, eventTypes } from './api/schema'
+
 export const BACKGROUNDS = {
     clrDarkTeal: 'hsla(203, 48%, 10%, 1)',
     clrDarkPurple: `hsl(266 12% 12% / 1)`,
@@ -12,3 +14,19 @@ export const BACKGROUNDS = {
 }
 
 export const API_URI = import.meta.env.VITE_API_BASE_URL
+
+export const titleMap = {
+    [eventTypes[0]]: 'Pro Show',
+    [eventTypes[1]]: 'Tech Fest',
+    [eventTypes[2]]: 'Saptha',
+    [eventTypes[3]]: 'Taksthi',
+    [eventCategories[0]]: 'Workshops',
+    [eventCategories[1]]: 'Competitions',
+    [eventCategories[2]]: 'Exhibitions',
+    [eventCategories[3]]: 'Pre Events',
+    [eventCategories[4]]: 'General Events',
+    [eventCategories[5]]: 'Spotlight',
+    [eventCategories[6]]: 'Group',
+    [eventCategories[7]]: 'Solo',
+    [eventCategories[8]]: 'Expo',
+}

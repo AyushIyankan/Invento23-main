@@ -2,11 +2,10 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { eventCategories, EventType, eventTypes } from '../../api/schema'
-import Natya from '../../assets/images/compressed/natya.jpg'
 import { Accordion } from '../../components/Accordion'
 import { ItemCard } from '../../components/Card/Card'
 import { ItemGroup } from '../../components/ItemGroup'
-import { useToggle } from '../../hooks'
+import { titleMap } from '../../constants'
 import useEventsQuery from '../../hooks/useEventsQuery'
 import { useStore } from '../../store'
 
@@ -103,9 +102,15 @@ export function EventForm() {
             <div className="form__eventsWrap bg-white flow grid">
                 {eventTypes.map((eventType) => (
                     <div key={eventType} className="proShowWrap">
-                        <ItemGroup title={eventType}>
+                        <ItemGroup title={titleMap[eventType]}>
                             {eventSubCategories[eventType].map((subType) => (
-                                <Accordion title={subType} key={subType}>
+                                <Accordion
+                                    title={
+                                        titleMap[subType as keyof typeof titleMap] ||
+                                        subType
+                                    }
+                                    key={subType}
+                                >
                                     <div className="itemCardWrap">
                                         {renderSubTypeEvents(eventType, subType)}
                                     </div>
