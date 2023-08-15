@@ -118,38 +118,4 @@ export function EventForm() {
             </div>
         </>
     )
-
-    // return (
-    //     <>
-    //         <div className="">
-    //             <h3 className="text-black ff-serif fw-400">Select your events</h3>
-    //         </div>
-    //         <div className="form__eventsWrap bg-white flow grid">
-    //             <div className="proShowWrap">
-    //                 <ItemGroup title="Pro show">
-    //                     <Accordion title="Day 1">
-    //                         <div className="itemCardWrap">
-    //                             {renderEventsForDay('2023-09-15T00:00:00.000Z')}
-    //                         </div>
-    //                     </Accordion>
-    //                     <Accordion title="Day 2">
-    //                         <div className="itemCardWrap">
-    //                             {renderEventsForDay('Day 2')}
-    //                         </div>
-    //                     </Accordion>
-    //                     <Accordion title="Day 3">
-    //                         <div className="itemCardWrap">
-    //                             {renderEventsForDay('Day 3')}
-    //                         </div>
-    //                     </Accordion>
-    //                     <Accordion title="Day 4">
-    //                         <div className="itemCardWrap">
-    //                             {renderEventsForDay('Day 4')}
-    //                         </div>
-    //                     </Accordion>
-    //                 </ItemGroup>
-    //             </div>
-    //         </div>
-    //     </>
-    // )
 }
