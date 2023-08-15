@@ -89,21 +89,21 @@ export default function Crowstealers() {
                 variants={container}
             >
                 <MEventCard
-                    date="June 24"
+                    date="TBA"
                     imgSrc="/static/landing/stock-ev.jpg"
                     title="the avial band"
                     color="hsl(56, 100%, 78%)"
                     variants={item}
                 />
                 <MEventCard
-                    date="June 24"
+                    date="TBA"
                     imgSrc="/static/landing/stock-ev.jpg"
                     title="benny dayal"
                     color="hsl(313, 88%, 53%)"
                     variants={item}
                 />
                 <MEventCard
-                    date="June 24"
+                    date="TBA"
                     imgSrc="/static/landing/stock-ev.jpg"
                     title="the nandi sisters"
                     color="hsl(186, 71%, 46%)"
