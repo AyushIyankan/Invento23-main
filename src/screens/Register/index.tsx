@@ -1,4 +1,3 @@
-import { BUCKET } from './data'
 import { EventForm } from './EventForm'
 import { RegistrationForm } from './Form'
 import { Summary } from './Summary'
