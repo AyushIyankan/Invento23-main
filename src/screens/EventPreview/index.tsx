@@ -64,7 +64,7 @@ export default function EventPreview() {
                                 plugins={[
                                     lazyload(),
                                     responsive({
-                                        steps: [390, 680, 900, 1150, 1500],
+                                        steps: [680, 900, 1150, 1500],
                                     }),
                                     placeholder({
                                         mode: 'vectorize',
