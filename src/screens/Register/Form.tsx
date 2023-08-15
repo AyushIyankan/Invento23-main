@@ -64,7 +64,7 @@ export function RegistrationForm() {
     })
 
     const onSubmit = (data: FormInputs) => {
-        console.log({ data, referral: data.referral })
+        // console.log({ data, referral: data.referral })
         setData(data)
     }
 

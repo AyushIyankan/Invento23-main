@@ -18,11 +18,17 @@ export function Summary() {
             transition={{ type: 'spring' }}
         >
             <ItemCard
+                mode="show"
+                itemId={item._id}
+                group={item.participationType === 'group' ? true : false}
+                maxParticipants={
+                    item.participationType === 'group' ? item.members.length : 0
+                }
                 key={item?._id}
                 title={item.name}
                 date={item.date}
                 fee={Number(item.regFee)}
-                image={item?.photo?.secure_url || '/static/natya.jpg'}
+                image={item?.image || '/static/natya.jpg'}
                 actionType="nonTogglable"
                 action={() => removeItem(item._id)}
                 selected={true}

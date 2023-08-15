@@ -6,12 +6,37 @@ import { FormSchema } from '../screens/Register/schema'
 
 type FormData = FormSchema
 
-type Item = Pick<EventType, '_id' | 'name' | 'date' | 'photo' | 'regFee'>
+type ItemSingle = {
+    participationType: 'solo'
+}
+
+type Group = {
+    [key: string]: string
+}
+
+type ItemTeam = {
+    participationType: 'group'
+    members: Group[]
+}
+
+type ItemImage = {
+    image: string
+}
+
+type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> &
+    ItemImage &
+    (ItemSingle | ItemTeam)
 
 interface ItemStore {
     items: Item[]
     addItem: (item: Item) => void
     removeItem: (id: Item[`_id`]) => void
+}
+
+interface GroupStore {
+    groups: { [key: string extends keyof Item ? never : Item[`_id`]]: Group[] }
+    addMembers: (id: Item[`_id`], members: Group[]) => void
+    reset: () => void
 }
 
 interface DetailStore {
@@ -63,6 +88,23 @@ export const useDetailStore = create<DetailStore>()(
                     })),
             }),
             { name: 'formDetailStore' },
+        ),
+    ),
+)
+
+export const useGroupStore = create<GroupStore>()(
+    devtools(
+        persist(
+            (set) => ({
+                groups: {},
+                addMembers: (id: Item[`_id`], members: Group[]) =>
+                    set((state) => ({
+                        ...state,
+                        groups: { ...state.groups, [id]: members },
+                    })),
+                reset: () => set({ groups: {} }),
+            }),
+            { name: 'groupStore' },
         ),
     ),
 )

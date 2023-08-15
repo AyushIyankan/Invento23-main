@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "scripts": {
         "develop": "run-p dev scss:watch",
-        "dev": "vite --host",
+        "dev": "vite --host --open",
         "build": "tsc && vite build",
         "serve": "vite preview",
         "type-check": "tsc",

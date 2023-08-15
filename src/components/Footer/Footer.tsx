@@ -20,7 +20,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
 
     return (
         <footer
-            className={`footer ff-serif text-grey ${className}`}
+            className={`footer ff-serif text-grey ${className ? className : ''}`}
             style={{ '--footer-gradient': background } as React.CSSProperties}
             data-theme={theme}
             {...rest}

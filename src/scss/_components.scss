@@ -111,9 +111,16 @@
         width: 1rem;
     }
 
-    &:hover svg > *,
-    &:focus-visible svg > * {
+    svg > *,
+    svg > * {
         fill: #000;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        svg > * {
+            fill: hsl(var(--clr-grey) / 1);
+        }
     }
 }
 
@@ -284,6 +291,13 @@
             align-self: center;
         }
 
+        .wrap-icon-group {
+            grid-column: 3/4;
+            grid-row: 1/2;
+            justify-self: center;
+            align-self: center;
+        }
+
         .detail-date {
             grid-area: 2/3/3/4;
         }
@@ -292,7 +306,7 @@
             grid-template-columns: repeat(5, 1fr);
 
             > * {
-                justify-self: center;
+                // justify-self: center;
                 align-self: center;
             }
 
@@ -300,6 +314,10 @@
                 grid-area: auto;
             }
             .detail-date {
+                grid-area: auto;
+            }
+
+            .wrap-icon-group {
                 grid-area: auto;
             }
         }
@@ -318,12 +336,35 @@
 
     .wrap-img {
         width: fit-content;
-        > img {
+        img {
             object-fit: cover;
             height: 4rem;
             height: clamp(4rem, 3.8rem + 1vw, 5rem);
             width: 4rem;
             width: clamp(4rem, 3.8rem + 1vw, 5rem);
+        }
+    }
+
+    &_group {
+        @include bp(tablet) {
+            grid-template-columns: repeat(2, 1fr);
+
+            > * {
+                grid-column: 1/2;
+            }
+        }
+
+        input {
+            width: 100%;
+        }
+
+        button {
+            justify-self: self-start;
+            border: 1px solid hsl(var(--clr-grey) / 1);
+
+            &:hover {
+                background-color: hsl(var(--clr-greyish-white) / 1);
+            }
         }
     }
 }
@@ -837,6 +878,25 @@
 
     &:hover .marquee__group {
         animation-play-state: paused;
+    }
+}
+
+.wrap-icon-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.icon-group {
+    width: 1.5rem;
+    height: 1.5rem;
+    > * {
+        stroke: #000;
     }
 }
 
