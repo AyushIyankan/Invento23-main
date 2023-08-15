@@ -281,7 +281,7 @@
 
     &_details {
         grid-template-columns: repeat(3, 1fr);
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
 
         .btn {
@@ -320,6 +320,44 @@
             .wrap-icon-group {
                 grid-area: auto;
             }
+        }
+
+        @media (max-width: 31.25em) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+            text-align: center;
+            // &.group {
+            //     grid-template-columns: 1fr;
+            //     grid-template-rows: repeat(5, 1fr);
+
+            //     > a {
+            //         grid-row: 2/3;
+            //     }
+
+            //     > .detail-date {
+            //         grid-row: 3/4;
+            //     }
+
+            //     > .detail-fee {
+            //         grid-row: 4/5;
+            //     }
+            // }
+
+            > .btn,
+            .detail-date {
+                grid-area: auto;
+                grid-row: auto;
+                grid-column: auto;
+            }
+
+            .wrap-icon-group {
+                // visibility: hidden;
+                display: none;
+            }
+
+            // .detail-fee {
+            //     text-align: center;
+            // }
         }
 
         @media (max-width: 25em) {
