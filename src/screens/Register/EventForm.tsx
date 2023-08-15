@@ -13,7 +13,7 @@ const eventSubCategories: Record<
     EventType['eventType'] | string,
     EventType['category'][] | string[]
 > = {
-    proshow: ['Day 1', 'Day 2', 'Day 3', 'Day 4'],
+    // proshow: ['Day 1', 'Day 2', 'Day 3', 'Day 4'],
     techfest: ['workshops', 'competitions', 'exhibitions', 'preevents', 'generalevents'],
     saptha: ['spotlight', 'group', 'solo', 'expo'],
     taksthi: ['spotlight', 'group', 'solo', 'expo'],
@@ -78,68 +78,40 @@ export function EventForm() {
         })
     }
 
-    const groupedEvents = events.data?.events.reduce<
-        Record<string, typeof events.data.events>
-    >((acc, event) => {
-        const day = event.date
-        if (!acc[day as keyof typeof acc]) acc[day as keyof typeof acc] = []
-        acc[day].push(event)
-        return acc
-    }, {})
-
-    // const renderEventsForDay = (day: string) => {
-    //     const dayEvents = groupedEvents?.[day] || []
-    //     return dayEvents.map((event) => {
-    //         return (
-    //             <ItemCard
-    //                 selected={bucket.some((e) => e._id === event._id)}
-    //                 onClick={() => setSelectedKey((state) => [...state, event._id])}
-    //                 title={event.name}
-    //                 date={event.date}
-    //                 itemId={event._id}
-    //                 fee={event?.regFee || event.regFeeTeam || 0}
-    //                 image={event.photo?.secure_url || '/static/natya.jpg'}
-    //                 key={event._id}
-    //                 actionType="togglable"
-    //                 actions={[
-    //                     () => addItem({ ...event }),
-    //                     () => {
-    //                         removeItem(event._id)
-    //                         setSelectedKey((state) =>
-    //                             state.filter((key) => key !== event._id),
-    //                         )
-    //                     },
-    //                 ]}
-    //             />
-    //         )
-    //     })
-    // }
-
     return (
         <>
             <div className="">
                 <h3 className="text-black ff-serif fw-400">Select your events</h3>
             </div>
             <div className="form__eventsWrap bg-white flow grid">
-                {eventTypes.map((eventType) => (
-                    <div key={eventType} className="proShowWrap">
-                        <ItemGroup title={titleMap[eventType]}>
-                            {eventSubCategories[eventType].map((subType) => (
-                                <Accordion
-                                    title={
-                                        titleMap[subType as keyof typeof titleMap] ||
-                                        subType
-                                    }
-                                    key={subType}
-                                >
-                                    <div className="itemCardWrap">
-                                        {renderSubTypeEvents(eventType, subType)}
-                                    </div>
-                                </Accordion>
-                            ))}
-                        </ItemGroup>
-                    </div>
-                ))}
+                <div className="proShowWrap">
+                    <ItemGroup title="Pro show">
+                        <Accordion title="Pro Show"></Accordion>
+                    </ItemGroup>
+                </div>
+                {eventTypes.map(
+                    (eventType) =>
+                        eventType !== 'proshow' && (
+                            <div key={eventType} className="proShowWrap">
+                                <ItemGroup title={titleMap[eventType]}>
+                                    {eventSubCategories[eventType].map((subType) => (
+                                        <Accordion
+                                            title={
+                                                titleMap[
+                                                    subType as keyof typeof titleMap
+                                                ] || subType
+                                            }
+                                            key={subType}
+                                        >
+                                            <div className="itemCardWrap">
+                                                {renderSubTypeEvents(eventType, subType)}
+                                            </div>
+                                        </Accordion>
+                                    ))}
+                                </ItemGroup>
+                            </div>
+                        ),
+                )}
                 <button className="btn btn--save text-white ff-serif">
                     Save Changes
                 </button>
