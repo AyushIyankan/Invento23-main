@@ -185,7 +185,12 @@ export function ItemCard({
                         isLoading={loading}
                     />
                 ) : (
-                    <div className="wrap-icon-group">
+                    <div
+                        className="wrap-icon-group"
+                        style={{
+                            display: mode === 'show' ? 'none' : 'initial',
+                        }}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
