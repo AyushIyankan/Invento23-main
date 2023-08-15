@@ -18,7 +18,7 @@ export function Hero() {
             <div className="wrap-large-links ff-gothic fw-400">
                 <a className="uppercase d-b text-decoration-none">Natya</a>
                 <a className="uppercase d-b text-decoration-none">saptha</a>
-                <a className="uppercase d-b text-decoration-none">taksthi</a>
+                <a className="uppercase d-b text-decoration-none">taksati</a>
                 <a className="uppercase d-b text-decoration-none">proshow</a>
             </div>
 

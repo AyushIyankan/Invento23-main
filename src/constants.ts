@@ -19,7 +19,7 @@ export const titleMap = {
     [eventTypes[0]]: 'Pro Show',
     [eventTypes[1]]: 'Tech Fest',
     [eventTypes[2]]: 'Saptha',
-    [eventTypes[3]]: 'Taksthi',
+    [eventTypes[3]]: 'Taksati',
     [eventCategories[0]]: 'Workshops',
     [eventCategories[1]]: 'Competitions',
     [eventCategories[2]]: 'Exhibitions',

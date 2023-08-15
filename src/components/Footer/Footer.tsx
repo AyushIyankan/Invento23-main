@@ -108,7 +108,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                                 to="/proshow"
                                 classNames="footer__link"
                             >
-                                proshow
+                                Pro-show
                             </Button>
                         </li>
                         <li className="footer__nav--item">
@@ -117,7 +117,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                                 to="/saptha"
                                 classNames="footer__link"
                             >
-                                taksthi
+                                Taksati
                             </Button>
                         </li>
                     </ul>

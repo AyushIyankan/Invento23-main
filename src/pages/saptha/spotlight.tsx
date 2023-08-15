@@ -17,7 +17,7 @@ export function Spotlight() {
                 <Card
                     className="card--spotlight grid"
                     bgUrl="/static/taksthi.jpg"
-                    title="taksthi"
+                    title="taksati"
                 />
             </div>
         </section>

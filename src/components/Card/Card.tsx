@@ -151,8 +151,8 @@ export function ItemCard({
     }
 
     return (
-        <div className="itemCard ">
-            <div className="itemCard_details grid">
+        <div className="itemCard">
+            <div className={`itemCard_details grid ${isGroup && 'group'}`}>
                 <div className="wrap-img flex">
                     <img src={`${image}`} alt={`${title}`} />
                 </div>
