@@ -20,7 +20,7 @@ type IButtonProps = {
           type: 'externalUrl'
       } & React.HTMLProps<HTMLAnchorElement>)
     | ({
-          type: 'button'
+          type: 'button' | 'submit'
           onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
       } & React.HTMLProps<HTMLButtonElement>)
 )
@@ -52,6 +52,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(function Btn(
             return (
                 <button
                     {...props}
+                    type={props.type}
                     ref={mergeRefs(btnRef, ref)}
                     // style={
                     //     showLoader ? { width: `${width}px`, height: `${height}px` } : {}
@@ -68,6 +69,12 @@ const Button = forwardRef<HTMLButtonElement, IButtonProps>(function Btn(
                             {children}
                         </animated.div>
                     )} */}
+                    {children}
+                </button>
+            )
+        case 'submit':
+            return (
+                <button {...props} type={props.type} ref={mergeRefs(btnRef, ref)}>
                     {children}
                 </button>
             )
@@ -94,6 +101,10 @@ interface IToggleProps {
     toggle: () => void
     actionTrue: () => void
     actionFalse: () => void
+    disabled?: boolean
+    onClick?: () => void
+    submit?: boolean
+    showText?: boolean
 }
 
 export function ToggleButton({
@@ -101,23 +112,39 @@ export function ToggleButton({
     actionTrue,
     actionFalse,
     toggle,
+    disabled,
+    onClick,
+    submit,
+    showText,
     ...props
 }: IToggleProps) {
     const handleOnclick = () => {
         toggle()
+        onClick && onClick()
         selected ? actionFalse() : actionTrue()
     }
 
     return (
         <Button
-            type="button"
+            type={submit ? 'submit' : 'button'}
             className="btn btn--toggle flex"
             onClick={handleOnclick}
             // isLoading={true}
+            disabled={disabled}
             isLoading={props.isLoading || false}
         >
             <span className="sr-only">{selected ? 'Remove Item' : 'Add Item'}</span>
-            {selected ? <IconRemove aria-hidden /> : <IconAdd aria-hidden />}
+            {selected ? (
+                <>
+                    <IconRemove aria-hidden />
+                    {showText && <span>Remove Event</span>}
+                </>
+            ) : (
+                <>
+                    <IconAdd aria-hidden />
+                    {showText && <span>Add Event</span>}
+                </>
+            )}
         </Button>
     )
 }
