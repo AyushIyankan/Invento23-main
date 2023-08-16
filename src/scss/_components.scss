@@ -675,11 +675,11 @@
             font-size: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
 
             color: #000;
-            text-shadow:
-                -1px -1px 0 var(--card-color),
-                1px -1px 0 var(--card-color),
-                -1px 1px 0 var(--card-color),
-                1px 1px 0 var(--card-color);
+            // text-shadow:
+            //     -1px -1px 0 var(--card-color),
+            //     1px -1px 0 var(--card-color),
+            //     -1px 1px 0 var(--card-color),
+            //     1px 1px 0 var(--card-color);
             max-width: 12rem;
             max-width: clamp(12rem, 10.575rem + 7.1251vw, 19.125rem);
             word-wrap: break-word;
@@ -703,7 +703,10 @@
             font-size: 1.5rem;
             font-size: clamp(1.5rem, 1.3rem + 1vw, 2.5rem);
             color: #fff;
-            inset: -2px;
+            inset: -2.5px;
+            z-index: 2;
+            -webkit-text-fill-color: #fff;
+            -webkit-text-stroke-width: 0;
         }
     }
 
@@ -838,7 +841,7 @@
     .stroked-text {
         color: unset;
         text-shadow: unset;
-        -webkit-text-stroke: 1px var(--stroke-color, #fff);
+        -webkit-text-stroke: var(--stroke-width, 1px) var(--stroke-color, #fff);
         -webkit-text-fill-color: transparent;
     }
 }
