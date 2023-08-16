@@ -38,6 +38,12 @@ const LazyNotFound = lazy(() =>
     }),
 )
 
+const LazySoon = lazy(() =>
+    import('./screens/Soon').then((m) => {
+        return { default: m.Soon }
+    }),
+)
+
 const LazyLeaderBoardLayout = lazy(() =>
     import('./pages/Leaderboard/Layout').then((m) => {
         return { default: m.Layout }
@@ -136,24 +142,25 @@ const routes = createBrowserRouter([
     },
     {
         path: '/register',
-        element: <LazyFormLayout />,
-        children: [
-            {
-                index: true,
-                element: <LazyRegister />,
-            },
-        ],
+        element: <LazySoon />,
+        // element: <LazyFormLayout />,
+        // children: [
+        //     {
+        //         index: true,
+        //         element: <LazyRegister />,
+        //     },
+        // ],
     },
-    {
-        path: '/about',
-        element: <LazyAboutLayout />,
-        children: [
-            {
-                index: true,
-                element: <LazyAbout />,
-            },
-        ],
-    },
+    // {
+    //     path: '/about',
+    //     element: <LazyAboutLayout />,
+    //     children: [
+    //         {
+    //             index: true,
+    //             element: <LazyAbout />,
+    //         },
+    //     ],
+    // },
     {
         path: '/leaderboards',
         element: <LazyLeaderBoardLayout />,

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { ImgWithFallback } from '../../components/ImgWithFallback'
 
 export function Hero() {
@@ -16,17 +18,36 @@ export function Hero() {
             <div className="hero-bg"></div>
 
             <div className="wrap-large-links ff-gothic fw-400">
-                <a className="uppercase d-b text-decoration-none">Natya</a>
-                <a className="uppercase d-b text-decoration-none">saptha</a>
+                <Link to={`/saptha`} className="uppercase d-b text-decoration-none">
+                    Natya
+                </Link>
+                <Link to={`/saptha`} className="uppercase d-b text-decoration-none">
+                    saptha
+                </Link>
                 <a className="uppercase d-b text-decoration-none">taksati</a>
                 <a className="uppercase d-b text-decoration-none">proshow</a>
             </div>
 
             <div className="wrap-small-links ff-montserrat fw-500 uppercase flex">
                 <div>
-                    <p>workshops</p>
-                    <p>expos</p>
-                    <p>competitions</p>
+                    <Link
+                        to={`/events`}
+                        className="d-b text-decoration-none hero-link-sm"
+                    >
+                        workshops
+                    </Link>
+                    <Link
+                        to={`/events`}
+                        className="d-b text-decoration-none hero-link-sm"
+                    >
+                        expos
+                    </Link>
+                    <Link
+                        to={`/events`}
+                        className="d-b text-decoration-none hero-link-sm"
+                    >
+                        competitions
+                    </Link>
                 </div>
             </div>
         </div>

@@ -54,4 +54,6 @@ $bp-desktop: 75em;
     --ff-gothic: "Dela Gothic One", cursive;
     --ff-montserrat: "Montserrat", sans-serif;
     --card-gradient: linear-gradient(90deg, #0db4be 0%, #70398e 31.56%, #e12fa5 60.73%, #bf5234 100%);
+
+    --bezier-default: cubic-bezier(0.08, 0.52, 0.52, 1);
 }

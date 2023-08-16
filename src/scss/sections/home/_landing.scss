@@ -254,6 +254,18 @@ body {
     }
 }
 
+.hero-link-sm {
+    color: #fff;
+    transition-timing-function: var(--bezier-default);
+    transition-duration: 0.3s;
+    transition-property: color;
+
+    &:hover,
+    &:focus {
+        color: hsl(var(--clr-blue) / 1);
+    }
+}
+
 .wrap-crowdstealers {
     h3 {
         margin-bottom: 3rem;

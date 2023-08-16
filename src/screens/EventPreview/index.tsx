@@ -42,6 +42,7 @@ export default function EventPreview() {
         contactNameSecond,
         contactNumberFirst,
         contactNumberSecond,
+        category,
     } = event.data.event
 
     const { id: imgId } = event.data.event.photo || {}
@@ -100,9 +101,11 @@ export default function EventPreview() {
                             {time && (
                                 <span className="d-b">Time: {transformTime(time)}</span>
                             )}
-                            <span className="d-b">
-                                Prizes worth: {prize ? prize : 'TBA'}
-                            </span>
+                            {category !== 'workshops' && (
+                                <span className="d-b">
+                                    Prizes worth: {prize ? prize : 'TBA'}
+                                </span>
+                            )}
                             <span className="d-b">
                                 Mode: {isOnline ? 'Online' : 'Offline'}
                             </span>
