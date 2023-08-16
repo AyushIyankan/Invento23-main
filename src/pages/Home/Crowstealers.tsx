@@ -69,7 +69,7 @@ export default function Crowstealers() {
 
     return (
         <div className="wrap-crowdstealers" ref={containerRef}>
-            <h3 className="ff-gothic uppercase fw-400">
+            {/* <h3 className="ff-gothic uppercase fw-400">
                 Crowd stealers
                 <motion.span
                     key={emotes[emote]}
@@ -87,8 +87,8 @@ export default function Crowstealers() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={container}
-            >
-                <MEventCard
+            > */}
+            {/* <MEventCard
                     date="TBA"
                     imgSrc="/static/landing/stock-ev.jpg"
                     title="the avial band"
@@ -108,8 +108,8 @@ export default function Crowstealers() {
                     title="the nandi sisters"
                     color="hsl(186, 71%, 46%)"
                     variants={item}
-                />
-            </motion.div>
+                /> */}
+            {/* </motion.div> */}
         </div>
     )
 }
