@@ -26,7 +26,7 @@ export default function PanelSection({ title, items, panelType }: IPanelSectionP
             }
         >
             <div className="panel--fixed">
-                <h2 className="header__bg uppercase text-grey flex flex-center">
+                <h2 className="header__bg uppercase text-grey flex flex-center break-word px-sm">
                     {title}
                 </h2>
             </div>

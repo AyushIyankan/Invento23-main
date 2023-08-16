@@ -7,7 +7,7 @@ import { About } from './About'
 import { Hero } from './Hero'
 import { Spotlight } from './spotlight'
 
-const sapthaSections = ['GroupEvents', 'SoloEvents', 'GeneralEvents']
+const sapthaSections = ['Group Events', 'Solo Events', 'General Events']
 const sapthaSectionMap = {
     [sapthaSections[0]]: eventCategories[6],
     [sapthaSections[1]]: eventCategories[7],
