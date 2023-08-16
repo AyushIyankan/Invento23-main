@@ -37,7 +37,7 @@ export default function CampusAmbassadors() {
         }
     }
     return (
-        <div className="wrap-CA mh-full">
+        <div className="wrap-CA mh-full pt-m-4-6">
             <section className="section-ca">
                 <h1 className="ff-serif fw-500 text-white striked-heading ca-heading">
                     Campus ambassador

@@ -5,7 +5,7 @@ import { COLS, FakeTableData } from './data'
 export function Leaderboard() {
     return (
         <div
-            className="wrap-leaderboards mh-full grid grid-3-col
+            className="wrap-leaderboards mh-full grid grid-3-col  pt-m-4-6
         "
         >
             <section className="leaderboards">

@@ -330,3 +330,29 @@
 .overflow-hidden {
     overflow: hidden;
 }
+
+.dim{
+    opacity: 0.4;
+}
+
+.dim:hover{
+    opacity: 1;
+}
+
+.pt-4-6{
+    padding-top: 4.6rem;
+}
+
+.pt-5{
+    padding-top: 5rem;
+}
+
+@media (max-width: 500px){
+    .pt-m-4-6{
+        padding-top: 4.6rem;
+    }
+    
+    .pt-m-5{
+        padding-top: 5rem;
+    }
+}
