@@ -51,7 +51,7 @@ export default function EventPreview() {
     return (
         <>
             <ScrollToTopOnMount />
-            <section className="eventPreview">
+            <section className="eventPreview pt-m-4-6">
                 <div className="bg__container grid">
                     <div className="preview-background" ref={ref} aria-hidden>
                         {/* <ImgWithFallback src={secure_url} imgDescription="" /> */}

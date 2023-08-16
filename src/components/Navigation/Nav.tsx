@@ -1,6 +1,6 @@
 import { motion, useScroll, useSpring } from 'framer-motion'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import { ReactComponent as RegisterArrow } from '../../assets/svg/Arrow.svg'
 import { ReactComponent as SearchLogo } from '../../assets/svg/ic_round-search.svg'
@@ -26,6 +26,7 @@ export default function Nav({
 }: INavBarProps) {
     const [navState, toggleNavState] = useToggle(false)
     const { scrollYProgress } = useScroll()
+    const location = useLocation()
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
@@ -34,7 +35,9 @@ export default function Nav({
     const { className, ...rest } = delegated
     return (
         <header
-            className={`${className} header--main bg-dark-purple flex`}
+            className={`${className} header--main bg-dark-purple flex ${
+                location.pathname === '/' ? 'dim' : ''
+            }`}
             style={{ '--navbar-bg': background } as React.CSSProperties}
             data-theme={theme}
             {...rest}

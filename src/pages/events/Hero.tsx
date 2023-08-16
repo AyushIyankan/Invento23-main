@@ -3,7 +3,7 @@ import { ReactComponent as InventoLogo } from '../../assets/svg/invento__logo-ou
 
 export function Hero() {
     return (
-        <div className="saptha__hero flex flex-col">
+        <div className="saptha__hero flex flex-col  pt-m-4-6">
             <div className="crumb-wrap flex">
                 <p className="fw-900 ff-serif text-white">
                     invento / <span className="text-magenta">events</span>
