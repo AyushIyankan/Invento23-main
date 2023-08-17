@@ -43,7 +43,7 @@ export default function Events() {
     // console.log(eventsBySection)
     return (
         <>
-            <div className="bg--full--saptha"></div>
+            <div className="bg--full--events"></div>
             <Hero />
             <About />
             {events.data?.success && eventsBySection}
