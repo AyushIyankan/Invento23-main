@@ -154,6 +154,11 @@
 .fs-700 {
     font-size: var(--fs-700);
 }
+
+.fs-750{
+    font-size: var(--fs-750);
+}
+
 .fs-800 {
     font-size: var(--fs-800);
 }
@@ -247,12 +252,19 @@
     background-color: hsl(var(--clr-blue-gray) / 1);
 }
 
+.bg-transparent{
+    background-color: transparent;
+}
+
 .side-padding {
     padding-inline: var(--side-padding, 1rem);
 }
 
 .t-center {
     text-align: center;
+}
+.t-right {
+    text-align: right;
 }
 
 .sr-only {
@@ -332,7 +344,8 @@
 }
 
 .dim{
-    opacity: 0.4;
+    opacity: 0.2;
+    transition: opacity 500ms linear;
 }
 
 .dim:hover{
@@ -355,4 +368,8 @@
     .pt-m-5{
         padding-top: 5rem;
     }
+}
+
+.line-1{
+    line-height: 1.3;
 }

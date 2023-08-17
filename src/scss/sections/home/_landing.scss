@@ -120,6 +120,34 @@ body {
     }
 }
 
+
+.hero{
+    .video{
+        position: absolute;
+        z-index: -1;
+    }
+
+    .btn-div{
+        position: absolute;
+        top: 40%;
+        left: 0;
+        z-index: 10;
+    }
+
+    .heading{
+        width: fit-content;
+        margin-left: auto;
+    }
+
+    .register{
+        margin-left: auto;
+        align-items: center;
+        justify-content: flex-end;
+        color: white;
+        font-size: 2.5rem;
+    }
+}
+
 .landing-hero {
     align-content: start;
     @include bp(tablet) {
@@ -184,20 +212,29 @@ body {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: repeat(3, 1fr);
 
+        a:nth-child(1) {
+            grid-column: 1/2;
+            grid-row: 1/2;
+        }
         a:nth-child(2) {
             grid-column: 1/2;
             grid-row: 2/3;
-            justify-self: center;
         }
 
         a:nth-child(3) {
-            grid-column: 2/3;
+            grid-column: 1/2;
             grid-row: 3/4;
         }
 
-        a:last-child {
+        a:nth-child(4) {
             grid-column: 2/3;
             grid-row: 2/3;
+            justify-self: self-end;
+        }
+
+        a:nth-child(1) {
+            grid-column: 2/3;
+            grid-row: 3/4;
             justify-self: self-end;
         }
     }
