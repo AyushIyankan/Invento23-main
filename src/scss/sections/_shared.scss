@@ -74,6 +74,9 @@ html {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
         linear-gradient(0deg, #329ae6 0%, #329ae6 100%), url(/static/events_mobile.webp),
         linear-gradient(180deg, #1d120c 0%, #1c120a 100%);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%),
+        linear-gradient(0deg, #329ae6 0%, #329ae6 100%), url(/static/events_mobile.jpg),
+        linear-gradient(180deg, #1d120c 0%, #1c120a 100%);
     background-blend-mode: soft-light, hue, normal, normal;
     // background: url(/static/events_mobile.jpg);
     // background: url(/static/events_mobile.webp);
