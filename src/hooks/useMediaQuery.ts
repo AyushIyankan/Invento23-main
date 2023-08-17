@@ -4,18 +4,31 @@ export function useMediaQuery(query: string) {
     const [matches, setMatches] = useState(false)
 
     useEffect(() => {
-        const queryList = window.matchMedia(query)
-
-        function handleChange(e: MediaQueryListEvent) {
-            setMatches(e.matches)
+        const media = window.matchMedia(query)
+        if (media.matches !== matches) {
+            setMatches(media.matches)
         }
 
-        queryList.addEventListener('change', handleChange)
+        const listener = () => {
+            setMatches(media.matches)
+        }
+
+        if (typeof media.addEventListener === 'function') {
+            media.addEventListener('change', listener)
+        } else {
+            media.addListener(listener)
+        }
 
         return () => {
-            queryList.removeEventListener('change', handleChange)
+            if (typeof media.removeEventListener === 'function') {
+                media.removeEventListener('change', listener)
+            } else {
+                media.removeListener(listener)
+            }
         }
-    }, [matches])
+    }, [matches, query])
 
     return matches
 }
+
+export const isSmall = () => useMediaQuery('(max-width: 768px)')
