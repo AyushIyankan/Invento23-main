@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 import { classUtil, webpLoader } from '../utils'
@@ -39,7 +39,7 @@ export function ImgWithFallback({
             {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
             <source srcSet={src} type={type} />
             {/* <source srcSet={src} type="image/png" /> */}
-            <motion.img
+            <m.img
                 src={src}
                 alt={imgDescription}
                 className={classUtil(

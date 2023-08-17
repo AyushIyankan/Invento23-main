@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring, Variants } from 'framer-motion'
+import { m, useScroll, useSpring, Variants } from 'framer-motion'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ import { ReactComponent as SearchLogo } from '../../assets/svg/ic_round-search.s
 import { ReactComponent as ExternalLinkIcon } from '../../assets/svg/icon_external-link.svg'
 import { ReactComponent as Logo } from '../../assets/svg/invento-logo-red.svg'
 import { ReactComponent as Menu } from '../../assets/svg/menu.svg'
-import { useScrollPosition, useToggle } from '../../hooks'
+import { useToggle } from '../../hooks'
 import Button from '../Button'
 
 interface INavBarProps extends React.HTMLAttributes<HTMLElement> {
@@ -124,7 +124,7 @@ export default function Nav({
                 <span className="sr-only">Menu</span>
                 <Menu className="menu" />
             </button>
-            <motion.nav
+            <m.nav
                 className="main-nav grid bg-black ff-serif fw-300 text-white"
                 data-expanded={navState}
                 // initial={false}
@@ -132,7 +132,7 @@ export default function Nav({
                 animate={navState ? 'open' : 'closed'}
                 // animate={'closed'}
             >
-                <motion.ul
+                <m.ul
                     variants={variants}
                     // initial="closed"
                     className="primary-navigation flow"
@@ -141,16 +141,16 @@ export default function Nav({
                     {navLinks.map(({ name, to }, index) => (
                         <NavItem key={index} text={name} to={to} i={index} />
                     ))}
-                </motion.ul>
+                </m.ul>
                 <div className="nav--footer">
                     <p className="fw-400">
                         invento
                         <span className="d-b fs-150 fw-300">gec palakkad</span>
                     </p>
                 </div>
-            </motion.nav>
+            </m.nav>
             {type !== 'landing' && (
-                <motion.span
+                <m.span
                     className="scroll-progress"
                     style={
                         {
@@ -159,7 +159,7 @@ export default function Nav({
                             '--progress-line-color': progressLineColor,
                         } as React.CSSProperties
                     }
-                ></motion.span>
+                ></m.span>
             )}
         </header>
     )
@@ -186,7 +186,7 @@ const linksVariant: Variants = {
 
 function NavItem({ to, text }: { to: string; text: string; i: number }) {
     return (
-        <motion.li
+        <m.li
             variants={linksVariant}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -201,6 +201,6 @@ function NavItem({ to, text }: { to: string; text: string; i: number }) {
             <NavLink className={`navlink flex`} to={`${to}`}>
                 {text} <ExternalLinkIcon />
             </NavLink>
-        </motion.li>
+        </m.li>
     )
 }

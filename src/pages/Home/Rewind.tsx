@@ -1,5 +1,5 @@
 import {
-    motion,
+    m,
     useAnimationFrame,
     useMotionValue,
     useReducedMotion,
@@ -86,19 +86,19 @@ const RewindMarquee = () => {
     })
 
     return (
-        <motion.div className="parallax">
-            <motion.div className="scroller" style={{ x }}>
-                <motion.span>
+        <m.div className="parallax">
+            <m.div className="scroller" style={{ x }}>
+                <m.span>
                     <RewindText />
-                </motion.span>
-                <motion.span aria-hidden>
+                </m.span>
+                <m.span aria-hidden>
                     <RewindText />
-                </motion.span>
-                <motion.span aria-hidden>
+                </m.span>
+                <m.span aria-hidden>
                     <RewindText />
-                </motion.span>
-            </motion.div>
-        </motion.div>
+                </m.span>
+            </m.div>
+        </m.div>
     )
 }
 
@@ -109,7 +109,7 @@ export function Rewind() {
             <div className="wrap-sliders group-wrapper group--top" ref={constraintRef}>
                 <RewindMarquee />
                 <Heart className="heart-sm" />
-                <motion.div
+                <m.div
                     className="invento-sm"
                     // initial={{ opacity: 0 }}
                     whileHover={{ rotate: 360, cursor: 'grabbing' }}
@@ -118,13 +118,13 @@ export function Rewind() {
                     dragConstraints={constraintRef}
                 >
                     <InventoLogo />
-                </motion.div>
+                </m.div>
                 <div className="wrap-slider slider--top">
                     <Slider images={SLIDERITEMS} />
                 </div>
                 <div className="wrap-sliders group-wrapper group--bottom">
                     <RewindMarquee />
-                    <motion.div
+                    <m.div
                         className="spinner-sm"
                         whileHover={{ rotate: 360 }}
                         transition={{
@@ -135,7 +135,7 @@ export function Rewind() {
                         }}
                     >
                         <Spinner />
-                    </motion.div>
+                    </m.div>
 
                     <div className="wrap-slider slider--bottom">
                         <Slider images={SLIDERITEMS} />

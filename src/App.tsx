@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import { Cloudinary } from '@cloudinary/url-gen'
+import { domAnimation, LazyMotion } from 'framer-motion'
 import { lazy, Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -187,7 +188,9 @@ function App() {
     return (
         <Suspense fallback={<Loading />}>
             <QueryClientProvider client={queryClient}>
-                <RouterProvider router={routes} />
+                <LazyMotion features={domAnimation} strict>
+                    <RouterProvider router={routes} />
+                </LazyMotion>
                 <ReactQueryDevtools initialIsOpen={false} />
                 <ToastContainer theme="dark" autoClose={1000} limit={1} />
             </QueryClientProvider>

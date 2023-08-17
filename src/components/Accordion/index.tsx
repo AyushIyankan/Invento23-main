@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { PropsWithChildren, useId } from 'react'
 
 import { ReactComponent as AccordionUp } from '../../assets/svg/accordion-up.svg'
@@ -56,7 +56,7 @@ export function AccordionItem({
     children,
 }: PropsWithChildren<IAccordionItem>) {
     return (
-        <motion.div
+        <m.div
             initial="collapsed"
             animate="open"
             exit="collapsed"
@@ -76,12 +76,12 @@ export function AccordionItem({
             role="region"
             data-visible={visibility}
         >
-            <motion.div
+            <m.div
                 variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
                 transition={{ duration: 0.5 }}
             >
                 {children}
-            </motion.div>
-        </motion.div>
+            </m.div>
+        </m.div>
     )
 }
