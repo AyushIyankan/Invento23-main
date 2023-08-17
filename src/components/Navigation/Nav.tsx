@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion, useScroll, useSpring, Variants } from 'framer-motion'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -15,6 +15,51 @@ interface INavBarProps extends React.HTMLAttributes<HTMLElement> {
     progressLineColor: string
     theme?: 'light'
     type?: 'landing'
+}
+
+const navLinks = [
+    {
+        name: 'Home',
+        to: '/',
+    },
+    {
+        name: 'About',
+        to: '/about',
+    },
+    {
+        name: 'Events',
+        to: '/events',
+    },
+    {
+        name: 'Saptha',
+        to: '/saptha',
+    },
+    {
+        name: 'Register',
+        to: '/register',
+    },
+]
+
+const variants: Variants = {
+    open: {
+        transition: {
+            type: 'spring',
+            stiffness: 20,
+            restDelta: 2,
+            staggerChildren: 0.07,
+            delayChildren: 0.2,
+        },
+    },
+    closed: {
+        transition: {
+            delay: 0.5,
+            type: 'spring',
+            stiffness: 400,
+            damping: 40,
+            staggerChildren: 0.05,
+            staggerDirection: -1,
+        },
+    },
 }
 
 export default function Nav({
@@ -79,44 +124,31 @@ export default function Nav({
                 <span className="sr-only">Menu</span>
                 <Menu className="menu" />
             </button>
-            <nav
+            <motion.nav
                 className="main-nav grid bg-black ff-serif fw-300 text-white"
                 data-expanded={navState}
+                // initial={false}
+                initial="closed"
+                animate={navState ? 'open' : 'closed'}
+                // animate={'closed'}
             >
-                <ul className="primary-navigation flow" id="primary-navigation">
-                    <li>
-                        <NavLink className={`navlink flex`} to={'/'}>
-                            Home <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className={`navlink flex`} to={'/about'}>
-                            About us <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className={`navlink flex`} to={'/events'}>
-                            Events <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className={`navlink flex`} to={'/saptha'}>
-                            Saptha <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink className={`navlink flex`} to={'/register'}>
-                            Register <ExternalLinkIcon />
-                        </NavLink>
-                    </li>
-                </ul>
+                <motion.ul
+                    variants={variants}
+                    // initial="closed"
+                    className="primary-navigation flow"
+                    id="primary-navigation"
+                >
+                    {navLinks.map(({ name, to }, index) => (
+                        <NavItem key={index} text={name} to={to} i={index} />
+                    ))}
+                </motion.ul>
                 <div className="nav--footer">
                     <p className="fw-400">
                         invento
-                        <span className="d-b fs-150 fw-300">gec palakad</span>
+                        <span className="d-b fs-150 fw-300">gec palakkad</span>
                     </p>
                 </div>
-            </nav>
+            </motion.nav>
             {type !== 'landing' && (
                 <motion.span
                     className="scroll-progress"
@@ -130,5 +162,45 @@ export default function Nav({
                 ></motion.span>
             )}
         </header>
+    )
+}
+
+const linksVariant: Variants = {
+    open: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            y: { stiffness: 1000, velocity: -100 },
+        },
+    },
+    closed: {
+        y: ' 100%',
+        opacity: 0,
+        transition: {
+            y: {
+                stiffness: 1000,
+            },
+        },
+    },
+}
+
+function NavItem({ to, text }: { to: string; text: string; i: number }) {
+    return (
+        <motion.li
+            variants={linksVariant}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            // initial="open"
+            // animate="closed"
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                width: 'fit-content',
+            }}
+        >
+            <NavLink className={`navlink flex`} to={`${to}`}>
+                {text} <ExternalLinkIcon />
+            </NavLink>
+        </motion.li>
     )
 }
