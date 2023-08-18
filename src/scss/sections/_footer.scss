@@ -60,6 +60,9 @@
         &--item:focus {
             color: hsl(var(--clr-magenta) / 1);
             border-bottom: 1px solid currentColor;
+            transition:
+                color 0.2s var(--bezier-default),
+                border-bottom 0.2s var(--bezier-default);
         }
     }
 
@@ -70,6 +73,7 @@
 
         &--link:hover & > *,
         &--link:focus & > * {
+            transition: fill 0.2s var(--bezier-default);
             fill: hsl(var(--clr-magenta) / 1);
         }
     }
