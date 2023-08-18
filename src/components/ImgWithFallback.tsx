@@ -35,25 +35,21 @@ export function ImgWithFallback({
     }, [src])
 
     return (
-        <picture {...delegated}>
+        <picture {...delegated} className={imgLoading ? 'pulsing' : ''}>
             {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
             <source srcSet={src} type={type} />
             {/* <source srcSet={src} type="image/png" /> */}
+
             <m.img
                 src={src}
                 alt={imgDescription}
-                className={classUtil(
-                    {
-                        pulse: pulsing,
-                    },
-                    imgClass || '',
-                )}
+                className={imgClass}
                 initial={{ opacity: 0 }}
                 animate={{
                     opacity: imgLoading ? 0 : 1,
                 }}
                 transition={{
-                    opacity: { duration: 0.5, delay: 0.5 },
+                    opacity: { duration: 0.4, delay: 0.5 },
                 }}
                 onLoad={() => {
                     setImgLoading(false)
