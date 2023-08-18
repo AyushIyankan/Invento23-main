@@ -1,6 +1,5 @@
 import { EventType } from '../api/schema'
 import CardGroup from './Card/CardGroup'
-
 interface IPanelSectionProps {
     title: string
     items: EventType[]
