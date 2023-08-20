@@ -1,8 +1,10 @@
-import { HTMLMotionProps, motion, Variants } from 'framer-motion'
+import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
+import { HTMLMotionProps, m, Variants } from 'framer-motion'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
+import { cld } from '../../App'
 import { useGroupStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
@@ -12,6 +14,7 @@ import { ImgWithFallback } from '../ImgWithFallback'
 interface ICardProps extends HTMLMotionProps<'div'> {
     bgUrl: string
     title: string
+    imgId?: string
 }
 
 const parentVariants: Variants = {
@@ -49,31 +52,45 @@ const touchTextVariants: Variants = {
     },
 }
 
-export default function Card({ bgUrl, title, ...rest }: ICardProps) {
+export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
     // Fix this not working
     // const isMobile = useMediaQuery('(min-width: 48em)')
     //debugger
     return (
-        <motion.div
+        <m.div
             {...rest}
             className="event-card"
             whileHover="hover"
             initial="rest"
             animate="rest"
         >
-            <motion.div
+            <m.div
                 className="event-card-img"
                 // variants={!isMobile ? parentVariants : undefined}
             >
-                <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
-            </motion.div>
-            <motion.div
+                {/* <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
+                 */}
+                {imgId ? (
+                    <AdvancedImage
+                        cldImg={cld.image(imgId).format('auto').quality('auto')}
+                        plugins={[
+                            lazyload(),
+                            placeholder({
+                                mode: 'blur',
+                            }),
+                        ]}
+                    />
+                ) : (
+                    <ImgWithFallback src={bgUrl} imgDescription="card-placeholder" />
+                )}
+            </m.div>
+            <m.div
                 className="event-card-title"
                 // variants={!isMobile ? textVariants : touchTextVariants}
             >
                 <p className="ff-days-one fw-300 text-white uppercase">{title}</p>
-            </motion.div>
-        </motion.div>
+            </m.div>
+        </m.div>
     )
 }
 

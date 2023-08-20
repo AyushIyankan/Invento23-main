@@ -11,12 +11,13 @@ export function About() {
             <div className="saptha__about__text">
                 <h3 className="fs-650 fw-400">About our events</h3>
                 <p>
-                    A captivating cultural extravaganza with a blend of art from across
-                    the nation. Presenting performances from professional communities
-                    across the state. An assortment of intriguing events held in venues
-                    across our campus, is something to cater to all tastes. Saptha
-                    promises to be an exhilarating experience leaving you elated from
-                    beginning to end.
+                    Our tech events are designed to ignite your curiosity, elevate your
+                    skills, and connect you with the forefront of technological
+                    advancements. Join us at our Tech Fest and be a part of an
+                    electrifying atmosphere where innovation knows no bounds. Whether
+                    you&apos;re a tech wizard, a curious learner, or simply someone
+                    intrigued by the digital era, our tech events have something
+                    spectacular in store for you. Get ready to unravel the future!
                 </p>
             </div>
         </section>

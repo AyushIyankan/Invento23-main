@@ -53,6 +53,13 @@
     width: 100%;
 }
 
+.card-link-wrap {
+    transition: transform 0.2s ease-in;
+    will-change: transform, opacity;
+    opacity: var(--card-opacity);
+    transform: scale(var(--card-scale));
+}
+
 .card-link:hover .event-card-title > p {
     color: var(--panel-color);
 }

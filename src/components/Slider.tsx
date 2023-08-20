@@ -1,5 +1,5 @@
+import { isSmall } from '../hooks'
 import { ImgWithFallback } from './ImgWithFallback'
-
 export interface SliderItemProps {
     id: string
     src: string
@@ -12,13 +12,14 @@ interface SliderProps {
 }
 
 export default function Slider({ images, direction = 'ltr' }: SliderProps) {
+    const isMobile = isSmall()
     const items = images.map((image) => (
         <div className="slider__item" key={image.id}>
             <ImgWithFallback
                 src={image.src}
                 imgDescription={image.title}
                 className="wrap-slider-img"
-                imgClass="img-greyscale"
+                imgClass={!isMobile ? 'img-greyscale' : ''}
             />
         </div>
     ))

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { CSSProperties, forwardRef } from 'react'
 
 import { ReactComponent as IconArrow } from '../../assets/svg/Arrow.svg'
@@ -73,4 +73,4 @@ export const EventCard = forwardRef<HTMLElement, ECardProps>(function Ecard(
     )
 })
 
-export const MEventCard = motion(EventCard)
+export const MEventCard = m(EventCard)

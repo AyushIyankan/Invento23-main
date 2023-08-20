@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
 
 import Button from '../../components/Button'
@@ -9,7 +9,7 @@ export function Summary() {
     const [selectedindex, setSelectedindex] = useState(0)
 
     const bucketItems = bucket.map((item) => (
-        <motion.div
+        <m.div
             layout
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -37,7 +37,7 @@ export function Summary() {
                     // setisFilled((state) => !state)
                 }}
             />
-        </motion.div>
+        </m.div>
     ))
     return (
         <>
@@ -45,7 +45,7 @@ export function Summary() {
             <div className="form__eventsWrap form__summaryWrap grid">
                 <AnimatePresence>
                     {bucket.length ? (
-                        <motion.div
+                        <m.div
                             className="grid"
                             // exit={{ opacity: 0, scale: 0.8 }}
                             // initial={{ opacity: 0, scale: 0.8 }}
@@ -66,9 +66,9 @@ export function Summary() {
                             >
                                 Checkout
                             </Button>
-                        </motion.div>
+                        </m.div>
                     ) : (
-                        <motion.p
+                        <m.p
                             className="bucket-no-item-fallback t-center ff-serif text-grey capitalize"
                             exit={{ opacity: 0 }}
                             initial={{ opacity: 0 }}
@@ -76,7 +76,7 @@ export function Summary() {
                         >
                             {' '}
                             select some events{' '}
-                        </motion.p>
+                        </m.p>
                     )}
                 </AnimatePresence>
             </div>

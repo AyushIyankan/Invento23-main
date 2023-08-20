@@ -24,6 +24,12 @@ const eventSchema = z.object({
             secure_url: z.string(),
         })
         .optional(),
+    photoMobile: z
+        .object({
+            id: z.string(),
+            secure_url: z.string(),
+        })
+        .optional(),
     prize: z.string().default(''),
     _id: z.string(),
     name: z.string(),

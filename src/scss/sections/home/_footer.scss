@@ -83,7 +83,7 @@
     .footer__sub {
         border-top: 0;
         a {
-            transition: color 0.3s;
+            transition: color 0.3s var(--bezier-default);
         }
         a:hover {
             color: #fff;

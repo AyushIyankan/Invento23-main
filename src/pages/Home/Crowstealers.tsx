@@ -1,4 +1,4 @@
-import { motion, useInView, Variants } from 'framer-motion'
+import { m, useInView, Variants } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 import { MEventCard } from '../../components/Card'

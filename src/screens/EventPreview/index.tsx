@@ -1,4 +1,4 @@
-import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/react'
+import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
 import { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -6,6 +6,7 @@ import { cld } from '../../App'
 import Button from '../../components/Button'
 import { ImgWithFallback } from '../../components/ImgWithFallback'
 import Loading from '../../components/Loading'
+import { isSmall } from '../../hooks'
 import useEventQuery from '../../hooks/useEventQuery'
 import { transformDate, transformTime } from '../../utils'
 import { NotFound } from '../NotFound'
@@ -20,6 +21,7 @@ function ScrollToTopOnMount() {
 
 export default function EventPreview() {
     const ref = useRef<HTMLDivElement>(null)
+    const isMobile = isSmall()
 
     const { id = '232' } = useParams<{ id: string }>()
 
@@ -46,6 +48,10 @@ export default function EventPreview() {
     } = event.data.event
 
     const { id: imgId } = event.data.event.photo || {}
+    const { id: imgIdMobile } = event.data.event.photoMobile || {}
+
+    let imgIdToUse = imgId
+    if (isMobile && imgIdMobile) imgIdToUse = imgIdMobile
 
     const eventRules = rules?.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
 
@@ -56,17 +62,20 @@ export default function EventPreview() {
                 <div className="bg__container grid">
                     <div className="preview-background" ref={ref} aria-hidden>
                         {/* <ImgWithFallback src={secure_url} imgDescription="" /> */}
-                        {imgId ? (
+                        {imgIdToUse ? (
                             <AdvancedImage
                                 style={{
                                     maxWidth: '100%',
                                 }}
-                                cldImg={cld.image(imgId).format('auto').quality('auto')}
+                                cldImg={cld
+                                    .image(imgIdToUse)
+                                    .format('auto')
+                                    .quality('auto')}
                                 plugins={[
                                     lazyload(),
-                                    responsive({
-                                        steps: [680, 900, 1150, 1500],
-                                    }),
+                                    // responsive({
+                                    //     steps: [680, 900, 1150, 1500],
+                                    // }),
                                     placeholder({
                                         mode: 'vectorize',
                                     }),
