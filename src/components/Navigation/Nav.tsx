@@ -47,7 +47,7 @@ const variants: Variants = {
             stiffness: 20,
             restDelta: 2,
             staggerChildren: 0.07,
-            delayChildren: 0.2,
+            delayChildren: 0.5,
         },
     },
     closed: {
