@@ -1,5 +1,5 @@
 import { m, MotionStyle, useScroll } from 'framer-motion'
-import { useRef } from 'react'
+import { CSSProperties, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import { EventType } from '../../api/schema'
@@ -19,7 +19,7 @@ function CardGroup({ event }: { event: EventType }) {
             style={
                 {
                     '--card-scale': scrollYProgress,
-                    opacity: scrollYProgress,
+                    '--card-opacity': scrollYProgress,
                     // scale: scrollYProgress,
                 } as MotionStyle
             }
