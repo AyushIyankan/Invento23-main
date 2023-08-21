@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <>
             <Hero />
-            <div className="flow main-wrapper grid" style={{ paddingTop: '10rem' }}>
+            <div className="flow main-wrapper grid">
                 <Crowstealers />
             </div>
             <Rewind />
