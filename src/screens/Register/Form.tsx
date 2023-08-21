@@ -1,5 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import { FormInput } from '../../components/Form'
 import { useDetailStore } from '../../store'
@@ -16,6 +18,8 @@ interface FormInputs {
 
 export function RegistrationForm() {
     const { personalDetails, setData } = useDetailStore((state) => state)
+    const [btnText, setBtnText] = useState('Save Changes')
+    const [successText, setSuccessText] = useState('')
     const {
         register,
         handleSubmit,
@@ -66,10 +70,22 @@ export function RegistrationForm() {
     const onSubmit = (data: FormInputs) => {
         // console.log({ data, referral: data.referral })
         setData(data)
+        setBtnText('Saved')
+        toast.success('Saved')
+        setTimeout(() => {
+            setBtnText('Save Changes')
+        }, 2000)
+        setSuccessText('You can now proceed to select events')
     }
 
     // const disableParams = !isDirty || !isValid
     const disableParams = !isValid
+
+    useEffect(() => {
+        if (disableParams) {
+            setSuccessText('')
+        }
+    }, [isDirty, isValid])
 
     // console.log({ isDirty, isValid })
     // console.log({ errors })
@@ -90,8 +106,11 @@ export function RegistrationForm() {
                         disabled={disableParams}
                         aria-disabled={disableParams}
                     >
-                        Save Changes
+                        {btnText}
                     </button>
+                    {successText.length > 0 && (
+                        <p className="text-green form-success-text">{successText}</p>
+                    )}
                 </form>
             </div>
         </div>
