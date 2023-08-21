@@ -5,17 +5,22 @@ import topRightArrow from '../../assets/svg/right-top-arrow.svg'
 import mute from '../../assets/svg/mute.svg'
 import unmute from '../../assets/svg/unmute.svg'
 import { useEffect, useState } from 'react'
+import { useMediaQuery } from '../../hooks'
 import { Link } from 'react-router-dom'
 
 export function Hero() {
     const [muted, setMuted] = useState(true)
 
+    useEffect
+
     return (
         <section className="hero panel">
             <div className="video">
-                <video loop autoPlay muted={muted} style={{ objectFit: 'cover' }}>
-                    <source src={inventoPromoWebm} type="video/webm" />
+                <video className="vid-desktop" loop autoPlay muted={muted}>
                     <source src={inventoPromoDesktopMp4} type="video/mp4" />
+                </video>
+                <video className="vid-mobile" loop autoPlay muted={muted}>
+                    <source src={inventoPromoMobileMp4} type="video/mp4" />
                 </video>
             </div>
             <div className="btn-div">

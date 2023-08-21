@@ -125,7 +125,33 @@ body {
     .video{
         position: absolute;
         z-index: -1;
+        width: 100%;
+        .vid-mobile{
+            display: none;
+            object-fit: cover;
+            width: 100%;
+
+        }
+        .vid-desktop{
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            
+        }
+
+        
+    @media (max-width: 75em) {
+        .vid-mobile{
+            display: block;
+        }
+
+        .vid-desktop{
+            display: none;
+        }
     }
+
+    }
+
 
     .btn-div{
         position: absolute;
@@ -304,6 +330,28 @@ body {
         align-items: center;
         @include bp(tablet) {
             grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        }
+        
+    }
+
+    @media (max-width: 75em) {
+        &{
+            padding-top: 80rem;
+        }
+    }
+    @media (max-width: 50em) {
+        &{
+            padding-top: 50rem;
+        }
+    }
+    @media (max-width: 40em) {
+        &{
+            padding-top: 20rem;
+        }
+    }
+    @media (max-width: 35em) {
+        &{
+            padding-top: 10rem;
         }
     }
 }

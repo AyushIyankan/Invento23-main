@@ -42,6 +42,7 @@ export default function EventPreview() {
         contactNameSecond,
         contactNumberFirst,
         contactNumberSecond,
+        eventType,
     } = event.data.event
 
     const { id: imgId } = event.data.event.photo || {}
@@ -87,9 +88,11 @@ export default function EventPreview() {
                         /> */}
                     </div>
 
-                    <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
-                        {name}
-                    </p>
+                    {!(eventType === 'techfest') && (
+                        <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
+                            {name}
+                        </p>
+                    )}
                 </div>
                 <div className="eventPreview__content panel--bg mh-full grid">
                     <div className="eventPreview__about text-white ff-serif centeredContainer side-padding flow">
