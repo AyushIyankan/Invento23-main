@@ -59,3 +59,13 @@ export const transformTime = (time: string) => {
 
     return result
 }
+
+export async function dataUrlToFile(dataUrl: string, fileName: string): Promise<File> {
+    const res = await fetch(dataUrl)
+    const blob = await res.blob()
+    return new File([blob], fileName, {
+        // type: 'image/png'
+        // type: blob.type
+        type: dataUrl.match(/^data:(.+);base64/)?.[1],
+    })
+}

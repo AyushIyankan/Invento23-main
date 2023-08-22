@@ -1,10 +1,14 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
-import { HTMLMotionProps, m, Variants } from 'framer-motion'
+
+import { HTMLMotionProps, m } from 'framer-motion'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 import { cld } from '../../App'
+
+import { isSmall } from '../../hooks'
 import { useGroupStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
@@ -17,40 +21,40 @@ interface ICardProps extends HTMLMotionProps<'div'> {
     imgId?: string
 }
 
-const parentVariants: Variants = {
-    rest: {
-        transition: {
-            duration: 2,
-            type: 'tween',
-            ease: 'easeIn',
-        },
-    },
-    hover: {
-        transition: {
-            duration: 0.4,
-            type: 'tween',
-            ease: 'easeOut',
-        },
-    },
-}
+// const parentVariants: Variants = {
+//     rest: {
+//         transition: {
+//             duration: 2,
+//             type: 'tween',
+//             ease: 'easeIn',
+//         },
+//     },
+//     hover: {
+//         transition: {
+//             duration: 0.4,
+//             type: 'tween',
+//             ease: 'easeOut',
+//         },
+//     },
+// }
 
-const textVariants: Variants = {
-    rest: {
-        opacity: 0,
-        y: '-50%',
-    },
-    hover: {
-        opacity: 1,
-        y: '0%',
-    },
-}
+// const textVariants: Variants = {
+//     rest: {
+//         opacity: 0,
+//         y: '-50%',
+//     },
+//     hover: {
+//         opacity: 1,
+//         y: '0%',
+//     },
+// }
 
-const touchTextVariants: Variants = {
-    rest: {
-        opacity: 1,
-        y: '0%',
-    },
-}
+// const touchTextVariants: Variants = {
+//     rest: {
+//         opacity: 1,
+//         y: '0%',
+//     },
+// }
 
 export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
     // Fix this not working
@@ -140,6 +144,8 @@ export function ItemCard({
     const { addMembers, groups } = useGroupStore((state) => state)
     const [loading] = useState(false)
 
+    const isSmallScreen = isSmall()
+
     const [defaultValue] = useState(() => {
         const defaultValues = groups?.[itemId]?.reduce((acc, val) => {
             const key = Object.keys(val)[0]
@@ -169,7 +175,11 @@ export function ItemCard({
 
     return (
         <div className="itemCard">
-            <div className={`itemCard_details grid ${isGroup && 'group'}`}>
+            <div
+                className={`itemCard_details grid ${
+                    isGroup && 'itemCard_details--group'
+                }`}
+            >
                 <div className="wrap-img flex">
                     <img src={`${image}`} alt={`${title}`} />
                 </div>
@@ -179,7 +189,8 @@ export function ItemCard({
                 </Link>
 
                 <p className="ff-serif text-black fw-400 detail-fee">
-                    {isGroup ? 'Team Registration Fee' : 'Registration Fee'}: {fee}
+                    {/* {isGroup ? 'Team Registration Fee' : 'Registration Fee'}: {fee} */}
+                    Registration Fee: {fee}
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">
                     {' '}
@@ -205,7 +216,8 @@ export function ItemCard({
                     <div
                         className="wrap-icon-group"
                         style={{
-                            display: mode === 'show' ? 'none' : 'initial',
+                            display:
+                                mode === 'show' || isSmallScreen ? 'none' : 'initial',
                         }}
                     >
                         <svg
@@ -251,16 +263,7 @@ export function ItemCard({
                         fields below.
                     </p>
 
-                    <form
-                        className="itemCard_group grid mt-sm text-black ff-serif fw-400"
-                        // onSubmit={handleSubmit((data) => {
-                        //     const members = Object.entries(data).map(([key, value]) => ({
-                        //         [key]: value,
-                        //     }))
-                        //     addMembers(itemId, members)
-                        //     console.log(data)
-                        // })}
-                    >
+                    <form className="itemCard_group grid mt-sm text-black ff-serif fw-400">
                         {Array.from({ length: props.maxParticipants }).map((_, i) => (
                             <FormInput
                                 key={itemId + i}
