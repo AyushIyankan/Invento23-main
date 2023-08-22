@@ -1,5 +1,5 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
-import { HTMLMotionProps, m, Variants } from 'framer-motion'
+import { HTMLMotionProps, m } from 'framer-motion'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
@@ -18,40 +18,40 @@ interface ICardProps extends HTMLMotionProps<'div'> {
     imgId?: string
 }
 
-const parentVariants: Variants = {
-    rest: {
-        transition: {
-            duration: 2,
-            type: 'tween',
-            ease: 'easeIn',
-        },
-    },
-    hover: {
-        transition: {
-            duration: 0.4,
-            type: 'tween',
-            ease: 'easeOut',
-        },
-    },
-}
+// const parentVariants: Variants = {
+//     rest: {
+//         transition: {
+//             duration: 2,
+//             type: 'tween',
+//             ease: 'easeIn',
+//         },
+//     },
+//     hover: {
+//         transition: {
+//             duration: 0.4,
+//             type: 'tween',
+//             ease: 'easeOut',
+//         },
+//     },
+// }
 
-const textVariants: Variants = {
-    rest: {
-        opacity: 0,
-        y: '-50%',
-    },
-    hover: {
-        opacity: 1,
-        y: '0%',
-    },
-}
+// const textVariants: Variants = {
+//     rest: {
+//         opacity: 0,
+//         y: '-50%',
+//     },
+//     hover: {
+//         opacity: 1,
+//         y: '0%',
+//     },
+// }
 
-const touchTextVariants: Variants = {
-    rest: {
-        opacity: 1,
-        y: '0%',
-    },
-}
+// const touchTextVariants: Variants = {
+//     rest: {
+//         opacity: 1,
+//         y: '0%',
+//     },
+// }
 
 export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
     // Fix this not working

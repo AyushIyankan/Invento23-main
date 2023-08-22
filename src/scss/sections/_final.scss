@@ -1,0 +1,31 @@
+.text-review {
+    padding-top: 2rem;
+}
+
+.checkout_btn_wrap {
+    --gap: 1.56rem;
+
+    .btn--checkout {
+        background-color: hsl(var(--clr-dark-gray) / 1);
+
+        &:hover,
+        &:focus {
+            background-color: hsl(var(--clr-dark-gray) / 0.8);
+        }
+    }
+}
+
+.final_qr {
+    p {
+        align-self: self-start;
+    }
+}
+
+.checkout .total {
+    margin-block: 2.19rem;
+}
+
+.btn--go-back {
+    border: 1px solid hsl(var(--clr-dark-gray) / 1);
+    border-radius: 0.2rem;
+}

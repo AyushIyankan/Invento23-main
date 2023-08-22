@@ -19,14 +19,12 @@
 @import "sections/home/landing";
 @import "sections/home/rewind";
 @import "sections/home/footer";
-
-// debug
-
+@import "sections/final";
+@import "sections/status"; // debug
 // * {
 //     outline: 1px red solid !important;
 //     visibility: visible !important;
 // }
-
 html {
     color-scheme: dark;
 }

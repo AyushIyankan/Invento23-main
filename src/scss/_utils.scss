@@ -211,6 +211,10 @@
     color: hsl(var(--clr-green) / 1) !important;
 }
 
+.text-red {
+    color: hsl(var(--clr-red) / 1) !important;
+}
+
 .bg-black {
     background-color: hsl(var(--clr-black) / 1);
 }

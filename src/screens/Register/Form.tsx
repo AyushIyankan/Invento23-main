@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { m } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
@@ -101,12 +102,19 @@ export function RegistrationForm() {
                 >
                     {InputFields}
                     <button
+                        key={btnText}
                         type="submit"
                         className="btn btn--save text-white"
                         disabled={disableParams}
                         aria-disabled={disableParams}
                     >
-                        {btnText}
+                        <m.span
+                            key={btnText}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                        >
+                            {btnText}
+                        </m.span>
                     </button>
                     {successText.length > 0 && (
                         <p className="text-green form-success-text">{successText}</p>

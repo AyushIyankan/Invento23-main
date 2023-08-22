@@ -39,11 +39,11 @@ const LazyNotFound = lazy(() =>
     }),
 )
 
-const LazySoon = lazy(() =>
-    import('./screens/Soon').then((m) => {
-        return { default: m.Soon }
-    }),
-)
+// const LazySoon = lazy(() =>
+//     import('./screens/Soon').then((m) => {
+//         return { default: m.Soon }
+//     }),
+// )
 
 const LazyLeaderBoardLayout = lazy(() =>
     import('./pages/Leaderboard/Layout').then((m) => {
@@ -99,6 +99,15 @@ const LazyFormLayout = lazy(() =>
     }),
 )
 
+const LazyFinal = lazy(() =>
+    import('./screens/FinalGlance/').then((m) => {
+        return { default: m.FinalGlanceLayout }
+    }),
+)
+
+const LazyStatusLayout = lazy(() => import('./Layouts/StatusLayout'))
+const LazyStatus = lazy(() => import('./screens/Status'))
+
 const LazyRegister = lazy(() => import('./screens/Register'))
 
 const routes = createBrowserRouter([
@@ -143,14 +152,14 @@ const routes = createBrowserRouter([
     },
     {
         path: '/register',
-        element: <LazySoon />,
-        // element: <LazyFormLayout />,
-        // children: [
-        //     {
-        //         index: true,
-        //         element: <LazyRegister />,
-        //     },
-        // ],
+        // element: <LazySoon />,
+        element: <LazyFormLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyRegister />,
+            },
+        ],
     },
     // {
     //     path: '/about',
@@ -179,6 +188,21 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <LazyCA />,
+            },
+        ],
+    },
+    {
+        path: '/final',
+        element: <LazyFinal />,
+    },
+
+    {
+        path: '/status',
+        element: <LazyStatusLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyStatus />,
             },
         ],
     },

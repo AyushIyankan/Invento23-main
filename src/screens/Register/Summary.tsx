@@ -61,10 +61,10 @@ export function Summary() {
                             </div>
                             <Button
                                 type="internalUrl"
-                                to="/checkout"
+                                to="/final"
                                 classNames="btn btn--link btn--save text-white ff-serif btn--checkout"
                             >
-                                Checkout
+                                Proceed to the Final Step
                             </Button>
                         </m.div>
                     ) : (
