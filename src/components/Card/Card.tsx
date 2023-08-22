@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 import { cld } from '../../App'
+import { isSmall } from '../../hooks'
 import { useGroupStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
@@ -140,6 +141,8 @@ export function ItemCard({
     const { addMembers, groups } = useGroupStore((state) => state)
     const [loading] = useState(false)
 
+    const isSmallScreen = isSmall()
+
     const [defaultValue] = useState(() => {
         const defaultValues = groups?.[itemId]?.reduce((acc, val) => {
             const key = Object.keys(val)[0]
@@ -169,7 +172,11 @@ export function ItemCard({
 
     return (
         <div className="itemCard">
-            <div className={`itemCard_details grid ${isGroup && 'group'}`}>
+            <div
+                className={`itemCard_details grid ${
+                    isGroup && 'itemCard_details--group'
+                }`}
+            >
                 <div className="wrap-img flex">
                     <img src={`${image}`} alt={`${title}`} />
                 </div>
@@ -179,7 +186,8 @@ export function ItemCard({
                 </Link>
 
                 <p className="ff-serif text-black fw-400 detail-fee">
-                    {isGroup ? 'Team Registration Fee' : 'Registration Fee'}: {fee}
+                    {/* {isGroup ? 'Team Registration Fee' : 'Registration Fee'}: {fee} */}
+                    Registration Fee: {fee}
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">
                     {' '}
@@ -205,7 +213,8 @@ export function ItemCard({
                     <div
                         className="wrap-icon-group"
                         style={{
-                            display: mode === 'show' ? 'none' : 'initial',
+                            display:
+                                mode === 'show' || isSmallScreen ? 'none' : 'initial',
                         }}
                     >
                         <svg
@@ -251,16 +260,7 @@ export function ItemCard({
                         fields below.
                     </p>
 
-                    <form
-                        className="itemCard_group grid mt-sm text-black ff-serif fw-400"
-                        // onSubmit={handleSubmit((data) => {
-                        //     const members = Object.entries(data).map(([key, value]) => ({
-                        //         [key]: value,
-                        //     }))
-                        //     addMembers(itemId, members)
-                        //     console.log(data)
-                        // })}
-                    >
+                    <form className="itemCard_group grid mt-sm text-black ff-serif fw-400">
                         {Array.from({ length: props.maxParticipants }).map((_, i) => (
                             <FormInput
                                 key={itemId + i}
