@@ -108,3 +108,28 @@ export const useGroupStore = create<GroupStore>()(
         ),
     ),
 )
+
+interface PickerStore {
+    pickerState: {
+        filled: boolean
+    }
+
+    setPickerState: (state: boolean) => void
+}
+
+export const usePickerStore = create<PickerStore>()(
+    devtools(
+        persist(
+            (set) => ({
+                pickerState: {
+                    filled: false,
+                },
+                setPickerState: (state) =>
+                    set((prevState) => ({
+                        pickerState: { ...prevState.pickerState, filled: state },
+                    })),
+            }),
+            { name: 'pickerState' },
+        ),
+    ),
+)
