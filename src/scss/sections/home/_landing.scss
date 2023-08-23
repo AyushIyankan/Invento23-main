@@ -28,6 +28,7 @@ body {
 .layout__landing {
     min-height: 100%;
     // margin-top: 3%;
+    // margin-top: 3%;
 }
 .landing-nav {
     padding-block: 1.125rem;
@@ -355,6 +356,28 @@ body {
         align-items: center;
         @include bp(tablet) {
             grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        }
+        
+    }
+
+    @media (max-width: 75em) {
+        &{
+            padding-top: 80rem;
+        }
+    }
+    @media (max-width: 50em) {
+        &{
+            padding-top: 50rem;
+        }
+    }
+    @media (max-width: 40em) {
+        &{
+            padding-top: 20rem;
+        }
+    }
+    @media (max-width: 35em) {
+        &{
+            padding-top: 10rem;
         }
     }
 
