@@ -5,8 +5,8 @@ import { Rewind } from './Rewind'
 export default function Home() {
     return (
         <>
+            <Hero />
             <div className="flow main-wrapper grid">
-                <Hero />
                 <Crowstealers />
             </div>
             <Rewind />

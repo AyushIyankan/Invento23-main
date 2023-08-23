@@ -2,7 +2,7 @@ import { ProfileCard } from '../../components/Card'
 
 export function AboutUs() {
     return (
-        <div className="wrap-aboutUs mh-full">
+        <div className="wrap-aboutUs mh-full pt-m-4-6">
             <section className="aboutUs">
                 <h3 className="ff-serif fw-500 text-white striked-heading">The team</h3>
                 <p className="text-white ff-serif fw-400">

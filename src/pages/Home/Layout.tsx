@@ -9,8 +9,12 @@ export function Layout() {
             <Nav
                 background="#000"
                 progressLineColor=""
-                className="landing-nav"
+                className=""
                 type="landing"
+                style={{
+                    boxShadow: 'none',
+                    borderBottom: '2px white solid',
+                }}
             />
             <Outlet />
             <div className="main-wrapper grid">

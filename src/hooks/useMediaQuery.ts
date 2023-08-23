@@ -32,3 +32,4 @@ export function useMediaQuery(query: string) {
 }
 
 export const isSmall = () => useMediaQuery('(max-width: 768px)')
+export const isMedScreen = () => useMediaQuery('(max-width: 75em')

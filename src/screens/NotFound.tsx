@@ -9,7 +9,7 @@ export function NotFound() {
                 background={BACKGROUNDS.clrDark}
                 progressLineColor={BACKGROUNDS.clrDarkRed600}
             />
-            <section className="NotFound mh-full grid grid-3-col">
+            <section className="NotFound mh-full grid grid-3-col  pt-5">
                 <div className="wrap-NotFoundContent">
                     <h2 className="text-white ff-serif fw-400 t-center">
                         <span className="inner d-b">Looks like you got lost</span>
