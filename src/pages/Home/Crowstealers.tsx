@@ -68,48 +68,49 @@ export default function Crowstealers() {
     }
 
     return (
-        <div className="wrap-crowdstealers" ref={containerRef}>
-            {/* <h3 className="ff-gothic uppercase fw-400">
-                Crowd stealers
-                <motion.span
-                    key={emotes[emote]}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {emotes[emote]}
-                </motion.span>
-            </h3>
-            <motion.div
-                className="crowdstealers grid"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={container}
-            > */}
-            {/* <MEventCard
-                    date="TBA"
-                    imgSrc="/static/landing/stock-ev.jpg"
-                    title="the avial band"
-                    color="hsl(56, 100%, 78%)"
-                    variants={item}
-                />
-                <MEventCard
-                    date="TBA"
-                    imgSrc="/static/landing/stock-ev.jpg"
-                    title="benny dayal"
-                    color="hsl(313, 88%, 53%)"
-                    variants={item}
-                />
-                <MEventCard
-                    date="TBA"
-                    imgSrc="/static/landing/stock-ev.jpg"
-                    title="the nandi sisters"
-                    color="hsl(186, 71%, 46%)"
-                    variants={item}
-                /> */}
-            {/* </motion.div> */}
-        </div>
+        // <div className="wrap-crowdstealers" ref={containerRef}>
+        //     <h3 className="ff-gothic uppercase fw-400">
+        //         Crowd stealers
+        //         <m.span
+        //             key={emotes[emote]}
+        //             initial={{ opacity: 0 }}
+        //             animate={{ opacity: 1 }}
+        //             exit={{ opacity: 0 }}
+        //             transition={{ duration: 0.5 }}
+        //         >
+        //             {emotes[emote]}
+        //         </m.span>
+        //     </h3>
+        //     <m.div
+        //         className="crowdstealers grid"
+        //         initial="hidden"
+        //         whileInView="visible"
+        //         viewport={{ once: true }}
+        //         variants={container}
+        //     >
+        //         <MEventCard
+        //             date="TBA"
+        //             imgSrc="/static/landing/stock-ev.jpg"
+        //             title="the avial band"
+        //             color="hsl(56, 100%, 78%)"
+        //             variants={item}
+        //         />
+        //         <MEventCard
+        //             date="TBA"
+        //             imgSrc="/static/landing/stock-ev.jpg"
+        //             title="benny dayal"
+        //             color="hsl(313, 88%, 53%)"
+        //             variants={item}
+        //         />
+        //         <MEventCard
+        //             date="TBA"
+        //             imgSrc="/static/landing/stock-ev.jpg"
+        //             title="the nandi sisters"
+        //             color="hsl(186, 71%, 46%)"
+        //             variants={item}
+        //         />
+        //     </m.div>
+        // </div>
+        <div></div>
     )
 }

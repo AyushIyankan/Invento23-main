@@ -120,52 +120,64 @@ body {
     }
 }
 
+.hero {
+    max-height: 100dvh;
 
-.hero{
-    .video{
+    video {
+        position: relative;
+        z-index: -2;
+    }
+    .layer {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .video {
+        max-height: 100%;
+        height: 100%;
         position: absolute;
         z-index: -1;
         width: 100%;
-        .vid-mobile{
+        overflow: hidden;
+        .vid-mobile {
+            height: 100%;
             display: none;
             object-fit: cover;
             width: 100%;
-
         }
-        .vid-desktop{
+        .vid-desktop {
+            height: 100%;
             display: block;
             object-fit: cover;
             width: 100%;
-            
         }
 
-        
-    @media (max-width: 75em) {
-        .vid-mobile{
-            display: block;
-        }
+        @media (max-width: 75em) {
+            .vid-mobile {
+                display: block;
+            }
 
-        .vid-desktop{
-            display: none;
+            .vid-desktop {
+                display: none;
+            }
         }
     }
 
-    }
-
-
-    .btn-div{
+    .btn-div {
         position: absolute;
         top: 40%;
         left: 0;
         z-index: 10;
     }
 
-    .heading{
+    .heading {
         width: fit-content;
         margin-left: auto;
     }
 
-    .register{
+    .register {
         margin-left: auto;
         align-items: center;
         justify-content: flex-end;
@@ -330,6 +342,7 @@ body {
 }
 
 .wrap-crowdstealers {
+    margin-top: 4rem;
     h3 {
         margin-bottom: 3rem;
         letter-spacing: 0.05em;
@@ -343,27 +356,26 @@ body {
         @include bp(tablet) {
             grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
         }
-        
     }
 
-    @media (max-width: 75em) {
-        &{
-            padding-top: 80rem;
-        }
-    }
-    @media (max-width: 50em) {
-        &{
-            padding-top: 50rem;
-        }
-    }
-    @media (max-width: 40em) {
-        &{
-            padding-top: 20rem;
-        }
-    }
-    @media (max-width: 35em) {
-        &{
-            padding-top: 10rem;
-        }
-    }
+    // @media (max-width: 75em) {
+    //     & {
+    //         padding-top: 80rem;
+    //     }
+    // }
+    // @media (max-width: 50em) {
+    //     & {
+    //         padding-top: 42rem;
+    //     }
+    // }
+    // @media (max-width: 40em) {
+    //     & {
+    //         padding-top: 20rem;
+    //     }
+    // }
+    // @media (max-width: 35em) {
+    //     & {
+    //         padding-top: 10rem;
+    //     }
+    // }
 }

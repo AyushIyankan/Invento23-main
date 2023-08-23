@@ -1,13 +1,10 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
-
 import { HTMLMotionProps, m } from 'framer-motion'
-
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 import { cld } from '../../App'
-
 import { isSmall } from '../../hooks'
 import { useGroupStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
