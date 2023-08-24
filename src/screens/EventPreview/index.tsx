@@ -132,7 +132,7 @@ export default function EventPreview() {
                             {regFeeTeam && (
                                 <span className="d-b">
                                     Registration Fee:
-                                    {regFeeTeam && `per team`}
+                                    {` ${regFeeTeam} per team`}
                                 </span>
                             )}
                             {regFee && (
