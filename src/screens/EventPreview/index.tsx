@@ -45,7 +45,6 @@ export default function EventPreview() {
         contactNumberFirst,
         contactNumberSecond,
         category,
-        eventType,
         regFee,
         regFeeTeam,
     } = event.data.event
@@ -57,6 +56,8 @@ export default function EventPreview() {
     if (isMobile && imgIdMobile) imgIdToUse = imgIdMobile
 
     const eventRules = rules?.map((rule, i) => <li key={`${i}-${id}`}>{rule}</li>)
+
+    const contactAvailable = contactNameFirst || contactNumberFirst
 
     return (
         <>
@@ -137,33 +138,35 @@ export default function EventPreview() {
                             {regFee && (
                                 <span className="d-b">Registration Fee: {regFee}</span>
                             )}
-                            <span className="d-b">
-                                <h5 className="ff-days-one">Contacts: </h5>
-                                <div className="flow contact-wrap">
-                                    {contactNameFirst && contactNumberFirst && (
-                                        <span className="d-b">
-                                            {contactNameFirst} - {''}
-                                            <a
-                                                className="text-white text-decoration-none"
-                                                href={`tel:${contactNumberFirst}`}
-                                            >
-                                                {contactNumberFirst}
-                                            </a>
-                                        </span>
-                                    )}
-                                    {contactNameSecond && contactNumberSecond && (
-                                        <span className="d-b">
-                                            {contactNameSecond} - {''}
-                                            <a
-                                                className="text-white text-decoration-none"
-                                                href={`tel:${contactNumberSecond}`}
-                                            >
-                                                {contactNumberSecond}
-                                            </a>
-                                        </span>
-                                    )}
-                                </div>
-                            </span>
+                            {contactAvailable && (
+                                <span className="d-b">
+                                    <h5 className="ff-days-one">Contacts: </h5>
+                                    <div className="flow contact-wrap">
+                                        {contactNameFirst && contactNumberFirst && (
+                                            <span className="d-b">
+                                                {contactNameFirst} - {''}
+                                                <a
+                                                    className="text-white text-decoration-none"
+                                                    href={`tel:${contactNumberFirst}`}
+                                                >
+                                                    {contactNumberFirst}
+                                                </a>
+                                            </span>
+                                        )}
+                                        {contactNameSecond && contactNumberSecond && (
+                                            <span className="d-b">
+                                                {contactNameSecond} - {''}
+                                                <a
+                                                    className="text-white text-decoration-none"
+                                                    href={`tel:${contactNumberSecond}`}
+                                                >
+                                                    {contactNumberSecond}
+                                                </a>
+                                            </span>
+                                        )}
+                                    </div>
+                                </span>
+                            )}
                             <Button
                                 type="internalUrl"
                                 to={'/register'}
@@ -173,14 +176,12 @@ export default function EventPreview() {
                             </Button>
                         </div>
                     </div>
-                    <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
-                        <h4 className="fs-650 fw-500">Rules and Regulations</h4>
-                        {rules?.length === 0 ? (
-                            <p>No rules found.</p>
-                        ) : (
+                    {eventRules.length > 0 && (
+                        <div className="eventPreview__rules text-white ff-serif centeredContainer side-padding">
+                            <h4 className="fs-650 fw-500">Rules and Regulations</h4>
                             <ul className="flow">{eventRules}</ul>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </section>
         </>
