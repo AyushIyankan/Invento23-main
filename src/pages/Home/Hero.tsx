@@ -106,7 +106,7 @@ export function Hero() {
                 <div className="heading t-right pt-5 line-1 dim">
                     <h1 className="ff-gothic fw-400 uppercase fs-750">Invento ‘23</h1>
                     <h2 className="uppercase ff-gothic fs-700">is here</h2>
-                    <Link className="register flex uppercase ff-gothic" to="/">
+                    <Link className="register flex uppercase ff-gothic" to="/register">
                         register now{' '}
                         <span>
                             <img src={topRightArrow} alt="top-right-arrow" />
