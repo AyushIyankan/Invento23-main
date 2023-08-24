@@ -15,8 +15,6 @@ const sectionMap = {
     [sections[4]]: eventCategories[4],
 }
 
-console.log(sectionMap)
-
 export default function Events() {
     const events = useEventsQuery()
 
