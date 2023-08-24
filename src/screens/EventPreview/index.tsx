@@ -46,6 +46,8 @@ export default function EventPreview() {
         contactNumberSecond,
         category,
         eventType,
+        regFee,
+        regFeeTeam,
     } = event.data.event
 
     const { id: imgId } = event.data.event.photo || {}
@@ -98,11 +100,11 @@ export default function EventPreview() {
                         /> */}
                     </div>
 
-                    {!(eventType === 'techfest') && (
+                    {/* {!(eventType === 'techfest') && (
                         <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
                             {name}
                         </p>
-                    )}
+                    )} */}
                 </div>
                 <div className="eventPreview__content panel--bg mh-full grid">
                     <div className="eventPreview__about text-white ff-serif centeredContainer side-padding flow">
@@ -125,6 +127,15 @@ export default function EventPreview() {
                                 <span className="d-b">
                                     Hosted by: {department} department
                                 </span>
+                            )}
+                            {regFeeTeam && (
+                                <span className="d-b">
+                                    Registration Fee:
+                                    {regFeeTeam && `per team`}
+                                </span>
+                            )}
+                            {regFee && (
+                                <span className="d-b">Registration Fee: {regFee}</span>
                             )}
                             <span className="d-b">
                                 <h5 className="ff-days-one">Contacts: </h5>
