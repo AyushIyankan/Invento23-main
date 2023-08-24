@@ -15,7 +15,7 @@ export default function FinalGlance() {
     const { name, email, phone, college, referral = '' } = personalDetails
     const navigate = useNavigate()
     const [selectedindex, setSelectedindex] = useState(0)
-
+    const { reset } = useStore((store) => store)
     const { pickerState, setPickerState } = usePickerStore((store) => store)
     const [error, setError] = useState('')
 
@@ -79,6 +79,8 @@ export default function FinalGlance() {
 
         if (data.success) {
             toast.success('Order placed successfully')
+            reset()
+            localStorage.removeItem('verificationShot')
             navigate('/status?state=success')
         }
     }
