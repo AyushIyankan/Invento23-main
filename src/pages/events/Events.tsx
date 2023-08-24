@@ -10,10 +10,12 @@ const sections = ['Workshops', 'Competitions', 'Expo', 'Pre-Events', 'General Ev
 const sectionMap = {
     [sections[0]]: eventCategories[0],
     [sections[1]]: eventCategories[1],
-    [sections[2]]: eventCategories[2],
+    [sections[2]]: eventCategories[8],
     [sections[3]]: eventCategories[3],
     [sections[4]]: eventCategories[4],
 }
+
+console.log(sectionMap)
 
 export default function Events() {
     const events = useEventsQuery()
@@ -24,7 +26,7 @@ export default function Events() {
     const eventsBySection = sections.map((section) => {
         const categoryEvent = events.data?.events.filter(
             (event) =>
-                event.eventType !== 'saptha' && event.category === sectionMap[section],
+                event.eventType === 'techfest' && event.category === sectionMap[section],
         )
 
         if (categoryEvent && categoryEvent?.length > 0) {
