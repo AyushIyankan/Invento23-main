@@ -181,16 +181,16 @@ const routes = createBrowserRouter([
             },
         ],
     },
-    {
-        path: '/ca',
-        element: <LazyCALayout />,
-        children: [
-            {
-                index: true,
-                element: <LazyCA />,
-            },
-        ],
-    },
+    // {
+    //     path: '/ca',
+    //     element: <LazyCALayout />,
+    //     children: [
+    //         {
+    //             index: true,
+    //             element: <LazyCA />,
+    //         },
+    //     ],
+    // },
     {
         path: '/final',
         element: <LazyFinal />,
