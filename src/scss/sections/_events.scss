@@ -57,8 +57,8 @@
     will-change: transform, opacity;
     // transition: transform 0.2s ease-in;
     transition:
-        transform 0.2s linear,
-        opacity 0.2s linear;
+        transform 0.4s linear,
+        opacity 0.4s linear;
     opacity: var(--card-opacity);
     transform: scale(var(--card-scale));
 }
