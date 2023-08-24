@@ -387,7 +387,7 @@
         @include bp(tablet) {
             grid-template-columns: repeat(2, 1fr);
 
-            > * {
+            > .btn {
                 grid-column: 1/2;
             }
         }
@@ -1117,8 +1117,8 @@
     }
 }
 
-.mute-btn{
-    background-color: rgba(255, 255, 255, 0.20);
+.mute-btn {
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 0.5rem;
     padding-left: 3rem;
     border: none;
