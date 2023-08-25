@@ -27,7 +27,7 @@ const navLinks = [
         to: '/about',
     },
     {
-        name: 'Events',
+        name: 'Tech Events',
         to: '/events',
     },
     {
@@ -201,7 +201,7 @@ function NavItem({ to, text }: { to: string; text: string; i: number }) {
                 width: 'fit-content',
             }}
         >
-            <NavLink className={`navlink flex`} to={`${to}`}>
+            <NavLink className={`navlink flex flex-center`} to={`${to}`}>
                 {text} <ExternalLinkIcon />
             </NavLink>
         </m.li>

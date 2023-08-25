@@ -31,6 +31,7 @@ interface ItemStore {
     items: Item[]
     addItem: (item: Item) => void
     removeItem: (id: Item[`_id`]) => void
+    reset: () => void
 }
 
 interface GroupStore {
@@ -63,6 +64,7 @@ export const useStore = create<ItemStore>()(
                         ...state,
                         items: state.items.filter((item) => item._id !== id),
                     })),
+                reset: () => set({ items: [] }),
             }),
             {
                 name: 'itemstore',

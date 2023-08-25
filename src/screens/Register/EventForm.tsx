@@ -15,8 +15,8 @@ const eventSubCategories: Record<
 > = {
     // proshow: ['Day 1', 'Day 2', 'Day 3', 'Day 4'],
     techfest: ['workshops', 'competitions', 'exhibitions', 'preevents', 'generalevents'],
-    saptha: ['spotlight', 'group', 'solo', 'expo'],
-    taksthi: ['spotlight', 'group', 'solo', 'expo'],
+    saptha: ['group', 'solo', 'generalevents'],
+    taksthi: [],
 }
 
 export function EventForm() {

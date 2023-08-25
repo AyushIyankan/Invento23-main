@@ -12,3 +12,4 @@ src/scss/index.css.map
 .unlighthouse/*
 .env
 .env.local
+.vercel
