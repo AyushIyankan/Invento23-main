@@ -23,6 +23,7 @@ export function EventForm() {
     const { addItem, removeItem, items: bucket } = useStore((state) => state)
     const { groups } = useGroupStore((state) => state)
     const [, setSelectedKey] = useState<string[]>([])
+    const [selectedAccordian, setAccordian] = useState('')
 
     const events = useEventsQuery()
 
@@ -96,6 +97,8 @@ export function EventForm() {
                                 <ItemGroup title={titleMap[eventType]}>
                                     {eventSubCategories[eventType].map((subType) => (
                                         <Accordion
+                                            selectedAccordian={selectedAccordian}
+                                            setAccordian={setAccordian}
                                             title={
                                                 titleMap[
                                                     subType as keyof typeof titleMap
