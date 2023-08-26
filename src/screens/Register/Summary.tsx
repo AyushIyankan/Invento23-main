@@ -1,12 +1,39 @@
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
-import { useStore } from '../../store'
+import { useDetailStore, useStore } from '../../store'
+import { formSchema } from './schema'
+
 export function Summary() {
     const { items: bucket, removeItem } = useStore((state) => state)
+    const { personalDetails } = useDetailStore((state) => state)
     const [selectedindex, setSelectedindex] = useState(0)
+    const navigate = useNavigate()
+
+    const checkout = () => {
+        const data = formSchema.safeParse(personalDetails)
+
+        if (bucket.length === 0) {
+            toast.error('Please select some events', {
+                progressStyle: {
+                    backgroundColor: 'tomato',
+                },
+            })
+            return
+        } else if (!data.success) {
+            toast.error('Please enter your personal details correctly', {
+                progressStyle: {
+                    backgroundColor: 'tomato',
+                },
+            })
+            return
+        }
+        navigate('/final')
+    }
 
     const bucketItems = bucket.map((item) => (
         <m.div
@@ -60,9 +87,9 @@ export function Summary() {
                     <div className="grid">
                         <AnimatePresence mode="popLayout">{bucketItems}</AnimatePresence>
                         <Button
-                            type="internalUrl"
-                            to="/final"
-                            classNames="btn btn--link btn--save text-white ff-serif btn--checkout"
+                            type="submit"
+                            className="btn btn--link btn--save text-white ff-serif btn--checkout"
+                            onClick={checkout}
                         >
                             Proceed to the Final Step
                         </Button>
