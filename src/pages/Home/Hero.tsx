@@ -120,8 +120,11 @@ export function Hero() {
                 </div>
 
                 <div className="wrap-large-links ff-gothic fw-400 dim">
-                    <Link to={'/events'} className="uppercase d-b text-decoration-none">
-                        events
+                    <Link
+                        to={'/events'}
+                        className="uppercase d-b text-decoration-none no-wrap"
+                    >
+                        tech events
                     </Link>
                     <Link
                         to={'/events/64e9a31f0c402a82cdccd565'}
