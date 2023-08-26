@@ -68,6 +68,11 @@ export function Hero() {
                     disablePictureInPicture
                     playsInline
                     preload="none"
+                    onPlay={() => {
+                        if (vidRef.current) {
+                            vidRef.current.volume = 0.3
+                        }
+                    }}
                 >
                     {isNotLargeEnough ? (
                         <>
