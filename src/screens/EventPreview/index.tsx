@@ -1,6 +1,6 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
-import { useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useRef } from 'react'
+import { ScrollRestoration, useParams } from 'react-router-dom'
 
 import { cld } from '../../App'
 import Button from '../../components/Button'
@@ -11,13 +11,13 @@ import useEventQuery from '../../hooks/useEventQuery'
 import { transformDate, transformTime } from '../../utils'
 import { NotFound } from '../NotFound'
 
-function ScrollToTopOnMount() {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+// function ScrollToTopOnMount() {
+//     useEffect(() => {
+//         window.scrollTo(0, 0)
+//     }, [])
 
-    return null
-}
+//     return null
+// }
 
 export default function EventPreview() {
     const ref = useRef<HTMLDivElement>(null)
@@ -61,7 +61,8 @@ export default function EventPreview() {
 
     return (
         <>
-            <ScrollToTopOnMount />
+            {/* <ScrollToTopOnMount /> */}
+            <ScrollRestoration />
             <section className="eventPreview pt-m-4-6">
                 <div className="bg__container grid">
                     <div className="preview-background" ref={ref} aria-hidden>
