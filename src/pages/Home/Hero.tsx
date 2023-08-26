@@ -123,13 +123,19 @@ export function Hero() {
                     <Link to={'/events'} className="uppercase d-b text-decoration-none">
                         events
                     </Link>
-                    <Link to={'/events'} className="uppercase d-b text-decoration-none">
+                    <Link
+                        to={'/events/64e9a31f0c402a82cdccd565'}
+                        className="uppercase d-b text-decoration-none"
+                    >
                         Natya
                     </Link>
                     <Link to={'/saptha'} className="uppercase d-b text-decoration-none">
                         saptha
                     </Link>
-                    <Link to={'/events'} className="uppercase d-b text-decoration-none">
+                    <Link
+                        to={'/events/64e35d0bb921e9985ffb07f7'}
+                        className="uppercase d-b text-decoration-none"
+                    >
                         taksathi
                     </Link>
                     <Link to={'/events'} className="uppercase d-b text-decoration-none">
