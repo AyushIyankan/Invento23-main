@@ -1,4 +1,4 @@
-import { ReactComponent as SapthaLogo } from '../../assets/svg/saptha_bg.svg'
+import { ReactComponent as InventoLogo } from '../../assets/svg/invento__logo-outline-full.svg'
 
 export function About() {
     return (
@@ -7,7 +7,7 @@ export function About() {
         grid-2-col
         "
         >
-            <SapthaLogo className="saptha__logo" />
+            <InventoLogo className="saptha__logo" />
             <div className="saptha__about__text">
                 <h3 className="fs-650 fw-400">About our events</h3>
                 <p>
