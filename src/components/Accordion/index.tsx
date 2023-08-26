@@ -1,17 +1,31 @@
 import { AnimatePresence, m } from 'framer-motion'
-import { PropsWithChildren, useId } from 'react'
+import { Dispatch, PropsWithChildren, SetStateAction, useId } from 'react'
 
 import { ReactComponent as AccordionUp } from '../../assets/svg/accordion-up.svg'
-import { useToggle } from '../../hooks'
 
 interface AccordionProps {
     title: string
+    selectedAccordian: string
+    setAccordian: Dispatch<SetStateAction<string>>
 }
 
-export function Accordion({ title, children }: PropsWithChildren<AccordionProps>) {
-    const [state, toggle] = useToggle(false)
-
+export function Accordion({
+    title,
+    children,
+    selectedAccordian,
+    setAccordian,
+}: PropsWithChildren<AccordionProps>) {
     const accordionId = useId()
+
+    const state = selectedAccordian === accordionId
+
+    const toggle = () => {
+        if (selectedAccordian === accordionId) {
+            setAccordian('')
+        } else {
+            setAccordian(accordionId)
+        }
+    }
 
     return (
         <div className="accordion" data-state={state ? 'open' : 'close'}>
