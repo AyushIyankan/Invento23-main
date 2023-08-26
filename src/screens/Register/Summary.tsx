@@ -37,12 +37,24 @@ export function Summary() {
 
     const bucketItems = bucket.map((item) => (
         <m.div
-            layout
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
             key={`wrapper-` + item._id}
-            transition={{ type: 'spring' }}
+            initial={{ scale: 0 }}
+            animate={{
+                scale: 1,
+                transition: {
+                    // delay: 0.2,
+                    type: 'spring',
+                },
+            }}
+            exit={{
+                // scale: 0,
+                opacity: 0,
+                transition: {
+                    type: 'spring',
+                    // duration: 0.9,
+                },
+            }}
+            layout
         >
             <ItemCard
                 mode="show"
@@ -70,42 +82,31 @@ export function Summary() {
         <>
             <h3 className="text-black ff-serif fw-400">Booking Summary</h3>
             <div className="form__eventsWrap form__summaryWrap grid">
-                <AnimatePresence>
-                    {bucket.length ? (
-                        <m.div
-                            className="grid"
-                            // exit={{ opacity: 0, scale: 0.8 }}
-                            // initial={{ opacity: 0, scale: 0.8 }}
-                            // animate={{ opacity: 1, scale: 1 }}
+
+                {/* <AnimatePresence mode="sync"> */}
+                {bucket.length ? (
+                    <div className="grid">
+                        <AnimatePresence mode="popLayout">{bucketItems}</AnimatePresence>
+                        <Button
+                            type="submit"
+                            className="btn btn--link btn--save text-white ff-serif btn--checkout"
+                            onClick={checkout}
                         >
-                            <div
-                                className="form__eventsSummary grid"
-                                data-filled={bucket.length && true}
-                            >
-                                <AnimatePresence mode="popLayout">
-                                    {bucketItems}
-                                </AnimatePresence>
-                            </div>
-                            <Button
-                                type="submit"
-                                className="btn btn--link btn--save text-white ff-serif btn--checkout"
-                                onClick={checkout}
-                            >
-                                Proceed to the Final Step
-                            </Button>
-                        </m.div>
-                    ) : (
-                        <m.p
-                            className="bucket-no-item-fallback t-center ff-serif text-grey capitalize"
-                            exit={{ opacity: 0 }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                        >
-                            {' '}
-                            select some events{' '}
-                        </m.p>
-                    )}
-                </AnimatePresence>
+                            Proceed to the Final Step
+                        </Button>
+                    </div>
+                ) : (
+                    <m.p
+                        className="bucket-no-item-fallback t-center ff-serif text-grey capitalize"
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                    >
+                        {' '}
+                        select some events{' '}
+                    </m.p>
+                )}
+                {/* </AnimatePresence> */}
             </div>
         </>
     )
