@@ -18,14 +18,14 @@ export function Summary() {
         const data = formSchema.safeParse(personalDetails)
 
         if (bucket.length === 0) {
-            toast('Please select some events', {
+            toast.error('Please select some events', {
                 progressStyle: {
                     backgroundColor: 'tomato',
                 },
             })
             return
         } else if (!data.success) {
-            toast('Please enter your personal details correctly', {
+            toast.error('Please enter your personal details correctly', {
                 progressStyle: {
                     backgroundColor: 'tomato',
                 },
@@ -82,7 +82,6 @@ export function Summary() {
         <>
             <h3 className="text-black ff-serif fw-400">Booking Summary</h3>
             <div className="form__eventsWrap form__summaryWrap grid">
-
                 {/* <AnimatePresence mode="sync"> */}
                 {bucket.length ? (
                     <div className="grid">
