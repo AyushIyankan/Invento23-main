@@ -42,17 +42,16 @@ export default function FinalGlance() {
 
         formData.append('totalAmount', String(price))
 
+        let participants: string[] = []
         const orderEvents = items.map((item) => {
-            let participants: string[] = []
             if (item.participationType === 'group') {
                 participants = item.members.reduce<string[]>((acc, member, ndx) => {
                     return [...acc, member[`member-${ndx + 1}`]]
                 }, [])
             }
-
             return {
                 event: item._id,
-                participants: item.participationType === 'group' ? participants : [],
+                participants: participants,
             }
         })
 
@@ -78,6 +77,7 @@ export default function FinalGlance() {
         const data = await res.json()
 
         if (data.success) {
+            // debugger
             toast.success('Order placed successfully')
             reset()
             localStorage.removeItem('verificationShot')
