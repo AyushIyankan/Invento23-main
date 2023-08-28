@@ -145,11 +145,14 @@ export default function FinalGlance() {
                         <strong>UPI ID: </strong>
                         <Button
                             type="externalUrl"
-                            className="btn text-black"
-                            href="upi://pay?pa=917025150086@federal&pn=MUHAMMED RASHID PJ&cu=INR"
+                            className="btn text-black "
+                            href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
                             onClick={() => toast.info(`Opened the UPI app`)}
+                            style={{
+                                textTransform: 'none',
+                            }}
                         >
-                            917025150086@federal
+                            muhdrashidpj36@okicici
                         </Button>
                     </p>
                     <div className="final_qr flex flex-col flex-center">

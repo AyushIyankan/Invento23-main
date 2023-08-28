@@ -16,6 +16,13 @@
 }
 
 .final_qr {
+    @include bp(tablet) {
+        img {
+            width: 50%;
+            margin-inline: auto;
+        }
+    }
+
     p {
         align-self: self-start;
     }
