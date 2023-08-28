@@ -61,12 +61,12 @@ export default function FinalGlance() {
 
         if (verificationImg) {
             const file = await dataUrlToFile(verificationImg, `${name}-verificationShot`)
-            console.log(file)
+            // console.log(file)
             formData.append('paymentProof', file, file.name)
             localStorage.removeItem('verificationShot')
         }
 
-        console.log(formData)
+        // console.log(formData)
 
         navigate('/status?state=submitting')
 
