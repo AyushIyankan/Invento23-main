@@ -1,4 +1,6 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, useState } from 'react'
+import { toast } from 'react-toastify'
+import validatior from 'validator'
 
 import { ReactComponent as LinkedInLogo } from '../../assets/svg/carbon_logo-linkedin.svg'
 import { ReactComponent as YoutubeLogo } from '../../assets/svg/carbon_logo-youtube.svg'
@@ -16,6 +18,29 @@ interface IFooterProps extends React.HTMLAttributes<HTMLElement> {
 export default function Footer({ background, theme, ...delegated }: IFooterProps) {
     const { className, ...rest } = delegated
 
+    const [email, setEmail] = useState('')
+    const [isEmailValid, setIsEmailValid] = useState(false)
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const validatedEmail = validatior.isEmail(e.target.value)
+
+        if (!validatedEmail) {
+            setIsEmailValid(false)
+        } else {
+            setEmail(e.target.value)
+            setIsEmailValid(true)
+        }
+    }
+
+    const handleSubscribe = () => {
+        if (isEmailValid) {
+            toast.success('Subscribed successfully!')
+            setEmail('')
+        } else {
+            toast.error('Please enter a valid email')
+        }
+    }
+
     const isFooterFormAbove = useMediaQuery('(min-width: 75em)')
 
     return (
@@ -28,7 +53,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
             <div className="footer__main flow">
                 <h3 className="text-magenta fw-400">invento</h3>
 
-                <form action="#" method="post" className="footer__form">
+                <form className="footer__form" onSubmit={(e) => e.preventDefault()}>
                     <label htmlFor="email_newsletter" className="text-white fw-300 d-b">
                         Stay in the loop
                     </label>
@@ -40,13 +65,19 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                             name="nf_email"
                             placeholder="Enter Your Email"
                             maxLength={50}
+                            onChange={(e) => {
+                                handleEmailChange(e)
+                                setEmail(e.target.value)
+                            }}
+                            value={email}
                         />
-                        <button
+                        <Button
                             type="submit"
                             className="btn btn--subscribe footer__form--button d-ib"
+                            onClick={handleSubscribe}
                         >
                             <span>Subscribe</span>
-                        </button>
+                        </Button>
                     </div>
                 </form>
 
