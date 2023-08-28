@@ -6,9 +6,7 @@ export default function Home() {
     return (
         <>
             <Hero />
-            <div className="flow main-wrapper grid">
-                <Crowstealers />
-            </div>
+            <Crowstealers />
             <Rewind />
         </>
     )

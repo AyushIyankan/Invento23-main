@@ -1,29 +1,39 @@
 import { m } from 'framer-motion'
-import { CSSProperties, forwardRef } from 'react'
+import { CSSProperties, forwardRef, Ref } from 'react'
 
 import { ReactComponent as IconArrow } from '../../assets/svg/Arrow.svg'
+import useElementDimension from '../../hooks/useElementDimensions'
 import Button from '../Button'
 import { ImgWithFallback } from '../ImgWithFallback'
 interface ECardProps {
     imgSrc: string
     title: string
     date: string
-    color?: string
+    borderColor?: string
+    kind?: 'comingSoon'
+    textColor?: string
 }
 
-export const EventCard = forwardRef<HTMLElement, ECardProps>(function Ecard(
-    { date, imgSrc, title, color }: ECardProps,
-    ref,
+export const EventCard = forwardRef<HTMLDivElement, ECardProps>(function Ecard(
+    { date, imgSrc, title, borderColor, kind, textColor = '#fff' }: ECardProps,
+    ref: Ref<HTMLDivElement>,
 ) {
+    const [setRef, dimensions] = useElementDimension()
+
     const cardStyle = {
-        '--card-color': color ?? '#126fd5',
-        '--stroke-color': color ?? '#126fd5',
+        '--card-color': borderColor ?? '#126fd5',
+        '--stroke-color': borderColor ?? '#126fd5',
+        '--btnTextColor': textColor ?? '#126fd5',
         '--stroke-width': '1.5px',
+        '--transformYby': dimensions.height ? `${dimensions.height / 2}px` : '0px',
     } as CSSProperties
 
     return (
-        <div className="e-card" style={cardStyle}>
-            <div className="main-content">
+        <div className="e-card" style={cardStyle} ref={ref}>
+            <div
+                className={`main-content ${kind === 'comingSoon' ? 'comingSoon' : ''}`}
+                ref={setRef}
+            >
                 <div className="image">
                     <ImgWithFallback
                         imgDescription={title}
@@ -34,37 +44,47 @@ export const EventCard = forwardRef<HTMLElement, ECardProps>(function Ecard(
                 <div className="wrap-header">
                     <h4
                         className="ff-gothic fw-400 uppercase stroked-text"
-                        data-content={title}
+                        data-content={kind === 'comingSoon' ? 'Coming soon' : title}
                     >
-                        {title}
+                        {/* {title === 'six eight' ? (
+                            <>
+                                six <br /> eight
+                            </>
+                        ) : (
+                            title
+                        )} */}
+                        {kind === 'comingSoon' ? 'Coming soon' : title}
                     </h4>
                 </div>
                 <div className="wrap-date bg-white">
                     <div className="marquee">
                         <p className="marquee__content ff-gothic fw-400 uppercase text-black">
-                            {date}
+                            · {date} ·
                         </p>
                         <p
                             aria-hidden
                             className="marquee__content ff-gothic fw-400 uppercase text-black"
                         >
-                            {date}
+                            · {date} ·
                         </p>
                         <p
                             aria-hidden
                             className="marquee__content ff-gothic fw-400 uppercase text-black "
                         >
-                            {date}
+                            · {date} ·
                         </p>
                     </div>
                 </div>
             </div>
+
             <Button
                 type="internalUrl"
-                to="/register"
-                classNames="btn btn--ecard text-white ff-gothic flex"
+                to={kind === 'comingSoon' ? '/#' : '/register'}
+                classNames={`btn btn--ecard text-white ff-montserrat flex ${
+                    kind === 'comingSoon' ? 'btn--ecard-soon' : ''
+                }`}
             >
-                Register
+                {kind === 'comingSoon' ? 'stay tuned' : 'Register'}
                 <span aria-hidden>
                     <IconArrow />
                 </span>
