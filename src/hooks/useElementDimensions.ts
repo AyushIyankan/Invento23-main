@@ -6,7 +6,7 @@ type Sizes = {
 }
 
 export default function useElementDimension<T extends HTMLElement = HTMLDivElement>(): [
-    (node: T | null) => void,
+    elementCallback: (node: T | null) => void,
     dimensions: Sizes,
 ] {
     const [ref, setRef] = useState<T | null>(null)
