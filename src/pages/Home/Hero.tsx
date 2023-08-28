@@ -109,8 +109,8 @@ export function Hero() {
             </div>
             <div className="landing-hero text-white grid flow main-wrapper">
                 <div className="heading t-right pt-5 line-1 dim">
-                    <h1 className="ff-gothic fw-400 uppercase fs-750">Invento ‘23</h1>
-                    <h2 className="uppercase ff-gothic fs-700">is here</h2>
+                    <h1 className="ff-gothic fw-400 uppercase">Invento ‘23</h1>
+                    <h2 className="uppercase ff-gothic">is here</h2>
                     <Link className="register flex uppercase ff-gothic" to="/register">
                         register now{' '}
                         <span>
