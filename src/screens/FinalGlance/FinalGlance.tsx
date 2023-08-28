@@ -42,17 +42,16 @@ export default function FinalGlance() {
 
         formData.append('totalAmount', String(price))
 
+        let participants: string[] = []
         const orderEvents = items.map((item) => {
-            let participants: string[] = []
             if (item.participationType === 'group') {
                 participants = item.members.reduce<string[]>((acc, member, ndx) => {
                     return [...acc, member[`member-${ndx + 1}`]]
                 }, [])
             }
-
             return {
                 event: item._id,
-                participants: item.participationType === 'group' ? participants : [],
+                participants: participants,
             }
         })
 
@@ -61,12 +60,12 @@ export default function FinalGlance() {
 
         if (verificationImg) {
             const file = await dataUrlToFile(verificationImg, `${name}-verificationShot`)
-            console.log(file)
+            // console.log(file)
             formData.append('paymentProof', file, file.name)
             localStorage.removeItem('verificationShot')
         }
 
-        console.log(formData)
+        // console.log(formData)
 
         navigate('/status?state=submitting')
 
@@ -78,6 +77,7 @@ export default function FinalGlance() {
         const data = await res.json()
 
         if (data.success) {
+            // debugger
             toast.success('Order placed successfully')
             reset()
             localStorage.removeItem('verificationShot')
@@ -145,11 +145,14 @@ export default function FinalGlance() {
                         <strong>UPI ID: </strong>
                         <Button
                             type="externalUrl"
-                            className="btn text-black"
-                            href="upi://pay?pa=917025150086@federal&pn=MUHAMMED RASHID PJ&cu=INR"
+                            className="btn text-black "
+                            href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
                             onClick={() => toast.info(`Opened the UPI app`)}
+                            style={{
+                                textTransform: 'none',
+                            }}
                         >
-                            917025150086@federal
+                            muhdrashidpj36@okicici
                         </Button>
                     </p>
                     <div className="final_qr flex flex-col flex-center">

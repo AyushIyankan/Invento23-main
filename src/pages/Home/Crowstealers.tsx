@@ -31,86 +31,75 @@ export default function Crowstealers() {
         }
     }, [emote, isInView])
 
-    const container: Variants = {
-        visible: {
-            opacity: 1,
-            x: 0,
-            transition: {
-                when: 'beforeChildren',
-                staggerChildren: 0.2,
-                delay: 0.3,
-                default: { ease: 'easeInOut' },
-            },
-        },
-        hidden: {
-            opacity: 0,
-            x: -50,
-            transition: {
-                staggerChildren: 0.5,
-                when: 'afterChildren',
-                delayChildren: 0.5,
-            },
-        },
-    }
-
     const item: Variants = {
         hidden: {
             opacity: 0,
             x: -50,
         },
-        visible: {
+        visible: (i) => ({
             opacity: 1,
             x: 0,
             transition: {
                 ease: 'easeInOut',
+                duration: 0.5,
+                staggerChildren: 0.2,
+                delay: i * 0.2,
             },
-        },
+        }),
     }
 
     return (
-        // <div className="wrap-crowdstealers" ref={containerRef}>
-        //     <h3 className="ff-gothic uppercase fw-400">
-        //         Crowd stealers
-        //         <m.span
-        //             key={emotes[emote]}
-        //             initial={{ opacity: 0 }}
-        //             animate={{ opacity: 1 }}
-        //             exit={{ opacity: 0 }}
-        //             transition={{ duration: 0.5 }}
-        //         >
-        //             {emotes[emote]}
-        //         </m.span>
-        //     </h3>
-        //     <m.div
-        //         className="crowdstealers grid"
-        //         initial="hidden"
-        //         whileInView="visible"
-        //         viewport={{ once: true }}
-        //         variants={container}
-        //     >
-        //         <MEventCard
-        //             date="TBA"
-        //             imgSrc="/static/landing/stock-ev.jpg"
-        //             title="the avial band"
-        //             color="hsl(56, 100%, 78%)"
-        //             variants={item}
-        //         />
-        //         <MEventCard
-        //             date="TBA"
-        //             imgSrc="/static/landing/stock-ev.jpg"
-        //             title="benny dayal"
-        //             color="hsl(313, 88%, 53%)"
-        //             variants={item}
-        //         />
-        //         <MEventCard
-        //             date="TBA"
-        //             imgSrc="/static/landing/stock-ev.jpg"
-        //             title="the nandi sisters"
-        //             color="hsl(186, 71%, 46%)"
-        //             variants={item}
-        //         />
-        //     </m.div>
-        // </div>
-        <div></div>
+        <div className="wrap-crowdstealers" ref={containerRef}>
+            <h3 className="ff-gothic uppercase fw-400 side-padding">
+                Crowd stealers
+                <m.span
+                    key={emotes[emote]}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {emotes[emote]}
+                </m.span>
+            </h3>
+            <div className="crowdstealers flex">
+                <MEventCard
+                    date="sept 15"
+                    imgSrc="/static/landing/six-eight-lg.jpg"
+                    title="six eight"
+                    borderColor="hsl(313, 88%, 53%)"
+                    variants={item}
+                    initial="hidden"
+                    whileInView={'visible'}
+                    viewport={{ once: true }}
+                    custom={0}
+                />
+                <MEventCard
+                    date="sept 16"
+                    imgSrc="/static/landing/avial_band.jpg"
+                    title="the avial band"
+                    borderColor="hsl(56, 100%, 78%)"
+                    variants={item}
+                    initial="hidden"
+                    whileInView={'visible'}
+                    textColor="#000"
+                    viewport={{ once: true }}
+                    custom={1}
+                />
+
+                <MEventCard
+                    date="Stay Tuned"
+                    kind="comingSoon"
+                    imgSrc="/static/landing/stock-ev.jpg"
+                    title="the nandi sisters"
+                    borderColor="hsl(186, 71%, 46%)"
+                    variants={item}
+                    initial="hidden"
+                    whileInView={'visible'}
+                    viewport={{ once: true }}
+                    custom={2}
+                />
+            </div>
+        </div>
+        // <div></div>
     )
 }

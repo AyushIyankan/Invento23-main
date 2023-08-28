@@ -7,11 +7,12 @@ import { About } from './About'
 import { Hero } from './Hero'
 import { Spotlight } from './spotlight'
 
-const sapthaSections = ['Group Events', 'Solo Events', 'General Events']
+const sapthaSections = ['Spotlight', 'Group Events', 'Solo Events', 'General Events']
 const sapthaSectionMap = {
-    [sapthaSections[0]]: eventCategories[6],
-    [sapthaSections[1]]: eventCategories[7],
-    [sapthaSections[2]]: eventCategories[4],
+    [sapthaSections[0]]: eventCategories[5],
+    [sapthaSections[1]]: eventCategories[6],
+    [sapthaSections[2]]: eventCategories[7],
+    [sapthaSections[3]]: eventCategories[4],
 }
 export default function Saptha() {
     const events = useEventsQuery()
@@ -43,7 +44,7 @@ export default function Saptha() {
             <div className="bg--full--saptha"></div>
             <Hero />
             <About />
-            <Spotlight />
+            {/* <Spotlight /> */}
             {events.data?.success && eventsBySection}
             {/* <GroupEvents />
             <SoloEvents />

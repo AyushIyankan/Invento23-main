@@ -176,6 +176,22 @@ body {
     .heading {
         width: fit-content;
         margin-left: auto;
+
+        h1 {
+            font-size: 2rem;
+            font-size: clamp(2rem, 1.2rem + 4vw, 6rem);
+            white-space: nowrap;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 0.96rem + 2.7vw, 4.2rem);
+        }
+
+        a {
+            font-size: 1.5rem;
+            font-size: clamp(1.5rem, 1.29rem + 1.0499999999999998vw, 2.55rem);
+        }
     }
 
     .register {
@@ -188,7 +204,9 @@ body {
 }
 
 .landing-hero {
-    align-content: start;
+    align-content: space-around;
+    height: 100vh;
+
     @include bp(tablet) {
         position: relative;
 
@@ -242,8 +260,10 @@ body {
     //         -webkit-text-fill-color: transparent;
     //     }
     // }
-    font-size: 2rem;
-    font-size: clamp(2rem, 1.4rem + 3vw, 5rem);
+    // font-size: 2rem;
+    // font-size: clamp(2rem, 1.4rem + 3vw, 5rem);
+    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 0.7999999999999999rem + 3.5000000000000004vw, 5rem);
     margin-top: 2em;
 
     @include bp(desktop) {
@@ -352,53 +372,27 @@ body {
     }
 
     .crowdstealers {
-        justify-items: center;
-        align-items: center;
+        flex-flow: row wrap;
+        justify-content: space-around;
+
+        --gap: 1rem;
+
+        // justify-items: start;
+        // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        // justify-items: center;
+
+        @media (max-width: 20em) {
+            // justify-items: unset;
+            max-width: 100%;
+            > * {
+                margin: 0 auto;
+            }
+        }
+
         @include bp(tablet) {
-            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        }
-        
-    }
-
-    @media (max-width: 75em) {
-        &{
-            padding-top: 80rem;
+            // grid-auto-rows: 1fr;
+            // align-items: center;
+            // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
         }
     }
-    @media (max-width: 50em) {
-        &{
-            padding-top: 50rem;
-        }
-    }
-    @media (max-width: 40em) {
-        &{
-            padding-top: 20rem;
-        }
-    }
-    @media (max-width: 35em) {
-        &{
-            padding-top: 10rem;
-        }
-    }
-
-    // @media (max-width: 75em) {
-    //     & {
-    //         padding-top: 80rem;
-    //     }
-    // }
-    // @media (max-width: 50em) {
-    //     & {
-    //         padding-top: 42rem;
-    //     }
-    // }
-    // @media (max-width: 40em) {
-    //     & {
-    //         padding-top: 20rem;
-    //     }
-    // }
-    // @media (max-width: 35em) {
-    //     & {
-    //         padding-top: 10rem;
-    //     }
-    // }
 }
