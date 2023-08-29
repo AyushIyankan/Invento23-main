@@ -167,7 +167,7 @@ export function ItemCard({
             [key]: value,
         }))
         addMembers(itemId, members)
-        console.log(data)
+        // console.log(data)
     }
 
     return (
@@ -289,7 +289,7 @@ export function ItemCard({
                                     ? props.actions[1]
                                     : props.action
                             }
-                            isLoading={loading}
+                            // isLoading={loading}
                             showText
                         />
                     </form>

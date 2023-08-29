@@ -14,9 +14,11 @@ export default function CampusAmbassadors() {
                     text: 'Join invento',
                 })
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error(error)
             }
         }
+        // eslint-disable-next-line no-console
         console.log('Web share api is unsupported')
         try {
             await navigator.clipboard.writeText(window.location.origin)
@@ -33,6 +35,7 @@ export default function CampusAmbassadors() {
                 }, 3000)
             }
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error(error)
         }
     }
