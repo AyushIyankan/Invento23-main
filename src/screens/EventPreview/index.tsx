@@ -1,6 +1,7 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
 import { useRef } from 'react'
 import { ScrollRestoration, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { cld } from '../../App'
 import Button from '../../components/Button'
@@ -29,7 +30,13 @@ export default function EventPreview() {
 
     if (event.isLoading) return <Loading />
 
-    if (event.error || !event.data) return <NotFound />
+    if (event.error || !event.data?.success) {
+        toast.error('Error Loading Event', {
+            toastId: 'dwqsdx',
+        })
+
+        return <NotFound />
+    }
 
     const {
         name,
@@ -170,7 +177,7 @@ export default function EventPreview() {
                             )}
                             <Button
                                 type="internalUrl"
-                                to={'/register'}
+                                to={`/register/${id}`}
                                 classNames={`text-magenta btn d-ib btn--link btn--register_event gradient-borders`}
                             >
                                 register now

@@ -28,6 +28,26 @@ export default function Status() {
         </div>
     )
 
+    const error = (
+        <div className="status--success flow ff-serif">
+            <h1 className="status__title ff-serif fw-400">Payment Failure</h1>
+            <p>
+                oops! something went wrong :&#40;
+                <br /> Please try again later.
+            </p>
+            <p>Hold on while we redirect you to the home page &lt;3</p>
+            <div className="wrap-buttons flex flex-center">
+                <Button
+                    to="/"
+                    type="internalUrl"
+                    classNames="btn btn--go-back text-black"
+                >
+                    Go Home
+                </Button>
+            </div>
+        </div>
+    )
+
     const failure = (
         <div className="status--success flow ff-serif">
             <h1 className="status__title ff-serif fw-400">Payment Failure</h1>
@@ -71,6 +91,7 @@ export default function Status() {
                 {status === 'success' && success}
                 {status === 'failure' && failure}
                 {status === 'submitting' && submitting}
+                {status === 'error' && error}
             </div>
         </section>
     )

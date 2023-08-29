@@ -69,3 +69,12 @@ export async function dataUrlToFile(dataUrl: string, fileName: string): Promise<
         type: dataUrl.match(/^data:(.+);base64/)?.[1],
     })
 }
+
+export function isEmpty(obj: { [key: string]: any }) {
+    for (const prop in obj) {
+        if (Object.hasOwn(obj, prop)) {
+            return false
+        }
+    }
+    return true
+}

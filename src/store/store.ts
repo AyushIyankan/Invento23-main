@@ -1,4 +1,4 @@
-import { create, StoreApi } from 'zustand'
+import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 
 import { EventType } from '../api/schema'
@@ -23,7 +23,7 @@ type ItemImage = {
     image: string
 }
 
-type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> &
+export type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> &
     ItemImage &
     (ItemSingle | ItemTeam)
 
@@ -45,8 +45,8 @@ interface DetailStore {
     setData: (data: FormData) => void
 }
 
-const getLocalStorage = <T>(key: string): T =>
-    JSON.parse(window.localStorage.getItem(key) || 'null')
+// const getLocalStorage = <T>(key: string): T =>
+//     JSON.parse(window.localStorage.getItem(key) || 'null')
 
 export const useStore = create<ItemStore>()(
     devtools(
