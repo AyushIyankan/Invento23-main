@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-const baseSchema = z.object({
-    success: z.boolean(),
-})
+// const baseSchema = z.object({
+//     success: z.boolean(),
+// })
 
 export const eventTypes = ['proshow', 'techfest', 'saptha', 'taksthi'] as const
 export const eventCategories = [
@@ -54,14 +54,37 @@ const eventSchema = z.object({
     _v: z.number(),
 })
 
-type BaseResponse = z.infer<typeof baseSchema>
+const eventsResponse = z.discriminatedUnion('success', [
+    z.object({
+        success: z.literal(true),
+        events: eventSchema.array(),
+    }),
+    z.object({
+        success: z.literal(false),
+        message: z.string(),
+    }),
+])
+
+const eventResponse = z.discriminatedUnion('success', [
+    z.object({
+        success: z.literal(true),
+        event: eventSchema,
+    }),
+    z.object({
+        success: z.literal(false),
+        message: z.string(),
+    }),
+])
 
 export type EventType = z.infer<typeof eventSchema>
 
-export type EventsResponse = BaseResponse & {
-    events: EventType[]
-}
+// export type EventsResponse = BaseResponse & {
+//     events: EventType[]
+// }
 
-export type EventResponse = BaseResponse & {
-    event: EventType
-}
+export type EventsResponse = z.infer<typeof eventsResponse>
+export type EventResponse = z.infer<typeof eventResponse>
+
+// export type EventResponse = BaseResponse & {
+//     event: EventType
+// }

@@ -19,23 +19,32 @@ export default function Events() {
     const events = useEventsQuery()
 
     if (events.isLoading) toast('Loading Events...', { type: 'info', toastId: 'dwqsdq' })
-    if (events.error) toast('Error Loading Events', { type: 'error', toastId: 'dwqsdv' })
+    if (events.error) {
+        toast('Error Loading Events', {
+            type: 'error',
+            toastId: 'dwqsdv',
+            // data: events.error,
+        })
+    }
 
     const eventsBySection = sections.map((section) => {
-        const categoryEvent = events.data?.events.filter(
-            (event) =>
-                event.eventType === 'techfest' && event.category === sectionMap[section],
-        )
-
-        if (categoryEvent && categoryEvent?.length > 0) {
-            return (
-                <PanelSection
-                    title={section}
-                    panelType="events"
-                    key={section}
-                    items={categoryEvent as EventType[]}
-                />
+        if (events.data?.success) {
+            const categoryEvent = events.data?.events.filter(
+                (event) =>
+                    event.eventType === 'techfest' &&
+                    event.category === sectionMap[section],
             )
+
+            if (categoryEvent && categoryEvent?.length > 0) {
+                return (
+                    <PanelSection
+                        title={section}
+                        panelType="events"
+                        key={section}
+                        items={categoryEvent as EventType[]}
+                    />
+                )
+            }
         }
 
         return null
