@@ -2,6 +2,7 @@
 
 import { AnimatePresence, m } from 'framer-motion'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { EventType } from '../../api/schema'
 import Button from '../../components/Button'
@@ -15,8 +16,10 @@ type CollectAndSubmitProps = {
     // addItem: (item: Item) => void
     onFinalSubmit?: () => void
     isGroup?: boolean
+    // onAdd?: () => void
     onRemove?: () => void
     onToggle?: () => void
+    onGroupFormSubmit?: (data: Record<string, string>) => void
 }
 
 export default function CollectAndSubmit({
@@ -25,6 +28,8 @@ export default function CollectAndSubmit({
     onToggle,
     // removeItem,
     // addItem,
+    // onAdd,
+    onGroupFormSubmit,
     onFinalSubmit,
     onRemove,
     isGroup: group = false,
@@ -40,12 +45,29 @@ export default function CollectAndSubmit({
             date={item.date}
             fee={Number(item.regFee) || Number(item.regFeeTeam)}
             image={item.photo?.secure_url || '/static/natya.jpg'}
+            imgId={item.photo?.id || ''}
             actionType="togglable"
+            // onGroupFormSubmit={(data) => {
+            //     const gmembers = Object.entries(data).map(([, value]) => value)
+            //     // addMembers(itemId, members)
+            //     if (group) {
+            //         setMembersForItem(event._id, gmembers)
+            //     }
+            // }}
+            onGroupFormSubmit={onGroupFormSubmit}
             actions={[
                 () => {
+                    // onAdd && onAdd()
                     onToggle && onToggle()
+                    toast.success(
+                        'You have successfully added the event to your bucket.',
+                        {
+                            toastId: 'add-to-bucket',
+                        },
+                    )
                 },
                 () => {
+                    //todo: add a confirmation dialog
                     onRemove && onRemove()
                     onToggle && onToggle()
                 },
@@ -67,6 +89,7 @@ export default function CollectAndSubmit({
             date={item.date}
             fee={Number(item.regFee) || Number(item.regFeeTeam)}
             image={item.photo?.secure_url || '/static/natya.jpg'}
+            imgId={item.photo?.id || ''}
             actionType="nonTogglable"
             action={() => onRemove && onRemove()}
             selected={true}
@@ -92,7 +115,10 @@ export default function CollectAndSubmit({
                             type="submit"
                             className="btn btn--link btn--save text-white ff-serif btn--checkout"
                             onClick={() => {
+                                // if (!group) onAdd && onAdd()
                                 onFinalSubmit && onFinalSubmit()
+                                // setTimeout(() => {
+                                // }, 200)
                             }}
                         >
                             Proceed to the Final Step

@@ -72,6 +72,7 @@ export function EventForm() {
                         date={event.date}
                         fee={event.regFee || event.regFeeTeam || 0}
                         image={event.photo?.secure_url || '/static/natya.jpg'}
+                        imgId={event.photo?.id || ''}
                         key={event._id}
                         group={group}
                         maxParticipants={event.maxParticipants || 0}
@@ -95,6 +96,7 @@ export function EventForm() {
                                     date: event.date,
                                     // photo: event.photo?.secure_url || '/static/natya.jpg',
                                     image: event.photo?.secure_url || '/static/natya.jpg',
+                                    imageId: event.photo?.id || '',
                                     participationType: group ? 'group' : 'solo',
                                     // members: group ? groups[event._id] : [],
                                     members: [],

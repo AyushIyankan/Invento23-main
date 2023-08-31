@@ -119,6 +119,7 @@ export default function FinalGlance() {
                     <ItemCard
                         mode="show"
                         itemId={item._id}
+                        imgId={item.imageId}
                         group={item.participationType === 'group' ? true : false}
                         maxParticipants={
                             item.participationType === 'group' ? item.members.length : 0

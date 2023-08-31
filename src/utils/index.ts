@@ -71,10 +71,8 @@ export async function dataUrlToFile(dataUrl: string, fileName: string): Promise<
 }
 
 export function isEmpty(obj: { [key: string]: any }) {
-    for (const prop in obj) {
-        if (Object.hasOwn(obj, prop)) {
-            return false
-        }
+    if (Object.keys(obj).length === 0 && obj.constructor === Object) {
+        return true
     }
-    return true
+    return false
 }

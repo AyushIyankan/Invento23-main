@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
-import { Item, useDetailStore, useStore } from '../../store'
+import { Item, useDetailStore } from '../../store'
 import { formSchema } from './schema'
 
 interface Props {
@@ -71,13 +71,14 @@ export function Summary({ bucket, onRemove, onFinalProceed, mode }: Props) {
                     itemId={item._id}
                     group={item.participationType === 'group' ? true : false}
                     maxParticipants={
-                        item.participationType === 'group' ? item.members.length : 0
+                        item.participationType === 'group' ? item.members?.length : 0
                     }
                     key={item?._id}
                     title={item.name}
                     date={item.date}
                     fee={Number(item.regFee)}
                     image={item?.image || '/static/natya.jpg'}
+                    imgId={item.imageId || ''}
                     actionType="nonTogglable"
                     action={() => onRemove(item._id)}
                     selected={true}
