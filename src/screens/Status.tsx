@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { ReactComponent as InventoLogo } from '../assets/svg/invento__logo-outline-full.svg'
 import Button from '../components/Button'
@@ -8,12 +8,13 @@ export default function Status() {
     const [searchParams] = useSearchParams()
 
     const status = searchParams.get('state')
+    const navigate = useNavigate()
 
     useEffect(() => {
-        if (status === 'success') {
+        if (status === 'success' || status === 'error') {
             setTimeout(() => {
-                window.location.href = '/'
-            }, 2000)
+                navigate('/')
+            }, 4000)
         }
     }, [status])
 
@@ -30,7 +31,7 @@ export default function Status() {
 
     const error = (
         <div className="status--success flow ff-serif">
-            <h1 className="status__title ff-serif fw-400">Payment Failure</h1>
+            <h1 className="status__title ff-serif fw-400">Error</h1>
             <p>
                 oops! something went wrong :&#40;
                 <br /> Please try again later.
