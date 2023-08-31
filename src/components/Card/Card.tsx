@@ -96,6 +96,7 @@ export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
 }
 
 type ItemCardPropsBase = {
+    imgId?: string
     image: string
     title: string
     date: string
@@ -131,6 +132,7 @@ type ItemCardProps = ItemCardPropsBase &
     (GroupItem | IndividualItem)
 
 export function ItemCard({
+    imgId,
     itemId,
     image,
     title,
@@ -171,7 +173,13 @@ export function ItemCard({
                 }`}
             >
                 <div className="wrap-img flex">
-                    <img src={`${image}`} alt={`${title}`} />
+                    {imgId ? (
+                        <AdvancedImage
+                            cldImg={cld.image(imgId).format('auto').quality('auto')}
+                        />
+                    ) : (
+                        <img src={`${image}`} alt={`${title}`} />
+                    )}
                 </div>
 
                 <Link to={`/events/${itemId}`}>

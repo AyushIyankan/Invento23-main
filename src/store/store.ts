@@ -22,6 +22,7 @@ type ItemTeam = {
 
 type ItemImage = {
     image: string
+    imageId?: string
 }
 
 export type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> &
