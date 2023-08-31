@@ -8,7 +8,7 @@ import { ItemCard } from '../../components/Card/Card'
 import { ItemGroup } from '../../components/ItemGroup'
 import { titleMap } from '../../constants'
 import useEventsQuery from '../../hooks/useEventsQuery'
-import { useGroupStore, useStore } from '../../store'
+import { useStore } from '../../store'
 
 const eventSubCategories: Record<
     EventType['eventType'] | string,
@@ -21,11 +21,20 @@ const eventSubCategories: Record<
 }
 
 export function EventForm() {
-    const { addItem, removeItem, items: bucket } = useStore((state) => state)
-    const { groups } = useGroupStore((state) => state)
+    const {
+        addItem,
+        removeItem,
+        items: bucket,
+        setMembers: setMembersForItem,
+    } = useStore((state) => state)
     const [, setSelectedKey] = useState<string[]>([])
     const [selectedAccordian, setAccordian] = useState('')
     const navigate = useNavigate()
+    // const setGroups = useContext(GroupDispatchContext)
+
+    // const groupsFromContext = useContext(GroupContext)
+
+    const [members, setMembers] = useState<string[]>([])
 
     const events = useEventsQuery()
 
@@ -67,8 +76,18 @@ export function EventForm() {
                         group={group}
                         maxParticipants={event.maxParticipants || 0}
                         actionType="togglable"
+                        onGroupFormSubmit={(data) => {
+                            const gmembers = Object.entries(data).map(
+                                ([, value]) => value,
+                            )
+                            // addMembers(itemId, members)
+                            if (group) {
+                                setMembers(members)
+                                setMembersForItem(event._id, gmembers)
+                            }
+                        }}
                         actions={[
-                            () =>
+                            () => {
                                 addItem({
                                     _id: event._id,
                                     name: event.name,
@@ -77,8 +96,10 @@ export function EventForm() {
                                     // photo: event.photo?.secure_url || '/static/natya.jpg',
                                     image: event.photo?.secure_url || '/static/natya.jpg',
                                     participationType: group ? 'group' : 'solo',
-                                    members: group ? groups?.[event._id] || [] : [],
-                                }),
+                                    // members: group ? groups[event._id] : [],
+                                    members: [],
+                                })
+                            },
                             () => {
                                 removeItem(event._id)
                                 setSelectedKey((state) =>

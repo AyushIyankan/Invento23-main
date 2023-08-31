@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -14,10 +14,10 @@ export default function FinalGlance() {
     const { personalDetails } = useDetailStore((store) => store)
     const { name, email, phone, college, referral = '' } = personalDetails
     const navigate = useNavigate()
-    const [selectedindex, setSelectedindex] = useState(0)
+    const [, setSelectedindex] = useState(0)
     const { reset } = useStore((store) => store)
-    const { pickerState, setPickerState } = usePickerStore((store) => store)
-    const [error, setError] = useState('')
+    const { pickerState } = usePickerStore((store) => store)
+    const [error] = useState('')
 
     const [price] = useState(() => {
         return items.reduce((acc, item) => acc + Number(item.regFee), 0)
@@ -30,6 +30,16 @@ export default function FinalGlance() {
     //         setError('Please upload the payment proof')
     //     }
     // }, [verificationShot, error])
+
+    const groupMembersByEvent = items.reduce((acc, item) => {
+        if (item.participationType === 'group') {
+            acc.push({
+                eventName: item.name,
+                members: item.members,
+            })
+        }
+        return acc
+    }, [] as { eventName: string; members: string[] }[])
 
     async function handleSubmit() {
         const formData = new FormData()
@@ -45,9 +55,7 @@ export default function FinalGlance() {
         let participants: string[] = []
         const orderEvents = items.map((item) => {
             if (item.participationType === 'group') {
-                participants = item.members.reduce<string[]>((acc, member, ndx) => {
-                    return [...acc, member[`member-${ndx + 1}`]]
-                }, [])
+                participants = [...item.members]
             }
             return {
                 event: item._id,
@@ -129,6 +137,12 @@ export default function FinalGlance() {
                         }}
                     />
                 ))}
+            </div>
+            <div className="group-members-view text-black">
+                <h3 className="ff-serif fw-400">Review the Group members by event</h3>
+                <div className="form__eventsWrap bg-white flow grid">
+                    {JSON.stringify(groupMembersByEvent)}
+                </div>
             </div>
             <div className="text-black ff-serif">
                 <h3 className="text-black ff-serif fw-400">Payment</h3>

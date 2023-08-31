@@ -16,7 +16,8 @@ type Group = {
 
 type ItemTeam = {
     participationType: 'group'
-    members: Group[]
+    // members: Group[]
+    members: string[]
 }
 
 type ItemImage = {
@@ -31,6 +32,7 @@ interface ItemStore {
     items: Item[]
     addItem: (item: Item) => void
     removeItem: (id: Item[`_id`]) => void
+    setMembers: (id: Item[`_id`], members: string[]) => void
     reset: () => void
 }
 
@@ -64,6 +66,15 @@ export const useStore = create<ItemStore>()(
                         ...state,
                         items: state.items.filter((item) => item._id !== id),
                     })),
+
+                setMembers: (id: Item[`_id`], members: string[]) =>
+                    set((state) => ({
+                        ...state,
+                        items: state.items.map((item) =>
+                            item._id === id ? { ...item, members } : item,
+                        ),
+                    })),
+
                 reset: () => set({ items: [] }),
             }),
             {

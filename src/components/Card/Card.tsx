@@ -119,6 +119,7 @@ type NonTogglableAction = {
 type GroupItem = {
     group: true
     maxParticipants: number
+    onGroupFormSubmit?: (data: { [key: string]: string }) => void
 }
 
 type IndividualItem = {
@@ -138,7 +139,7 @@ export function ItemCard({
     mode = 'collect',
     ...props
 }: ItemCardProps) {
-    const { addMembers, groups } = useGroupStore((state) => state)
+    const { groups } = useGroupStore((state) => state)
     const [loading] = useState(false)
 
     const isSmallScreen = isSmall()
@@ -161,14 +162,6 @@ export function ItemCard({
     })
 
     const isGroup = props.group && props.maxParticipants > 0
-
-    const handleGroupMemberSubmit = (data: { [key: string]: string }) => {
-        const members = Object.entries(data).map(([key, value]) => ({
-            [key]: value,
-        }))
-        addMembers(itemId, members)
-        // console.log(data)
-    }
 
     return (
         <div className="itemCard">
@@ -280,9 +273,19 @@ export function ItemCard({
                                 props.actionType === 'togglable'
                                     ? () => {
                                           props.actions[0]()
-                                          handleSubmit(handleGroupMemberSubmit)()
+                                          handleSubmit(
+                                              props.onGroupFormSubmit
+                                                  ? props.onGroupFormSubmit
+                                                  : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                                                    () => {},
+                                              //   onInvalid,
+                                          )()
+
+                                          //   setTimeout(() => {
+                                          //   }, 500)
                                       }
-                                    : props.action
+                                    : //   props.actions[0]
+                                      props.action
                             }
                             actionFalse={
                                 props.actionType === 'togglable'
