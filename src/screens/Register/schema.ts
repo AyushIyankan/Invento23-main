@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { HTMLInputTypeAttribute } from 'react'
-import validator from 'validator'
+import isMobilePhone from 'validator/es/lib/isMobilePhone'
 import z from 'zod'
 
 const years = [
@@ -127,7 +127,7 @@ export const formSchema = z
     })
     .refine(
         (data) => {
-            return validator.isMobilePhone(data.phone, 'en-IN')
+            return isMobilePhone(data.phone, 'en-IN')
         },
         {
             path: ['phone'],
