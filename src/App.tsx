@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Loading from './components/Loading'
+import { loader as eventLoader } from './screens/Register'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -158,6 +159,12 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <LazyRegister />,
+            },
+            {
+                path: '/register/:id',
+                loader: eventLoader(queryClient),
+                element: <LazyRegister type="individual" />,
+                errorElement: <LazyNotFound />,
             },
         ],
     },

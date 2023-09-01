@@ -4,10 +4,15 @@ import { EventResponse } from '../api/schema'
 import { API_URI } from '../constants'
 
 async function getEvent(id: string): Promise<EventResponse> {
-    const res = await fetch(API_URI + '/events/' + id)
+    const res = await fetch(API_URI + 'events/' + id)
     return res.json()
 }
 
 export default function useEventQuery(id: string) {
     return useQuery(['event', id], () => getEvent(id))
 }
+
+export const eventQuery = (id: string) => ({
+    queryKey: ['event', id],
+    queryFn: () => getEvent(id),
+})

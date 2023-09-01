@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { EventType, eventTypes } from '../../api/schema'
@@ -7,7 +8,7 @@ import { ItemCard } from '../../components/Card/Card'
 import { ItemGroup } from '../../components/ItemGroup'
 import { titleMap } from '../../constants'
 import useEventsQuery from '../../hooks/useEventsQuery'
-import { useGroupStore, useStore } from '../../store'
+import { useStore } from '../../store'
 
 const eventSubCategories: Record<
     EventType['eventType'] | string,
@@ -20,63 +21,98 @@ const eventSubCategories: Record<
 }
 
 export function EventForm() {
-    const { addItem, removeItem, items: bucket } = useStore((state) => state)
-    const { groups } = useGroupStore((state) => state)
+    const {
+        addItem,
+        removeItem,
+        items: bucket,
+        setMembers: setMembersForItem,
+    } = useStore((state) => state)
     const [, setSelectedKey] = useState<string[]>([])
     const [selectedAccordian, setAccordian] = useState('')
+    const navigate = useNavigate()
+    // const setGroups = useContext(GroupDispatchContext)
+
+    // const groupsFromContext = useContext(GroupContext)
+
+    const [members, setMembers] = useState<string[]>([])
 
     const events = useEventsQuery()
 
     if (events.isLoading) toast('Loading events...', { type: 'info', toastId: 'fefe' })
 
+    useEffect(() => {
+        if (events.error) {
+            toast.error('Error fetching events', { toastId: 'fefefe' })
+            navigate('/status?state=error')
+        }
+    }, [events.error])
+
     const renderSubTypeEvents = (
         eventType: EventType['eventType'] | string,
         subType: EventType['category'] | string,
     ) => {
-        const eventsOfTypeAndSubType = events.data?.events.filter((event) => {
-            return event.eventType === eventType && event.category === subType
-        })
+        if (events?.data?.success) {
+            const eventsOfTypeAndSubType = events.data?.events.filter((event) => {
+                return event.eventType === eventType && event.category === subType
+            })
 
-        return eventsOfTypeAndSubType?.map((event) => {
-            const group: boolean =
-                event.regFeeTeam && event.maxParticipants && event?.maxParticipants > 0
-                    ? true
-                    : false
-            return (
-                <ItemCard
-                    selected={bucket.some((e) => e._id === event._id)}
-                    itemId={event._id}
-                    onClick={() => setSelectedKey((state) => [...state, event._id])}
-                    title={event.name}
-                    date={event.date}
-                    fee={event.regFee || event.regFeeTeam || 0}
-                    image={event.photo?.secure_url || '/static/natya.jpg'}
-                    key={event._id}
-                    group={group}
-                    maxParticipants={event.maxParticipants || 0}
-                    actionType="togglable"
-                    actions={[
-                        () =>
-                            addItem({
-                                _id: event._id,
-                                name: event.name,
-                                regFee: event.regFee || event.regFeeTeam,
-                                date: event.date,
-                                // photo: event.photo?.secure_url || '/static/natya.jpg',
-                                image: event.photo?.secure_url || '/static/natya.jpg',
-                                participationType: group ? 'group' : 'solo',
-                                members: group ? groups?.[event._id] || [] : [],
-                            }),
-                        () => {
-                            removeItem(event._id)
-                            setSelectedKey((state) =>
-                                state.filter((key) => key !== event._id),
+            return eventsOfTypeAndSubType?.map((event) => {
+                const group: boolean =
+                    event.regFeeTeam &&
+                    event.maxParticipants &&
+                    event?.maxParticipants > 0
+                        ? true
+                        : false
+                return (
+                    <ItemCard
+                        selected={bucket.some((e) => e._id === event._id)}
+                        itemId={event._id}
+                        onClick={() => setSelectedKey((state) => [...state, event._id])}
+                        title={event.name}
+                        date={event.date}
+                        fee={event.regFee || event.regFeeTeam || 0}
+                        image={event.photo?.secure_url || '/static/natya.jpg'}
+                        imgId={event.photo?.id || ''}
+                        key={event._id}
+                        group={group}
+                        maxParticipants={event.maxParticipants || 0}
+                        actionType="togglable"
+                        onGroupFormSubmit={(data) => {
+                            const gmembers = Object.entries(data).map(
+                                ([, value]) => value,
                             )
-                        },
-                    ]}
-                />
-            )
-        })
+                            // addMembers(itemId, members)
+                            if (group) {
+                                setMembers(members)
+                                setMembersForItem(event._id, gmembers)
+                            }
+                        }}
+                        actions={[
+                            () => {
+                                addItem({
+                                    _id: event._id,
+                                    name: event.name,
+                                    regFee: event.regFee || event.regFeeTeam,
+                                    date: event.date,
+                                    // photo: event.photo?.secure_url || '/static/natya.jpg',
+                                    image: event.photo?.secure_url || '/static/natya.jpg',
+                                    imageId: event.photo?.id || '',
+                                    participationType: group ? 'group' : 'solo',
+                                    // members: group ? groups[event._id] : [],
+                                    members: [],
+                                })
+                            },
+                            () => {
+                                removeItem(event._id)
+                                setSelectedKey((state) =>
+                                    state.filter((key) => key !== event._id),
+                                )
+                            },
+                        ]}
+                    />
+                )
+            })
+        }
     }
 
     return (

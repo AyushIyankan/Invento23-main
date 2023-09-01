@@ -21,20 +21,22 @@ export default function Saptha() {
     if (events.error) toast('Error Loading Events', { type: 'error', toastId: 'dwqsdv' })
 
     const eventsBySection = sapthaSections.map((section) => {
-        const categoryEvent = events.data?.events.filter(
-            (event) =>
-                event.eventType === 'saptha' &&
-                event.category === sapthaSectionMap[section],
-        )
-        if (categoryEvent && categoryEvent.length > 0) {
-            return (
-                <PanelSection
-                    title={section}
-                    panelType="saptha"
-                    key={section}
-                    items={categoryEvent as EventType[]}
-                />
+        if (events.data?.success) {
+            const categoryEvent = events.data?.events.filter(
+                (event) =>
+                    event.eventType === 'saptha' &&
+                    event.category === sapthaSectionMap[section],
             )
+            if (categoryEvent && categoryEvent.length > 0) {
+                return (
+                    <PanelSection
+                        title={section}
+                        panelType="saptha"
+                        key={section}
+                        items={categoryEvent as EventType[]}
+                    />
+                )
+            }
         }
         return null
     })

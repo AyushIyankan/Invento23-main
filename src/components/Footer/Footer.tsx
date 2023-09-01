@@ -1,6 +1,6 @@
 import { CSSProperties, useState } from 'react'
 import { toast } from 'react-toastify'
-import validatior from 'validator'
+import isEmail from 'validator/lib/isEmail'
 
 import { ReactComponent as LinkedInLogo } from '../../assets/svg/carbon_logo-linkedin.svg'
 import { ReactComponent as YoutubeLogo } from '../../assets/svg/carbon_logo-youtube.svg'
@@ -22,7 +22,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
     const [isEmailValid, setIsEmailValid] = useState(false)
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const validatedEmail = validatior.isEmail(e.target.value)
+        const validatedEmail = isEmail(e.target.value)
 
         if (!validatedEmail) {
             setIsEmailValid(false)

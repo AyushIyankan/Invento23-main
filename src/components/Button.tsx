@@ -131,7 +131,7 @@ export function ToggleButton({
             onClick={handleOnclick}
             // isLoading={true}
             disabled={disabled}
-            isLoading={props.isLoading || false}
+            // isLoading={props.isLoading || false}
         >
             <span className="sr-only">{selected ? 'Remove Item' : 'Add Item'}</span>
             {selected ? (

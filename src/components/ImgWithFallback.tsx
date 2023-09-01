@@ -28,6 +28,7 @@ export function ImgWithFallback({
                 const webp = await webpLoader(src)
                 setWebpSrc(webp)
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error(`Error loading webp image`, error)
             }
         }

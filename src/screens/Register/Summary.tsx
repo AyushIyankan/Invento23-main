@@ -5,13 +5,20 @@ import { toast } from 'react-toastify'
 
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
-import { useDetailStore, useStore } from '../../store'
+import { Item, useDetailStore } from '../../store'
 import { formSchema } from './schema'
 
-export function Summary() {
-    const { items: bucket, removeItem } = useStore((state) => state)
+interface Props {
+    bucket: Item[] | []
+    onRemove: (id: string) => void
+    onFinalProceed?: () => void
+    // maybe think of a better way to do this
+    mode?: 'collect' | 'show'
+}
+
+export function Summary({ bucket, onRemove, onFinalProceed, mode }: Props) {
     const { personalDetails } = useDetailStore((state) => state)
-    const [selectedindex, setSelectedindex] = useState(0)
+    const [, setSelectedindex] = useState(0)
     const navigate = useNavigate()
 
     const checkout = () => {
@@ -35,61 +42,68 @@ export function Summary() {
         navigate('/final')
     }
 
-    const bucketItems = bucket.map((item) => (
-        <m.div
-            key={`wrapper-` + item._id}
-            initial={{ scale: 0 }}
-            animate={{
-                scale: 1,
-                transition: {
-                    // delay: 0.2,
-                    type: 'spring',
-                },
-            }}
-            exit={{
-                // scale: 0,
-                opacity: 0,
-                transition: {
-                    type: 'spring',
-                    // duration: 0.9,
-                },
-            }}
-            layout
-        >
-            <ItemCard
-                mode="show"
-                itemId={item._id}
-                group={item.participationType === 'group' ? true : false}
-                maxParticipants={
-                    item.participationType === 'group' ? item.members.length : 0
-                }
-                key={item?._id}
-                title={item.name}
-                date={item.date}
-                fee={Number(item.regFee)}
-                image={item?.image || '/static/natya.jpg'}
-                actionType="nonTogglable"
-                action={() => removeItem(item._id)}
-                selected={true}
-                onClick={() => {
-                    setSelectedindex(Number(item._id))
-                    // setisFilled((state) => !state)
+    let bucketItems = null
+
+    if (bucket.length) {
+        bucketItems = bucket.map((item) => (
+            <m.div
+                key={`wrapper-` + item._id}
+                initial={{ scale: 0 }}
+                animate={{
+                    scale: 1,
+                    transition: {
+                        // delay: 0.2,
+                        type: 'spring',
+                    },
                 }}
-            />
-        </m.div>
-    ))
+                exit={{
+                    // scale: 0,
+                    opacity: 0,
+                    transition: {
+                        type: 'spring',
+                        // duration: 0.9,
+                    },
+                }}
+                layout
+            >
+                <ItemCard
+                    mode={mode || 'show'}
+                    itemId={item._id}
+                    group={item.participationType === 'group' ? true : false}
+                    maxParticipants={
+                        item.participationType === 'group' ? item.members?.length : 0
+                    }
+                    key={item?._id}
+                    title={item.name}
+                    date={item.date}
+                    fee={Number(item.regFee)}
+                    image={item?.image || '/static/natya.jpg'}
+                    imgId={item.imageId || ''}
+                    actionType="nonTogglable"
+                    action={() => onRemove(item._id)}
+                    selected={true}
+                    onClick={() => {
+                        setSelectedindex(Number(item._id))
+                        // setisFilled((state) => !state)
+                    }}
+                />
+            </m.div>
+        ))
+    }
     return (
         <>
             <h3 className="text-black ff-serif fw-400">Booking Summary</h3>
             <div className="form__eventsWrap form__summaryWrap grid">
-                {/* <AnimatePresence mode="sync"> */}
                 {bucket.length ? (
                     <div className="grid">
                         <AnimatePresence mode="popLayout">{bucketItems}</AnimatePresence>
                         <Button
                             type="submit"
                             className="btn btn--link btn--save text-white ff-serif btn--checkout"
-                            onClick={checkout}
+                            onClick={() => {
+                                onFinalProceed && onFinalProceed()
+                                checkout()
+                            }}
                         >
                             Proceed to the Final Step
                         </Button>
@@ -105,7 +119,6 @@ export function Summary() {
                         select some events{' '}
                     </m.p>
                 )}
-                {/* </AnimatePresence> */}
             </div>
         </>
     )

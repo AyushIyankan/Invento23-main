@@ -14,3 +14,5 @@ src/scss/index.css.map
 .env.local
 .vercel
 yarn-error.log
+analyse.html
+```

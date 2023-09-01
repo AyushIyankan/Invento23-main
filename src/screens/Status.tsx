@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { ReactComponent as InventoLogo } from '../assets/svg/invento__logo-outline-full.svg'
 import Button from '../components/Button'
@@ -8,12 +8,13 @@ export default function Status() {
     const [searchParams] = useSearchParams()
 
     const status = searchParams.get('state')
+    const navigate = useNavigate()
 
     useEffect(() => {
-        if (status === 'success') {
+        if (status === 'success' || status === 'error') {
             setTimeout(() => {
-                window.location.href = '/'
-            }, 2000)
+                navigate('/')
+            }, 4000)
         }
     }, [status])
 
@@ -25,6 +26,26 @@ export default function Status() {
                 <br /> You will receive an email shortly with your registration.
             </p>
             <p>Hold on while we redirect you to the home page &lt;3</p>
+        </div>
+    )
+
+    const error = (
+        <div className="status--success flow ff-serif">
+            <h1 className="status__title ff-serif fw-400">Error</h1>
+            <p>
+                oops! something went wrong :&#40;
+                <br /> Please try again later.
+            </p>
+            <p>Hold on while we redirect you to the home page &lt;3</p>
+            <div className="wrap-buttons flex flex-center">
+                <Button
+                    to="/"
+                    type="internalUrl"
+                    classNames="btn btn--go-back text-black"
+                >
+                    Go Home
+                </Button>
+            </div>
         </div>
     )
 
@@ -71,6 +92,7 @@ export default function Status() {
                 {status === 'success' && success}
                 {status === 'failure' && failure}
                 {status === 'submitting' && submitting}
+                {status === 'error' && error}
             </div>
         </section>
     )

@@ -1,4 +1,3 @@
-import { ImgWithFallback } from '../components/ImgWithFallback'
 import Nav from '../components/Navigation'
 import { BACKGROUNDS } from '../constants'
 
