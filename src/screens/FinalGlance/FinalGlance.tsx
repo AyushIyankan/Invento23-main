@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
+import GenericTable from '../../components/GenericTable'
 import { ImgWithFallback } from '../../components/ImgWithFallback'
 import Picker from '../../components/Picker'
 import { useDetailStore, useStore } from '../../store'
@@ -23,6 +24,10 @@ export default function FinalGlance() {
         return items.reduce((acc, item) => acc + Number(item.regFee), 0)
     })
 
+    const [hasGroupEvents] = useState(() => {
+        return items.some((item) => item.participationType === 'group')
+    })
+
     // useEffect(() => {
     //     if (verificationShot) {
     //         setError('')
@@ -35,7 +40,7 @@ export default function FinalGlance() {
         if (item.participationType === 'group') {
             acc.push({
                 eventName: item.name,
-                members: item.members,
+                members: item.members.filter((member) => member !== ''),
             })
         }
         return acc
@@ -139,12 +144,23 @@ export default function FinalGlance() {
                     />
                 ))}
             </div>
-            <div className="group-members-view text-black">
-                <h3 className="ff-serif fw-400">Review the Group members by event</h3>
-                <div className="form__eventsWrap bg-white flow grid">
-                    {JSON.stringify(groupMembersByEvent)}
+            {hasGroupEvents && (
+                <div className="group-members-view text-black">
+                    <h3 className="ff-serif fw-400">Review the Group members by event</h3>
+                    <div className="form__eventsWrap bg-white flow">
+                        <GenericTable
+                            data={groupMembersByEvent}
+                            columns={[
+                                {
+                                    key: 'eventName',
+                                    header: 'Event Name',
+                                },
+                                { key: 'members', header: 'Members' },
+                            ]}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
             <div className="text-black ff-serif">
                 <h3 className="text-black ff-serif fw-400">Payment</h3>
             </div>
