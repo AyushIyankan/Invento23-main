@@ -30,7 +30,7 @@ function TableRows<T extends Record<string, any>, K extends keyof T>({
                     return (
                         <td key={`cell-${index}`}>
                             {(val as unknown[]).map((value, index) => (
-                                <li key={`val-${index}`}>{value}</li>
+                                <li key={`val-${index}`}>{value as string}</li>
                             ))}
                         </td>
                     )
