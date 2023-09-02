@@ -71,7 +71,9 @@ export function Summary({ bucket, onRemove, onFinalProceed, mode }: Props) {
                     itemId={item._id}
                     group={item.participationType === 'group' ? true : false}
                     maxParticipants={
-                        item.participationType === 'group' ? item.members?.length : 0
+                        item.participationType === 'group' && item?.members
+                            ? item.members?.length
+                            : 0
                     }
                     key={item?._id}
                     title={item.name}
@@ -86,6 +88,12 @@ export function Summary({ bucket, onRemove, onFinalProceed, mode }: Props) {
                         setSelectedindex(Number(item._id))
                         // setisFilled((state) => !state)
                     }}
+                    calcPriceMode={
+                        item.name.toLowerCase() === 'natya' ||
+                        item.name.toLowerCase() === 'taksati'
+                            ? 'calcOnInput'
+                            : 'normal'
+                    }
                 />
             </m.div>
         ))

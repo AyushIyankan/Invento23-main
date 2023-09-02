@@ -20,6 +20,7 @@ type CollectAndSubmitProps = {
     onRemove?: () => void
     onToggle?: () => void
     onGroupFormSubmit?: (data: Record<string, string>) => void
+    calcPrice?: () => number
 }
 
 export default function CollectAndSubmit({
@@ -32,6 +33,7 @@ export default function CollectAndSubmit({
     onGroupFormSubmit,
     onFinalSubmit,
     onRemove,
+    calcPrice,
     isGroup: group = false,
 }: CollectAndSubmitProps) {
     const [, setSelectedindex] = useState(0)
@@ -79,6 +81,13 @@ export default function CollectAndSubmit({
             mode="collect"
             group={group}
             maxParticipants={group ? item.maxParticipants || 0 : 0}
+            calcPriceMode={
+                item?.name?.toLowerCase() === 'natya' ||
+                item?.name?.toLowerCase() === 'taksati'
+                    ? 'calcOnInput'
+                    : 'normal'
+            }
+            calcPrice={calcPrice}
         />
     )
 

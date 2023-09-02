@@ -41,6 +41,7 @@ export default function Register({ type = 'all' }: Props) {
         removeItem,
         addItem,
         reset,
+        setUpdatedPrice,
         setMembers: setMembersForEvent,
     } = useStore((state) => state)
 
@@ -89,8 +90,18 @@ export default function Register({ type = 'all' }: Props) {
                     onToggle={toggle}
                     onGroupFormSubmit={(data) => {
                         const gmembers = Object.entries(data).map(([, value]) => value)
+
                         if (isGroup) {
                             setMembersForEvent(event._id, gmembers)
+                            if (
+                                event?.name?.toLowerCase() === 'natya' ||
+                                event?.name?.toLowerCase() === 'taksati'
+                            ) {
+                                const calculatedPrice =
+                                    (event.regFeeTeam ?? 0) *
+                                    gmembers.filter((e) => e !== '').length
+                                setUpdatedPrice(event._id, calculatedPrice)
+                            }
                         }
                     }}
                     onRemove={() => {
@@ -100,6 +111,9 @@ export default function Register({ type = 'all' }: Props) {
                     onFinalSubmit={() => {
                         handleFinalSubmit(personalDetails, items)
                     }}
+                    calcPrice={() =>
+                        items.find((e) => e._id === event._id)?.updatedPrice ?? 0
+                    }
                 />
             )}
         </div>

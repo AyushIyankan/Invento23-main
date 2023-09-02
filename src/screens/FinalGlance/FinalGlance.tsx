@@ -21,7 +21,9 @@ export default function FinalGlance() {
     const [error] = useState('')
 
     const [price] = useState(() => {
-        return items.reduce((acc, item) => acc + Number(item.regFee), 0)
+        return items.reduce((acc, item) => {
+            return acc + Number(item.updatedPrice ?? Number(item.regFee))
+        }, 0)
     })
 
     const [hasGroupEvents] = useState(() => {
@@ -37,7 +39,7 @@ export default function FinalGlance() {
     // }, [verificationShot, error])
 
     const groupMembersByEvent = items.reduce((acc, item) => {
-        if (item.participationType === 'group') {
+        if (item.participationType === 'group' && item?.members) {
             acc.push({
                 eventName: item.name,
                 members: item.members.filter((member) => member !== ''),
@@ -59,7 +61,7 @@ export default function FinalGlance() {
 
         let participants: string[] = []
         const orderEvents = items.map((item) => {
-            if (item.participationType === 'group') {
+            if (item.participationType === 'group' && item?.members) {
                 participants = [...item.members]
             }
             return {
@@ -127,12 +129,19 @@ export default function FinalGlance() {
                         imgId={item.imageId}
                         group={item.participationType === 'group' ? true : false}
                         maxParticipants={
-                            item.participationType === 'group' ? item.members.length : 0
+                            item.participationType === 'group' && item?.members
+                                ? item.members.length
+                                : 0
                         }
                         key={item?._id}
                         title={item.name}
                         date={item.date}
-                        fee={Number(item.regFee)}
+                        renderPriceSlot={() => (
+                            <p className="text-black ff-serif">
+                                &#8377;{item.updatedPrice ?? Number(item.regFee)}
+                            </p>
+                        )}
+                        fee={item.updatedPrice ?? Number(item.regFee)}
                         image={item?.image || '/static/natya.jpg'}
                         actionType="nonTogglable"
                         action={() => removeItem(item._id)}
@@ -141,6 +150,12 @@ export default function FinalGlance() {
                             setSelectedindex(Number(item._id))
                             // setisFilled((state) => !state)
                         }}
+                        calcPriceMode={
+                            item.name.toLowerCase() === 'natya' ||
+                            item.name.toLowerCase() === 'taksati'
+                                ? 'calcOnInput'
+                                : 'normal'
+                        }
                     />
                 ))}
             </div>

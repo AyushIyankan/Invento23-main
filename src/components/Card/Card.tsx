@@ -1,12 +1,12 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
 import { HTMLMotionProps, m } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 import { cld } from '../../App'
 import { isSmall } from '../../hooks'
-import { useGroupStore } from '../../store'
+import { useGroupStore, useStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
 import { ToggleButton } from '../Button'
@@ -105,6 +105,7 @@ type ItemCardPropsBase = {
     itemId: string
     onClick: () => void
     mode?: 'collect' | 'show'
+    renderPriceSlot?: () => JSX.Element
 }
 
 type TogglableAction = {
@@ -121,6 +122,8 @@ type GroupItem = {
     group: true
     maxParticipants: number
     onGroupFormSubmit?: (data: { [key: string]: string }) => void
+    calcPriceMode?: 'normal' | 'calcOnInput'
+    calcPrice?: () => number
 }
 
 type IndividualItem = {
@@ -141,22 +144,45 @@ export function ItemCard({
     mode = 'collect',
     ...props
 }: ItemCardProps) {
-    const { groups } = useGroupStore((state) => state)
+    // const { groups } = useGroupStore((state) => state)
+    const { items } = useStore((state) => state)
     const [loading] = useState(false)
+
+    const [calculatedPrice, setCalculatedPrice] = useState(() => {
+        if (props.group && props.calcPriceMode === 'calcOnInput') {
+            return props.calcPrice ? props.calcPrice() : 0
+        }
+        return fee
+    })
+
+    useEffect(() => {
+        if (props.group && props.calcPriceMode === 'calcOnInput') {
+            setCalculatedPrice(props.calcPrice ? props.calcPrice() : 0)
+        }
+    }, [props])
 
     const isSmallScreen = isSmall()
 
     const [defaultValue] = useState(() => {
-        const defaultValues = groups?.[itemId]?.reduce((acc, val) => {
-            const key = Object.keys(val)[0]
-            return {
-                ...acc,
-                [key]: val[key],
-            }
-        }, {})
+        // const defaultValues = groups?.[itemId]?.reduce((acc, val) => {
+        //     const key = Object.keys(val)[0]
+        //     return {
+        //         ...acc,
+        //         [key]: val[key],
+        //     }
+        // }, {})
+        // return defaultValues || {}
+
+        const defaultValues = items
+            .find((e) => e._id === itemId)
+            ?.members?.reduce((acc, cur, index) => {
+                return {
+                    ...acc,
+                    [`member-${index + 1}`]: cur,
+                }
+            }, {})
         return defaultValues || {}
     })
-
     const { register, handleSubmit } = useForm<{
         [key: string]: string
     }>({
@@ -187,8 +213,17 @@ export function ItemCard({
                 </Link>
 
                 <p className="ff-serif text-black fw-400 detail-fee">
-                    {/* {isGroup ? 'Team Registration Fee' : 'Registration Fee'}: {fee} */}
-                    Registration Fee: {fee}
+                    {props.renderPriceSlot
+                        ? props.renderPriceSlot()
+                        : props.group && props.calcPriceMode === 'normal'
+                        ? fee
+                        : `${fee} per person`}
+                    {/* {props?.renderPriceSlot ? props.renderPriceSlot() : ''}
+                    {props.group &&
+                    !props.renderPriceSlot &&
+                    props.calcPriceMode === 'normal'
+                        ? fee
+                        : `${fee} per person`} */}
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">
                     {' '}
@@ -303,6 +338,11 @@ export function ItemCard({
                             // isLoading={loading}
                             showText
                         />
+                        {props.calcPriceMode === 'calcOnInput' && (
+                            <p className="text-black ff-serif fw-400 mt-sm">
+                                Total Registration Fee: {calculatedPrice}
+                            </p>
+                        )}
                     </form>
                 </>
             )}
