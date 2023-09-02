@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
-import { LoaderFunctionArgs, useLoaderData, useNavigate } from 'react-router-dom'
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
 
 import { EventResponse, EventType } from '../../api/schema'
 import { useToggle } from '../../hooks'
 import useCheckout from '../../hooks/useCheckout'
 import { eventQuery } from '../../hooks/useEventQuery'
-import { useDetailStore, useGroupStore, useStore } from '../../store'
+import { useDetailStore, useStore } from '../../store'
 import CollectAndSubmit from './CollectAndSubmit'
 import { EventForm } from './EventForm'
 import { RegistrationForm } from './Form'
@@ -24,7 +24,7 @@ export const loader =
             queryClient.getQueryData(query.queryKey) ??
             (await queryClient.fetchQuery(query))
 
-        if (!data.success) {
+        if (!data.success || !data.event.isAvailable) {
             throw new Error("Couldn't fetch event data")
         }
 
@@ -41,6 +41,7 @@ export default function Register({ type = 'all' }: Props) {
         removeItem,
         addItem,
         reset,
+        setUpdatedPrice,
         setMembers: setMembersForEvent,
     } = useStore((state) => state)
 
@@ -89,8 +90,18 @@ export default function Register({ type = 'all' }: Props) {
                     onToggle={toggle}
                     onGroupFormSubmit={(data) => {
                         const gmembers = Object.entries(data).map(([, value]) => value)
+
                         if (isGroup) {
                             setMembersForEvent(event._id, gmembers)
+                            if (
+                                event?.name?.toLowerCase() === 'natya' ||
+                                event?.name?.toLowerCase() === 'taksati'
+                            ) {
+                                const calculatedPrice =
+                                    (event.regFeeTeam ?? 0) *
+                                    gmembers.filter((e) => e !== '').length
+                                setUpdatedPrice(event._id, calculatedPrice)
+                            }
                         }
                     }}
                     onRemove={() => {
@@ -100,6 +111,9 @@ export default function Register({ type = 'all' }: Props) {
                     onFinalSubmit={() => {
                         handleFinalSubmit(personalDetails, items)
                     }}
+                    calcPrice={() =>
+                        items.find((e) => e._id === event._id)?.updatedPrice ?? 0
+                    }
                 />
             )}
         </div>

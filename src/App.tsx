@@ -155,6 +155,7 @@ const routes = createBrowserRouter([
         path: '/register',
         // element: <LazySoon />,
         element: <LazyFormLayout />,
+        errorElement: <LazyNotFound />,
         children: [
             {
                 index: true,
@@ -164,7 +165,6 @@ const routes = createBrowserRouter([
                 path: '/register/:id',
                 loader: eventLoader(queryClient),
                 element: <LazyRegister type="individual" />,
-                errorElement: <LazyNotFound />,
             },
         ],
     },
