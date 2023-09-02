@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { cld } from '../../App'
 import { isSmall } from '../../hooks'
-import { useGroupStore, useStore } from '../../store'
+import { useStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
 import { transformDate } from '../../utils'
 import { ToggleButton } from '../Button'

@@ -6,20 +6,6 @@ import { FormSchema } from '../screens/Register/schema'
 
 type FormData = FormSchema
 
-type ItemSingle = {
-    participationType: 'solo'
-}
-
-type Group = {
-    [key: string]: string
-}
-
-type ItemTeam = {
-    participationType: 'group'
-    // members: Group[]
-    members: string[]
-}
-
 type ItemParticipationType = {
     participationType: 'solo' | 'group'
     members?: string[]
@@ -46,19 +32,12 @@ interface ItemStore {
     reset: () => void
 }
 
-interface GroupStore {
-    groups: { [key: string extends keyof Item ? never : Item[`_id`]]: Group[] }
-    addMembers: (id: Item[`_id`], members: Group[]) => void
-    reset: () => void
-}
+//
 
 interface DetailStore {
     personalDetails: FormData
     setData: (data: FormData) => void
 }
-
-// const getLocalStorage = <T>(key: string): T =>
-//     JSON.parse(window.localStorage.getItem(key) || 'null')
 
 export const useStore = create<ItemStore>()(
     devtools(
@@ -118,23 +97,6 @@ export const useDetailStore = create<DetailStore>()(
                     })),
             }),
             { name: 'formDetailStore' },
-        ),
-    ),
-)
-
-export const useGroupStore = create<GroupStore>()(
-    devtools(
-        persist(
-            (set) => ({
-                groups: {},
-                addMembers: (id: Item[`_id`], members: Group[]) =>
-                    set((state) => ({
-                        ...state,
-                        groups: { ...state.groups, [id]: members },
-                    })),
-                reset: () => set({ groups: {} }),
-            }),
-            { name: 'groupStore' },
         ),
     ),
 )
