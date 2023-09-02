@@ -58,6 +58,18 @@ const LazyLeaderBoard = lazy(() =>
     }),
 )
 
+const LazyProshowLayout = lazy(() =>
+    import('./pages/Proshow').then((m) => {
+        return { default: m.Layout }
+    }),
+)
+
+const LazyProshow = lazy(() =>
+    import('./pages/Proshow').then((m) => {
+        return { default: m.default }
+    }),
+)
+
 const LazyCALayout = lazy(() =>
     import('./pages/CampusAmbassadors/Layout').then((m) => {
         return { default: m.Layout }
@@ -201,6 +213,16 @@ const routes = createBrowserRouter([
     {
         path: '/final',
         element: <LazyFinal />,
+    },
+    {
+        path: '/proshow',
+        element: <LazyProshowLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyProshow />,
+            },
+        ],
     },
 
     {
