@@ -51,6 +51,7 @@ const eventSchema = z.object({
     rules: z.array(z.string()).default([]),
     ticketBooked: z.number().optional(),
     createdAt: z.string().datetime(),
+    isAvailable: z.boolean(),
     _v: z.number(),
 })
 

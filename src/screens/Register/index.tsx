@@ -24,7 +24,7 @@ export const loader =
             queryClient.getQueryData(query.queryKey) ??
             (await queryClient.fetchQuery(query))
 
-        if (!data.success) {
+        if (!data.success || !data.event.isAvailable) {
             throw new Error("Couldn't fetch event data")
         }
 

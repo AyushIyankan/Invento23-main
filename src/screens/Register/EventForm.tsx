@@ -65,71 +65,77 @@ export function EventForm() {
                         ? true
                         : false
                 return (
-                    <ItemCard
-                        selected={bucket.some((e) => e._id === event._id)}
-                        itemId={event._id}
-                        onClick={() => setSelectedKey((state) => [...state, event._id])}
-                        title={event.name}
-                        date={event.date}
-                        fee={event.regFee || event.regFeeTeam || 0}
-                        image={event.photo?.secure_url || '/static/natya.jpg'}
-                        imgId={event.photo?.id || ''}
-                        key={event._id}
-                        group={group}
-                        maxParticipants={event.maxParticipants || 0}
-                        actionType="togglable"
-                        calcPriceMode={
-                            event?.name?.toLowerCase() === 'natya' ||
-                            event?.name?.toLowerCase() === 'taksati'
-                                ? 'calcOnInput'
-                                : 'normal'
-                        }
-                        onGroupFormSubmit={(data) => {
-                            const gmembers = Object.entries(data).map(
-                                ([, value]) => value,
-                            )
-                            // addMembers(itemId, members)
-                            if (group) {
-                                // setMembers(members)
-                                setMembersForItem(event._id, gmembers)
-                                if (
-                                    event?.name?.toLowerCase() === 'natya' ||
-                                    event?.name?.toLowerCase() === 'taksati'
-                                ) {
-                                    const calculatedPrice =
-                                        (event.regFeeTeam ?? 0) *
-                                        gmembers.filter((e) => e !== '').length
-                                    setUpdatedPrice(event._id, calculatedPrice)
-                                }
+                    event.isAvailable && (
+                        <ItemCard
+                            selected={bucket.some((e) => e._id === event._id)}
+                            itemId={event._id}
+                            onClick={() =>
+                                setSelectedKey((state) => [...state, event._id])
                             }
-                        }}
-                        calcPrice={() =>
-                            bucket.find((e) => e._id === event._id)?.updatedPrice ?? 0
-                        }
-                        actions={[
-                            () => {
-                                addItem({
-                                    _id: event._id,
-                                    name: event.name,
-                                    regFee: event.regFee || event.regFeeTeam,
-                                    basePrice: event.regFee || event.regFeeTeam,
-                                    date: event.date,
-                                    // photo: event.photo?.secure_url || '/static/natya.jpg',
-                                    image: event.photo?.secure_url || '/static/natya.jpg',
-                                    imageId: event.photo?.id || '',
-                                    participationType: group ? 'group' : 'solo',
-                                    // members: group ? groups[event._id] : [],
-                                    members: [],
-                                })
-                            },
-                            () => {
-                                removeItem(event._id)
-                                setSelectedKey((state) =>
-                                    state.filter((key) => key !== event._id),
+                            title={event.name}
+                            date={event.date}
+                            fee={event.regFee || event.regFeeTeam || 0}
+                            image={event.photo?.secure_url || '/static/natya.jpg'}
+                            imgId={event.photo?.id || ''}
+                            key={event._id}
+                            group={group}
+                            maxParticipants={event.maxParticipants || 0}
+                            actionType="togglable"
+                            calcPriceMode={
+                                event?.name?.toLowerCase() === 'natya' ||
+                                event?.name?.toLowerCase() === 'taksati'
+                                    ? 'calcOnInput'
+                                    : 'normal'
+                            }
+                            onGroupFormSubmit={(data) => {
+                                const gmembers = Object.entries(data).map(
+                                    ([, value]) => value,
                                 )
-                            },
-                        ]}
-                    />
+                                // addMembers(itemId, members)
+                                if (group) {
+                                    // setMembers(members)
+                                    setMembersForItem(event._id, gmembers)
+                                    if (
+                                        event?.name?.toLowerCase() === 'natya' ||
+                                        event?.name?.toLowerCase() === 'taksati'
+                                    ) {
+                                        const calculatedPrice =
+                                            (event.regFeeTeam ?? 0) *
+                                            gmembers.filter((e) => e !== '').length
+                                        setUpdatedPrice(event._id, calculatedPrice)
+                                    }
+                                }
+                            }}
+                            calcPrice={() =>
+                                bucket.find((e) => e._id === event._id)?.updatedPrice ?? 0
+                            }
+                            actions={[
+                                () => {
+                                    addItem({
+                                        _id: event._id,
+                                        name: event.name,
+                                        regFee: event.regFee || event.regFeeTeam,
+                                        basePrice: event.regFee || event.regFeeTeam,
+                                        date: event.date,
+                                        // photo: event.photo?.secure_url || '/static/natya.jpg',
+                                        image:
+                                            event.photo?.secure_url ||
+                                            '/static/natya.jpg',
+                                        imageId: event.photo?.id || '',
+                                        participationType: group ? 'group' : 'solo',
+                                        // members: group ? groups[event._id] : [],
+                                        members: [],
+                                    })
+                                },
+                                () => {
+                                    removeItem(event._id)
+                                    setSelectedKey((state) =>
+                                        state.filter((key) => key !== event._id),
+                                    )
+                                },
+                            ]}
+                        />
+                    )
                 )
             })
         }

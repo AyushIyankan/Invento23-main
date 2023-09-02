@@ -211,18 +211,18 @@ export function ItemCard({
                 <Link to={`/events/${itemId}`}>
                     <h3 className="text-black underline ff-serif fw-400">{title}</h3>
                 </Link>
-
                 <p className="ff-serif text-black fw-400 detail-fee">
                     {props.renderPriceSlot
                         ? props.renderPriceSlot()
-                        : props.group && props.calcPriceMode === 'normal'
-                        ? fee
-                        : `${fee} per person`}
+                        : props.group && props.calcPriceMode === 'calcOnInput'
+                        ? `Registration Fee: \u20b9${fee} per person`
+                        : `Registration Fee: \u20b9${fee}`}
                     {/* {props?.renderPriceSlot ? props.renderPriceSlot() : ''}
                     {props.group &&
                     !props.renderPriceSlot &&
                     props.calcPriceMode === 'normal'
                         ? fee
+                        // rupee in unicode:  
                         : `${fee} per person`} */}
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">

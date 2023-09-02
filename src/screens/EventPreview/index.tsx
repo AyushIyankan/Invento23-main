@@ -54,6 +54,7 @@ export default function EventPreview() {
         category,
         regFee,
         regFeeTeam,
+        isAvailable,
     } = event.data.event
 
     const { id: imgId } = event.data.event.photo || {}
@@ -175,13 +176,19 @@ export default function EventPreview() {
                                     </div>
                                 </span>
                             )}
-                            <Button
-                                type="internalUrl"
-                                to={`/register/${id}`}
-                                classNames={`text-magenta btn d-ib btn--link btn--register_event gradient-borders`}
-                            >
-                                register now
-                            </Button>
+                            {isAvailable ? (
+                                <Button
+                                    type="internalUrl"
+                                    to={`/register/${id}`}
+                                    classNames={`text-magenta btn d-ib btn--link btn--register_event gradient-borders`}
+                                >
+                                    register now
+                                </Button>
+                            ) : (
+                                <p className="mt-sm text-red uppercase text-reg-closed">
+                                    Registrations are closed for this event.
+                                </p>
+                            )}
                         </div>
                     </div>
                     {eventRules.length > 0 && (
