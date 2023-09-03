@@ -118,7 +118,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                         <li className="footer__nav--item">
                             <Button
                                 type="internalUrl"
-                                to="/saptha"
+                                to="/events/64e9a31f0c402a82cdccd565"
                                 classNames="footer__link"
                             >
                                 Natya
@@ -145,7 +145,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                         <li className="footer__nav--item">
                             <Button
                                 type="internalUrl"
-                                to="/saptha"
+                                to="/events/64e35d0bb921e9985ffb07f7"
                                 classNames="footer__link"
                             >
                                 Taksati
