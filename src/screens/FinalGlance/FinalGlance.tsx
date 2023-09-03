@@ -111,11 +111,11 @@ export default function FinalGlance() {
     }
 
     return (
-        <div className="formParentWrap centeredContainer flow side-padding light-scheme mh-full checkout_main">
+        <div className="formParentWrap centeredContainer flow side-padding light-scheme mh-full checkout_main final_main">
             <div>
-                <p className="text-black ff-serif pt-sm text-review">
-                    Please check the details below and click on submit to complete your
-                    registration
+                <p className="text-black ff-serif pt-sm text-review final_text">
+                    Please review your details and selected events below before proceeding
+                    to submission.
                 </p>
                 <h2 className="FormHeading text-black fw-400 ff-serif">
                     Personal Information
@@ -132,41 +132,51 @@ export default function FinalGlance() {
                 <h3 className="text-black ff-serif fw-400">Selected events</h3>
             </div>
             <div className="form__eventsWrap bg-white flow grid">
-                {items.map((item) => (
-                    <ItemCard
-                        mode="show"
-                        itemId={item._id}
-                        imgId={item.imageId}
-                        group={item.participationType === 'group' ? true : false}
-                        maxParticipants={
-                            item.participationType === 'group' && item?.members
-                                ? item.members.length
-                                : 0
-                        }
-                        key={item?._id}
-                        title={item.name}
-                        date={item.date}
-                        renderPriceSlot={() => (
-                            <p className="text-black ff-serif">
-                                &#8377;{item.updatedPrice ?? Number(item.regFee)}
-                            </p>
-                        )}
-                        fee={item.updatedPrice ?? Number(item.regFee)}
-                        image={item?.image || '/static/natya.jpg'}
-                        actionType="nonTogglable"
-                        action={() => removeItem(item._id)}
-                        selected={true}
-                        onClick={() => {
-                            setSelectedindex(Number(item._id))
-                            // setisFilled((state) => !state)
+                {items.map((item, i) => (
+                    <div
+                        key={item._id + i}
+                        className="wrap-itemCard_final"
+                        style={{
+                            backgroundColor: '#f5f5f5',
+                            borderRadius: 'inherit',
+                            marginBottom: '10px',
                         }}
-                        calcPriceMode={
-                            item.name.toLowerCase() === 'natya' ||
-                            item.name.toLowerCase() === 'taksati'
-                                ? 'calcOnInput'
-                                : 'normal'
-                        }
-                    />
+                    >
+                        <ItemCard
+                            mode="show"
+                            itemId={item._id}
+                            imgId={item.imageId}
+                            group={item.participationType === 'group' ? true : false}
+                            maxParticipants={
+                                item.participationType === 'group' && item?.members
+                                    ? item.members.length
+                                    : 0
+                            }
+                            key={item?._id}
+                            title={item.name}
+                            date={item.date}
+                            renderPriceSlot={() => (
+                                <p className="text-black ff-serif">
+                                    &#8377;{item.updatedPrice ?? Number(item.regFee)}
+                                </p>
+                            )}
+                            fee={item.updatedPrice ?? Number(item.regFee)}
+                            image={item?.image || '/static/natya.jpg'}
+                            actionType="nonTogglable"
+                            action={() => removeItem(item._id)}
+                            selected={true}
+                            onClick={() => {
+                                setSelectedindex(Number(item._id))
+                                // setisFilled((state) => !state)
+                            }}
+                            calcPriceMode={
+                                item.name.toLowerCase() === 'natya' ||
+                                item.name.toLowerCase() === 'taksati'
+                                    ? 'calcOnInput'
+                                    : 'normal'
+                            }
+                        />
+                    </div>
                 ))}
             </div>
             {hasGroupEvents && (

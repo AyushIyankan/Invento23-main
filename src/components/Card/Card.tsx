@@ -1,14 +1,17 @@
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { HTMLMotionProps, m } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import { cld } from '../../App'
 import { isSmall } from '../../hooks'
+import { ensureMinParticipantsSchema } from '../../screens/Register/schema'
 import { useStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
-import { transformDate } from '../../utils'
+import { isEmpty, transformDate } from '../../utils'
 import { ToggleButton } from '../Button'
 import { FormInput } from '../Form'
 import { ImgWithFallback } from '../ImgWithFallback'
@@ -121,6 +124,7 @@ type NonTogglableAction = {
 type GroupItem = {
     group: true
     maxParticipants: number
+    minParticipants?: number
     onGroupFormSubmit?: (data: { [key: string]: string }) => void
     calcPriceMode?: 'normal' | 'calcOnInput'
     calcPrice?: () => number
@@ -163,16 +167,10 @@ export function ItemCard({
 
     const isSmallScreen = isSmall()
 
-    const [defaultValue] = useState(() => {
-        // const defaultValues = groups?.[itemId]?.reduce((acc, val) => {
-        //     const key = Object.keys(val)[0]
-        //     return {
-        //         ...acc,
-        //         [key]: val[key],
-        //     }
-        // }, {})
-        // return defaultValues || {}
+    const hasMinParticipants =
+        props.group && props.minParticipants && props.minParticipants > 0
 
+    const [defaultValue] = useState(() => {
         const defaultValues = items
             .find((e) => e._id === itemId)
             ?.members?.reduce((acc, cur, index) => {
@@ -183,14 +181,21 @@ export function ItemCard({
             }, {})
         return defaultValues || {}
     })
-    const { register, handleSubmit } = useForm<{
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm<{
         [key: string]: string
     }>({
         defaultValues: defaultValue,
+        mode: 'onBlur',
+        resolver: hasMinParticipants
+            ? zodResolver(ensureMinParticipantsSchema(props?.minParticipants))
+            : undefined,
     })
 
     const isGroup = props.group && props.maxParticipants > 0
-
     return (
         <div className="itemCard">
             <div
@@ -217,13 +222,6 @@ export function ItemCard({
                         : props.group && props.calcPriceMode === 'calcOnInput'
                         ? `Registration Fee: \u20b9${fee} per person`
                         : `Registration Fee: \u20b9${fee}`}
-                    {/* {props?.renderPriceSlot ? props.renderPriceSlot() : ''}
-                    {props.group &&
-                    !props.renderPriceSlot &&
-                    props.calcPriceMode === 'normal'
-                        ? fee
-                        // rupee in unicode:  
-                        : `${fee} per person`} */}
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">
                     {' '}
@@ -295,7 +293,12 @@ export function ItemCard({
                         Kindly provide the names of your team members in the designated
                         fields below.
                     </p>
-
+                    {props?.minParticipants && props?.minParticipants > 0 && (
+                        <p className="text-black ff-serif mt-sm fw-500">
+                            This event requires a minimum of {props.minParticipants}{' '}
+                            members
+                        </p>
+                    )}
                     <form className="itemCard_group grid mt-sm text-black ff-serif fw-400">
                         {Array.from({ length: props.maxParticipants }).map((_, i) => (
                             <FormInput
@@ -308,38 +311,57 @@ export function ItemCard({
                                 placeholder='e.g. "John Doe"'
                             />
                         ))}
+                        {!isValid && (
+                            <p
+                                className="text-red ff-serif fw-400 mt-sm"
+                                style={{
+                                    alignSelf: 'center',
+                                }}
+                            >
+                                This event requires a minimum of {props.minParticipants}{' '}
+                                members
+                            </p>
+                        )}
                         <ToggleButton
                             selected={props.selected}
-                            // submit
                             toggle={props.onClick}
+                            disabled={!isValid}
                             actionTrue={
                                 props.actionType === 'togglable'
                                     ? () => {
-                                          props.actions[0]()
                                           handleSubmit(
                                               props.onGroupFormSubmit
                                                   ? props.onGroupFormSubmit
                                                   : // eslint-disable-next-line @typescript-eslint/no-empty-function
                                                     () => {},
-                                              //   onInvalid,
+                                              (err) => {
+                                                  toast.error(
+                                                      `Please fill in at least ${props?.minParticipants} fields.`,
+                                                      {
+                                                          toastId: 'invalid-form',
+                                                      },
+                                                  )
+                                              },
                                           )()
-
-                                          //   setTimeout(() => {
-                                          //   }, 500)
+                                          props.actions[0]()
                                       }
-                                    : //   props.actions[0]
-                                      props.action
+                                    : props.action
                             }
                             actionFalse={
                                 props.actionType === 'togglable'
                                     ? props.actions[1]
                                     : props.action
                             }
-                            // isLoading={loading}
                             showText
                         />
                         {props.calcPriceMode === 'calcOnInput' && (
-                            <p className="text-black ff-serif fw-400 mt-sm">
+                            <p
+                                className="text-black ff-serif fw-400 mt-sm"
+                                style={{
+                                    alignSelf: 'center',
+                                    justifySelf: 'center',
+                                }}
+                            >
                                 Total Registration Fee: {calculatedPrice}
                             </p>
                         )}
