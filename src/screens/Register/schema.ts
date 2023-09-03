@@ -135,4 +135,14 @@ export const formSchema = z
         },
     )
 
+export const ensureMinParticipantsSchema = (minParticipants: number | undefined) => {
+    if (!minParticipants || minParticipants === 0) {
+        return z.record(z.string(), z.string())
+    }
+    const schema = z.record(z.string()).refine((data) => {
+        const res = Object.keys(data).map((key) => data[key]).filter((value) => value !== '').length >= minParticipants
+        return res
+    })
+    return schema
+}
 export type FormSchema = z.infer<typeof formSchema>

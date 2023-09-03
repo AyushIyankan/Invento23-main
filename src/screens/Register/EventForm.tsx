@@ -109,6 +109,13 @@ export function EventForm() {
                             calcPrice={() =>
                                 bucket.find((e) => e._id === event._id)?.updatedPrice ?? 0
                             }
+                            minParticipants={
+                                event?.name?.toLowerCase() === 'natya'
+                                    ? 7
+                                    : event?.name?.toLowerCase() === 'taksati'
+                                    ? 8
+                                    : 0
+                            }
                             actions={[
                                 () => {
                                     addItem({

@@ -139,7 +139,7 @@ export function Hero() {
                         to={'/events/64e35d0bb921e9985ffb07f7'}
                         className="uppercase d-b text-decoration-none"
                     >
-                        taksathi
+                        taksati
                     </Link>
                     <Link to={'/proshow'} className="uppercase d-b text-decoration-none">
                         proshow

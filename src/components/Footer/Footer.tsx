@@ -118,7 +118,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                         <li className="footer__nav--item">
                             <Button
                                 type="internalUrl"
-                                to="/saptha"
+                                to="/events/64e9a31f0c402a82cdccd565"
                                 classNames="footer__link"
                             >
                                 Natya
@@ -145,7 +145,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                         <li className="footer__nav--item">
                             <Button
                                 type="internalUrl"
-                                to="/saptha"
+                                to="/events/64e35d0bb921e9985ffb07f7"
                                 classNames="footer__link"
                             >
                                 Taksati
@@ -162,27 +162,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                     </address>
                     <div className="footer__logoContainer flex mt-sm">
                         <a
-                            href="https://instagram.com/invento_gecpalakkad"
-                            target="_blank"
-                            className="footer__logo--link"
-                            rel="noreferrer noopener"
-                        >
-                            <span>
-                                <FacebookLogo className="footer__logo" />
-                            </span>
-                        </a>
-                        <a
-                            href="https://instagram.com/invento_gecpalakkad"
-                            target="_blank"
-                            className="footer__logo--link"
-                            rel="noreferrer noopener "
-                        >
-                            <span>
-                                <LinkedInLogo className="footer__logo" />
-                            </span>
-                        </a>
-                        <a
-                            href="https://instagram.com/invento_gecpalakkad"
+                            href="https://youtube.com/@inventogecpalakkad2600"
                             target="_blank"
                             className="footer__logo--link"
                             rel="noreferrer noopener"

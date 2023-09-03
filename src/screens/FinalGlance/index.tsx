@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Footer from '../../components/Footer/Footer'
 import Nav from '../../components/Navigation'
+import { BACKGROUNDS } from '../../constants'
 import { useConditionalNavigation } from '../../hooks'
 import { useDetailStore, useStore } from '../../store'
 import { formSchema } from '../Register/schema'
@@ -23,9 +24,12 @@ export function FinalGlanceLayout() {
 
     return (
         <div>
-            <Nav background="hsl(266, 12%, 12%)" progressLineColor="" />
+            <Nav background={BACKGROUNDS.clrWhite} progressLineColor="" theme="light" />
             <FinalGlance />
-            <Footer background={''} />
+            <Footer
+                background={`linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF -20.1%)`}
+                theme="light"
+            />
         </div>
     )
 }
