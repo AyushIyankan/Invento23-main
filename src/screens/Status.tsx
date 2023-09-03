@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { ReactComponent as InventoLogo } from '../assets/svg/invento__logo-outline-full.svg'
 import Button from '../components/Button'
@@ -10,13 +10,25 @@ export default function Status() {
     const status = searchParams.get('state')
     const navigate = useNavigate()
 
+    const location = useLocation()
+
+    const [resError, setError] = useState(null)
+
     useEffect(() => {
-        if (status === 'success' || status === 'error') {
+        const hasErrorButNoMessage = status === 'error' && !location.state?.error
+
+        if (status === 'success' || hasErrorButNoMessage) {
             setTimeout(() => {
                 navigate('/')
             }, 4000)
         }
     }, [status])
+
+    useEffect(() => {
+        if (location.state && location.state.error) {
+            setError(location.state.error)
+        }
+    }, [location])
 
     const success = (
         <div className="status--success flow ff-serif">
@@ -36,7 +48,9 @@ export default function Status() {
                 oops! something went wrong :&#40;
                 <br /> Please try again later.
             </p>
-            <p>Hold on while we redirect you to the home page &lt;3</p>
+            {resError && <p className="text-red">Error: {resError}</p>}
+
+            {!resError && <p>Hold on while we redirect you to the home page &lt;3</p>}
             <div className="wrap-buttons flex flex-center">
                 <Button
                     to="/"

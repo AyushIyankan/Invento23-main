@@ -89,6 +89,12 @@ export default function FinalGlance() {
             body: formData,
         })
 
+        if (!res.ok) {
+            toast.error('Something went wrong')
+            navigate('/status?state=error', { state: { error: 'Internal Server Error' } })
+            return
+        }
+
         const data = await res.json()
 
         if (data.success) {
@@ -97,6 +103,10 @@ export default function FinalGlance() {
             reset()
             localStorage.removeItem('verificationShot')
             navigate('/status?state=success')
+        } else {
+            // debugger
+            toast.error('Something went wrong')
+            navigate('/status?state=error', { state: { error: data?.message } })
         }
     }
 
@@ -177,41 +187,43 @@ export default function FinalGlance() {
                 </div>
             )}
             <div className="text-black ff-serif">
-                <h3 className="text-black ff-serif fw-400">Payment</h3>
+                {price > 0 && <h3 className="text-black ff-serif fw-400">Payment</h3>}
             </div>
 
             <div className="form__eventsWrap bg-white flow grid">
-                <div className="text-black ff-serif flow">
-                    <p>
-                        Please pay the total amount of <strong>&#8377;{price}</strong> to
-                        the following UPI address and upload the screenshot of the payment
-                        in this step.
-                    </p>
-                    <p>
-                        <strong>UPI ID: </strong>
-                        <Button
-                            type="externalUrl"
-                            className="btn text-black "
-                            href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
-                            onClick={() => toast.info(`Opened the UPI app`)}
-                            style={{
-                                textTransform: 'none',
-                            }}
-                        >
-                            muhdrashidpj36@okicici
-                        </Button>
-                    </p>
-                    <div className="final_qr flex flex-col flex-center">
+                {price > 0 && (
+                    <div className="text-black ff-serif flow">
                         <p>
-                            <strong>QR Code: </strong>
+                            Please pay the total amount of <strong>&#8377;{price}</strong>{' '}
+                            to the following UPI address and upload the screenshot of the
+                            payment in this step.
                         </p>
-                        <ImgWithFallback
-                            src="/static/inv_qr.jpg"
-                            imgDescription="qr to make the payment"
-                        />
+                        <p>
+                            <strong>UPI ID: </strong>
+                            <Button
+                                type="externalUrl"
+                                className="btn text-black "
+                                href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
+                                onClick={() => toast.info(`Opened the UPI app`)}
+                                style={{
+                                    textTransform: 'none',
+                                }}
+                            >
+                                muhdrashidpj36@okicici
+                            </Button>
+                        </p>
+                        <div className="final_qr flex flex-col flex-center">
+                            <p>
+                                <strong>QR Code: </strong>
+                            </p>
+                            <ImgWithFallback
+                                src="/static/inv_qr.jpg"
+                                imgDescription="qr to make the payment"
+                            />
+                        </div>
+                        <Picker />
                     </div>
-                    <Picker />
-                </div>
+                )}
                 <div className="checkout_btn_wrap flex flex-col">
                     <Button
                         type="button"
@@ -229,17 +241,18 @@ export default function FinalGlance() {
                         style={{
                             textTransform: 'none',
                         }}
-                        disabled={!pickerState.filled}
+                        disabled={price > 0 && !pickerState.filled}
                         onClick={() => handleSubmit()}
                     >
                         Submit
                     </Button>
-                    {error.length > 0 ||
-                        (!pickerState.filled && (
-                            <p className="text-red text-sm">
-                                Please upload the payment proof
-                            </p>
-                        ))}
+                    {price > 0 &&
+                        (error.length > 0 ||
+                            (!pickerState.filled && (
+                                <p className="text-red text-sm">
+                                    Please upload the payment proof
+                                </p>
+                            )))}
                 </div>
             </div>
         </div>
