@@ -141,7 +141,7 @@ export function Hero() {
                     >
                         taksathi
                     </Link>
-                    <Link to={'/events'} className="uppercase d-b text-decoration-none">
+                    <Link to={'/proshow'} className="uppercase d-b text-decoration-none">
                         proshow
                     </Link>
                 </div>
