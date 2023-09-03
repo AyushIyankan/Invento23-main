@@ -162,27 +162,7 @@ export default function Footer({ background, theme, ...delegated }: IFooterProps
                     </address>
                     <div className="footer__logoContainer flex mt-sm">
                         <a
-                            href="https://instagram.com/invento_gecpalakkad"
-                            target="_blank"
-                            className="footer__logo--link"
-                            rel="noreferrer noopener"
-                        >
-                            <span>
-                                <FacebookLogo className="footer__logo" />
-                            </span>
-                        </a>
-                        <a
-                            href="https://instagram.com/invento_gecpalakkad"
-                            target="_blank"
-                            className="footer__logo--link"
-                            rel="noreferrer noopener "
-                        >
-                            <span>
-                                <LinkedInLogo className="footer__logo" />
-                            </span>
-                        </a>
-                        <a
-                            href="https://instagram.com/invento_gecpalakkad"
+                            href="https://youtube.com/@inventogecpalakkad2600"
                             target="_blank"
                             className="footer__logo--link"
                             rel="noreferrer noopener"
