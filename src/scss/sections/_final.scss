@@ -1,3 +1,20 @@
+.final_main {
+    padding-top: calc(5vh + 2px);
+    @include bp(desktop) {
+        padding-top: calc(5vh + 2%);
+    }
+}
+
+.final_text {
+    // font-size: 1.3rem;
+    font-size: 1rem;
+    font-size: clamp(1rem, 0.94rem + 0.3vw, 1.3rem);
+}
+
+.wrap-itemCard_final .itemCard {
+    border-bottom: unset;
+}
+
 .text-review {
     padding-top: 2rem;
 }
