@@ -19,6 +19,7 @@ type ItemImage = {
 export type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> & {
     basePrice?: number
     updatedPrice?: number
+    ticketBooked?: number
 } & ItemImage &
     ItemParticipationType
 // (ItemSingle | ItemTeam)
@@ -29,6 +30,7 @@ interface ItemStore {
     removeItem: (id: Item[`_id`]) => void
     setMembers: (id: Item[`_id`], members: string[]) => void
     setUpdatedPrice: (id: Item[`_id`], price: number) => void
+    changeTicketCount: (id: Item[`_id`], count: number) => void
     reset: () => void
 }
 
@@ -70,7 +72,13 @@ export const useStore = create<ItemStore>()(
                             item._id === id ? { ...item, updatedPrice: price } : item,
                         ),
                     })),
-
+                changeTicketCount: (id, count) =>
+                    set((state) => ({
+                        ...state,
+                        items: state.items.map((item) =>
+                            item._id === id ? { ...item, ticketBooked: count } : item,
+                        ),
+                    })),
                 reset: () => set({ items: [] }),
             }),
             {
