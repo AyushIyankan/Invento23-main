@@ -241,7 +241,7 @@ const routes = createBrowserRouter([
 function App() {
     return (
         <Suspense fallback={<Loading />}>
-            <Analytics mode="development" />
+            <Analytics mode="production" />
             <QueryClientProvider client={queryClient}>
                 <LazyMotion features={domAnimation} strict>
                     <RouterProvider router={routes} />
