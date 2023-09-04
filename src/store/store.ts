@@ -75,9 +75,16 @@ export const useStore = create<ItemStore>()(
                 changeTicketCount: (id, count) =>
                     set((state) => ({
                         ...state,
-                        items: state.items.map((item) =>
-                            item._id === id ? { ...item, ticketBooked: count } : item,
-                        ),
+                        items: state.items.map((item) => {
+                            if (item._id === id) {
+                                return {
+                                    ...item,
+                                    ticketBooked: count,
+                                    updatedPrice: count * (item.regFee ?? 0),
+                                }
+                            }
+                            return item
+                        }),
                     })),
                 reset: () => set({ items: [] }),
             }),
