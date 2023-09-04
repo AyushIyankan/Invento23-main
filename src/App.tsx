@@ -123,6 +123,8 @@ const LazyStatus = lazy(() => import('./screens/Status'))
 
 const LazyRegister = lazy(() => import('./screens/Register'))
 
+const LazyProshowRegister = lazy(() => import('./pages/Proshow/register'))
+
 const routes = createBrowserRouter([
     {
         path: '*',
@@ -221,6 +223,16 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <LazyProshow />,
+            },
+        ],
+    },
+    {
+        path: '/proshow/register',
+        element: <LazyFormLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyProshowRegister />,
             },
         ],
     },
