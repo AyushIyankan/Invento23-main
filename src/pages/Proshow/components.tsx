@@ -84,6 +84,7 @@ function Card({ event }: CardProps) {
             image: event.photo?.secure_url || '/static/natya.jpg',
             imageId: event.photo?.id,
             ticketBooked: 1,
+            updatedPrice: event.regFee,
         })
     }
 
