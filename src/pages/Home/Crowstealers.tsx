@@ -85,19 +85,6 @@ export default function Crowstealers() {
                     viewport={{ once: true }}
                     custom={1}
                 />
-
-                <MEventCard
-                    date="Stay Tuned"
-                    kind="comingSoon"
-                    imgSrc="/static/landing/stock-ev.jpg"
-                    title="the nandi sisters"
-                    borderColor="hsl(186, 71%, 46%)"
-                    variants={item}
-                    initial="hidden"
-                    whileInView={'visible'}
-                    viewport={{ once: true }}
-                    custom={2}
-                />
             </div>
         </div>
         // <div></div>

@@ -1,6 +1,7 @@
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import { Cloudinary } from '@cloudinary/url-gen'
+import { Analytics } from '@vercel/analytics/react'
 import { domAnimation, LazyMotion } from 'framer-motion'
 import { lazy, Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -240,6 +241,7 @@ const routes = createBrowserRouter([
 function App() {
     return (
         <Suspense fallback={<Loading />}>
+            <Analytics mode="production" />
             <QueryClientProvider client={queryClient}>
                 <LazyMotion features={domAnimation} strict>
                     <RouterProvider router={routes} />
