@@ -84,11 +84,7 @@ export default function Register({ type = 'all' }: Props) {
                 <p className="text-black">
                     Proshow registerations are open now!{' '}
                     <span>
-                        Register for proshows{' '}
-                        <Link to="/proshow/register" className="text-black link--menu">
-                            {' '}
-                            here
-                        </Link>
+                        Register for proshows <Link to="/proshow/register"> here</Link>
                     </span>
                 </p>
             </div>
