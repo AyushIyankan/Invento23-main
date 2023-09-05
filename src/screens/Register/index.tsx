@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
+import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
 
 import { EventResponse, EventType } from '../../api/schema'
+import { ReactComponent as InfoIcon } from '../../assets/svg/icon-info.svg'
 import { useToggle } from '../../hooks'
 import useCheckout from '../../hooks/useCheckout'
 import { eventQuery } from '../../hooks/useEventQuery'
@@ -11,6 +12,7 @@ import CollectAndSubmit from './CollectAndSubmit'
 import { EventForm } from './EventForm'
 import { RegistrationForm } from './Form'
 import { Summary } from './Summary'
+
 interface Props {
     type?: 'all' | 'individual'
 }
@@ -77,6 +79,19 @@ export default function Register({ type = 'all' }: Props) {
 
     return (
         <div className="formParentWrap centeredContainer flow side-padding light-scheme pt-4-6">
+            <div className="proshow_reg_Helper ff-serif">
+                <InfoIcon className="info-icon" />
+                <p className="text-black">
+                    Proshow registerations are open now!{' '}
+                    <span>
+                        Register for proshows{' '}
+                        <Link to="/proshow/register" className="text-black link--menu">
+                            {' '}
+                            here
+                        </Link>
+                    </span>
+                </p>
+            </div>
             <RegistrationForm />
             {type === 'all' && <EventForm />}
             {type === 'all' && (

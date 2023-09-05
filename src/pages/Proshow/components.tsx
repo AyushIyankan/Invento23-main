@@ -1,10 +1,14 @@
+import { AdvancedImage } from '@cloudinary/react'
 import { Fragment, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { EventType } from '../../api/schema'
+import { cld } from '../../App'
+import Button from '../../components/Button'
 import { formSchema } from '../../screens/Register/schema'
 import { useDetailStore, useStore } from '../../store'
+import { getCloudNameFromUrl, transformDate } from '../../utils'
 
 type CardsProp = {
     events: EventType[]
@@ -14,10 +18,13 @@ export function EventsUI({ events }: CardsProp) {
     const { reset, items } = useStore()
     const { personalDetails } = useDetailStore()
     const navigate = useNavigate()
+
     useEffect(() => {
         reset()
     }, [])
+
     let totalAmount = 0
+
     items.forEach((item) => {
         totalAmount += (item.ticketBooked ?? 0) * (item.regFee ?? 0)
     })
@@ -52,11 +59,16 @@ export function EventsUI({ events }: CardsProp) {
                         <Card event={combination} />
                     </div>
                 )}
-                <div className="div-pay">
-                    <p className="pay">Amount Payable: {totalAmount} Rs</p>
-                    <button onClick={proceedTopayment} className="pay-button">
+                <div className="div-pay flex flex-col flex-center">
+                    <p className="pay">Amount Payable: &#8377;{totalAmount}</p>
+                    <Button
+                        type="button"
+                        // classNames="btn"
+                        onClick={proceedTopayment}
+                        className="pay-button ff-serif"
+                    >
                         Proceed to payment
-                    </button>
+                    </Button>
                 </div>
             </div>
         </Fragment>
@@ -68,8 +80,6 @@ type CardProps = {
 }
 
 function Card({ event }: CardProps) {
-    const formattedDate = new Date(event.date).toLocaleDateString()
-
     const { addItem, removeItem, items, changeTicketCount } = useStore()
     const itemExists = items.find((e) => e._id === event._id)
 
@@ -117,28 +127,59 @@ function Card({ event }: CardProps) {
 
     return (
         <div className="card">
-            <img src={event.photo?.secure_url} alt={event.name} />
+            <div className="wrap-img">
+                {/* <img src={event.photo?.secure_url} alt={event.name} /> */}
+                <AdvancedImage
+                    cldImg={cld
+                        .setConfig({
+                            cloud: {
+                                cloudName:
+                                    getCloudNameFromUrl(event.photo?.secure_url || '') ??
+                                    'inventov23',
+                            },
+                        })
+                        .image(event.photo?.id || '')
+                        .quality('auto')
+                        .format('auto')}
+                />
+            </div>
             <div className="heading">
-                <h4>{event.name}</h4>
+                <h4
+                    style={{
+                        fontWeight: 'bold',
+                    }}
+                >
+                    {event.name}
+                </h4>
             </div>
             <div className="fee">
                 <p>Registration Fee: {event.regFee}</p>
             </div>
             <div className="date">
-                <p>Date: {formattedDate}</p>
+                <p>Date: {transformDate(event.date)}</p>
             </div>
             <div className="ticket">
                 <p>No. of Tickets:</p>
                 <div>
-                    <button onClick={decrTicket}>-</button>
+                    <Button type="button" className="btn btn--toggle" onClick={addTicket}>
+                        +
+                    </Button>
                     <div>
                         <p>{itemExists?.ticketBooked ?? 0}</p>
                     </div>
-                    <button onClick={addTicket}>+</button>
+                    <Button
+                        type="button"
+                        className="btn btn--toggle"
+                        onClick={decrTicket}
+                    >
+                        -
+                    </Button>
                 </div>
             </div>
             <div className="add">
-                <button onClick={addToCart}>{itemExists ? <DeleteSvg /> : '+'}</button>
+                <Button type="button" className="btn btn--toggle" onClick={addToCart}>
+                    {itemExists ? <DeleteSvg /> : '+'}
+                </Button>
             </div>
         </div>
     )

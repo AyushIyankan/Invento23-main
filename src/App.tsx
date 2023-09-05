@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import Loading from './components/Loading'
+import { loader as proShowLoader } from './pages/Proshow/register'
 import { loader as eventLoader } from './screens/Register'
 
 const queryClient = new QueryClient({
@@ -193,16 +194,16 @@ const routes = createBrowserRouter([
     //         },
     //     ],
     // },
-    {
-        path: '/leaderboards',
-        element: <LazyLeaderBoardLayout />,
-        children: [
-            {
-                index: true,
-                element: <LazyLeaderBoard />,
-            },
-        ],
-    },
+    // {
+    //     path: '/leaderboards',
+    //     element: <LazyLeaderBoardLayout />,
+    //     children: [
+    //         {
+    //             index: true,
+    //             element: <LazyLeaderBoard />,
+    //         },
+    //     ],
+    // },
     // {
     //     path: '/ca',
     //     element: <LazyCALayout />,
@@ -230,10 +231,12 @@ const routes = createBrowserRouter([
     {
         path: '/proshow/register',
         element: <LazyFormLayout />,
+        errorElement: <LazyNotFound />,
         children: [
             {
                 index: true,
                 element: <LazyProshowRegister />,
+                loader: proShowLoader(queryClient),
             },
         ],
     },
