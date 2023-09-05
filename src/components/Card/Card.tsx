@@ -1,4 +1,5 @@
-import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
+import { AdvancedImage, lazyload, placeholder, responsive } from '@cloudinary/react'
+import { thumbnail } from '@cloudinary/url-gen/actions/resize'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { HTMLMotionProps, m } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -7,11 +8,11 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { cld } from '../../App'
-import { isSmall } from '../../hooks'
+import { isLargeScreen, isSmall } from '../../hooks'
 import { ensureMinParticipantsSchema } from '../../screens/Register/schema'
 import { useStore } from '../../store'
 // import { useMediaQuery } from '../../hooks'
-import { isEmpty, transformDate } from '../../utils'
+import { getCloudNameFromUrl, isEmpty, transformDate } from '../../utils'
 import { ToggleButton } from '../Button'
 import { FormInput } from '../Form'
 import { ImgWithFallback } from '../ImgWithFallback'
@@ -59,6 +60,7 @@ interface ICardProps extends HTMLMotionProps<'div'> {
 export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
     // Fix this not working
     // const isMobile = useMediaQuery('(min-width: 48em)')
+    const isDesktop = isLargeScreen()
     //debugger
     return (
         <m.div
@@ -76,12 +78,30 @@ export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
                  */}
                 {imgId ? (
                     <AdvancedImage
-                        cldImg={cld.image(imgId).format('auto').quality('auto')}
+                        // cldImg={
+                        //     isDesktop
+                        //         ? cld
+                        //               .image(imgId)
+                        //               .resize(thumbnail().width(400).height(400))
+                        //         : cld
+                        //               .image(imgId)
+                        //               .resize(thumbnail().width(200).height(200))
+                        // }
+                        cldImg={cld
+                            .setConfig({
+                                cloud: {
+                                    cloudName: getCloudNameFromUrl(bgUrl) || 'inventov23',
+                                },
+                            })
+                            .image(imgId)
+                            .format('auto')
+                            .quality('auto')}
                         plugins={[
                             lazyload(),
                             placeholder({
                                 mode: 'blur',
                             }),
+                            responsive({ steps: [200, 400] }),
                         ]}
                     />
                 ) : (
@@ -151,7 +171,6 @@ export function ItemCard({
     // const { groups } = useGroupStore((state) => state)
     const { items } = useStore((state) => state)
     const [loading] = useState(false)
-
     const [calculatedPrice, setCalculatedPrice] = useState(() => {
         if (props.group && props.calcPriceMode === 'calcOnInput') {
             return props.calcPrice ? props.calcPrice() : 0
@@ -206,7 +225,15 @@ export function ItemCard({
                 <div className="wrap-img flex">
                     {imgId ? (
                         <AdvancedImage
-                            cldImg={cld.image(imgId).format('auto').quality('auto')}
+                            cldImg={cld
+                                .setConfig({
+                                    cloud: {
+                                        cloudName:
+                                            getCloudNameFromUrl(image) || 'inventov23',
+                                    },
+                                })
+                                .image(imgId)
+                                .resize(thumbnail().width(64).height(64))}
                         />
                     ) : (
                         <img src={`${image}`} alt={`${title}`} />

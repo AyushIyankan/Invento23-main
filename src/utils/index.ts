@@ -76,3 +76,15 @@ export function isEmpty(obj: { [key: string]: any }) {
     }
     return false
 }
+
+export function getCloudNameFromUrl(url: string) {
+    const regex = /\.com\/(.*?)\/image\//
+    const match = url.match(regex)
+
+    if (match && match.length > 1) {
+        const resultantMatch = match[1] === 'dgfoublaa' ? null : match[1]
+        return resultantMatch
+    } else {
+        return null
+    }
+}
