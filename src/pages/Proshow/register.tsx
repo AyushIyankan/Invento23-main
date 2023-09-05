@@ -1,23 +1,38 @@
 import { useEffect, useState } from 'react'
+import { QueryClient } from 'react-query'
+import { useLoaderData } from 'react-router'
 
-import { EventType } from '../../api/schema'
+import { EventsResponse, EventType } from '../../api/schema'
+import { proShowQuery } from '../../hooks/useEventQuery'
 import useEventsQuery from '../../hooks/useEventsQuery'
 import { RegistrationForm } from '../../screens/Register/Form'
 import { EventsUI } from './components'
 
+export const loader = (queryClient: QueryClient) => async () => {
+    const query = proShowQuery()
+    const data: EventsResponse =
+        queryClient.getQueryData(query.queryKey) ?? (await queryClient.fetchQuery(query))
+
+    if (!data.success) {
+        throw new Error("Couldn't fetch event data")
+    }
+
+    return data
+}
+
 function ProshowRegister() {
-    const events = useEventsQuery()
+    const data = useLoaderData() as EventsResponse
+
     const [proshowEvents, setProshowEvents] = useState<EventType[]>([])
     useEffect(() => {
-        if (events.data && events.data.success) {
-            const proshow = events.data.events.filter(
-                (event) => event.eventType === 'proshow',
-            )
-            setProshowEvents(proshow)
+        if (data.success && data.count > 0) {
+            const proshows = data.events
+            setProshowEvents(proshows)
         }
-    }, [events.data])
+    }, [data.success])
+
     return (
-        <main id="proshow-reg">
+        <main id="proshow-reg" className="light-scheme">
             <RegistrationForm />
             <section id="proshow-events">
                 <EventsUI events={proshowEvents} />

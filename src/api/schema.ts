@@ -58,6 +58,7 @@ const eventSchema = z.object({
 const eventsResponse = z.discriminatedUnion('success', [
     z.object({
         success: z.literal(true),
+        count: z.number(),
         events: eventSchema.array(),
     }),
     z.object({

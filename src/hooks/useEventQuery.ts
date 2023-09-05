@@ -8,6 +8,14 @@ async function getEvent(id: string): Promise<EventResponse> {
     return res.json()
 }
 
+async function getProshows(): Promise<EventResponse> {
+    const res = await fetch(API_URI + 'events?category=proshow')
+
+    if (!res.ok) throw new Error('Something went wrong')
+
+    return res.json()
+}
+
 export default function useEventQuery(id: string) {
     return useQuery(['event', id], () => getEvent(id))
 }
@@ -15,4 +23,9 @@ export default function useEventQuery(id: string) {
 export const eventQuery = (id: string) => ({
     queryKey: ['event', id],
     queryFn: () => getEvent(id),
+})
+
+export const proShowQuery = () => ({
+    queryKey: ['event', 'proshow'],
+    queryFn: () => getProshows(),
 })
