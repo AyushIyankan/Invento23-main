@@ -220,7 +220,7 @@ export default function FinalGlance() {
                             <Button
                                 type="externalUrl"
                                 className="btn text-black "
-                                href="upi://pay?pa=9048538487@jupiteraxis&pn=Azrin Raj&cu=INR"
+                                href={`upi://pay?pa=9048538487@jupiteraxis&pn=Azrin Raj&cu=INR&am=${price}&tn=Payment%20for%20events`}
                                 onClick={() => toast.info(`Opened the UPI app`)}
                                 style={{
                                     textTransform: 'none',
