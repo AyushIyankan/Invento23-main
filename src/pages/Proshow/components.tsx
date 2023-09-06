@@ -95,6 +95,7 @@ function Card({ event }: CardProps) {
             imageId: event.photo?.id,
             ticketBooked: 1,
             updatedPrice: event.regFee,
+            type: event.eventType,
         })
     }
 

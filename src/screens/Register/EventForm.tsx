@@ -132,6 +132,7 @@ export function EventForm() {
                                         participationType: group ? 'group' : 'solo',
                                         // members: group ? groups[event._id] : [],
                                         members: [],
+                                        type: event.eventType,
                                     })
                                 },
                                 () => {

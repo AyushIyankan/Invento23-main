@@ -20,6 +20,7 @@ export type Item = Pick<EventType, '_id' | 'name' | 'date' | 'regFee'> & {
     basePrice?: number
     updatedPrice?: number
     ticketBooked?: number
+    type?: EventType['eventType']
 } & ItemImage &
     ItemParticipationType
 // (ItemSingle | ItemTeam)
