@@ -14,7 +14,7 @@ interface FormInputs {
     phone: string
     referral: string
     college: string
-    year: '1' | '2' | '3' | '4'
+    year: '' | '1' | '2' | '3' | '4'
 }
 
 export function RegistrationForm() {

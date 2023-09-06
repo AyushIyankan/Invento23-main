@@ -5,6 +5,10 @@ import z from 'zod'
 
 const years = [
     {
+        label: 'Select your year',
+        value: '',
+    },
+    {
         label: '1',
         value: '1',
     },
@@ -93,9 +97,9 @@ export const Fields: FieldType[] = [
     {
         id: 5,
         for: 'year',
-        name: 'Year*',
+        name: 'Year',
         kind: 'select',
-        required: true,
+        required: false,
         placeholder: 'select your year',
         options: years,
     },
@@ -120,8 +124,8 @@ export const formSchema = z
             .min(8, { message: 'Invalid Phone number' }),
         referral: z.string({ invalid_type_error: 'Invalid input' }).optional(),
         college: z.string({ invalid_type_error: 'Invalid input' }).optional(),
-        year: z.enum(['1', '2', '3', '4'], {
-            required_error: 'Year is required',
+        year: z.enum(['', '1', '2', '3', '4'], {
+            // required_error: 'Year is required',
             invalid_type_error: 'Select a valid year',
         }),
     })

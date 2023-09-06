@@ -95,6 +95,7 @@ function Card({ event }: CardProps) {
             imageId: event.photo?.id,
             ticketBooked: 1,
             updatedPrice: event.regFee,
+            type: event.eventType,
         })
     }
 
@@ -156,7 +157,12 @@ function Card({ event }: CardProps) {
                 <p>Registration Fee: {event.regFee}</p>
             </div>
             <div className="date">
-                <p>Date: {transformDate(event.date)}</p>
+                <p>
+                    Date:{' '}
+                    {event.name.toLowerCase() === 'combo'
+                        ? '15/09/2023, 16/09/2023'
+                        : transformDate(event.date)}
+                </p>
             </div>
             <div className="ticket">
                 <p>No. of Tickets:</p>

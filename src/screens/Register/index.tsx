@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom'
+import {
+    Link,
+    LoaderFunctionArgs,
+    ScrollRestoration,
+    useLoaderData,
+} from 'react-router-dom'
 
 import { EventResponse, EventType } from '../../api/schema'
 import { ReactComponent as InfoIcon } from '../../assets/svg/icon-info.svg'
@@ -73,61 +78,69 @@ export default function Register({ type = 'all' }: Props) {
                 image: event.photo?.secure_url || '/static/natya.jpg',
                 imageId: event.photo?.id,
                 members: [],
+                type: event.eventType,
             })
         }
     }, [event, data, type])
 
     return (
-        <div className="formParentWrap centeredContainer flow side-padding light-scheme pt-4-6">
-            <div className="proshow_reg_Helper ff-serif">
-                <InfoIcon className="info-icon" />
-                <p className="text-black">
-                    Proshow registerations are open now!{' '}
-                    <span>
-                        Register for proshows <Link to="/proshow/register"> here</Link>
-                    </span>
-                </p>
-            </div>
-            <RegistrationForm />
-            {type === 'all' && <EventForm />}
-            {type === 'all' && (
-                <Summary bucket={items} onRemove={(id) => removeItem(id)} />
-            )}
-            {type === 'individual' && (
-                <CollectAndSubmit
-                    item={event}
-                    isGroup={isGroup}
-                    toggled={state}
-                    onToggle={toggle}
-                    onGroupFormSubmit={(data) => {
-                        const gmembers = Object.entries(data).map(([, value]) => value)
+        <>
+            <ScrollRestoration />
+            <div className="formParentWrap centeredContainer flow side-padding light-scheme pt-4-6">
+                <div className="proshow_reg_Helper ff-serif">
+                    <InfoIcon className="info-icon" />
+                    <p className="text-black">
+                        Proshow registerations are open now!{' '}
+                        <span>
+                            Register for proshows{' '}
+                            <Link to="/proshow/register"> here</Link>
+                        </span>
+                    </p>
+                </div>
+                <RegistrationForm />
+                {type === 'all' && <EventForm />}
+                {type === 'all' && (
+                    <Summary bucket={items} onRemove={(id) => removeItem(id)} />
+                )}
+                {type === 'individual' && (
+                    <CollectAndSubmit
+                        item={event}
+                        isGroup={isGroup}
+                        toggled={state}
+                        onToggle={toggle}
+                        onGroupFormSubmit={(data) => {
+                            const gmembers = Object.entries(data).map(
+                                ([, value]) => value,
+                            )
 
-                        if (isGroup) {
-                            setMembersForEvent(event._id, gmembers)
-                            if (
-                                event?.name?.toLowerCase() === 'natya' ||
-                                event?.name?.toLowerCase() === 'taksati'
-                            ) {
-                                const calculatedPrice =
-                                    (event.regFeeTeam ?? 0) *
-                                    gmembers.filter((e) => e !== '').length
-                                setUpdatedPrice(event._id, calculatedPrice)
+                            if (isGroup) {
+                                setMembersForEvent(event._id, gmembers)
+                                if (
+                                    event?.name?.toLowerCase() === 'natya' ||
+                                    event?.name?.toLowerCase() === 'taksati'
+                                ) {
+                                    const calculatedPrice =
+                                        (event.regFeeTeam ?? 0) *
+                                        gmembers.filter((e) => e !== '').length
+                                    setUpdatedPrice(event._id, calculatedPrice)
+                                }
                             }
+                        }}
+                        onRemove={() => {
+                            if (items.some((e) => e._id === event._id))
+                                removeItem(event._id)
+                            setEvent({})
+                        }}
+                        onFinalSubmit={() => {
+                            handleFinalSubmit(personalDetails, items)
+                        }}
+                        calcPrice={() =>
+                            items.find((e) => e._id === event._id)?.updatedPrice ?? 0
                         }
-                    }}
-                    onRemove={() => {
-                        if (items.some((e) => e._id === event._id)) removeItem(event._id)
-                        setEvent({})
-                    }}
-                    onFinalSubmit={() => {
-                        handleFinalSubmit(personalDetails, items)
-                    }}
-                    calcPrice={() =>
-                        items.find((e) => e._id === event._id)?.updatedPrice ?? 0
-                    }
-                />
-            )}
-        </div>
+                    />
+                )}
+            </div>
+        </>
     )
 }
 
