@@ -30,7 +30,11 @@ export default function Picker() {
                     ),
                 )
 
-                if (!fileRejections.length) setErrors('')
+                if (fileRejections.length > 0) setPickerState(false)
+
+                if (!fileRejections.length) {
+                    setErrors('')
+                }
 
                 fileRejections.forEach((file) => {
                     file.errors.forEach((err) => {

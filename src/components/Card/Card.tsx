@@ -252,7 +252,11 @@ export function ItemCard({
                 </p>
                 <p className="ff-serif text-black fw-400 detail-date">
                     {' '}
-                    Date: {transformDate(date)}
+                    {/* God! kill me for this :vvvvvv*/}
+                    Date:{' '}
+                    {title.toLowerCase() === 'combo'
+                        ? '15/09/2023, 16/09/2023'
+                        : transformDate(date)}
                 </p>
                 {mode === 'collect' && !isGroup ? (
                     <ToggleButton

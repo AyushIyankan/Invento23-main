@@ -35,6 +35,13 @@ export default function FinalGlance() {
         }, 0)
     })
 
+    const getDisableParams = () => {
+        const params = items.length === 0 || (price > 0 && !pickerState.filled)
+        return params
+    }
+
+    const [disableParams, setDisableParams] = useState(getDisableParams())
+
     useEffect(() => {
         setPickerState(false)
     }, [])
@@ -48,6 +55,10 @@ export default function FinalGlance() {
             setPrice(newPrice)
         }
     }, [items])
+
+    useEffect(() => {
+        setDisableParams(getDisableParams())
+    }, [items, price, pickerState.filled])
 
     const [hasGroupEvents] = useState(() => {
         return items.some((item) => item.participationType === 'group')
@@ -283,7 +294,8 @@ export default function FinalGlance() {
                         style={{
                             textTransform: 'none',
                         }}
-                        disabled={price > 0 && !pickerState.filled}
+                        // disabled={ price > 0 && !pickerState.filled}
+                        disabled={disableParams}
                         onClick={() => handleSubmit()}
                     >
                         Submit
