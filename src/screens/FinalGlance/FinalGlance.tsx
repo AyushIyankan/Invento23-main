@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -10,6 +10,13 @@ import Picker from '../../components/Picker'
 import { useDetailStore, useStore } from '../../store'
 import { usePickerStore } from '../../store'
 import { dataUrlToFile } from '../../utils'
+
+const calcPrice = (items: any[]) => {
+    return items.reduce((acc, item) => {
+        return acc + Number(item.updatedPrice ?? Number(item.regFee))
+    }, 0)
+}
+
 export default function FinalGlance() {
     const { items, removeItem } = useStore((store) => store)
     const { personalDetails } = useDetailStore((store) => store)
@@ -20,11 +27,21 @@ export default function FinalGlance() {
     const { pickerState } = usePickerStore((store) => store)
     const [error] = useState('')
 
-    const [price] = useState(() => {
+    const [price, setPrice] = useState(() => {
         return items.reduce((acc, item) => {
             return acc + Number(item.updatedPrice ?? Number(item.regFee))
         }, 0)
     })
+
+    useEffect(() => {
+        // update price when events are removed
+        const newPrice = calcPrice(items)
+        if (newPrice !== price) {
+            // console.log('price updated')
+            // console.log(newPrice)
+            setPrice(newPrice)
+        }
+    }, [items])
 
     const [hasGroupEvents] = useState(() => {
         return items.some((item) => item.participationType === 'group')
@@ -209,17 +226,24 @@ export default function FinalGlance() {
                             payment in this step.
                         </p>
                         <p>
+                            <span
+                                className="ff-serif text-black d-b"
+                                style={{ marginBottom: '1rem' }}
+                            >
+                                click the id below to open the upi app or scan the qr code
+                                to make the payment
+                            </span>
                             <strong>UPI ID: </strong>
                             <Button
                                 type="externalUrl"
                                 className="btn text-black "
-                                href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
+                                href={`upi://pay?pa=9048538487@jupiteraxis&pn=Azrin Raj&cu=INR&am=${price}&tn=Payment%20for%20events`}
                                 onClick={() => toast.info(`Opened the UPI app`)}
                                 style={{
                                     textTransform: 'none',
                                 }}
                             >
-                                muhdrashidpj36@okicici
+                                9048538487@jupiteraxis
                             </Button>
                         </p>
                         <div className="final_qr flex flex-col flex-center">
