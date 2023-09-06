@@ -209,17 +209,24 @@ export default function FinalGlance() {
                             payment in this step.
                         </p>
                         <p>
+                            <span
+                                className="ff-serif text-black d-b"
+                                style={{ marginBottom: '1rem' }}
+                            >
+                                click the id below to open the upi app or scan the qr code
+                                to make the payment
+                            </span>
                             <strong>UPI ID: </strong>
                             <Button
                                 type="externalUrl"
                                 className="btn text-black "
-                                href="upi://pay?pa=muhdrashidpj36@okicici&pn=MUHAMMED RASHID PJ&cu=INR"
+                                href="upi://pay?pa=9048538487@jupiteraxis&pn=Azrin Raj&cu=INR"
                                 onClick={() => toast.info(`Opened the UPI app`)}
                                 style={{
                                     textTransform: 'none',
                                 }}
                             >
-                                muhdrashidpj36@okicici
+                                9048538487@jupiteraxis
                             </Button>
                         </p>
                         <div className="final_qr flex flex-col flex-center">
