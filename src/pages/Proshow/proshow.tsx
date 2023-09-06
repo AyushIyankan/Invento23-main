@@ -46,9 +46,6 @@ function proshow() {
                     <img style={{ width: '100%' }} src={src.pngMobile} alt={src.alt} />
                 </picture>
             ))}
-            <div className="coming_soon">
-                <p>More soon to be revealed... 🤫</p>
-            </div>
         </main>
     )
 }

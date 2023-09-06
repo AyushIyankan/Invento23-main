@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
 import { useLoaderData } from 'react-router'
+import { ScrollRestoration } from 'react-router-dom'
 
 import { EventsResponse, EventType } from '../../api/schema'
 import { proShowQuery } from '../../hooks/useEventQuery'
-import useEventsQuery from '../../hooks/useEventsQuery'
 import { RegistrationForm } from '../../screens/Register/Form'
 import { EventsUI } from './components'
 
@@ -32,12 +32,15 @@ function ProshowRegister() {
     }, [data.success])
 
     return (
-        <main id="proshow-reg" className="light-scheme">
-            <RegistrationForm />
-            <section id="proshow-events">
-                <EventsUI events={proshowEvents} />
-            </section>
-        </main>
+        <>
+            <ScrollRestoration />
+            <main id="proshow-reg" className="light-scheme">
+                <RegistrationForm />
+                <section id="proshow-events">
+                    <EventsUI events={proshowEvents} />
+                </section>
+            </main>
+        </>
     )
 }
 

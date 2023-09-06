@@ -79,7 +79,7 @@ export const EventCard = forwardRef<HTMLDivElement, ECardProps>(function Ecard(
 
             <Button
                 type="internalUrl"
-                to={kind === 'comingSoon' ? '/#' : '/register'}
+                to={kind === 'comingSoon' ? '/#' : '/proshow/register'}
                 classNames={`btn btn--ecard text-white ff-montserrat flex ${
                     kind === 'comingSoon' ? 'btn--ecard-soon' : ''
                 }`}
