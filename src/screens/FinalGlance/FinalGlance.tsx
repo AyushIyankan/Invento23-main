@@ -4,6 +4,8 @@ import { toast } from 'react-toastify'
 
 import Button from '../../components/Button'
 import { ItemCard } from '../../components/Card'
+import CopyToClipBoard from '../../components/CopyToClipBoard'
+import CopyToClipboardButton from '../../components/CopyToClipboardButton'
 import GenericTable from '../../components/GenericTable'
 import { ImgWithFallback } from '../../components/ImgWithFallback'
 import Picker from '../../components/Picker'
@@ -20,11 +22,11 @@ const calcPrice = (items: any[]) => {
 export default function FinalGlance() {
     const { items, removeItem } = useStore((store) => store)
     const { personalDetails } = useDetailStore((store) => store)
-    const { name, email, phone, college, referral = '' } = personalDetails
+    const { name, email, phone, college, referral = '', year } = personalDetails
     const navigate = useNavigate()
     const [, setSelectedindex] = useState(0)
     const { reset } = useStore((store) => store)
-    const { pickerState } = usePickerStore((store) => store)
+    const { pickerState, setPickerState } = usePickerStore((store) => store)
     const [error] = useState('')
 
     const [price, setPrice] = useState(() => {
@@ -32,6 +34,10 @@ export default function FinalGlance() {
             return acc + Number(item.updatedPrice ?? Number(item.regFee))
         }, 0)
     })
+
+    useEffect(() => {
+        setPickerState(false)
+    }, [])
 
     useEffect(() => {
         // update price when events are removed
@@ -70,6 +76,7 @@ export default function FinalGlance() {
         formData.append('name', name)
         formData.append('email', email)
         formData.append('phone', phone)
+        formData.append('year', year)
         if (referral) formData.append('referalCode', referral)
         if (college) formData.append('college', college)
         // formData.append('referral', referral)
@@ -84,6 +91,10 @@ export default function FinalGlance() {
             return {
                 event: item._id,
                 participants: participants,
+                type: item.type,
+                name: item.name,
+                price: item.updatedPrice ?? Number(item.regFee),
+                ticketCount: item.ticketBooked ?? 1,
             }
         })
 
@@ -225,27 +236,24 @@ export default function FinalGlance() {
                             to the following UPI address and upload the screenshot of the
                             payment in this step.
                         </p>
-                        <p>
-                            <span
+                        <div>
+                            {/* <p
                                 className="ff-serif text-black d-b"
                                 style={{ marginBottom: '1rem' }}
                             >
                                 click the id below to open the upi app or scan the qr code
                                 to make the payment
-                            </span>
+                            </p> */}
                             <strong>UPI ID: </strong>
-                            <Button
-                                type="externalUrl"
-                                className="btn text-black "
-                                href={`upi://pay?pa=9048538487@jupiteraxis&pn=Azrin Raj&cu=INR&am=${price}&tn=Payment%20for%20events`}
-                                onClick={() => toast.info(`Opened the UPI app`)}
-                                style={{
-                                    textTransform: 'none',
-                                }}
-                            >
-                                9048538487@jupiteraxis
-                            </Button>
-                        </p>
+                            <CopyToClipBoard>
+                                <span className="d-b">9048538487@jupiteraxis</span>
+                            </CopyToClipBoard>
+                            {/* <div className="wrap-final_link flex flex-center">
+                                <span className="d-b">9048538487@jupiteraxis</span>
+
+                                <CopyToClipboardButton />
+                            </div> */}
+                        </div>
                         <div className="final_qr flex flex-col flex-center">
                             <p>
                                 <strong>QR Code: </strong>
