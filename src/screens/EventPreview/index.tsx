@@ -9,7 +9,7 @@ import { ImgWithFallback } from '../../components/ImgWithFallback'
 import Loading from '../../components/Loading'
 import { isSmall } from '../../hooks'
 import useEventQuery from '../../hooks/useEventQuery'
-import { transformDate, transformTime } from '../../utils'
+import { getCloudNameFromUrl, transformDate, transformTime } from '../../utils'
 import { NotFound } from '../NotFound'
 
 // function ScrollToTopOnMount() {
@@ -81,6 +81,15 @@ export default function EventPreview() {
                                     maxWidth: '100%',
                                 }}
                                 cldImg={cld
+                                    .setConfig({
+                                        cloud: {
+                                            cloudName:
+                                                getCloudNameFromUrl(
+                                                    event.data.event.photo?.secure_url ||
+                                                        '',
+                                                ) ?? 'inventov23',
+                                        },
+                                    })
                                     .image(imgIdToUse)
                                     .format('auto')
                                     .quality('auto')}
