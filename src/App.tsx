@@ -86,11 +86,7 @@ const LazyAboutLayout = lazy(() =>
     }),
 )
 
-const LazyAbout = lazy(() =>
-    import('./pages/AboutUs').then((m) => {
-        return { default: m.AboutUs }
-    }),
-)
+const LazyAbout = lazy(() => import('./pages/AboutUs/AboutUs'))
 
 const SapthaLazyLayout = lazy(() =>
     import('./pages/saptha/Layout').then((m) => {
@@ -184,16 +180,16 @@ const routes = createBrowserRouter([
             },
         ],
     },
-    // {
-    //     path: '/about',
-    //     element: <LazyAboutLayout />,
-    //     children: [
-    //         {
-    //             index: true,
-    //             element: <LazyAbout />,
-    //         },
-    //     ],
-    // },
+    {
+        path: '/about',
+        element: <LazyAboutLayout />,
+        children: [
+            {
+                index: true,
+                element: <LazyAbout />,
+            },
+        ],
+    },
     // {
     //     path: '/leaderboards',
     //     element: <LazyLeaderBoardLayout />,
