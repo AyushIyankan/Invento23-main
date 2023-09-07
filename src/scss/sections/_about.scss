@@ -9,7 +9,7 @@
     background-size: cover;
     @include bp(tablet) {
         background: url(../assets/svg/rings.svg), linear-gradient(180deg, #560014 0%, #ba2548 100%);
-        background-position: center 80%;
+        background-position: center -45%;
         background-repeat: no-repeat;
     }
 
@@ -42,5 +42,50 @@
         column-gap: 4.1rem;
         row-gap: 3.1rem;
         row-gap: clamp(3.1rem, 2.6rem + 2.496vw, 5.6rem);
+    }
+}
+
+.tabs-aboutUs {
+    .tabs-header {
+        --gap: 1.14rem;
+        width: fit-content;
+        // padding-block: 1rem;
+        margin-inline: auto;
+        padding-left: 0;
+
+        --_border-active-width: 0.09188rem;
+
+        border-bottom: var(--_border-active-width) solid #fff;
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .tabs-header-item {
+            padding: calc(1rem + 3px);
+        }
+
+        .active {
+            color: hsl(var(--clr-yellow-accent) / 1);
+            font-weight: var(--fw-500);
+            position: relative;
+            z-index: 2;
+            // text-decoration: underline;
+            border-bottom: calc(var(--_border-active-width) + 0.1rem) solid hsl(var(--clr-yellow-accent) / 1);
+            // text-underline-offset: 1.35rem;
+            text-decoration-color: hsl(var(--clr-yellow-accent) / 1);
+        }
+
+        font-family: var(--ff-serif);
+        > li {
+            cursor: pointer;
+        }
+    }
+
+    .tabs-panels {
+        .cards {
+            margin-top: 1rem;
+        }
     }
 }

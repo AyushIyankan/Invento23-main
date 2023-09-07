@@ -437,6 +437,7 @@
         background-color: #fff;
         // width: 100%;
         border: 1px solid #fff;
+        overflow-x: hidden;
     }
 
     &::after {
@@ -454,6 +455,7 @@
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-top-color: transparent;
+        overflow-x: hidden;
     }
 }
 
@@ -1357,4 +1359,13 @@
             stroke: hsl(var(--clr-magenta) / 0.8);
         }
     }
+}
+
+.tabs {
+    --gap: 0.3rem;
+}
+
+.tabs-header {
+    --gap: 0.4rem;
+    list-style: none;
 }
