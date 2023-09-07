@@ -68,9 +68,9 @@
     "license": "MIT",
     "lint-staged": {
         "*.{ts,tsx,js,jsx}": [
-            "yarn format",
-            "yarn lint",
-            "yarn lint:fix"
+            "prettier --write --config ./.prettierrc.js",
+            "eslint",
+            "eslint --fix"
         ]
     },
     "browserslist": [
