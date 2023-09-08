@@ -66,8 +66,6 @@
     // padding-block: 2.625rem;
     box-shadow: 6px 1px 14px hsl(var(--clr-white) / 0.5);
     padding-block: min(20rem, 10vh);
-    padding-left: 3.1rem;
-    padding-right: 5rem;
 
     position: fixed;
     inset: 0 0 0 auto;
@@ -80,6 +78,12 @@
     background-position: 5rem 10%;
     background-size: cover;
     overflow-y: scroll;
+
+    @include bp(tablet) {
+        padding-left: 3.1rem;
+        padding-right: 5rem;
+    }
+
     @include bp(desktop) {
         inset: 0;
         transform: translateY(-200%);
@@ -125,8 +129,13 @@
     --flow-space: 1.875rem;
     a {
         @include reset-link;
-        font-size: 2.4rem;
-        font-size: clamp(2.4rem, 2.17rem + 1.1vw, 3.5rem);
+        font-size: 1.5rem;
+        // font-size: clamp(1.5rem, 1.1rem + 2vw, 3.5rem);
+        font-size: 1.8rem;
+        font-size: clamp(1.8rem, 1.46rem + 1.7000000000000002vw, 3.5rem);
+        // font-size: 2.4rem;
+        // font-size: clamp(2.4rem, 2.17rem + 1.1vw, 3.5rem);
+        word-break: break-all;
     }
     li {
         @include list-reset;
