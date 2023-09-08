@@ -129,7 +129,7 @@
     --flow-space: 1.875rem;
     a {
         @include reset-link;
-        font-size: 1.5rem;
+        // font-size: 1.5rem;
         // font-size: clamp(1.5rem, 1.1rem + 2vw, 3.5rem);
         font-size: 1.8rem;
         font-size: clamp(1.8rem, 1.46rem + 1.7000000000000002vw, 3.5rem);
