@@ -87,7 +87,7 @@ export default function FinalGlance() {
         formData.append('name', name)
         formData.append('email', email)
         formData.append('phone', phone)
-        formData.append('year', year)
+        if (year) formData.append('year', year)
         if (referral) formData.append('referalCode', referral)
         if (college) formData.append('college', college)
         // formData.append('referral', referral)
