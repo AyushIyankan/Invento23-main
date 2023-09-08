@@ -111,7 +111,7 @@ export function EventForm() {
                             }
                             minParticipants={
                                 event?.name?.toLowerCase() === 'natya'
-                                    ? 7
+                                    ? 5
                                     : event?.name?.toLowerCase() === 'taksati'
                                     ? 8
                                     : 0

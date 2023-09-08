@@ -90,7 +90,7 @@ export default function CollectAndSubmit({
             calcPrice={calcPrice}
             minParticipants={
                 item?.name?.toLowerCase() === 'natya'
-                    ? 7
+                    ? 5
                     : item?.name?.toLowerCase() === 'taksati'
                     ? 8
                     : 0
