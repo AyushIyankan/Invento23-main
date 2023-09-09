@@ -87,7 +87,7 @@ export default function FinalGlance() {
         formData.append('name', name)
         formData.append('email', email)
         formData.append('phone', phone)
-        formData.append('year', year)
+        if (year) formData.append('year', year)
         if (referral) formData.append('referalCode', referral)
         if (college) formData.append('college', college)
         // formData.append('referral', referral)
@@ -257,7 +257,7 @@ export default function FinalGlance() {
                             </p> */}
                             <strong>UPI ID: </strong>
                             <CopyToClipBoard>
-                                <span className="d-b">9048538487@jupiteraxis</span>
+                                <span className="d-b">azrinraj007-1@oksbi</span>
                             </CopyToClipBoard>
                             {/* <div className="wrap-final_link flex flex-center">
                                 <span className="d-b">9048538487@jupiteraxis</span>

@@ -67,6 +67,11 @@ export default function EventPreview() {
 
     const contactAvailable = contactNameFirst || contactNumberFirst
 
+    const eventHasRegFee = regFee || regFeeTeam
+
+    const eventIsTaksatiOrNatya =
+        name.toLowerCase().includes('taksati') || name.toLowerCase().includes('natya')
+
     return (
         <>
             {/* <ScrollToTopOnMount /> */}
@@ -147,15 +152,26 @@ export default function EventPreview() {
                                     Hosted by: {department} department
                                 </span>
                             )}
-                            {regFeeTeam && (
+                            {eventHasRegFee && !eventIsTaksatiOrNatya && (
                                 <span className="d-b">
                                     Registration Fee:
-                                    {` ${regFeeTeam} per team`}
+                                    {regFee
+                                        ? ` ${regFee}`
+                                        : regFeeTeam
+                                        ? ` ${regFeeTeam} per team`
+                                        : ''}
                                 </span>
                             )}
-                            {regFee && (
-                                <span className="d-b">Registration Fee: {regFee}</span>
+
+                            {eventIsTaksatiOrNatya && (
+                                <span className="d-b">
+                                    Registration Fee: {regFee || regFeeTeam} per head
+                                </span>
                             )}
+
+                            {/* {regFee && (
+                                <span className="d-b">Registration Fee: {regFee}</span>
+                            )} */}
                             {contactAvailable && (
                                 <span className="d-b">
                                     <h5 className="ff-days-one">Contacts: </h5>

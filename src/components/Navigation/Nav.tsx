@@ -38,6 +38,10 @@ const navLinks = [
         name: 'Register',
         to: '/register',
     },
+    {
+        name: 'Accommodation',
+        to: '/accommodation',
+    },
 ]
 
 const variants: Variants = {

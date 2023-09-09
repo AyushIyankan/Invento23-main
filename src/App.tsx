@@ -123,6 +123,12 @@ const LazyRegister = lazy(() => import('./screens/Register'))
 
 const LazyProshowRegister = lazy(() => import('./pages/Proshow/register'))
 
+function Accommodation() {
+    window.location.href =
+        'https://docs.google.com/forms/d/e/1FAIpQLSd6bJiU8dghw2-UlQFmxQzv4ADpe1FklUHonLnhjgMPIaV_MQ/viewform?usp=sf_link'
+    return null
+}
+
 const routes = createBrowserRouter([
     {
         path: '*',
@@ -137,6 +143,10 @@ const routes = createBrowserRouter([
                 element: <LazyHome />,
             },
         ],
+    },
+    {
+        path: '/accommodation',
+        element: <Accommodation />,
     },
     {
         path: '/saptha',
