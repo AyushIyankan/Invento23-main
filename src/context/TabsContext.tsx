@@ -8,16 +8,23 @@ import {
     useState,
 } from 'react'
 
+export type TabValue = {
+    id: string
+    value: string | JSX.Element
+}
 type TabsContextType = {
-    currentTab: string | JSX.Element
-    setCurrentTab: Dispatch<SetStateAction<string | JSX.Element>>
+    currentTab: TabValue
+    setCurrentTab: Dispatch<SetStateAction<TabValue>>
 }
 
 const TabsContext = createContext<TabsContextType | undefined>(undefined)
 
 export const withTabs = <T,>(Component: ComponentType<T>) => {
     const withTabs = (props: PropsWithChildren<T>) => {
-        const [currentTab, setCurrentTab] = useState<string | JSX.Element>('')
+        const [currentTab, setCurrentTab] = useState<TabValue>({
+            id: '',
+            value: '',
+        })
 
         return (
             <TabsContext.Provider value={{ currentTab, setCurrentTab }}>

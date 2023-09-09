@@ -1,13 +1,16 @@
+import { domMax, LazyMotion, m } from 'framer-motion'
 import React, { PropsWithChildren, ReactElement, useEffect, useRef } from 'react'
 
-import { useTabs } from '../../context/TabsContext'
+import { TabValue, useTabs } from '../../context/TabsContext'
 
-type TabType = Record<string, string | JSX.Element>
+type TabType = {
+    [key: string]: TabValue
+}
 
 type TabsProps = {
     tabs: TabType
-    defaultTab: string
-    onTabSelect: (tab: string | JSX.Element) => void
+    defaultTab: TabValue
+    onTabSelect: (tab: TabValue) => void
     classNames?: string
 }
 function Tabs({
@@ -52,73 +55,88 @@ function Tabs({
 
     // Todo: Add error handling for invalid children
     //Todo: Make this accessible
-
     return (
-        <div className={`tabs flex flex-col ${classNames ? classNames : ''}`}>
-            <ul
-                className="tabs-header flex"
-                role="tablist"
-                aria-label="list of tabs"
-                ref={tabListRef}
-                onKeyDown={handleKeyDown}
-                tabIndex={0}
-            >
-                {Object.values(tabs).map((tabValue) => (
-                    <li
-                        key={tabValue.toString()}
-                        className={`tabs-header-item ${
-                            currentTab === tabValue ? 'active' : ''
-                        }`}
-                        onClick={() => {
-                            setCurrentTab(tabValue)
-                            onTabSelect(tabValue)
-                        }}
-                        role="presentation"
-                    >
-                        {/* {tabValue} */}
-                        <a
-                            className="tab-header-link"
-                            href={`#${tabValue.toString().toLowerCase()}`}
-                            onClick={(e) => e.preventDefault()}
-                            tabIndex={currentTab === tabValue ? 0 : -1}
-                            aria-selected={currentTab === tabValue}
-                            role="tab"
+        <LazyMotion features={domMax}>
+            <div className={`tabs flex flex-col ${classNames ? classNames : ''}`}>
+                <ul
+                    className="tabs-header flex"
+                    role="tablist"
+                    aria-label="list of tabs"
+                    ref={tabListRef}
+                    onKeyDown={handleKeyDown}
+                    tabIndex={0}
+                >
+                    {Object.values(tabs).map((tabValue, i) => (
+                        <li
+                            // layout
+                            // layoutId={tabValue.id}
+                            key={tabValue.id}
+                            className={`tabs-header-item ${
+                                currentTab.id === tabValue.id ? 'active' : ''
+                            }`}
+                            onClick={() => {
+                                setCurrentTab(tabValue)
+                                onTabSelect(tabValue)
+                            }}
+                            role="presentation"
                         >
-                            {tabValue}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-            <div className="tabs-panels" role="tabpanel" tabIndex={0}>
-                {children &&
-                    React.Children.map(
-                        children as ReactElement,
-                        (child: ReactElement) => {
-                            if (!child)
-                                throw new Error(
-                                    'Tabs component only accepts Tab components as children',
-                                )
+                            <>
+                                {currentTab.id === tabValue.id && (
+                                    <m.div
+                                        layoutId={`active-tab-indicator`}
+                                        className="active-tab-indicator"
+                                        transition={{
+                                            type: 'spring',
+                                            bounce: 0.2,
+                                            duration: 0.6,
+                                        }}
+                                    ></m.div>
+                                )}
+                                <a
+                                    className="tab-header-link"
+                                    href={`#${tabValue.toString().toLowerCase()}`}
+                                    onClick={(e) => e.preventDefault()}
+                                    tabIndex={currentTab.id === tabValue.id ? 0 : -1}
+                                    aria-selected={currentTab.id === tabValue.id}
+                                    role="tab"
+                                >
+                                    {tabValue.value}
+                                </a>
+                            </>
+                        </li>
+                    ))}
+                </ul>
+                <div className="tabs-panels" role="tabpanel" tabIndex={0}>
+                    {children &&
+                        React.Children.map(
+                            children as ReactElement,
+                            (child: ReactElement) => {
+                                if (!child)
+                                    throw new Error(
+                                        'Tabs component only accepts Tab components as children',
+                                    )
 
-                            if (
-                                child &&
-                                React.isValidElement(child) &&
-                                typeof child.type !== 'string' &&
-                                child.type?.name !== 'Tab'
-                            ) {
-                                throw new Error(
-                                    'Tabs component only accepts Tab components as children',
-                                )
-                            }
-                            return child?.props.id === currentTab
-                                ? React.cloneElement(child, {
-                                      id: currentTab.toString().toLowerCase(),
-                                      key: `${currentTab}`,
-                                  })
-                                : null
-                        },
-                    )}
+                                if (
+                                    child &&
+                                    React.isValidElement(child) &&
+                                    typeof child.type !== 'string' &&
+                                    child.type?.name !== 'Tab'
+                                ) {
+                                    throw new Error(
+                                        'Tabs component only accepts Tab components as children',
+                                    )
+                                }
+                                return child?.props.id === currentTab.id
+                                    ? React.cloneElement(child, {
+                                          id: currentTab.toString().toLowerCase(),
+                                          key: `${currentTab}`,
+                                      })
+                                    : null
+                            },
+                        )}
+                </div>
             </div>
-        </div>
+        </LazyMotion>
     )
 }
 
