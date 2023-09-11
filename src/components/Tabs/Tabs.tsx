@@ -127,16 +127,17 @@ function Tabs({
                                 {React.Children.map(
                                     children as ReactElement,
                                     (child: ReactElement<TabChild>) => {
-                                        if (!child)
+                                        if (!child) {
                                             throw new Error(
-                                                'Tabs component only accepts Tab components as children',
+                                                'Tabs should have atleast one Tab component as children',
                                             )
+                                            return null
+                                        }
 
                                         if (
                                             child &&
                                             React.isValidElement(child) &&
-                                            typeof child.type !== 'string' &&
-                                            child.type?.name !== 'Tab'
+                                            typeof child.type !== 'function'
                                         ) {
                                             throw new Error(
                                                 'Tabs component only accepts Tab components as children',
