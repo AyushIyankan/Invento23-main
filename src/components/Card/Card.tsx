@@ -58,10 +58,6 @@ interface ICardProps extends HTMLMotionProps<'div'> {
 // }
 
 export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
-    // Fix this not working
-    // const isMobile = useMediaQuery('(min-width: 48em)')
-    const isDesktop = isLargeScreen()
-    //debugger
     return (
         <m.div
             {...rest}
@@ -78,30 +74,22 @@ export default function Card({ bgUrl, title, imgId, ...rest }: ICardProps) {
                  */}
                 {imgId ? (
                     <AdvancedImage
-                        // cldImg={
-                        //     isDesktop
-                        //         ? cld
-                        //               .image(imgId)
-                        //               .resize(thumbnail().width(400).height(400))
-                        //         : cld
-                        //               .image(imgId)
-                        //               .resize(thumbnail().width(200).height(200))
-                        // }
                         cldImg={cld
                             .setConfig({
                                 cloud: {
-                                    cloudName: getCloudNameFromUrl(bgUrl) || 'inventov23',
+                                    cloudName:
+                                        getCloudNameFromUrl(bgUrl) ||
+                                        import.meta.env.VITE_CLOUD_NAME,
                                 },
                             })
                             .image(imgId)
-                            .format('auto')
-                            .quality('auto')}
+                            .format('jpg')
+                            .quality(40)}
                         plugins={[
                             lazyload(),
                             placeholder({
                                 mode: 'blur',
                             }),
-                            responsive({ steps: [200, 400] }),
                         ]}
                     />
                 ) : (
@@ -203,7 +191,7 @@ export function ItemCard({
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { isValid },
     } = useForm<{
         [key: string]: string
     }>({
@@ -229,7 +217,8 @@ export function ItemCard({
                                 .setConfig({
                                     cloud: {
                                         cloudName:
-                                            getCloudNameFromUrl(image) || 'inventov23',
+                                            getCloudNameFromUrl(image) ||
+                                            import.meta.env.VITE_CLOUD_NAME,
                                     },
                                 })
                                 .image(imgId)
