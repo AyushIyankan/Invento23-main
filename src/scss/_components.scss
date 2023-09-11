@@ -460,10 +460,37 @@
 }
 
 .card__profile {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+    padding: 0.4em;
+
+    cursor: pointer;
+
+    transition: box-shadow 0.3s ease-in-out;
+
+    border-radius: calc(0.4em + 5px);
+
+    &:hover,
+    &:focus-within {
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.8);
+
+        img {
+            transform: scale(1.1);
+        }
+    }
+
     .image img {
         height: 17rem;
         aspect-ratio: 1;
         object-fit: cover;
+        border-radius: 5px;
+
+        transition: transform 0.3s ease-in-out;
+        transition-delay: 0.2s;
+    }
+
+    .image {
+        overflow: hidden;
+        border: 1px solid #000;
     }
 }
 

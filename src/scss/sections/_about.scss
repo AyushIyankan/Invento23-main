@@ -32,13 +32,18 @@
     > p {
         font-size: 1.1rem;
         font-size: clamp(1.1rem, 0.942rem + 0.798vw, 1.9rem);
+        max-width: 52rem;
     }
 
     .cards {
         margin-top: 8.6rem;
         margin-top: clamp(8.6rem, 8.219rem + 1.904vw, 10.5rem);
-        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-        justify-items: center;
+        // grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+
+        // justify-items: center;
         column-gap: 4.1rem;
         row-gap: 3.1rem;
         row-gap: clamp(3.1rem, 2.6rem + 2.496vw, 5.6rem);
@@ -71,7 +76,6 @@
         }
 
         max-width: fit-content;
-        // padding-block: 1rem;
         margin-inline: auto;
         padding-left: 0;
 
@@ -82,11 +86,19 @@
         a {
             text-decoration: none;
             color: #fff;
-            font-size: 0.857rem;
-            font-size: clamp(0.857rem, 0.6994117647058824rem + 0.8754901960784314vw, 1.75rem);
+            // font-size: 0.857rem;
+            // font-size: clamp(0.857rem, 0.6994117647058824rem + 0.8754901960784314vw, 1.75rem);
+            font-size: 1rem;
+            font-size: clamp(1rem, 0.8676470588235294rem + 0.7352941176470588vw, 1.75rem);
+
+            @media (max-width: 22.37em) {
+                font-size: 0.8rem;
+            }
         }
 
         .tabs-header-item {
+            white-space: nowrap;
+            padding: calc(0.2rem + 3px);
             @include bp(tablet) {
                 padding: calc(1rem + 3px);
             }

@@ -1,9 +1,14 @@
+import { useEffect, useState } from 'react'
+
 import { ProfileCard } from '../../components/Card'
 import Tabs from '../../components/Tabs/Tabs'
 import { TabValue, useTabs, withTabs } from '../../context/TabsContext'
+// import Teams from './teams.json'
+
+// console.log(Teams)
 
 const tabs: Record<string, TabValue> = {
-    council: {
+    execom: {
         id: 'council',
         value: (
             <div className="flex">
@@ -17,7 +22,7 @@ const tabs: Record<string, TabValue> = {
                     {/* <circle cx="7.63441" cy="7.54999" r="6.86" fill="#FFD600" /> */}
                     <circle cx="7.63441" cy="7.54999" r="6.86" fill="#fff" />
                 </svg>
-                Council
+                Execom
             </div>
         ),
     },
@@ -61,9 +66,39 @@ const tabs: Record<string, TabValue> = {
     },
 }
 
+type Teams = {
+    name: string
+    team: string
+    pub_id: string
+    role: string
+}
+
 function AboutUs() {
     const { setCurrentTab } = useTabs()
 
+    const [teams, setTeams] = useState<Teams[]>([])
+
+    useEffect(() => {
+        let mounted = true
+
+        import('./teams.json').then((data) => {
+            if (!mounted) return
+            setTeams(data.default)
+        })
+
+        return () => {
+            mounted = false
+        }
+    }, [])
+
+    const getSortdTeams = (team: string) => {
+        return teams.filter((t) => t.team === team)
+    }
+    // console.log({
+    //     council: getSortdTeams('Execom'),
+    //     committees: getSortdTeams('Committee'),
+    //     webteam: getSortdTeams('webteam'),
+    // })
     return (
         <div className="wrap-aboutUs mh-full pt-m-4-6">
             <section className="aboutUs">
@@ -73,33 +108,51 @@ function AboutUs() {
                 </p>
                 <Tabs
                     tabs={tabs}
-                    defaultTab={tabs.council}
+                    defaultTab={tabs.execom}
                     onTabSelect={(tab) => setCurrentTab(tab)}
                     classNames="tabs-aboutUs"
                 >
-                    <Tabs.Tab id={tabs.council.id}>
+                    <Tabs.Tab id={tabs.execom.id}>
                         <div className="cards grid">
-                            <ProfileCard
-                                designation="Head of ops"
-                                imageUrl="/static/card_placeholder.jpg"
-                                name="John Doe"
-                            />{' '}
+                            {getSortdTeams('Execom').map((team) => (
+                                <ProfileCard
+                                    key={team.name}
+                                    designation={team.role}
+                                    imageUrl={team.pub_id}
+                                    name={team.name}
+                                />
+                            ))}
                         </div>
                     </Tabs.Tab>
                     <Tabs.Tab id={tabs.committees.id}>
                         <div className="cards grid">
-                            <ProfileCard
-                                designation='Head of Committee "X" '
-                                imageUrl="/static/card_placeholder.jpg"
-                                name="Jane Doe"
-                            />{' '}
+                            {getSortdTeams('Committee').map((team) => (
+                                <ProfileCard
+                                    key={team.name}
+                                    designation={team.role}
+                                    imageUrl={team.pub_id}
+                                    name={team.name}
+                                />
+                            ))}
+                        </div>
+                    </Tabs.Tab>
+                    <Tabs.Tab id={tabs.webteam.id}>
+                        <div className="cards grid">
+                            {getSortdTeams('Web').map((team) => (
+                                <ProfileCard
+                                    key={team.name}
+                                    designation={team.role}
+                                    imageUrl={team.pub_id}
+                                    name={team.name}
+                                />
+                            ))}
                         </div>
                     </Tabs.Tab>
                 </Tabs>
                 {/* <div className="cards grid">
                     <ProfileCard
                         designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
+                           imageUrl="/static/card_placeholder.jpg"
                         name="John Doe"
                     />
 

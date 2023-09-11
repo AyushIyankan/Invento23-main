@@ -1,4 +1,4 @@
-import { domMax, LazyMotion, m } from 'framer-motion'
+import { AnimatePresence, domMax, LazyMotion, m } from 'framer-motion'
 import React, { PropsWithChildren, ReactElement, useEffect, useRef } from 'react'
 
 import { TabValue, useTabs } from '../../context/TabsContext'
@@ -66,7 +66,7 @@ function Tabs({
                     onKeyDown={handleKeyDown}
                     tabIndex={0}
                 >
-                    {Object.values(tabs).map((tabValue, i) => (
+                    {Object.values(tabs).map((tabValue) => (
                         <li
                             // layout
                             // layoutId={tabValue.id}
@@ -94,7 +94,7 @@ function Tabs({
                                 )}
                                 <a
                                     className="tab-header-link"
-                                    href={`#${tabValue.toString().toLowerCase()}`}
+                                    href={`#${tabValue.id.toLowerCase()}`}
                                     onClick={(e) => e.preventDefault()}
                                     tabIndex={currentTab.id === tabValue.id ? 0 : -1}
                                     aria-selected={currentTab.id === tabValue.id}
@@ -107,33 +107,43 @@ function Tabs({
                     ))}
                 </ul>
                 <div className="tabs-panels" role="tabpanel" tabIndex={0}>
-                    {children &&
-                        React.Children.map(
-                            children as ReactElement,
-                            (child: ReactElement) => {
-                                if (!child)
-                                    throw new Error(
-                                        'Tabs component only accepts Tab components as children',
-                                    )
+                    <AnimatePresence mode="wait">
+                        {children && (
+                            <m.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                key={currentTab.id}
+                            >
+                                {React.Children.map(
+                                    children as ReactElement,
+                                    (child: ReactElement) => {
+                                        if (!child)
+                                            throw new Error(
+                                                'Tabs component only accepts Tab components as children',
+                                            )
 
-                                if (
-                                    child &&
-                                    React.isValidElement(child) &&
-                                    typeof child.type !== 'string' &&
-                                    child.type?.name !== 'Tab'
-                                ) {
-                                    throw new Error(
-                                        'Tabs component only accepts Tab components as children',
-                                    )
-                                }
-                                return child?.props.id === currentTab.id
-                                    ? React.cloneElement(child, {
-                                          id: currentTab.toString().toLowerCase(),
-                                          key: `${currentTab}`,
-                                      })
-                                    : null
-                            },
+                                        if (
+                                            child &&
+                                            React.isValidElement(child) &&
+                                            typeof child.type !== 'string' &&
+                                            child.type?.name !== 'Tab'
+                                        ) {
+                                            throw new Error(
+                                                'Tabs component only accepts Tab components as children',
+                                            )
+                                        }
+                                        return child?.props.id === currentTab.id
+                                            ? React.cloneElement(child, {
+                                                  id: currentTab.id,
+                                                  key: `${currentTab}`,
+                                              })
+                                            : null
+                                    },
+                                )}
+                            </m.div>
                         )}
+                    </AnimatePresence>
                 </div>
             </div>
         </LazyMotion>
