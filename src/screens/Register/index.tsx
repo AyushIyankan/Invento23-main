@@ -9,7 +9,7 @@ import {
 
 import { EventResponse, EventType } from '../../api/schema'
 import { ReactComponent as InfoIcon } from '../../assets/svg/icon-info.svg'
-import { useToggle } from '../../hooks'
+import { useMediaQuery, useToggle } from '../../hooks'
 import useCheckout from '../../hooks/useCheckout'
 import { eventQuery } from '../../hooks/useEventQuery'
 import { useDetailStore, useStore } from '../../store'
@@ -42,6 +42,7 @@ export default function Register({ type = 'all' }: Props) {
     const [event, setEvent] = useState<EventType | Record<string, never>>({})
     const [isGroup, setGroup] = useState(false)
     const [state, toggle] = useToggle(false)
+    const mobile = useMediaQuery('(max-width: 500px)')
     const { personalDetails } = useDetailStore((state) => state)
     const {
         items,
@@ -90,10 +91,10 @@ export default function Register({ type = 'all' }: Props) {
                 <div className="proshow_reg_Helper ff-serif">
                     <InfoIcon className="info-icon" />
                     <p className="text-black">
-                        Proshow registerations are open now!{' '}
+                        Day passes are open now! {mobile && <br />} Grab your tickets
+                        &nbsp;
                         <span>
-                            Register for proshows{' '}
-                            <Link to="/proshow/register"> here</Link>
+                            <Link to="/proshow/register">Here</Link>
                         </span>
                     </p>
                 </div>

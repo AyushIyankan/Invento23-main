@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { QueryClient } from 'react-query'
-import { useLoaderData } from 'react-router'
+import { useLoaderData } from 'react-router-dom'
 import { ScrollRestoration } from 'react-router-dom'
 
 import { EventsResponse, EventType } from '../../api/schema'

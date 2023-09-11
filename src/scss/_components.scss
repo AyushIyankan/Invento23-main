@@ -1358,3 +1358,15 @@
         }
     }
 }
+
+.proshow-reg-btn {
+    margin-bottom: 1.5rem;
+    margin-left: 2rem;
+    display: block;
+    width: fit-content;
+
+    @media (max-width: 500px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -1,6 +1,7 @@
 import { m, useInView, Variants } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
+import Button from '../../components/Button'
 import { MEventCard } from '../../components/Card'
 
 export default function Crowstealers() {
@@ -50,6 +51,13 @@ export default function Crowstealers() {
 
     return (
         <div className="wrap-crowdstealers" ref={containerRef}>
+            <Button
+                type="internalUrl"
+                to="/proshow/register"
+                classNames="text-magenta btn d-ib btn--link btn--register_event gradient-borders ff-gothic proshow-reg-btn"
+            >
+                Grab your Tickets
+            </Button>
             <h3 className="ff-gothic uppercase fw-400 side-padding">
                 Crowd stealers
                 <m.span
