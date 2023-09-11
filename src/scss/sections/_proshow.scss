@@ -2,6 +2,7 @@
     .info-icon {
         width: 2.3rem;
         aspect-ratio: 1 / 1;
+        flex-shrink: 0;
 
         @include bp(tablet) {
             width: 2.3rem;
