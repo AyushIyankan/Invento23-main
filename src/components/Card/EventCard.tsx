@@ -77,7 +77,7 @@ export const EventCard = forwardRef<HTMLDivElement, ECardProps>(function Ecard(
                 </div>
             </div>
 
-            <Button
+            {/* <Button
                 type="internalUrl"
                 to={kind === 'comingSoon' ? '/#' : '/proshow/register'}
                 classNames={`btn btn--ecard text-white ff-montserrat flex ${
@@ -88,7 +88,7 @@ export const EventCard = forwardRef<HTMLDivElement, ECardProps>(function Ecard(
                 <span aria-hidden>
                     <IconArrow />
                 </span>
-            </Button>
+            </Button> */}
         </div>
     )
 })
