@@ -12,7 +12,7 @@ import { ReactComponent as InfoIcon } from '../../assets/svg/icon-info.svg'
 import { useMediaQuery, useToggle } from '../../hooks'
 import useCheckout from '../../hooks/useCheckout'
 import { eventQuery } from '../../hooks/useEventQuery'
-import { useDetailStore, useStore } from '../../store'
+import { useDetailStore, useFormValidationStateStore, useStore } from '../../store'
 import CollectAndSubmit from './CollectAndSubmit'
 import { EventForm } from './EventForm'
 import { RegistrationForm } from './Form'
@@ -53,6 +53,8 @@ export default function Register({ type = 'all' }: Props) {
         setMembers: setMembersForEvent,
     } = useStore((state) => state)
 
+    const formValidStateStore = useFormValidationStateStore((state) => state)
+
     const handleFinalSubmit = useCheckout()
 
     const data = useLoaderData() as EventResponse
@@ -68,7 +70,11 @@ export default function Register({ type = 'all' }: Props) {
                     : false
             setEvent(item)
             setGroup(group)
-
+            if (group) {
+                formValidStateStore.setIsValid(false)
+            } else {
+                formValidStateStore.setIsValid(true)
+            }
             reset()
             addItem({
                 _id: event?._id,
@@ -126,6 +132,7 @@ export default function Register({ type = 'all' }: Props) {
                                     setUpdatedPrice(event._id, calculatedPrice)
                                 }
                             }
+                            formValidStateStore.setIsValid(true)
                         }}
                         onRemove={() => {
                             if (items.some((e) => e._id === event._id))
@@ -133,11 +140,13 @@ export default function Register({ type = 'all' }: Props) {
                             setEvent({})
                         }}
                         onFinalSubmit={() => {
+                            formValidStateStore.setIsValid(false)
                             handleFinalSubmit(personalDetails, items)
                         }}
                         calcPrice={() =>
                             items.find((e) => e._id === event._id)?.updatedPrice ?? 0
                         }
+                        disabled={!formValidStateStore.isValid}
                     />
                 )}
             </div>

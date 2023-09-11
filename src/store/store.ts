@@ -141,3 +141,22 @@ export const usePickerStore = create<PickerStore>()(
         ),
     ),
 )
+
+// kill my old self for the retarded components i wrote
+
+type FormState = {
+    isValid: boolean
+    setIsValid: (state: boolean) => void
+}
+
+export const useFormValidationStateStore = create<FormState>()(
+    devtools(
+        persist(
+            (set) => ({
+                isValid: false,
+                setIsValid: (state) => set({ isValid: state }),
+            }),
+            { name: 'formValidationState' },
+        ),
+    ),
+)
