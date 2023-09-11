@@ -1,5 +1,11 @@
 import { AnimatePresence, domMax, LazyMotion, m } from 'framer-motion'
-import React, { PropsWithChildren, ReactElement, useEffect, useRef } from 'react'
+import React, {
+    cloneElement,
+    PropsWithChildren,
+    ReactElement,
+    useEffect,
+    useRef,
+} from 'react'
 
 import { TabValue, useTabs } from '../../context/TabsContext'
 
@@ -13,6 +19,9 @@ type TabsProps = {
     onTabSelect: (tab: TabValue) => void
     classNames?: string
 }
+
+type TabChild = PropsWithChildren<{ id: string }>
+
 function Tabs({
     tabs,
     defaultTab,
@@ -117,7 +126,7 @@ function Tabs({
                             >
                                 {React.Children.map(
                                     children as ReactElement,
-                                    (child: ReactElement) => {
+                                    (child: ReactElement<TabChild>) => {
                                         if (!child)
                                             throw new Error(
                                                 'Tabs component only accepts Tab components as children',
@@ -133,10 +142,10 @@ function Tabs({
                                                 'Tabs component only accepts Tab components as children',
                                             )
                                         }
-                                        return child?.props.id === currentTab.id
-                                            ? React.cloneElement(child, {
+                                        return child.props.id === currentTab.id
+                                            ? cloneElement(child, {
                                                   id: currentTab.id,
-                                                  key: `${currentTab}`,
+                                                  key: `${currentTab.id}`,
                                               })
                                             : null
                                     },
@@ -150,7 +159,7 @@ function Tabs({
     )
 }
 
-export function Tab({ children, id }: PropsWithChildren<{ id: string }>) {
+export function Tab({ children, id }: TabChild) {
     return <section id={id}>{children}</section>
 }
 
