@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 
+import RingsSm from '../../assets/svg/ring-sm-alt.svg'
+import Rings from '../../assets/svg/rings.svg'
 import { ProfileCard } from '../../components/Card'
 import Tabs from '../../components/Tabs/Tabs'
 import { TabValue, useTabs, withTabs } from '../../context/TabsContext'
-// import Teams from './teams.json'
-
-// console.log(Teams)
+import { useMediaQuery } from '../../hooks'
 
 const tabs: Record<string, TabValue> = {
     execom: {
@@ -76,6 +76,8 @@ type Teams = {
 function AboutUs() {
     const { setCurrentTab } = useTabs()
 
+    const shouldUseLarge = useMediaQuery('(min-width: 50em)')
+
     const [teams, setTeams] = useState<Teams[]>([])
 
     useEffect(() => {
@@ -94,13 +96,9 @@ function AboutUs() {
     const getSortdTeams = (team: string) => {
         return teams.filter((t) => t.team === team)
     }
-    // console.log({
-    //     council: getSortdTeams('Execom'),
-    //     committees: getSortdTeams('Committee'),
-    //     webteam: getSortdTeams('webteam'),
-    // })
     return (
         <div className="wrap-aboutUs mh-full pt-m-4-6">
+            <img src={shouldUseLarge ? Rings : RingsSm} alt="" />
             <section className="aboutUs">
                 <h3 className="ff-serif fw-500 text-white">The team</h3>
                 <p className="text-white ff-serif fw-400">
@@ -149,59 +147,6 @@ function AboutUs() {
                         </div>
                     </Tabs.Tab>
                 </Tabs>
-                {/* <div className="cards grid">
-                    <ProfileCard
-                        designation="Head of ops"
-                           imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                    <ProfileCard
-                        designation="Head of ops"
-                        imageUrl="/static/card_placeholder.jpg"
-                        name="John Doe"
-                    />
-                </div> */}
             </section>
         </div>
     )
