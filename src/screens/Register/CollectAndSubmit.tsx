@@ -21,6 +21,7 @@ type CollectAndSubmitProps = {
     onToggle?: () => void
     onGroupFormSubmit?: (data: Record<string, string>) => void
     calcPrice?: () => number
+    disabled?: boolean
 }
 
 export default function CollectAndSubmit({
@@ -34,6 +35,7 @@ export default function CollectAndSubmit({
     onFinalSubmit,
     onRemove,
     calcPrice,
+    disabled,
     isGroup: group = false,
 }: CollectAndSubmitProps) {
     const [, setSelectedindex] = useState(0)
@@ -136,6 +138,7 @@ export default function CollectAndSubmit({
                                 // setTimeout(() => {
                                 // }, 200)
                             }}
+                            disabled={disabled}
                         >
                             Proceed to the Final Step
                         </Button>
