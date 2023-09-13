@@ -257,7 +257,7 @@ export default function FinalGlance() {
                             </p> */}
                             <strong>UPI ID: </strong>
                             <CopyToClipBoard>
-                                <span className="d-b">azrinraj007-1@oksbi</span>
+                                <span className="d-b">Q002780471@ybl</span>
                             </CopyToClipBoard>
                             {/* <div className="wrap-final_link flex flex-center">
                                 <span className="d-b">9048538487@jupiteraxis</span>
