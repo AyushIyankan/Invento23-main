@@ -83,7 +83,7 @@ function AboutUs() {
     useEffect(() => {
         let mounted = true
 
-        import('./teams.json').then((data) => {
+        import('./teams_new.json').then((data) => {
             if (!mounted) return
             setTeams(data.default)
         })
@@ -97,57 +97,64 @@ function AboutUs() {
         return teams.filter((t) => t.team === team)
     }
     return (
-        <div className="wrap-aboutUs mh-full pt-m-4-6">
-            <img src={shouldUseLarge ? Rings : RingsSm} alt="" />
-            <section className="aboutUs">
-                <h3 className="ff-serif fw-500 text-white">The team</h3>
-                <p className="text-white ff-serif fw-400">
-                    Meet our team of creators, designers, and world-class problem solvers
-                </p>
-                <Tabs
-                    tabs={tabs}
-                    defaultTab={tabs.execom}
-                    onTabSelect={(tab) => setCurrentTab(tab)}
-                    classNames="tabs-aboutUs"
-                >
-                    <Tabs.Tab id={tabs.execom.id}>
-                        <div className="cards grid">
-                            {getSortdTeams('Execom').map((team) => (
-                                <ProfileCard
-                                    key={team.name}
-                                    designation={team.role}
-                                    imageUrl={team.pub_id}
-                                    name={team.name}
-                                />
-                            ))}
-                        </div>
-                    </Tabs.Tab>
-                    <Tabs.Tab id={tabs.committees.id}>
-                        <div className="cards grid">
-                            {getSortdTeams('Committee').map((team) => (
-                                <ProfileCard
-                                    key={team.name}
-                                    designation={team.role}
-                                    imageUrl={team.pub_id}
-                                    name={team.name}
-                                />
-                            ))}
-                        </div>
-                    </Tabs.Tab>
-                    <Tabs.Tab id={tabs.webteam.id}>
-                        <div className="cards grid">
-                            {getSortdTeams('Web').map((team) => (
-                                <ProfileCard
-                                    key={team.name}
-                                    designation={team.role}
-                                    imageUrl={team.pub_id}
-                                    name={team.name}
-                                />
-                            ))}
-                        </div>
-                    </Tabs.Tab>
-                </Tabs>
-            </section>
+        <div className="main-wrapper-about">
+            <img
+                className="img-bg--about"
+                src={shouldUseLarge ? Rings : RingsSm}
+                alt=""
+            />
+            <div className="wrap-aboutUs mh-full pt-m-4-6">
+                <section className="aboutUs">
+                    <h3 className="ff-serif fw-500 text-white">The team</h3>
+                    <p className="text-white ff-serif fw-400">
+                        Meet our team of creators, designers, and world-class problem
+                        solvers
+                    </p>
+                    <Tabs
+                        tabs={tabs}
+                        defaultTab={tabs.execom}
+                        onTabSelect={(tab) => setCurrentTab(tab)}
+                        classNames="tabs-aboutUs"
+                    >
+                        <Tabs.Tab id={tabs.execom.id}>
+                            <div className="cards grid">
+                                {getSortdTeams('Execom').map((team) => (
+                                    <ProfileCard
+                                        key={team.name}
+                                        designation={team.role}
+                                        imageUrl={team.pub_id}
+                                        name={team.name}
+                                    />
+                                ))}
+                            </div>
+                        </Tabs.Tab>
+                        <Tabs.Tab id={tabs.committees.id}>
+                            <div className="cards grid">
+                                {getSortdTeams('Committee').map((team) => (
+                                    <ProfileCard
+                                        key={team.name}
+                                        designation={team.role}
+                                        imageUrl={team.pub_id}
+                                        name={team.name}
+                                    />
+                                ))}
+                            </div>
+                        </Tabs.Tab>
+                        <Tabs.Tab id={tabs.webteam.id}>
+                            <div className="cards grid">
+                                {getSortdTeams('Web').map((team) => (
+                                    <ProfileCard
+                                        key={team.name}
+                                        designation={team.role}
+                                        imageUrl={team.pub_id}
+                                        name={team.name}
+                                    />
+                                ))}
+                            </div>
+                        </Tabs.Tab>
+                    </Tabs>
+                </section>
+            </div>
         </div>
     )
 }

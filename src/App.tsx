@@ -190,16 +190,16 @@ const routes = createBrowserRouter([
             },
         ],
     },
-    {
-        path: '/about',
-        element: <LazyAboutLayout />,
-        children: [
-            {
-                index: true,
-                element: <LazyAbout />,
-            },
-        ],
-    },
+    // {
+    //     path: '/about',
+    //     element: <LazyAboutLayout />,
+    //     children: [
+    //         {
+    //             index: true,
+    //             element: <LazyAbout />,
+    //         },
+    //     ],
+    // },
     // {
     //     path: '/leaderboards',
     //     element: <LazyLeaderBoardLayout />,

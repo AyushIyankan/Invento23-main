@@ -479,13 +479,20 @@
     }
 
     .image img {
-        height: 17rem;
+        height: 16rem;
         aspect-ratio: 1;
+        // width: 14rem;
         object-fit: cover;
+        // object-position: top;
         border-radius: 5px;
 
         transition: transform 0.3s ease-in-out;
         transition-delay: 0.2s;
+
+        @include bp(desktop) {
+            height: 17rem;
+            width: 17rem;
+        }
     }
 
     .image {

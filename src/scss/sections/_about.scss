@@ -25,14 +25,23 @@
 .wrap-aboutUs {
     position: relative;
     > img {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 0;
     }
 
     > *:not(img) {
-        z-index: 1;
+        z-index: 3;
+    }
+}
+
+.main-wrapper-about {
+    position: relative;
+    .img-bg--about {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        object-fit: cover;
+        object-position: top;
+        height: 100%;
     }
 }
 

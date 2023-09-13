@@ -23,7 +23,7 @@ export function ProfileCard({ name, designation, imageUrl }: IProfileCard) {
                         })
                         .image(imageUrl)
                         .format('auto')
-                        .quality('10')}
+                        .quality('auto')}
                     plugins={[
                         lazyload(),
                         placeholder({
