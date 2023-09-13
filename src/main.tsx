@@ -17,7 +17,7 @@ root.render(
 )
 
 // function debugCss() {
-//     const sheet = window.document.styleSheets[1]
+//     const sheet = window.document.styleSheets[0]
 //     sheet.insertRule(
 //         `
 // * {

@@ -3,13 +3,15 @@
 .wrap-aboutUs {
     // margin-top: clamp(4rem, 4.38rem + 1.596vw, 6.3rem);
     background: url(../assets/svg/rings-sm.svg), linear-gradient(180deg, #560014 0%, #ba2548 100%);
+    background: linear-gradient(180deg, #560014 0%, #ba2548 100%);
     background-size: cover;
     // background-position: center 10%;
     background-repeat: no-repeat;
     background-size: cover;
     @include bp(tablet) {
-        background: url(../assets/svg/rings.svg), linear-gradient(180deg, #560014 0%, #ba2548 100%);
-        background-position: center 80%;
+        // background: url(../assets/svg/rings.svg), linear-gradient(180deg, #560014 0%, #ba2548 100%);
+        background: (180deg, #560014 0%, #ba2548 100%);
+        background-position: center -45%;
         background-repeat: no-repeat;
     }
 
@@ -17,6 +19,29 @@
     grid-template-columns: minmax(1.8rem, 1fr) minmax(0, clamp(21rem, 2.193rem + 94vw, 115rem)) minmax(1.8rem, 1fr);
     > * {
         grid-column: 2/3;
+    }
+}
+
+.wrap-aboutUs {
+    position: relative;
+    > img {
+    }
+
+    > *:not(img) {
+        z-index: 3;
+    }
+}
+
+.main-wrapper-about {
+    position: relative;
+    .img-bg--about {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        object-fit: cover;
+        object-position: top;
+        height: 100%;
     }
 }
 
@@ -32,15 +57,128 @@
     > p {
         font-size: 1.1rem;
         font-size: clamp(1.1rem, 0.942rem + 0.798vw, 1.9rem);
+        max-width: 52rem;
     }
 
     .cards {
         margin-top: 8.6rem;
         margin-top: clamp(8.6rem, 8.219rem + 1.904vw, 10.5rem);
-        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-        justify-items: center;
+        // grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+
+        // justify-items: center;
         column-gap: 4.1rem;
         row-gap: 3.1rem;
         row-gap: clamp(3.1rem, 2.6rem + 2.496vw, 5.6rem);
+    }
+
+    .tabs {
+        margin-top: 4.44rem;
+        margin-top: clamp(4.44rem, 3.4588235294117653rem + 5.450980392156862vw, 10rem);
+    }
+}
+
+.tabs-aboutUs {
+    .tabs-header {
+        --gap: 1rem;
+
+        @include bp(tablet) {
+            --gap: 1.14rem;
+        }
+
+        svg {
+            display: none;
+
+            @include bp(tablet) {
+                display: block;
+                width: 1.5rem;
+                height: 1.5rem;
+                cursor: pointer;
+                align-self: center;
+            }
+        }
+
+        max-width: fit-content;
+        margin-inline: auto;
+        padding-left: 0;
+
+        --_border-active-width: 0.09188rem;
+
+        border-bottom: var(--_border-active-width) solid #fff;
+
+        a {
+            text-decoration: none;
+            color: hsl(var(--clr-white) / 0.7);
+            // font-size: 0.857rem;
+            // font-size: clamp(0.857rem, 0.6994117647058824rem + 0.8754901960784314vw, 1.75rem);
+            font-size: 1rem;
+            font-size: clamp(1rem, 0.8676470588235294rem + 0.7352941176470588vw, 1.75rem);
+
+            @media (max-width: 22.37em) {
+                font-size: 0.8rem;
+            }
+        }
+
+        .tabs-header-item {
+            white-space: nowrap;
+            padding: calc(0.2rem + 3px);
+            @include bp(tablet) {
+                padding: calc(1rem + 3px);
+            }
+            position: relative;
+        }
+
+        .active {
+            font-weight: var(--fw-500);
+            position: relative;
+            z-index: 2;
+            text-decoration-color: hsl(var(--clr-yellow-accent) / 1);
+            a {
+                color: hsl(var(--clr-yellow-accent) / 1);
+            }
+
+            svg > * {
+                fill: hsl(var(--clr-yellow-accent) / 1);
+            }
+
+            .active-tab-indicator {
+                position: absolute;
+                inset: 0;
+                background: hsl(var(--clr-yellow-accent) / 1);
+                background-clip: text;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: -1.5px;
+                    height: 1.45px;
+                    width: 100%;
+                    background: hsl(var(--clr-yellow-accent) / 1);
+
+                    @include bp(tablet) {
+                        height: 7px;
+                        // bottom: -3px;
+                    }
+                }
+            }
+        }
+
+        font-family: var(--ff-serif);
+        > li {
+            cursor: pointer;
+        }
+    }
+
+    .tabs-panels {
+        .cards {
+            margin-top: 6rem;
+        }
+        @include bp(desktop) {
+            // prevent layout shift
+            min-height: 81.25rem;
+        }
     }
 }

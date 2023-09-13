@@ -437,6 +437,7 @@
         background-color: #fff;
         // width: 100%;
         border: 1px solid #fff;
+        overflow-x: hidden;
     }
 
     &::after {
@@ -454,14 +455,49 @@
         border-right-color: transparent;
         border-bottom-color: transparent;
         border-top-color: transparent;
+        overflow-x: hidden;
     }
 }
 
 .card__profile {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+    padding: 0.4em;
+
+    cursor: pointer;
+
+    transition: box-shadow 0.3s ease-in-out;
+
+    border-radius: calc(0.4em + 5px);
+
+    &:hover,
+    &:focus-within {
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.8);
+
+        img {
+            transform: scale(1.1);
+        }
+    }
+
     .image img {
-        height: 17rem;
+        height: 16rem;
         aspect-ratio: 1;
+        // width: 14rem;
         object-fit: cover;
+        // object-position: top;
+        border-radius: 5px;
+
+        transition: transform 0.3s ease-in-out;
+        transition-delay: 0.2s;
+
+        @include bp(desktop) {
+            height: 17rem;
+            width: 17rem;
+        }
+    }
+
+    .image {
+        overflow: hidden;
+        border: 1px solid #000;
     }
 }
 
@@ -1357,6 +1393,15 @@
             stroke: hsl(var(--clr-magenta) / 0.8);
         }
     }
+}
+
+.tabs {
+    --gap: 0.3rem;
+}
+
+.tabs-header {
+    --gap: 0.4rem;
+    list-style: none;
 }
 
 .proshow-reg-btn {

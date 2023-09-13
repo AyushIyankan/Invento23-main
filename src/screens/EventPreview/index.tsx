@@ -92,12 +92,12 @@ export default function EventPreview() {
                                                 getCloudNameFromUrl(
                                                     event.data.event.photo?.secure_url ||
                                                         '',
-                                                ) ?? 'inventov23',
+                                                ) ?? import.meta.env.VITE_CLOUD_NAME,
                                         },
                                     })
                                     .image(imgIdToUse)
                                     .format('auto')
-                                    .quality('auto')}
+                                    .quality(30)}
                                 plugins={[
                                     lazyload(),
                                     // responsive({
@@ -114,24 +114,10 @@ export default function EventPreview() {
                                 imgDescription=""
                             />
                         )}
-                        {/* <ImgWithFallback
-                            // src="/static/natya_large.jpg"
-                            src={
-                                event.data.event.photo?.secure_url ||
-                                '/static/natya_large.jpg'
-                            }
-                            imgDescription=""
-                        /> */}
                     </div>
-
-                    {/* {!(eventType === 'techfest') && (
-                        <p className="eventPreview__title ff-days-one fw-400 text-white uppercase ">
-                            {name}
-                        </p>
-                    )} */}
                 </div>
                 <div className="eventPreview__content panel--bg mh-full grid">
-                    <div className="eventPreview__about text-white ff-serif centeredContainer side-padding flow">
+                    <div className="eventPreview__about break-word text-white ff-serif centeredContainer side-padding flow">
                         <h4 className="fw-500 fs-650">About {name}</h4>
                         <p className="eventPreview__description">{description}</p>
                         <div className="flow fw-500 event-preview-details">
