@@ -39,7 +39,6 @@ export function EventsUI({ events }: CardsProp) {
             toast('Please enter your personal details')
         }
     }
-    const combination = events.find((e) => e._id === '64f5cce00c2af52411604550')
     return (
         <Fragment>
             <h2 className="main-heading">Day Pass</h2>
@@ -47,18 +46,12 @@ export function EventsUI({ events }: CardsProp) {
                 <h3 className="sub-heading">Single Day</h3>
                 <div className="cards">
                     {events.map((event) => {
-                        if (event !== combination) {
+                        if (event.isAvailable) {
                             return <Card key={event._id} event={event} />
                         }
                         return null
                     })}
                 </div>
-                <h3 className="sub-heading">Combo pass</h3>
-                {combination && (
-                    <div className="cards">
-                        <Card event={combination} />
-                    </div>
-                )}
                 <div className="div-pay flex flex-col flex-center">
                     <p className="pay">Amount Payable: &#8377;{totalAmount}</p>
                     <Button
@@ -154,7 +147,9 @@ function Card({ event }: CardProps) {
                 </h4>
             </div>
             <div className="fee">
-                <p>Registration Fee: {event.regFee}</p>
+                <p>
+                    Offer price: {event.regFee} <span className="discount">599</span>
+                </p>
             </div>
             <div className="date">
                 <p>
