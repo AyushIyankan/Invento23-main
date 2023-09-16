@@ -200,6 +200,12 @@
                 display: flex;
                 align-items: center;
                 margin-left: var(--padding);
+
+                .discount{
+                    font-size: 0.8rem;
+                    margin-left: 0.3rem;
+                    text-decoration: line-through;
+                }
             }
 
             & > .date {
